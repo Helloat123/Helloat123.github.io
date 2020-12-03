@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <meta name="author" content="John Doe">
+
+
+
+
+
+<title>【HNOI 2012】 射箭 | Hexo</title>
+
+
+
+    <link rel="icon" href="/favicon.ico">
+
+
+
+
+    <!-- stylesheets list from _config.yml -->
+    
+    <link rel="stylesheet" href="/css/style.css">
+    
+
+
+
+    <!-- scripts list from _config.yml -->
+    
+    <script src="/js/script.js"></script>
+    
+    <script src="/js/tocbot.min.js"></script>
+    
+
+
+
+    
+    
+        
+    
+
+
+<meta name="generator" content="Hexo 5.2.0"></head>
+<body>
+    <div class="wrapper">
+        <header>
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-header header-logo"><a href="/">Richard&#39;s Blog</a></div>
+            <div class="menu navbar-right">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+                <input id="switch_default" type="checkbox" class="switch_default">
+                <label for="switch_default" class="toggleBtn"></label>
+            </div>
+        </div>
+    </nav>
+
+    
+    <nav class="navbar-mobile" id="nav-mobile">
+        <div class="container">
+            <div class="navbar-header">
+                <div>
+                    <a href="/">Richard&#39;s Blog</a><a id="mobile-toggle-theme">·&nbsp;Light</a>
+                </div>
+                <div class="menu-toggle" onclick="mobileBtn()">&#9776; Menu</div>
+            </div>
+            <div class="menu" id="mobile-menu">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+            </div>
+        </div>
+    </nav>
+
+</header>
+<script>
+    var mobileBtn = function f() {
+        var toggleMenu = document.getElementsByClassName("menu-toggle")[0];
+        var mobileMenu = document.getElementById("mobile-menu");
+        if(toggleMenu.classList.contains("active")){
+           toggleMenu.classList.remove("active")
+            mobileMenu.classList.remove("active")
+        }else{
+            toggleMenu.classList.add("active")
+            mobileMenu.classList.add("active")
+        }
+    }
+</script>
+        <div class="main">
+            <div class="container">
+    
+    
+
+    
+    <article class="post-wrap">
+        <header class="post-header">
+            <h1 class="post-title">【HNOI 2012】 射箭</h1>
+            
+                <div class="post-meta">
+                    
+                        Author: <a itemprop="author" rel="author" href="/">John Doe</a>
+                    
+
+                    
+                        <span class="post-time">
+                        Date: <a href="#">August 20, 2017&nbsp;&nbsp;17:20:32</a>
+                        </span>
+                    
+                    
+                        <span class="post-category">
+                    Category:
+                            
+                                <a href="/categories/%E8%AE%A1%E7%AE%97%E5%87%A0%E4%BD%95/">计算几何</a>
+                            
+                        </span>
+                    
+                </div>
+            
+        </header>
+
+        <div class="post-content">
+            <a id="more"></a>
+
+
+<p>把方程写出来就发现每一个限制条件都是相当于坐标轴上一条直线，然后半平面交，但是我nlog^2的程序会T而且T的那几个点如果把时限开大里面还会WA,大概被卡精度。我的代码只有70...这题比较好的方法是每次插入并判断吧类&#20284;WUY每次半平面交的方法.但是我懒得改了...</p>
+<p><br>
+</p>
+<p><pre name="code" class="cpp">//By Richard
+#include &lt;cstdio&gt;
+#include &lt;algorithm&gt;
+#include &lt;iostream&gt;
+#include &lt;cstring&gt;
+#include &lt;cstdlib&gt;
+#include &lt;cmath&gt;
+#include &lt;ctime&gt;
+#define rep(x,y,z) for (int x=(y);(x)&lt;=(z);(x)++)
+#define per(x,y,z) for (int x=(y);(x)&gt;=(z);(x)--)
+#define log2(x) (31-__builtin_clz(x))
+#define mod (int)(1e9+7)
+#define inf 0x3f3f3f3f
+#define cls(x) memset(x,0,sizeof(x))
+#ifdef DEBUG
+#define debugdo(X) X
+#define debugndo(X)
+#define debugout(X) cout&lt;&lt;(#X)&lt;&lt;&quot;=&quot;&lt;&lt;(X)&lt;&lt;endl
+#else
+#define debugdo(X)
+#define debugndo(X) X
+#define debugout(X)
+#endif // debug
+#ifdef ONLINE_JUDGE
+#define debugdo(X)
+#define debugndo(X)
+#define debugout(X)
+#endif
+#define putarray(x,n) rep(iiii,1,n) printf(&quot;%d &quot;,x[iiii])
+#define mp make_pair
+using namespace std;
+typedef pair&lt;int,int&gt; pairs;
+typedef long long LL;
+const double eps=0.001,pi=3.1415926535897932384626433832795028841971693993751058209749446;
+/////////////////////read4.0////////////////////////////////////
+template &lt;typename T&gt;
+inline void read(T &amp;x){char ch;x=0;bool flag=false;ch=getchar();while (ch&gt;'9'||ch&lt;'0') {if (ch=='-') flag=true;ch=getchar();}while ((ch&lt;='9'&amp;&amp;ch&gt;='0')){x=x*10+ch-'0';ch=getchar();}if (flag) x*=-1;}
+template &lt;typename T&gt;
+inline void read(T &amp;x,T &amp;y){read(x);read(y);}
+template &lt;typename T&gt;
+inline void read(T &amp;x,T &amp;y,T &amp;z){read(x);read(y);read(z);}
+/////////////////variables&amp;functions////////////////////
+const int maxn=222222;
+struct Target
+{
+    double x,y1,y2;
+}target;
+int n,cnt;
+struct Point
+{
+    double x,y;
+    Point(double a=0,double b=0):x(a),y(b){}
+    Point operator-(Point b)const{return Point(x-b.x,y-b.y);}
+    double operator*(Point b)const{return x*b.y-y*b.x;}
+};
+#define angel angle
+double mul(Point x,Point y,Point z){return (y.x-x.x)*(z.y-x.y)-(y.y-x.y)*(z.x-x.x);}
+struct Line
+{
+    Point x,y;
+    double angle;
+    Line(Point a=Point(0,0),Point b=Point(0,0),double c=0):x(a),y(b),angle(c){}
+    bool operator&lt;(Line b)const{return (angle==b.angel)?mul(x,b.x,b.y)&gt;0:angle&lt;b.angle;}
+    bool operator==(Line b)const{return angle==b.angle;}
+}linee[maxn],line[maxn];
+inline Point intersect(Line a,Line b)
+{
+    double k1=(b.y-a.x)*(a.y-a.x);
+    double k2=(a.y-a.x)*(b.x-a.x);
+    double k=k1/(k1+k2);
+    return Point(b.y.x+(b.x.x-b.y.x)*k,b.y.y+(b.x.y-b.y.y)*k);
+}
+bool judgee(Line x,Line y,Line z)
+{
+    Point temp=intersect(x,y);
+    return mul(temp,z.x,z.y)&lt;0;
+}
+int deq[maxn],L,R,tot;
+void hpi(Line *a,int n)
+{
+    sort(a+1,a+n+1);
+    n=unique(a+1,a+n+1)-a-1;
+    L=0,R=1;
+    deq[0]=1;deq[1]=2;
+    rep(i,3,n)
+    {
+        while (L&lt;R&amp;&amp;judgee(a[deq[R-1]],a[deq[R]],a[i])) R--;
+        while (L&lt;R&amp;&amp;judgee(a[deq[L+1]],a[deq[L]],a[i])) L++;
+        deq[++R]=i;
+    }
+    while (L&lt;R&amp;&amp;judgee(a[deq[R-1]],a[deq[R]],a[deq[L]])) R--;
+    while (L&lt;R&amp;&amp;judgee(a[deq[L+1]],a[deq[L]],a[deq[R]])) L++;
+    deq[++R]=deq[L];
+}
+bool judge(int n)
+{
+    rep(i,1,n*2) line[i]=linee[i];
+    hpi(line,n*2);
+    if (R-L&gt;2) return true;
+    return false;
+}
+double calc(double x,double y,double z)
+{
+    return z/y-x*y;
+}
+int main()
+{
+    //freopen(&quot;./2053/archery9.in&quot;,&quot;r&quot;,stdin);
+    read(n);
+    rep(i,1,n) 
+    {
+        read(target.x,target.y1,target.y2);
+        linee[++cnt].y=Point(10,calc(10,target.x,target.y1));
+        linee[cnt].x=Point(-10,calc(-10,target.x,target.y1));
+        linee[cnt].angel=atan2(linee[cnt].x.x-linee[cnt].y.x,linee[cnt].x.y-linee[cnt].y.y);
+
+<pre><code>    linee[++cnt].x=Point(10,calc(10,target.x,target.y2));
+    linee[cnt].y=Point(-10,calc(-10,target.x,target.y2));
+    linee[cnt].angel=atan2(linee[cnt].x.x-linee[cnt].y.x,linee[cnt].x.y-linee[cnt].y.y);
+    // double temp1=target.y1/target.x;
+    // if (abs(temp1)&amp;lt;eps) linee[++cnt]=Line(Point(1,temp1-target.x),Point(temp1/target.x,0),atan2(1-temp1/target.x,temp1-target.x));
+    // else linee[++cnt]=Line(Point(0,temp1),Point(temp1/target.x,0),atan2(-temp1/target.x,temp1));
+    // temp1=target.y2/target.x;
+    // if (abs(temp1)&amp;lt;eps) linee[++cnt]=Line(Point(temp1-target.x,1),Point(0,temp1/target.x),atan2(temp1-target.x,1-temp1/target.x));
+    // else linee[++cnt]=Line(Point(temp1/target.x,0),Point(0,temp1),atan2(temp1/target.x,-temp1));
+&#125;
+int L=0,R=n;
+while (L&amp;lt;R)
+&#123;
+    int mid=(L+R)&amp;gt;&amp;gt;1;
+    if (judge(mid)) L=mid+1;
+    else R=mid;
+    //debugdo(printf(&amp;quot;%d %d\n&amp;quot;,L,R));
+&#125;
+printf(&amp;quot;%d\n&amp;quot;,L-1);
+return 0;</code></pre>
+<p>}</pre><br><br><br></p>
+</p>
+
+        </div>
+
+        
+            <section class="post-copyright">
+                
+                    <p class="copyright-item">
+                        <span>Author:</span>
+                        <span>John Doe</span>
+                    </p>
+                
+                
+                    <p class="copyright-item">
+                        <span>Permalink:</span>
+                        <span><a href="http://example.com/2017/08/20/[HNOI%202012]%20%E5%B0%84%E7%AE%AD/">http://example.com/2017/08/20/[HNOI%202012]%20%E5%B0%84%E7%AE%AD/</a></span>
+                    </p>
+                
+                
+                    <p class="copyright-item">
+                        <span>License:</span>
+                        <span>Copyright (c) 2019 <a target="_blank" rel="noopener" href="http://creativecommons.org/licenses/by-nc/4.0/">CC-BY-NC-4.0</a> LICENSE</span>
+                    </p>
+                
+                
+                     <p class="copyright-item">
+                         <span>Slogan:</span>
+                         <span>Do you believe in <strong>DESTINY</strong>?</span>
+                     </p>
+                
+
+            </section>
+        
+        <section class="post-tags">
+            <div>
+                <span>Tag(s):</span>
+                <span class="tag">
+                    
+                    
+                        <a href="/tags/%E5%8D%8A%E5%B9%B3%E9%9D%A2%E4%BA%A4/"># 半平面交</a>
+                    
+                        
+                </span>
+            </div>
+            <div>
+                <a href="javascript:window.history.back();">back</a>
+                <span>· </span>
+                <a href="/">home</a>
+            </div>
+        </section>
+        <section class="post-nav">
+            
+                <a class="prev" rel="prev" href="/2017/08/20/BZOJ%201086%20%5BSCOI%202005%5D%20%E7%8E%8B%E5%AE%A4%E8%81%94%E9%82%A6/">BZOJ 1086 【SCOI 2005】 王室联邦</a>
+            
+            
+            <a class="next" rel="next" href="/2017/08/19/%5BCQOI%202006%5D%20%E5%87%B8%E5%A4%9A%E8%BE%B9%E5%BD%A2/">【CQOI 2006】 凸多边形</a>
+            
+        </section>
+
+
+    </article>
+</div>
+
+        </div>
+        <footer id="footer" class="footer">
+    <div class="copyright">
+        <span>© John Doe | Powered by <a href="https://hexo.io" target="_blank">Hexo</a> & <a href="https://github.com/Siricee/hexo-theme-Chic" target="_blank">Chic</a></span>
+    </div>
+</footer>
+
+    </div>
+</body>
+</html>

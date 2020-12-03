@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <meta name="author" content="John Doe">
+
+
+
+
+
+<title>【CQOI 2006】 凸多边形 | Hexo</title>
+
+
+
+    <link rel="icon" href="/favicon.ico">
+
+
+
+
+    <!-- stylesheets list from _config.yml -->
+    
+    <link rel="stylesheet" href="/css/style.css">
+    
+
+
+
+    <!-- scripts list from _config.yml -->
+    
+    <script src="/js/script.js"></script>
+    
+    <script src="/js/tocbot.min.js"></script>
+    
+
+
+
+    
+    
+        
+    
+
+
+<meta name="generator" content="Hexo 5.2.0"></head>
+<body>
+    <div class="wrapper">
+        <header>
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-header header-logo"><a href="/">Richard&#39;s Blog</a></div>
+            <div class="menu navbar-right">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+                <input id="switch_default" type="checkbox" class="switch_default">
+                <label for="switch_default" class="toggleBtn"></label>
+            </div>
+        </div>
+    </nav>
+
+    
+    <nav class="navbar-mobile" id="nav-mobile">
+        <div class="container">
+            <div class="navbar-header">
+                <div>
+                    <a href="/">Richard&#39;s Blog</a><a id="mobile-toggle-theme">·&nbsp;Light</a>
+                </div>
+                <div class="menu-toggle" onclick="mobileBtn()">&#9776; Menu</div>
+            </div>
+            <div class="menu" id="mobile-menu">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+            </div>
+        </div>
+    </nav>
+
+</header>
+<script>
+    var mobileBtn = function f() {
+        var toggleMenu = document.getElementsByClassName("menu-toggle")[0];
+        var mobileMenu = document.getElementById("mobile-menu");
+        if(toggleMenu.classList.contains("active")){
+           toggleMenu.classList.remove("active")
+            mobileMenu.classList.remove("active")
+        }else{
+            toggleMenu.classList.add("active")
+            mobileMenu.classList.add("active")
+        }
+    }
+</script>
+        <div class="main">
+            <div class="container">
+    
+    
+
+    
+    <article class="post-wrap">
+        <header class="post-header">
+            <h1 class="post-title">【CQOI 2006】 凸多边形</h1>
+            
+                <div class="post-meta">
+                    
+                        Author: <a itemprop="author" rel="author" href="/">John Doe</a>
+                    
+
+                    
+                        <span class="post-time">
+                        Date: <a href="#">August 19, 2017&nbsp;&nbsp;12:47:12</a>
+                        </span>
+                    
+                    
+                        <span class="post-category">
+                    Category:
+                            
+                                <a href="/categories/%E8%AE%A1%E7%AE%97%E5%87%A0%E4%BD%95/">计算几何</a>
+                            
+                        </span>
+                    
+                </div>
+            
+        </header>
+
+        <div class="post-content">
+            <p>半平面交裸题</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//By Richard</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> &amp;lt;cstdio&amp;gt;</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> &amp;lt;algorithm&amp;gt;</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> &amp;lt;iostream&amp;gt;</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> &amp;lt;cstring&amp;gt;</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> &amp;lt;cstdlib&amp;gt;</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> &amp;lt;cmath&amp;gt;</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> &amp;lt;ctime&amp;gt;</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> rep(x,y,z) for (int x=(y);(x)&amp;lt;=(z);(x)++)</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> per(x,y,z) for (int x=(y);(x)&amp;gt;=(z);(x)--)</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> log2(x) (31-__builtin_clz(x))</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> mod (int)(1e9+7)</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> inf 0x3f3f3f3f</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> cls(x) memset(x,0,sizeof(x))</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">ifdef</span> DEBUG</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> debugdo(X) X</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> debugndo(X)</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> debugout(X) cout&amp;lt;&amp;lt;(#X)&amp;lt;&amp;lt;&amp;quot;=&amp;quot;&amp;lt;&amp;lt;(X)&amp;lt;&amp;lt;endl</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">else</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> debugdo(X)</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> debugndo(X) X</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> debugout(X)</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">endif</span> <span class="comment">// debug</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">ifdef</span> ONLINE_JUDGE</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> debugdo(X)</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> debugndo(X)</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> debugout(X)</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> putarray(x,n) rep(iiii,1,n) printf(&amp;quot;%d &amp;quot;,x[iiii])</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> mp make_pair</span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">typedef</span> <span class="built_in">pair</span>&amp;lt;<span class="keyword">int</span>,<span class="keyword">int</span>&amp;gt; pairs;</span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">long</span> <span class="keyword">long</span> LL;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">double</span> eps=<span class="number">0.000000001</span>,pi=<span class="number">3.1415926535897932384626433832795028841971693993751058209749446</span>;</span><br><span class="line"><span class="comment">/////////////////////read4.0////////////////////////////////////</span></span><br><span class="line"><span class="keyword">template</span> &amp;lt;<span class="keyword">typename</span> T&amp;gt;</span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">read</span><span class="params">(T &amp;amp;x)</span></span>&#123;<span class="keyword">char</span> ch;x=<span class="number">0</span>;<span class="keyword">bool</span> flag=<span class="literal">false</span>;ch=getchar();<span class="keyword">while</span> (ch&amp;gt;<span class="string">&#x27;9&#x27;</span>||ch&amp;lt;<span class="string">&#x27;0&#x27;</span>) &#123;<span class="keyword">if</span> (ch==<span class="string">&#x27;-&#x27;</span>) flag=<span class="literal">true</span>;ch=getchar();&#125;<span class="keyword">while</span> ((ch&amp;lt;=<span class="string">&#x27;9&#x27;</span>&amp;amp;&amp;amp;ch&amp;gt;=<span class="string">&#x27;0&#x27;</span>))&#123;x=x*<span class="number">10</span>+ch-<span class="string">&#x27;0&#x27;</span>;ch=getchar();&#125;<span class="keyword">if</span> (flag) x*=<span class="number">-1</span>;&#125;</span><br><span class="line"><span class="keyword">template</span> &amp;lt;<span class="keyword">typename</span> T&amp;gt;</span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">read</span><span class="params">(T &amp;amp;x,T &amp;amp;y)</span></span>&#123;read(x);read(y);&#125;</span><br><span class="line"><span class="keyword">template</span> &amp;lt;<span class="keyword">typename</span> T&amp;gt;</span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">read</span><span class="params">(T &amp;amp;x,T &amp;amp;y,T &amp;amp;z)</span></span>&#123;read(x);read(y);read(z);&#125;</span><br><span class="line"><span class="comment">/////////////////variables&amp;amp;functions////////////////////</span></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> maxn=<span class="number">555</span>;</span><br><span class="line"><span class="keyword">int</span> n,cnt,tot,m;</span><br><span class="line"><span class="keyword">double</span> x,y;</span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> angel angle</span></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Point</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">	<span class="keyword">double</span> x,y;</span><br><span class="line">	Point(<span class="keyword">double</span> a=<span class="number">0</span>,<span class="keyword">double</span> b=<span class="number">0</span>):x(a),y(b)&#123;&#125;</span><br><span class="line">	<span class="keyword">inline</span> Point <span class="keyword">operator</span>-(<span class="keyword">const</span> Point &amp;amp;b)<span class="keyword">const</span>&#123;<span class="keyword">return</span> Point(x-b.x,y-b.y);&#125;</span><br><span class="line">	<span class="keyword">inline</span> <span class="keyword">double</span> <span class="keyword">operator</span>*(<span class="keyword">const</span> Point &amp;amp;b)<span class="keyword">const</span>&#123;<span class="keyword">return</span> x*b.y-y*b.x;&#125;</span><br><span class="line">&#125;res[maxn];</span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">double</span> <span class="title">mul</span><span class="params">(Point a,Point b,Point c)</span></span>&#123;<span class="keyword">return</span> (b.x-a.x)*(c.y-a.y)-(b.y-a.y)*(c.x-a.x);&#125;</span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Line</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">	Point x,y;</span><br><span class="line">	<span class="keyword">double</span> angle;</span><br><span class="line">	Line(Point a=Point(<span class="number">0</span>,<span class="number">0</span>),Point b=Point(<span class="number">0</span>,<span class="number">0</span>),<span class="keyword">double</span> c=<span class="number">0</span>):x(a),y(b),angel(c)&#123;&#125;</span><br><span class="line">	<span class="keyword">inline</span> <span class="keyword">bool</span> <span class="keyword">operator</span>&amp;lt;(<span class="keyword">const</span> Line &amp;amp;b)<span class="keyword">const</span>&#123;<span class="keyword">return</span> <span class="built_in">abs</span>(angel-b.angel)&amp;lt;eps?mul(x,b.x,b.y)&amp;gt;<span class="number">0</span>:angle&amp;lt;b.angel;&#125;</span><br><span class="line">	<span class="keyword">inline</span> <span class="keyword">bool</span> <span class="keyword">operator</span>==(<span class="keyword">const</span> Line &amp;amp;b)<span class="keyword">const</span>&#123;<span class="keyword">return</span> <span class="built_in">abs</span>(angle-b.angel)&amp;lt;eps;&#125;</span><br><span class="line">&#125;line[maxn];</span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">bool</span> <span class="title">right</span><span class="params">(<span class="keyword">const</span> Point &amp;amp;a,<span class="keyword">const</span> Point &amp;amp;b)</span></span>&#123;<span class="keyword">return</span> a*b&amp;lt;<span class="number">0</span>;&#125;</span><br><span class="line"><span class="function"><span class="keyword">inline</span> Point <span class="title">intersect</span><span class="params">(Line a,Line b)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">double</span> k1=(b.y-a.x)*(a.y-a.x);</span><br><span class="line">	<span class="keyword">double</span> k2=(a.y-a.x)*(b.x-a.x);</span><br><span class="line">	<span class="keyword">double</span> k=k1/(k1+k2);</span><br><span class="line">	<span class="keyword">return</span> Point(b.y.x+(b.x.x-b.y.x)*k,b.y.y+(b.x.y-b.y.y)*k);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">bool</span> <span class="title">judge</span><span class="params">(Line a,Line b,Line c)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	Point temp=intersect(a,b);</span><br><span class="line">	<span class="keyword">return</span> (c.y-c.x)*(temp-c.x)&amp;lt;<span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">int</span> deq[maxn],L,R;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">hpi</span><span class="params">(Line *a,<span class="keyword">int</span> n)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	sort(a+<span class="number">1</span>,a+n+<span class="number">1</span>);</span><br><span class="line">	n=unique(a+<span class="number">1</span>,a+n+<span class="number">1</span>)-a<span class="number">-1</span>;</span><br><span class="line">	L=<span class="number">0</span>,R=<span class="number">1</span>;</span><br><span class="line">	deq[<span class="number">0</span>]=<span class="number">1</span>;deq[<span class="number">1</span>]=<span class="number">2</span>;</span><br><span class="line">	rep(i,<span class="number">3</span>,n)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">while</span> (L&amp;lt;R&amp;amp;&amp;amp;judge(a[deq[R<span class="number">-1</span>]],a[deq[R]],a[i])) R--;</span><br><span class="line">		<span class="keyword">while</span> (L&amp;lt;R&amp;amp;&amp;amp;judge(a[deq[L+<span class="number">1</span>]],a[deq[L]],a[i])) L++;</span><br><span class="line">		deq[++R]=i;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">while</span> (L&amp;lt;R&amp;amp;&amp;amp;judge(a[deq[R<span class="number">-1</span>]],a[deq[R]],a[deq[L]])) R--;</span><br><span class="line">	<span class="keyword">while</span> (L&amp;lt;R&amp;amp;&amp;amp;judge(a[deq[L+<span class="number">1</span>]],a[deq[L]],a[deq[R]])) L++;</span><br><span class="line">	deq[++R]=deq[L];</span><br><span class="line">	rep(i,L,R<span class="number">-1</span>) res[++tot]=intersect(a[deq[i]],a[deq[i+<span class="number">1</span>]]);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	read(n);</span><br><span class="line">	rep(i,<span class="number">1</span>,n)</span><br><span class="line">	&#123;</span><br><span class="line">		read(m);</span><br><span class="line">		<span class="keyword">double</span> formerx,formery,xwhenstart,ywhenstart;</span><br><span class="line">		<span class="built_in">scanf</span>(&amp;quot;%lf%lf&amp;quot;,&amp;amp;formerx,&amp;amp;formery);</span><br><span class="line">		xwhenstart=formerx;</span><br><span class="line">		ywhenstart=formery;</span><br><span class="line">		rep(j,<span class="number">1</span>,m<span class="number">-1</span>) </span><br><span class="line">		&#123;</span><br><span class="line">			<span class="built_in">scanf</span>(&amp;quot;%lf%lf&amp;quot;,&amp;amp;x,&amp;amp;y);</span><br><span class="line">			line[++cnt]=Line(Point(formerx,formery),Point(x,y),<span class="built_in">atan2</span>(formerx-x,formery-y));</span><br><span class="line">			formerx=x;formery=y;</span><br><span class="line">		&#125;</span><br><span class="line">		line[++cnt]=Line(Point(formerx,formery),Point(xwhenstart,ywhenstart),<span class="built_in">atan2</span>(formerx-xwhenstart,formery-ywhenstart));</span><br><span class="line">	&#125;</span><br><span class="line">	hpi(line,cnt);</span><br><span class="line">	<span class="keyword">double</span> ans=<span class="number">0</span>;</span><br><span class="line">	rep(i,<span class="number">1</span>,tot<span class="number">-1</span>) </span><br><span class="line">		ans+=res[i+<span class="number">1</span>]*res[i]/<span class="number">2</span>;</span><br><span class="line">	ans+=res[<span class="number">1</span>]*res[tot]/<span class="number">2</span>;</span><br><span class="line">	<span class="keyword">if</span> (tot&amp;lt;=<span class="number">2</span>)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="built_in">puts</span>(&amp;quot;<span class="number">0.000</span>&amp;quot;);</span><br><span class="line">		<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="built_in">printf</span>(&amp;quot;%<span class="number">.3</span>lf\n&amp;quot;,ans);</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+        </div>
+
+        
+            <section class="post-copyright">
+                
+                    <p class="copyright-item">
+                        <span>Author:</span>
+                        <span>John Doe</span>
+                    </p>
+                
+                
+                    <p class="copyright-item">
+                        <span>Permalink:</span>
+                        <span><a href="http://example.com/2017/08/19/[CQOI%202006]%20%E5%87%B8%E5%A4%9A%E8%BE%B9%E5%BD%A2/">http://example.com/2017/08/19/[CQOI%202006]%20%E5%87%B8%E5%A4%9A%E8%BE%B9%E5%BD%A2/</a></span>
+                    </p>
+                
+                
+                    <p class="copyright-item">
+                        <span>License:</span>
+                        <span>Copyright (c) 2019 <a target="_blank" rel="noopener" href="http://creativecommons.org/licenses/by-nc/4.0/">CC-BY-NC-4.0</a> LICENSE</span>
+                    </p>
+                
+                
+                     <p class="copyright-item">
+                         <span>Slogan:</span>
+                         <span>Do you believe in <strong>DESTINY</strong>?</span>
+                     </p>
+                
+
+            </section>
+        
+        <section class="post-tags">
+            <div>
+                <span>Tag(s):</span>
+                <span class="tag">
+                    
+                    
+                        <a href="/tags/%E5%8D%8A%E5%B9%B3%E9%9D%A2%E4%BA%A4/"># 半平面交</a>
+                    
+                        
+                </span>
+            </div>
+            <div>
+                <a href="javascript:window.history.back();">back</a>
+                <span>· </span>
+                <a href="/">home</a>
+            </div>
+        </section>
+        <section class="post-nav">
+            
+                <a class="prev" rel="prev" href="/2017/08/20/%5BHNOI%202012%5D%20%E5%B0%84%E7%AE%AD/">【HNOI 2012】 射箭</a>
+            
+            
+            <a class="next" rel="next" href="/2017/08/17/BZOJ%201038%20%5BZJOI%202008%5D%20%E7%9E%AD%E6%9C%9B%E5%A1%94/">BZOJ 1038 【ZJOI 2008】 瞭望塔</a>
+            
+        </section>
+
+
+    </article>
+</div>
+
+        </div>
+        <footer id="footer" class="footer">
+    <div class="copyright">
+        <span>© John Doe | Powered by <a href="https://hexo.io" target="_blank">Hexo</a> & <a href="https://github.com/Siricee/hexo-theme-Chic" target="_blank">Chic</a></span>
+    </div>
+</footer>
+
+    </div>
+</body>
+</html>

@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <meta name="author" content="John Doe">
+
+
+
+
+
+<title>BZOJ 2648 SJY摆箱子 | Hexo</title>
+
+
+
+    <link rel="icon" href="/favicon.ico">
+
+
+
+
+    <!-- stylesheets list from _config.yml -->
+    
+    <link rel="stylesheet" href="/css/style.css">
+    
+
+
+
+    <!-- scripts list from _config.yml -->
+    
+    <script src="/js/script.js"></script>
+    
+    <script src="/js/tocbot.min.js"></script>
+    
+
+
+
+    
+    
+        
+    
+
+
+<meta name="generator" content="Hexo 5.2.0"></head>
+<body>
+    <div class="wrapper">
+        <header>
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-header header-logo"><a href="/">Richard&#39;s Blog</a></div>
+            <div class="menu navbar-right">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+                <input id="switch_default" type="checkbox" class="switch_default">
+                <label for="switch_default" class="toggleBtn"></label>
+            </div>
+        </div>
+    </nav>
+
+    
+    <nav class="navbar-mobile" id="nav-mobile">
+        <div class="container">
+            <div class="navbar-header">
+                <div>
+                    <a href="/">Richard&#39;s Blog</a><a id="mobile-toggle-theme">·&nbsp;Light</a>
+                </div>
+                <div class="menu-toggle" onclick="mobileBtn()">&#9776; Menu</div>
+            </div>
+            <div class="menu" id="mobile-menu">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+            </div>
+        </div>
+    </nav>
+
+</header>
+<script>
+    var mobileBtn = function f() {
+        var toggleMenu = document.getElementsByClassName("menu-toggle")[0];
+        var mobileMenu = document.getElementById("mobile-menu");
+        if(toggleMenu.classList.contains("active")){
+           toggleMenu.classList.remove("active")
+            mobileMenu.classList.remove("active")
+        }else{
+            toggleMenu.classList.add("active")
+            mobileMenu.classList.add("active")
+        }
+    }
+</script>
+        <div class="main">
+            <div class="container">
+    
+    
+
+    
+    <article class="post-wrap">
+        <header class="post-header">
+            <h1 class="post-title">BZOJ 2648 SJY摆箱子</h1>
+            
+                <div class="post-meta">
+                    
+                        Author: <a itemprop="author" rel="author" href="/">John Doe</a>
+                    
+
+                    
+                        <span class="post-time">
+                        Date: <a href="#">July 7, 2017&nbsp;&nbsp;18:24:54</a>
+                        </span>
+                    
+                    
+                        <span class="post-category">
+                    Category:
+                            
+                                <a href="/categories/%E9%AB%98%E7%BA%A7%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">高级数据结构</a>
+                            
+                        </span>
+                    
+                </div>
+            
+        </header>
+
+        <div class="post-content">
+            <a id="more"></a>
+
+
+<p>kdtree模板题</p>
+<p>我判是否查询时用mid来判没有存极&#20540;，然后貌&#20284;被卡常了？</p>
+<p>hzwer的代码在我本地的随机数据中跑得没我快...难道bzoj上的数据有构造的？</p>
+<p></p>
+<pre name="code" class="cpp">//By Richard
+#include &lt;cstdio&gt;
+#include &lt;algorithm&gt;
+#include &lt;iostream&gt;
+#include &lt;cstring&gt;
+#include &lt;cstdlib&gt;
+#include &lt;cmath&gt;
+#include &lt;ctime&gt;
+#define rep(x,y,z) for (int x=(y);(x)&lt;=(z);(x)++)
+#define per(x,y,z) for (int x=(y);(x)&gt;=(z);(x)--)
+#define log2(x) (31-__builtin_clz(x))
+#define mod (int)(1e9+7)
+#define inf 0x3f3f3f3f
+#define cls(x) memset(x,0,sizeof(x))
+#ifdef DEBUG
+#define debugdo(X) X
+#define debugndo(X)
+#define debugout(X) cout&lt;&lt;(#X)&lt;&lt;&quot;=&quot;&lt;&lt;(X)&lt;&lt;endl
+#else
+#define debugdo(X)
+#define debugndo(X) X
+#define debugout(X)
+#endif // debug
+#ifdef ONLINE_JUDGE
+#define debugdo(X)
+#define debugndo(X) X
+#define debugout(X)
+#endif
+#define putarray(x,n) rep(iiii,1,n) printf(&quot;%d &quot;,x[iiii])
+#define mp make_pair
+using namespace std;
+typedef pair&lt;int,int&gt; pairs;
+typedef long long LL;
+/////////////////////read3.0////////////////////////////////////
+template &lt;typename T&gt;
+inline void read(T &amp;x){char ch;x=0;bool flag=false;ch=getchar();while (ch&gt;'9'||ch&lt;'0') {ch=getchar();if (ch=='-') flag=true;}while ((ch&lt;='9'&amp;&amp;ch&gt;='0')){x=x*10+ch-'0';ch=getchar();}if (flag) x*=-1;}
+template &lt;typename T&gt;
+inline void read(T &amp;x,T &amp;y){read(x);read(y);}
+/////////////////variables&amp;functions////////////////////
+const int maxn=1111111;
+int n,doing,m,ans;
+bool now;
+struct POINT
+{
+    int x,y;
+}point[maxn];
+struct Node
+{
+    Node *l,*r;
+    int id;
+    inline bool operator&lt;(const Node &amp;other)const
+    {
+        if (now) return point[id].x&lt;point[other.id].x;
+        else return point[id].y&lt;point[other.id].y;
+    }
+}node[maxn];
+struct kd_tree
+{
+    Node *root;
+    // Node node[maxn];
+    inline void init(const int &amp;vv)
+    {
+        rep(i,1,vv) node[i].id=i;
+    }
+    Node *build(const int &amp;l,const int &amp;r,const bool &amp;d)
+    {
+        if (l==r) return node+l;
+        else if (l&gt;r) return 0;
+        now=d;
+        int mid=(l+r)&gt;&gt;1;
+        nth_element(node+l,node+mid,node+r+1);
+        node[mid].l=build(l,mid-1,d^1);
+        node[mid].r=build(mid+1,r,d^1);
+        return &amp;node[mid];
+    } 
+    inline void insert(const int &amp;x)
+    {
+        // doing=x;
+        node[x].id=x;
+        Node *nowp=root;
+        bool now=1;
+        while (1)
+        {
+            if (now)
+            {
+                if (point[x].x&lt;point[nowp-&gt;id].x)
+                {
+                    if (nowp-&gt;l) nowp=nowp-&gt;l;
+                    else 
+                    {
+                        nowp-&gt;l=&amp;node[x];
+                        break;
+                    }
+                }
+                else 
+                {
+                    if (nowp-&gt;r) nowp=nowp-&gt;r;
+                    else
+                    {
+                        nowp-&gt;r=&amp;node[x];
+                        break;
+                    }
+                }
+            }
+            else
+            {
+                if (point[x].y&lt;point[nowp-&gt;id].y) 
+                {
+                    if (nowp-&gt;l) nowp=nowp-&gt;l;
+                    else 
+                    {
+                        nowp-&gt;l=&amp;node[x];
+                        break;
+                    }
+                }
+                else 
+                {
+                    if (nowp-&gt;r) nowp=nowp-&gt;r;
+                    else
+                    {
+                        nowp-&gt;r=&amp;node[x];
+                        break;
+                    }
+                }
+            }
+            now^=1;
+        }
+    }
+    inline int dis(const int &amp;x)
+    {
+        return abs(point[x].x-point[doing].x)+abs(point[x].y-point[doing].y);
+    }
+    void querycore(const Node *x,const bool &amp;d)
+    {
+        // now=d;
+        ans=min(ans,dis(x-&gt;id));
+        if (d)
+        {
+            if (point[x-&gt;id].x&gt;point[doing].x)
+            {
+                if (x-&gt;l) querycore(x-&gt;l,d^1);
+                if (point[x-&gt;id].x-point[doing].x&lt;ans&amp;&amp;x-&gt;r) querycore(x-&gt;r,d^1);
+            }
+            else
+            {
+                if (x-&gt;r) querycore(x-&gt;r,d^1);
+                if (point[doing].x-point[x-&gt;id].x&lt;ans&amp;&amp;x-&gt;l) querycore(x-&gt;l,d^1);
+            }
+        }
+        else
+        {
+            if (point[x-&gt;id].y&gt;point[doing].y)
+            {
+                if (x-&gt;l) querycore(x-&gt;l,d^1);
+                if (point[x-&gt;id].y-point[doing].y&lt;ans&amp;&amp;x-&gt;r) querycore(x-&gt;r,d^1);
+            }
+            else
+            {
+                if (x-&gt;r) querycore(x-&gt;r,d^1);
+                if (point[doing].y-point[x-&gt;id].y&lt;ans&amp;&amp;x-&gt;l) querycore(x-&gt;l,d^1);
+            }
+        }
+    }
+    inline int query(const int &amp;x)
+    {
+        ans=inf;
+        doing=x;
+        querycore(root,1);
+        return ans;
+    }
+}kdtree;
+int main()
+{
+    read(n,m);
+    kdtree.init(n+m);
+    rep(i,1,n) read(point[i].x,point[i].y);
+    kdtree.root=kdtree.build(1,n,1);
+    int tt;
+    rep(i,n+1,n+m)
+    {
+        read(tt);
+        read(point[i].x,point[i].y);
+        if (tt==2) printf(&quot;%d\n&quot;,kdtree.query(i));
+        else kdtree.insert(i);
+
+<pre><code>&#125;
+return 0;</code></pre>
+<p>}</pre><br><br><br></p>
+<p></p>
+
+        </div>
+
+        
+            <section class="post-copyright">
+                
+                    <p class="copyright-item">
+                        <span>Author:</span>
+                        <span>John Doe</span>
+                    </p>
+                
+                
+                    <p class="copyright-item">
+                        <span>Permalink:</span>
+                        <span><a href="http://example.com/2017/07/07/BZOJ%202648%20SJY%E6%91%86%E7%AE%B1%E5%AD%90/">http://example.com/2017/07/07/BZOJ%202648%20SJY%E6%91%86%E7%AE%B1%E5%AD%90/</a></span>
+                    </p>
+                
+                
+                    <p class="copyright-item">
+                        <span>License:</span>
+                        <span>Copyright (c) 2019 <a target="_blank" rel="noopener" href="http://creativecommons.org/licenses/by-nc/4.0/">CC-BY-NC-4.0</a> LICENSE</span>
+                    </p>
+                
+                
+                     <p class="copyright-item">
+                         <span>Slogan:</span>
+                         <span>Do you believe in <strong>DESTINY</strong>?</span>
+                     </p>
+                
+
+            </section>
+        
+        <section class="post-tags">
+            <div>
+                <span>Tag(s):</span>
+                <span class="tag">
+                    
+                    
+                        <a href="/tags/KD-Tree/"># KD-Tree</a>
+                    
+                        
+                </span>
+            </div>
+            <div>
+                <a href="javascript:window.history.back();">back</a>
+                <span>· </span>
+                <a href="/">home</a>
+            </div>
+        </section>
+        <section class="post-nav">
+            
+                <a class="prev" rel="prev" href="/2017/07/09/BZOJ%203673&3674%20%E5%8F%AF%E6%8C%81%E4%B9%85%E5%8C%96%E5%B9%B6%E6%9F%A5%E9%9B%86/">BZOJ 3673&3674 可持久化并查集</a>
+            
+            
+            <a class="next" rel="next" href="/2017/07/06/BZOJ%202463%20%E8%B0%81%E8%83%BD%E8%B5%A2%E5%91%A2%EF%BC%9F/">BZOJ 2463 谁能赢呢？</a>
+            
+        </section>
+
+
+    </article>
+</div>
+
+        </div>
+        <footer id="footer" class="footer">
+    <div class="copyright">
+        <span>© John Doe | Powered by <a href="https://hexo.io" target="_blank">Hexo</a> & <a href="https://github.com/Siricee/hexo-theme-Chic" target="_blank">Chic</a></span>
+    </div>
+</footer>
+
+    </div>
+</body>
+</html>

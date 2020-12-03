@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <meta name="author" content="John Doe">
+
+
+
+
+
+<title>HDU 2089 不要62 | Hexo</title>
+
+
+
+    <link rel="icon" href="/favicon.ico">
+
+
+
+
+    <!-- stylesheets list from _config.yml -->
+    
+    <link rel="stylesheet" href="/css/style.css">
+    
+
+
+
+    <!-- scripts list from _config.yml -->
+    
+    <script src="/js/script.js"></script>
+    
+    <script src="/js/tocbot.min.js"></script>
+    
+
+
+
+    
+    
+        
+    
+
+
+<meta name="generator" content="Hexo 5.2.0"></head>
+<body>
+    <div class="wrapper">
+        <header>
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-header header-logo"><a href="/">Richard&#39;s Blog</a></div>
+            <div class="menu navbar-right">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+                <input id="switch_default" type="checkbox" class="switch_default">
+                <label for="switch_default" class="toggleBtn"></label>
+            </div>
+        </div>
+    </nav>
+
+    
+    <nav class="navbar-mobile" id="nav-mobile">
+        <div class="container">
+            <div class="navbar-header">
+                <div>
+                    <a href="/">Richard&#39;s Blog</a><a id="mobile-toggle-theme">·&nbsp;Light</a>
+                </div>
+                <div class="menu-toggle" onclick="mobileBtn()">&#9776; Menu</div>
+            </div>
+            <div class="menu" id="mobile-menu">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+            </div>
+        </div>
+    </nav>
+
+</header>
+<script>
+    var mobileBtn = function f() {
+        var toggleMenu = document.getElementsByClassName("menu-toggle")[0];
+        var mobileMenu = document.getElementById("mobile-menu");
+        if(toggleMenu.classList.contains("active")){
+           toggleMenu.classList.remove("active")
+            mobileMenu.classList.remove("active")
+        }else{
+            toggleMenu.classList.add("active")
+            mobileMenu.classList.add("active")
+        }
+    }
+</script>
+        <div class="main">
+            <div class="container">
+    
+    
+
+    
+    <article class="post-wrap">
+        <header class="post-header">
+            <h1 class="post-title">HDU 2089 不要62</h1>
+            
+                <div class="post-meta">
+                    
+                        Author: <a itemprop="author" rel="author" href="/">John Doe</a>
+                    
+
+                    
+                        <span class="post-time">
+                        Date: <a href="#">August 11, 2017&nbsp;&nbsp;18:58:16</a>
+                        </span>
+                    
+                    
+                        <span class="post-category">
+                    Category:
+                            
+                                <a href="/categories/DP/">DP</a>
+                            
+                        </span>
+                    
+                </div>
+            
+        </header>
+
+        <div class="post-content">
+            <a id="more"></a>
+
+
+<p>很惭愧，学到现在连数位dp都不会。做此题学习。</p>
+<p>f[i][j]表示长为i的最高位是j的方案数.solve数组-1的原因是把0算进去了。</p>
+<p></p>
+<pre name="code" class="cpp">//By Richard
+#include &lt;cstdio&gt;
+#include &lt;algorithm&gt;
+#include &lt;iostream&gt;
+#include &lt;cstring&gt;
+#include &lt;cstdlib&gt;
+#include &lt;cmath&gt;
+#include &lt;ctime&gt;
+#define rep(x,y,z) for (int x=(y);(x)&lt;=(z);(x)++)
+#define per(x,y,z) for (int x=(y);(x)&gt;=(z);(x)--)
+#define log2(x) (31-__builtin_clz(x))
+#define mod (int)(1e9+7)
+#define inf 0x3f3f3f3f
+#define cls(x) memset(x,0,sizeof(x))
+#ifdef DEBUG
+#define debugdo(X) X
+#define debugndo(X)
+#define debugout(X) cout&lt;&lt;(#X)&lt;&lt;&quot;=&quot;&lt;&lt;(X)&lt;&lt;endl
+#else
+#define debugdo(X)
+#define debugndo(X) X
+#define debugout(X)
+#endif // debug
+#ifdef ONLINE_JUDGE
+#define debugdo(X)
+#define debugndo(X)
+#define debugout(X)
+#endif
+#define putarray(x,n) rep(iiii,1,n) printf(&quot;%d &quot;,x[iiii])
+#define mp make_pair
+using namespace std;
+typedef pair&lt;int,int&gt; pairs;
+typedef long long LL;
+/////////////////////read3.0////////////////////////////////////
+template &lt;typename T&gt;
+inline void read(T &amp;x){char ch;x=0;bool flag=false;ch=getchar();while (ch&gt;'9'||ch&lt;'0') {ch=getchar();if (ch=='-') flag=true;}while ((ch&lt;='9'&amp;&amp;ch&gt;='0')){x=x*10+ch-'0';ch=getchar();}if (flag) x*=-1;}
+template &lt;typename T&gt;
+inline void read(T &amp;x,T &amp;y){read(x);read(y);}
+/////////////////variables&amp;functions////////////////////
+
+<p>int n,m,f[10][10];<br>int solve(int n)<br>{<br>    if (n==0) return 0;<br>    int res=0,x=1000000,now=7,before=0,bbefore=0;<br>    while (n&lt;x) x/=10,now–;<br>    rep(i,0,n/x-1) if (i!=4) res+=f[now][i];<br>    if (now==1) res+=f[now][n/x];<br>    before=n/x;n%=x;x/=10;now–;<br>    while (x)<br>    {<br>        if (before!=4&amp;&amp;(!(before==2&amp;&amp;bbefore==6)))<br>        {<br>            rep(j,0,n/x-1) if (!(before==6&amp;&amp;j==2)) res+=f[now][j];<br>            if (now==1&amp;&amp;(!(before==6&amp;&amp;n/x==2))) res+=f[now][n/x];<br>            bbefore=before;before=n/x;<br>        }<br>        else return res-1;<br>        n%=x;x/=10;now–;<br>    }<br>    return res-1;<br>}<br>int main()<br>{<br>    rep(i,0,9) if (i!=4) f[1][i]=1;<br>    rep(i,2,8)<br>        rep(j,0,9)<br>            if (j!=4) rep(k,0,9) if (k!=4&amp;&amp;(!(j==2&amp;&amp;k==6))) f[i][k]+=f[i-1][j];<br>    while (scanf(&quot;%d%d&quot;,&amp;n,&amp;m)!=EOF)<br>    {<br>        if ((!n)&amp;&amp;(!m)) return 0;<br>        printf(&quot;%d\n&quot;,solve(m)-solve(n-1));<br>    }<br>    return -1;<br>}</pre><br><br><br></p>
+<p></p>
+
+        </div>
+
+        
+            <section class="post-copyright">
+                
+                    <p class="copyright-item">
+                        <span>Author:</span>
+                        <span>John Doe</span>
+                    </p>
+                
+                
+                    <p class="copyright-item">
+                        <span>Permalink:</span>
+                        <span><a href="http://example.com/2017/08/11/HDU%202089%20%E4%B8%8D%E8%A6%8162/">http://example.com/2017/08/11/HDU%202089%20%E4%B8%8D%E8%A6%8162/</a></span>
+                    </p>
+                
+                
+                    <p class="copyright-item">
+                        <span>License:</span>
+                        <span>Copyright (c) 2019 <a target="_blank" rel="noopener" href="http://creativecommons.org/licenses/by-nc/4.0/">CC-BY-NC-4.0</a> LICENSE</span>
+                    </p>
+                
+                
+                     <p class="copyright-item">
+                         <span>Slogan:</span>
+                         <span>Do you believe in <strong>DESTINY</strong>?</span>
+                     </p>
+                
+
+            </section>
+        
+        <section class="post-tags">
+            <div>
+                <span>Tag(s):</span>
+                <span class="tag">
+                    
+                    
+                        <a href="/tags/DP-%E6%95%B0%E4%BD%8DDP/"># DP 数位DP</a>
+                    
+                        
+                </span>
+            </div>
+            <div>
+                <a href="javascript:window.history.back();">back</a>
+                <span>· </span>
+                <a href="/">home</a>
+            </div>
+        </section>
+        <section class="post-nav">
+            
+                <a class="prev" rel="prev" href="/2017/08/11/ZOJ%203203%20Light%20Bulb/">ZOJ 3203 Light Bulb</a>
+            
+            
+            <a class="next" rel="next" href="/2017/08/07/HDU%203507%20Print%20Article/">HDU 3507 Print Article</a>
+            
+        </section>
+
+
+    </article>
+</div>
+
+        </div>
+        <footer id="footer" class="footer">
+    <div class="copyright">
+        <span>© John Doe | Powered by <a href="https://hexo.io" target="_blank">Hexo</a> & <a href="https://github.com/Siricee/hexo-theme-Chic" target="_blank">Chic</a></span>
+    </div>
+</footer>
+
+    </div>
+</body>
+</html>

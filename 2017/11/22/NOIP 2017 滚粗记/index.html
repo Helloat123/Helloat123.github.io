@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <meta name="author" content="John Doe">
+
+
+
+
+
+<title>NOIP 2017 滚粗记 | Hexo</title>
+
+
+
+    <link rel="icon" href="/favicon.ico">
+
+
+
+
+    <!-- stylesheets list from _config.yml -->
+    
+    <link rel="stylesheet" href="/css/style.css">
+    
+
+
+
+    <!-- scripts list from _config.yml -->
+    
+    <script src="/js/script.js"></script>
+    
+    <script src="/js/tocbot.min.js"></script>
+    
+
+
+
+    
+    
+        
+    
+
+
+<meta name="generator" content="Hexo 5.2.0"></head>
+<body>
+    <div class="wrapper">
+        <header>
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-header header-logo"><a href="/">Richard&#39;s Blog</a></div>
+            <div class="menu navbar-right">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+                <input id="switch_default" type="checkbox" class="switch_default">
+                <label for="switch_default" class="toggleBtn"></label>
+            </div>
+        </div>
+    </nav>
+
+    
+    <nav class="navbar-mobile" id="nav-mobile">
+        <div class="container">
+            <div class="navbar-header">
+                <div>
+                    <a href="/">Richard&#39;s Blog</a><a id="mobile-toggle-theme">·&nbsp;Light</a>
+                </div>
+                <div class="menu-toggle" onclick="mobileBtn()">&#9776; Menu</div>
+            </div>
+            <div class="menu" id="mobile-menu">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+            </div>
+        </div>
+    </nav>
+
+</header>
+<script>
+    var mobileBtn = function f() {
+        var toggleMenu = document.getElementsByClassName("menu-toggle")[0];
+        var mobileMenu = document.getElementById("mobile-menu");
+        if(toggleMenu.classList.contains("active")){
+           toggleMenu.classList.remove("active")
+            mobileMenu.classList.remove("active")
+        }else{
+            toggleMenu.classList.add("active")
+            mobileMenu.classList.add("active")
+        }
+    }
+</script>
+        <div class="main">
+            <div class="container">
+    
+    
+
+    
+    <article class="post-wrap">
+        <header class="post-header">
+            <h1 class="post-title">NOIP 2017 滚粗记</h1>
+            
+                <div class="post-meta">
+                    
+                        Author: <a itemprop="author" rel="author" href="/">John Doe</a>
+                    
+
+                    
+                        <span class="post-time">
+                        Date: <a href="#">November 22, 2017&nbsp;&nbsp;12:23:16</a>
+                        </span>
+                    
+                    
+                        <span class="post-category">
+                    Category:
+                            
+                                <a href="/categories/%E6%9D%82/">杂</a>
+                            
+                        </span>
+                    
+                </div>
+            
+        </header>
+
+        <div class="post-content">
+            <a id="more"></a>
+
+
+<p>第一天报到到了衢州，然后干啥呢？打游戏，毫无顾忌。感觉都这个时候复习有个&#39740;用于是不停打mc刷youtube然而宾馆网并不是很好，网线插电脑上也没有用。最后花了1分钱买了机顶盒里面的神奇女侠看到十一点，间接导致第二天考试时候我在思考关于电影剧情的问题。</p>
+<p>第二天早上大约六点就醒了，宾馆的早饭可以接受。于是带着突然很慌的心情（因为突然发现我数论只会快速幂，其它的几乎都不会写）去衢州二中。困啊没办法谁叫我睡得迟。开始考试，T1T2一&#30524;题，花了一个小时写完之后发现随便构了组数据就把自己T2卡掉了于是造数据&#43;调又用了半个小时。剩下两个小时，我想大概很稳就一题嘛。先打个暴力也来得及于是打了个十分暴力然后往错误的方向想了半个小时，于是发现spfa好像能做，于是想写60分，写着写着发现没想清楚就写30分，结果写了个20分的算法。不知道为什么这时候我的脑子十分混乱，居然觉得我只会220分，后面一个小时左右都在检查自己前两题有没有写挂。</p>
+<p>结束时问了一圈都是不被卡常就ak的，感到十分震惊，也得知了T3是个sbDP题的现实。“我要翻盘”我这时候只想着这个。下午照样打了会游戏之后开始复习算法，重点不在有没有考到，在于心静了下来。</p>
+<p>第二天一上手发现t1sb题，t2一脸状压dp，t3的50pts易如反掌。于是二十分钟出完t1检查了十分钟去写t2，越写越觉得自己想的O(2^n*n^2)写不出来，硬是乘了个O(n^2)。但是一算八千万还跑不满应该能a吧。还剩一个半小时t3。因为已经觉得a了两题，剩下一题不a拿个暴力分就好了，于是花了五分钟打了个50pts的O(q^2)算法，十六秒过大样例，发现后面有个部分分很可做，拿个treap乱搞一下就好了。但是突然发现不会写。想着可否用pbds也忘了怎么用于是去翻/ext文件夹，半小时无果。回来打treap觉得知道原理打一遍应该还是挺方便的，失败。
+ 于是这一个前几天noip模拟赛刚考过的treap因为我当时拉板导致的这时候不会写丢了30分。</p>
+<p>考后发现这题线段树、bit、treap都可做，甚至能a。估计自己分数100 100 20 100 100 50是470分。回杭州路上觉得大概还不错。</p>
+<p>但是报出D2T2的复杂度后被ZTR和MYC说是错的，自己一想的确，如果两个生成树在当前时候代价一样但是树的形态会影响接下来的答案，我的做法就会wa，十分显然。于是很慌。</p>
+<p>第二天洛谷民间数据出来了，我惊奇的发现d1t3我写的spfa没拿分总分变成了460后来清北学堂放出来的xlsx里面d2t1longlong被卡20分但是spfa过了于是450，某个叫不上名字的oj上440，学车数据440。看了看排名才知道我前面有这么多人，后面也有很多比我强到不知道哪里去的。比较好的是D2T2没有人往我这方向卡，随机数据几乎卡不掉。</p>
+<p>期中考时候在机房浑浑噩噩不知干啥。后面几天对于文化课学习一点也提不起精神。</p>
+<p>成绩出来了，460，省里面大概98名。很多大佬都翻了比我低。接下来要不要继续呢？如果成功了进了省队，那就能签清北，但是希望有多少呢？论省选算法我学得应该比很多我们学校比我低的人好，但是并不够啊。去年没有准备过相关的东西只是粗略地学习了一通，刷题也不够多。排在我前面的人也这么多，希望渺茫。如果拼死搞而失败，将会是文化课的全线崩盘。</p>
+<p>所以，混个省一就退役了，如果我不在浙江，或许我还能去拼一把看能不能进省队，但是假设我不在浙江，不在杭二，我怕也是没有这么好的学习条件了。一下子就退役感觉十分怀念在机房里面的时光，毕竟这个竞赛我也算是搞了四年多了吧虽然真的在搞只有一年半。</p>
+<p>看看大学还能不能搞acm吧，希望能和现在机房里面的同学们碰面啊。</p>
+<p>Richard-AFO<br>
+</p>
+<p><br>
+</p>
+
+        </div>
+
+        
+            <section class="post-copyright">
+                
+                    <p class="copyright-item">
+                        <span>Author:</span>
+                        <span>John Doe</span>
+                    </p>
+                
+                
+                    <p class="copyright-item">
+                        <span>Permalink:</span>
+                        <span><a href="http://example.com/2017/11/22/NOIP%202017%20%E6%BB%9A%E7%B2%97%E8%AE%B0/">http://example.com/2017/11/22/NOIP%202017%20%E6%BB%9A%E7%B2%97%E8%AE%B0/</a></span>
+                    </p>
+                
+                
+                    <p class="copyright-item">
+                        <span>License:</span>
+                        <span>Copyright (c) 2019 <a target="_blank" rel="noopener" href="http://creativecommons.org/licenses/by-nc/4.0/">CC-BY-NC-4.0</a> LICENSE</span>
+                    </p>
+                
+                
+                     <p class="copyright-item">
+                         <span>Slogan:</span>
+                         <span>Do you believe in <strong>DESTINY</strong>?</span>
+                     </p>
+                
+
+            </section>
+        
+        <section class="post-tags">
+            <div>
+                <span>Tag(s):</span>
+                <span class="tag">
+                    
+                    
+                        <a href="/tags/%E6%BB%9A%E7%B2%97/"># 滚粗</a>
+                    
+                        
+                </span>
+            </div>
+            <div>
+                <a href="javascript:window.history.back();">back</a>
+                <span>· </span>
+                <a href="/">home</a>
+            </div>
+        </section>
+        <section class="post-nav">
+            
+                <a class="prev" rel="prev" href="/2018/08/04/%E7%99%BE%E5%BA%A6%E4%B9%8B%E6%98%9F2018%E8%B5%84%E6%A0%BC%E8%B5%9B%E6%B8%B8%E8%AE%B0/">百度之星2018资格赛游记</a>
+            
+            
+            <a class="next" rel="next" href="/2017/10/20/Visual%20Basic/">Visual Basic</a>
+            
+        </section>
+
+
+    </article>
+</div>
+
+        </div>
+        <footer id="footer" class="footer">
+    <div class="copyright">
+        <span>© John Doe | Powered by <a href="https://hexo.io" target="_blank">Hexo</a> & <a href="https://github.com/Siricee/hexo-theme-Chic" target="_blank">Chic</a></span>
+    </div>
+</footer>
+
+    </div>
+</body>
+</html>

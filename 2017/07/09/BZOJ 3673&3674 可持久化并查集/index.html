@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <meta name="author" content="John Doe">
+
+
+
+
+
+<title>BZOJ 3673&amp;3674 可持久化并查集 | Hexo</title>
+
+
+
+    <link rel="icon" href="/favicon.ico">
+
+
+
+
+    <!-- stylesheets list from _config.yml -->
+    
+    <link rel="stylesheet" href="/css/style.css">
+    
+
+
+
+    <!-- scripts list from _config.yml -->
+    
+    <script src="/js/script.js"></script>
+    
+    <script src="/js/tocbot.min.js"></script>
+    
+
+
+
+    
+    
+        
+    
+
+
+<meta name="generator" content="Hexo 5.2.0"></head>
+<body>
+    <div class="wrapper">
+        <header>
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-header header-logo"><a href="/">Richard&#39;s Blog</a></div>
+            <div class="menu navbar-right">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+                <input id="switch_default" type="checkbox" class="switch_default">
+                <label for="switch_default" class="toggleBtn"></label>
+            </div>
+        </div>
+    </nav>
+
+    
+    <nav class="navbar-mobile" id="nav-mobile">
+        <div class="container">
+            <div class="navbar-header">
+                <div>
+                    <a href="/">Richard&#39;s Blog</a><a id="mobile-toggle-theme">·&nbsp;Light</a>
+                </div>
+                <div class="menu-toggle" onclick="mobileBtn()">&#9776; Menu</div>
+            </div>
+            <div class="menu" id="mobile-menu">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+            </div>
+        </div>
+    </nav>
+
+</header>
+<script>
+    var mobileBtn = function f() {
+        var toggleMenu = document.getElementsByClassName("menu-toggle")[0];
+        var mobileMenu = document.getElementById("mobile-menu");
+        if(toggleMenu.classList.contains("active")){
+           toggleMenu.classList.remove("active")
+            mobileMenu.classList.remove("active")
+        }else{
+            toggleMenu.classList.add("active")
+            mobileMenu.classList.add("active")
+        }
+    }
+</script>
+        <div class="main">
+            <div class="container">
+    
+    
+
+    
+    <article class="post-wrap">
+        <header class="post-header">
+            <h1 class="post-title">BZOJ 3673&amp;3674 可持久化并查集</h1>
+            
+                <div class="post-meta">
+                    
+                        Author: <a itemprop="author" rel="author" href="/">John Doe</a>
+                    
+
+                    
+                        <span class="post-time">
+                        Date: <a href="#">July 9, 2017&nbsp;&nbsp;20:35:44</a>
+                        </span>
+                    
+                    
+                        <span class="post-category">
+                    Category:
+                            
+                                <a href="/categories/%E9%AB%98%E7%BA%A7%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">高级数据结构</a>
+                            
+                        </span>
+                    
+                </div>
+            
+        </header>
+
+        <div class="post-content">
+            <a id="more"></a>
+
+
+<p></p>
+<pre name="code" class="cpp">//By Richard
+#include &lt;cstdio&gt;
+#include &lt;algorithm&gt;
+#include &lt;iostream&gt;
+#include &lt;cstring&gt;
+#include &lt;cstdlib&gt;
+#include &lt;cmath&gt;
+#include &lt;ctime&gt;
+#define rep(x,y,z) for (int x=(y);(x)&lt;=(z);(x)++)
+#define per(x,y,z) for (int x=(y);(x)&gt;=(z);(x)--)
+#define log2(x) (31-__builtin_clz(x))
+#define mod (int)(1e9+7)
+#define inf 0x3f3f3f3f
+#define cls(x) memset(x,0,sizeof(x))
+#ifdef DEBUG
+#define debugdo(X) X
+#define debugndo(X)
+#define debugout(X) cout&lt;&lt;(#X)&lt;&lt;&quot;=&quot;&lt;&lt;(X)&lt;&lt;endl
+#else
+#define debugdo(X)
+#define debugndo(X) X
+#define debugout(X)
+#endif // debug
+#ifdef ONLINE_JUDGE
+#define debugdo(X)
+#define debugndo(X)
+#define debugout(X)
+#endif
+#define putarray(x,n) rep(iiii,1,n) printf(&quot;%d &quot;,x[iiii])
+#define mp make_pair
+using namespace std;
+typedef pair&lt;int,int&gt; pairs;
+typedef long long LL;
+/////////////////////read3.0////////////////////////////////////
+template &lt;typename T&gt;
+inline void read(T &amp;x){char ch;x=0;bool flag=false;ch=getchar();while (ch&gt;'9'||ch&lt;'0') {ch=getchar();if (ch=='-') flag=true;}while ((ch&lt;='9'&amp;&amp;ch&gt;='0')){x=x*10+ch-'0';ch=getchar();}if (flag) x*=-1;}
+template &lt;typename T&gt;
+inline void read(T &amp;x,T &amp;y){read(x);read(y);}
+/////////////////variables&amp;functions////////////////////
+
+<p>int n,m,type,x,y,now,i;<br>const int maxn=222222;<br>struct node<br>{<br>    node *l,<em>r;<br>    int value;<br>    node():l(0),r(0),value(0){};<br>    node(node *ll,node *rr):l(ll),r(rr),value(0){}<br>    node(int vv):l(0),r(0),value(vv){}<br>};<br>char ___[maxn</em>sizeof(node)*90];<br>char *<strong><strong>=___;<br>inline void *myalloc(size_t size)<br>{<br>    return (</strong></strong>+=size)-size;<br>}<br>#define newnode new (myalloc(sizeof(node))) node<br>struct chairmantree<br>{<br>    node *root[maxn];<br>    void build(node *x,int v,int L=1,int R=n)<br>    {<br>        if (L==R)<br>        {<br>            x-&gt;value=v;<br>            return;<br>        }<br>        int mid=(L+R)&gt;&gt;1;<br>        x-&gt;l=newnode();<br>        x-&gt;r=newnode();<br>        build(x-&gt;l,v,L,mid);<br>        build(x-&gt;r,v,mid+1,R);<br>    }<br>    void _build(node *x,int L=1,int R=n)<br>    {<br>        if (L==R)<br>        {<br>            x-&gt;value=L;<br>            return;<br>        }<br>        int mid=(L+R)&gt;&gt;1;<br>        x-&gt;l=newnode();<br>        x-&gt;r=newnode();<br>        _build(x-&gt;l,L,mid);<br>        _build(x-&gt;r,mid+1,R);<br>    }<br>    node *insert(node *x,int k,int v,int L=1,int R=n)<br>    {<br>        if (L==R) return newnode(v);<br>        int mid=(L+R)&gt;&gt;1;<br>        if (k&lt;=mid) return newnode(insert(x-&gt;l?x-&gt;l:0,k,v,L,mid),x-&gt;r?x-&gt;r:0);<br>        else return newnode(x-&gt;l?x-&gt;l:0,insert(x-&gt;r?x-&gt;r:0,k,v,mid+1,R));<br>    }<br>    int query(node *x,const int &amp;y,int L=1,int R=n)<br>    {<br>        int mid;<br>        while (1)<br>        {<br>            mid=(L+R)&gt;&gt;1;<br>            if (y&lt;=mid)<br>            {<br>                x=x-&gt;l;<br>                R=mid;<br>            }<br>            else<br>            {<br>                x=x-&gt;r;<br>                L=mid+1;<br>            }<br>            if (L==R) return x-&gt;value;<br>        }<br>    }<br>}fa,v;<br>inline int getfa(node *no,const int &amp;x)<br>{<br>    int temp=fa.query(no,x),before=x;<br>    do<br>    {<br>        before=temp;<br>        temp=fa.query(no,temp);<br>    }while (temp!=before);<br>    return temp;<br>}<br>inline bool query(const int &amp;x,const int &amp;y)<br>{<br>    int temp1=getfa(fa.root[i],x),temp2=getfa(fa.root[i],y);<br>    if (temp1==temp2) return true;<br>    return false;<br>}<br>inline void combine(int x,int y)<br>{<br>    int temp1=getfa(fa.root[i-1],x),temp2=getfa(fa.root[i-1],y);<br>    if (temp1==temp2)<br>    {<br>        fa.root[i]=fa.root[i-1];<br>        v.root[i]=fa.root[i-1];<br>        return;<br>    }<br>    int temp3=v.query(v.root[i-1],temp1),temp4=v.query(v.root[i-1],temp2);<br>    if (temp3&gt;temp4)<br>    {<br>        swap(x,y);<br>        swap(temp3,temp4);<br>        swap(temp1,temp2);<br>    }<br>    fa.root[i]=fa.insert(fa.root[i-1],temp1,temp2);<br>    v.root[i]=v.insert(v.root[i-1],temp2,temp3+temp4);<br>}<br>int lastans;<br>int main()<br>{<br>    read(n,m);<br>    fa.root[0]=newnode(newnode(),newnode());<br>    int mid=(1+n)&gt;&gt;1;<br>    fa._build(fa.root[0]-&gt;l,1,mid);<br>    fa._build(fa.root[0]-&gt;r,mid+1,n);<br>    v.root[0]=newnode(newnode(),newnode());<br>    v.build(v.root[0]-&gt;l,1,1,mid);<br>    v.build(v.root[0]-&gt;r,1,mid+1,n);<br>    now=0;<br>    for (i=1;i&lt;=m;i++)<br>    {<br>        read(type);<br>        if (type==1)<br>        {<br>            read(x,y);<br>            x^=lastans;<br>            y^=lastans;<br>            combine(x,y);<br>        }<br>        else if (type==2)<br>        {<br>            read(x);<br>            x^=lastans;<br>            fa.root[i]=fa.root[x];<br>            v.root[i]=v.root[x];<br>        }<br>        else<br>        {<br>            v.root[i]=v.root[i-1];<br>            fa.root[i]=fa.root[i-1];<br>            read(x,y);<br>            x^=lastans;<br>            y^=lastans;<br>            printf(&quot;%d\n&quot;,query(x,y));<br>        }<br>    }<br>    return 0;<br>}</pre><br><br>自己想了想再加上ZYX的指导，我晓得了这玩意就是可持久化数组，而可持久化数组就是用可持久化线段树实现，可持久化线段树上面的那些结点不用存数据仅仅用来查。再用WUY之前教的奇奇怪怪的内存池技巧，我写出了这份代码，感觉还是挺方便的</p>
+<p></p>
+<p>ps 3673当时明明打炸了，但是却很快地a了导致我深信自己代码没错交了3674T飞...最后发现我的启发式合并是假的...</p>
+<p>这是3674的代码</p>
+<p><br>
+</p>
+
+        </div>
+
+        
+            <section class="post-copyright">
+                
+                    <p class="copyright-item">
+                        <span>Author:</span>
+                        <span>John Doe</span>
+                    </p>
+                
+                
+                    <p class="copyright-item">
+                        <span>Permalink:</span>
+                        <span><a href="http://example.com/2017/07/09/BZOJ%203673&3674%20%E5%8F%AF%E6%8C%81%E4%B9%85%E5%8C%96%E5%B9%B6%E6%9F%A5%E9%9B%86/">http://example.com/2017/07/09/BZOJ%203673&3674%20%E5%8F%AF%E6%8C%81%E4%B9%85%E5%8C%96%E5%B9%B6%E6%9F%A5%E9%9B%86/</a></span>
+                    </p>
+                
+                
+                    <p class="copyright-item">
+                        <span>License:</span>
+                        <span>Copyright (c) 2019 <a target="_blank" rel="noopener" href="http://creativecommons.org/licenses/by-nc/4.0/">CC-BY-NC-4.0</a> LICENSE</span>
+                    </p>
+                
+                
+                     <p class="copyright-item">
+                         <span>Slogan:</span>
+                         <span>Do you believe in <strong>DESTINY</strong>?</span>
+                     </p>
+                
+
+            </section>
+        
+        <section class="post-tags">
+            <div>
+                <span>Tag(s):</span>
+                <span class="tag">
+                    
+                    
+                        <a href="/tags/%E5%8F%AF%E6%8C%81%E4%B9%85%E5%8C%96-%E5%B9%B6%E6%9F%A5%E9%9B%86/"># 可持久化 并查集</a>
+                    
+                        
+                </span>
+            </div>
+            <div>
+                <a href="javascript:window.history.back();">back</a>
+                <span>· </span>
+                <a href="/">home</a>
+            </div>
+        </section>
+        <section class="post-nav">
+            
+                <a class="prev" rel="prev" href="/2017/07/09/BZOJ%202761%20JLOI%202011%20%E4%B8%8D%E9%87%8D%E5%A4%8D%E6%95%B0%E5%AD%97/">BZOJ 2761 JLOI 2011 不重复数字</a>
+            
+            
+            <a class="next" rel="next" href="/2017/07/07/BZOJ%202648%20SJY%E6%91%86%E7%AE%B1%E5%AD%90/">BZOJ 2648 SJY摆箱子</a>
+            
+        </section>
+
+
+    </article>
+</div>
+
+        </div>
+        <footer id="footer" class="footer">
+    <div class="copyright">
+        <span>© John Doe | Powered by <a href="https://hexo.io" target="_blank">Hexo</a> & <a href="https://github.com/Siricee/hexo-theme-Chic" target="_blank">Chic</a></span>
+    </div>
+</footer>
+
+    </div>
+</body>
+</html>

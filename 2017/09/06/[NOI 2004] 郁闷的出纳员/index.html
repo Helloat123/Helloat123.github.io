@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <meta name="author" content="John Doe">
+
+
+
+
+
+<title>【NOI 2004】 郁闷的出纳员 | Hexo</title>
+
+
+
+    <link rel="icon" href="/favicon.ico">
+
+
+
+
+    <!-- stylesheets list from _config.yml -->
+    
+    <link rel="stylesheet" href="/css/style.css">
+    
+
+
+
+    <!-- scripts list from _config.yml -->
+    
+    <script src="/js/script.js"></script>
+    
+    <script src="/js/tocbot.min.js"></script>
+    
+
+
+
+    
+    
+        
+    
+
+
+<meta name="generator" content="Hexo 5.2.0"></head>
+<body>
+    <div class="wrapper">
+        <header>
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-header header-logo"><a href="/">Richard&#39;s Blog</a></div>
+            <div class="menu navbar-right">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+                <input id="switch_default" type="checkbox" class="switch_default">
+                <label for="switch_default" class="toggleBtn"></label>
+            </div>
+        </div>
+    </nav>
+
+    
+    <nav class="navbar-mobile" id="nav-mobile">
+        <div class="container">
+            <div class="navbar-header">
+                <div>
+                    <a href="/">Richard&#39;s Blog</a><a id="mobile-toggle-theme">·&nbsp;Light</a>
+                </div>
+                <div class="menu-toggle" onclick="mobileBtn()">&#9776; Menu</div>
+            </div>
+            <div class="menu" id="mobile-menu">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+            </div>
+        </div>
+    </nav>
+
+</header>
+<script>
+    var mobileBtn = function f() {
+        var toggleMenu = document.getElementsByClassName("menu-toggle")[0];
+        var mobileMenu = document.getElementById("mobile-menu");
+        if(toggleMenu.classList.contains("active")){
+           toggleMenu.classList.remove("active")
+            mobileMenu.classList.remove("active")
+        }else{
+            toggleMenu.classList.add("active")
+            mobileMenu.classList.add("active")
+        }
+    }
+</script>
+        <div class="main">
+            <div class="container">
+    
+    
+
+    
+    <article class="post-wrap">
+        <header class="post-header">
+            <h1 class="post-title">【NOI 2004】 郁闷的出纳员</h1>
+            
+                <div class="post-meta">
+                    
+                        Author: <a itemprop="author" rel="author" href="/">John Doe</a>
+                    
+
+                    
+                        <span class="post-time">
+                        Date: <a href="#">September 6, 2017&nbsp;&nbsp;17:56:46</a>
+                        </span>
+                    
+                    
+                        <span class="post-category">
+                    Category:
+                            
+                                <a href="/categories/%E9%AB%98%E7%BA%A7%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">高级数据结构</a>
+                            
+                        </span>
+                    
+                </div>
+            
+        </header>
+
+        <div class="post-content">
+            <a id="more"></a>
+
+
+<p>应LJ号召开始做noi题，自然从最水的开始，裸的treap</p>
+<p></p>
+<pre name="code" class="cpp">//By Richard
+#include &lt;cstdio&gt;
+#include &lt;algorithm&gt;
+#include &lt;iostream&gt;
+#include &lt;cstring&gt;
+#include &lt;cstdlib&gt;
+#include &lt;cmath&gt;
+#include &lt;ctime&gt;
+#define rep(x,y,z) for (int x=(y);(x)&lt;=(z);(x)++)
+#define per(x,y,z) for (int x=(y);(x)&gt;=(z);(x)--)
+#define log2(x) (31-__builtin_clz(x))
+#define mod (int)(1e9+7)
+#define inf 0x3f3f3f3f
+#define cls(x) memset(x,0,sizeof(x))
+#ifdef DEBUG
+#define debugdo(X) X
+#define debugndo(X)
+#define debugout(X) cout&lt;&lt;(#X)&lt;&lt;&quot;=&quot;&lt;&lt;(X)&lt;&lt;endl
+#else
+#define debugdo(X)
+#define debugndo(X) X
+#define debugout(X)
+#endif // debug
+#ifdef ONLINE_JUDGE
+#define debugdo(X)
+#define debugndo(X)
+#define debugout(X)
+#endif
+#define putarray(x,n) rep(iiii,1,n) printf(&quot;%d &quot;,x[iiii])
+#define mp make_pair
+using namespace std;
+typedef pair&lt;int,int&gt; pairs;
+typedef long long LL;
+/////////////////////read4.0////////////////////////////////////
+template &lt;typename T&gt;
+inline void read(T &amp;x){char ch;x=0;bool flag=false;ch=getchar();while (ch&gt;'9'||ch&lt;'0') {if (ch=='-') flag=true;ch=getchar();}while ((ch&lt;='9'&amp;&amp;ch&gt;='0')){x=x*10+ch-'0';ch=getchar();}if (flag) x*=-1;}
+template &lt;typename T&gt;
+inline void read(T &amp;x,T &amp;y){read(x);read(y);}
+template &lt;typename T&gt;
+inline void read(T &amp;x,T &amp;y,T &amp;z){read(x);read(y);read(z);}
+/////////////////////graph///////////////////////////////
+#ifdef graphv
+const int maxn=,maxm=;
+struct GRAPH
+{
+    int next[maxm],first[maxn],to[maxm],value[maxm],cnt;
+    void addedge(int x,int y,int z){next[++cnt]=first[x];first[x]=cnt;to[cnt]=y;value[cnt]=z;}
+    void addedge2(int x,int y,int z){addedge(x,y,z);addedge(y,x,z);}
+    void addedge2(int x,int y,int z,int xx){addedge(x,y,z);addedge(y,x,xx);}
+};
+#endif
+#ifdef graphnv
+const int maxn=,maxm=;
+struct GRAPH
+{
+    int next[maxm],first[maxn],to[maxm],cnt;
+    void addedge(int x,int y){next[++cnt]=first[x];first[x]=cnt;to[cnt]=y;}
+    void addedge2(int x,int y){addedge(x,y);addedge(y,x);}
+};
+#endif
+/////////////////variables&amp;functions////////////////////
+const int maxn=111111;
+int n,minn,aha,tot;
+char ch;
+struct TREAP
+{
+    struct node
+    {
+        int l,r,data,key,size;
+    }t[maxn];
+    int root,num;
+    void update(int x){t[x].size=t[t[x].l].size+t[t[x].r].size+1;}
+    pairs split(int a,int n)
+    {
+        if (n==0) return mp(0,a);
+        int l=t[a].l,r=t[a].r;
+        if (n==t[l].size) 
+        {
+            t[a].l=0;
+            update(a);
+            return mp(l,a);
+        }
+        else if (n==t[l].size+1)
+        {
+            t[a].r=0;
+            update(a);
+            return mp(a,r);
+        }
+        else if (n&lt;t[l].size)
+        {
+            pairs tmp=split(l,n);
+            t[a].l=tmp.second;
+            update(a);
+            return mp(tmp.first,a);
+        }
+        pairs tmp=split(r,n-t[l].size-1);
+        t[a].r=tmp.first;
+        update(a);
+        return mp(a,tmp.second);
+    }
+    int merge(int a,int b)
+    {
+        if (a==0||b==0) return a+b;
+        if (t[a].key&lt;t[b].key)
+        {
+            t[a].r=merge(t[a].r,b);
+            update(a);
+            return a;
+        }
+        else
+        {
+            t[b].l=merge(a,t[b].l);
+            update(b);
+            return b;
+        }
+    }
+    int rank(int x,int k)
+    {
+        int ans=0,tmp=inf;
+        while (k)
+        {
+            if (x==t[k].data) tmp=min(tmp,ans+t[t[k].l].size+1);
+            if (x&gt;t[k].data) ans+=t[t[k].l].size+1,k=t[k].r;
+            else k=t[k].l;
+        }
+        return tmp==inf?ans:tmp;
+    }
+    int rankk(int x,int k)
+    {
+        int ans=0,tmp=inf;
+        while (k)
+        {
+            if (x==t[k].data) tmp=min(tmp,ans+t[t[k].l].size+1);
+            if (x&gt;t[k].data) ans+=t[t[k].l].size+1,k=t[k].r;
+            else k=t[k].l;
+        }
+        return tmp;
+    }
+    int rank(int x){return rankk(x,root);}
+    int find(int x,int k)
+    {
+        if (x&gt;size()||x==0) return inf;
+        while (1)
+        {
+            //if (!t[k].l&amp;&amp;x==1) return t[k].data;
+            if (t[t[k].l].size==x-1) return t[k].data;
+            if (t[t[k].l].size&gt;x-1) k=t[k].l;
+            else x=x-t[t[k].l].size-1,k=t[k].r;
+        }
+    }
+    int find(int x){return find(x,root);}
+    int pre(int x,int k)
+    {
+        int ans=-inf;
+        while (k)
+        {
+            if (t[k].data&lt;x) ans=max(ans,t[k].data),k=t[k].r;
+            else k=t[k].l;
+        }
+        return ans;
+    }
+    int pre(int x){return pre(x,root);}
+    int neg(int x,int k)
+    {
+        int ans=inf;
+        while (k)
+        {
+            if (t[k].data&gt;x) ans=min(ans,t[k].data),k=t[k].l;
+            else k=t[k].r;
+        }
+        return ans;
+    }
+    int neg(int x){return neg(x,root);}
+    void insert(int x)
+    {
+        int k=rank(x,root);
+        pairs tmp=split(root,k);
+        t[++num].data=x;
+        t[num].key=(int)(rand()*rand());
+        t[num].size=1;
+        root=merge(tmp.first,num);
+        root=merge(root,tmp.second);
+    }
+    int erase(int x)
+    {
+        int k=rankk(x,root);
+        if (k==inf) return -1;
+        int res=t[k].data;
+        pairs t1=split(root,k),t2=split(t1.first,k-1);
+        root=merge(t2.first,t1.second);
+        return res;
+    }
+    void erase_lower(int x,int k,int fa)
+    {
+        if (!k) return;
+        if (t[k].data&gt;=x) {erase_lower(x,t[k].l,k);update(k);}
+        else 
+        {
+            int temp;
+            if (fa==-1) {tot+=t[t[k].l].size+1;root=t[k].r;temp=t[k].r;t[k].r=0;}
+            else
+            {
+                tot+=t[t[k].l].size+1;
+                temp=t[k].r;
+                t[k].r=0;//split now and now.r
+                t[fa].l=temp;//merge r and fa
+            }
+            if (temp) 
+            {
+                erase_lower(x,temp,fa);
+                update(temp);
+            }
+        }
+    }
+    void erase_lower(int x){erase_lower(x,root,-1);}
+    int size(){return t[root].size;}
+}T;
+int main()
+{
+    read(n,minn);
+    rep(i,1,n)
+    {
+        ch=getchar();
+        int x;
+        read(x);
+        if (ch=='I'){if (x&gt;=minn+aha) T.insert(x-aha);}//min+aha == minwhenbegin;
+        else if (ch=='F')
+        {
+            printf(&quot;%d\n&quot;,T.size()&gt;=x?(T.find(T.size()-x+1)+aha):-1);
+        }
+        else if (ch=='A'){minn-=x;aha+=x;}
+        else//S 
+        {
+            minn+=x;
+            aha-=x;
+            //T ones whose data&lt;min
+            T.erase_lower(minn);
+        }
+    }
+    printf(&quot;%d\n&quot;,tot);
+    return 0;
+}</pre><br>
+<br>
+
+<p></p>
+
+        </div>
+
+        
+            <section class="post-copyright">
+                
+                    <p class="copyright-item">
+                        <span>Author:</span>
+                        <span>John Doe</span>
+                    </p>
+                
+                
+                    <p class="copyright-item">
+                        <span>Permalink:</span>
+                        <span><a href="http://example.com/2017/09/06/[NOI%202004]%20%E9%83%81%E9%97%B7%E7%9A%84%E5%87%BA%E7%BA%B3%E5%91%98/">http://example.com/2017/09/06/[NOI%202004]%20%E9%83%81%E9%97%B7%E7%9A%84%E5%87%BA%E7%BA%B3%E5%91%98/</a></span>
+                    </p>
+                
+                
+                    <p class="copyright-item">
+                        <span>License:</span>
+                        <span>Copyright (c) 2019 <a target="_blank" rel="noopener" href="http://creativecommons.org/licenses/by-nc/4.0/">CC-BY-NC-4.0</a> LICENSE</span>
+                    </p>
+                
+                
+                     <p class="copyright-item">
+                         <span>Slogan:</span>
+                         <span>Do you believe in <strong>DESTINY</strong>?</span>
+                     </p>
+                
+
+            </section>
+        
+        <section class="post-tags">
+            <div>
+                <span>Tag(s):</span>
+                <span class="tag">
+                    
+                    
+                        <a href="/tags/%E5%B9%B3%E8%A1%A1%E6%A0%91/"># 平衡树</a>
+                    
+                        
+                </span>
+            </div>
+            <div>
+                <a href="javascript:window.history.back();">back</a>
+                <span>· </span>
+                <a href="/">home</a>
+            </div>
+        </section>
+        <section class="post-nav">
+            
+                <a class="prev" rel="prev" href="/2017/09/06/%5BNOI%202003%5D%20Editor/">【NOI 2003】 Editor</a>
+            
+            
+            <a class="next" rel="next" href="/2017/09/02/BZOJ%202588%20Spoj%2010628%20Count%20on%20a%20tree/">BZOJ 2588 Spoj 10628 Count on a tree</a>
+            
+        </section>
+
+
+    </article>
+</div>
+
+        </div>
+        <footer id="footer" class="footer">
+    <div class="copyright">
+        <span>© John Doe | Powered by <a href="https://hexo.io" target="_blank">Hexo</a> & <a href="https://github.com/Siricee/hexo-theme-Chic" target="_blank">Chic</a></span>
+    </div>
+</footer>
+
+    </div>
+</body>
+</html>

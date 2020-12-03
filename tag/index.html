@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <meta name="author" content="John Doe">
+
+
+
+
+
+<title>tag | Hexo</title>
+
+
+
+    <link rel="icon" href="/favicon.ico">
+
+
+
+
+    <!-- stylesheets list from _config.yml -->
+    
+    <link rel="stylesheet" href="/css/style.css">
+    
+
+
+
+    <!-- scripts list from _config.yml -->
+    
+    <script src="/js/script.js"></script>
+    
+    <script src="/js/tocbot.min.js"></script>
+    
+
+
+
+    
+    
+        
+    
+
+
+<meta name="generator" content="Hexo 5.2.0"></head>
+<body>
+    <div class="wrapper">
+        <header>
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-header header-logo"><a href="/">Richard&#39;s Blog</a></div>
+            <div class="menu navbar-right">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+                <input id="switch_default" type="checkbox" class="switch_default">
+                <label for="switch_default" class="toggleBtn"></label>
+            </div>
+        </div>
+    </nav>
+
+    
+    <nav class="navbar-mobile" id="nav-mobile">
+        <div class="container">
+            <div class="navbar-header">
+                <div>
+                    <a href="/">Richard&#39;s Blog</a><a id="mobile-toggle-theme">·&nbsp;Light</a>
+                </div>
+                <div class="menu-toggle" onclick="mobileBtn()">&#9776; Menu</div>
+            </div>
+            <div class="menu" id="mobile-menu">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+            </div>
+        </div>
+    </nav>
+
+</header>
+<script>
+    var mobileBtn = function f() {
+        var toggleMenu = document.getElementsByClassName("menu-toggle")[0];
+        var mobileMenu = document.getElementById("mobile-menu");
+        if(toggleMenu.classList.contains("active")){
+           toggleMenu.classList.remove("active")
+            mobileMenu.classList.remove("active")
+        }else{
+            toggleMenu.classList.add("active")
+            mobileMenu.classList.add("active")
+        }
+    }
+</script>
+        <div class="main">
+            
+
+    <div class="container">
+        <div class="post-wrap tags">
+            <h2 class="post-title">-&nbsp;Tag Cloud&nbsp;-</h2>
+
+            <div class="tag-cloud-tags">
+                
+                    <a href="/tags/%E5%8D%8A%E5%B9%B3%E9%9D%A2%E4%BA%A4/">半平面交<small>(3)</small></a>
+                
+                    <a href="/tags/%E6%A0%91%E5%88%86%E5%9D%97/">树分块<small>(1)</small></a>
+                
+                    <a href="/tags/%E6%95%B4%E4%BD%93%E4%BA%8C%E5%88%86/">整体二分<small>(1)</small></a>
+                
+                    <a href="/tags/FFT/">FFT<small>(2)</small></a>
+                
+                    <a href="/tags/%E5%8D%9A%E5%BC%88%E8%AE%BA/">博弈论<small>(1)</small></a>
+                
+                    <a href="/tags/%E4%B8%BB%E5%B8%AD%E6%A0%91-lca/">主席树 lca<small>(1)</small></a>
+                
+                    <a href="/tags/KD-Tree/">KD-Tree<small>(1)</small></a>
+                
+                    <a href="/tags/hash/">hash<small>(2)</small></a>
+                
+                    <a href="/tags/%E5%8F%AF%E6%8C%81%E4%B9%85%E5%8C%96-%E5%B9%B6%E6%9F%A5%E9%9B%86/">可持久化 并查集<small>(1)</small></a>
+                
+                    <a href="/tags/FFT-%E5%AE%B9%E6%96%A5-%E6%AF%8D%E5%87%BD%E6%95%B0/">FFT 容斥 母函数<small>(1)</small></a>
+                
+                    <a href="/tags/%E6%9D%82/">杂<small>(6)</small></a>
+                
+                    <a href="/tags/DP-%E6%95%B0%E4%BD%8DDP/">DP 数位DP<small>(1)</small></a>
+                
+                    <a href="/tags/DP-%E6%96%9C%E7%8E%87%E4%BC%98%E5%8C%96/">DP 斜率优化<small>(1)</small></a>
+                
+                    <a href="/tags/XCPC/">XCPC<small>(1)</small></a>
+                
+                    <a href="/tags/%E4%B8%89%E5%88%86/">三分<small>(2)</small></a>
+                
+                    <a href="/tags/%E6%BB%9A%E7%B2%97/">滚粗<small>(1)</small></a>
+                
+                    <a href="/tags/STL/">STL<small>(1)</small></a>
+                
+                    <a href="/tags/%E5%B9%B3%E8%A1%A1%E6%A0%91/">平衡树<small>(1)</small></a>
+                
+                    <a href="/tags/%E7%BD%91%E7%BB%9C%E6%B5%81/">网络流<small>(1)</small></a>
+                
+                    <a href="/tags/yo/">yo<small>(1)</small></a>
+                
+            </div>
+        </div>
+    </div>
+
+
+        </div>
+        <footer id="footer" class="footer">
+    <div class="copyright">
+        <span>© John Doe | Powered by <a href="https://hexo.io" target="_blank">Hexo</a> & <a href="https://github.com/Siricee/hexo-theme-Chic" target="_blank">Chic</a></span>
+    </div>
+</footer>
+
+    </div>
+</body>
+</html>

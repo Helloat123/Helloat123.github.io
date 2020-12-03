@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <meta name="author" content="John Doe">
+
+
+
+
+
+<title>ICPC2019-银川 | Hexo</title>
+
+
+
+    <link rel="icon" href="/favicon.ico">
+
+
+
+
+    <!-- stylesheets list from _config.yml -->
+    
+    <link rel="stylesheet" href="/css/style.css">
+    
+
+
+
+    <!-- scripts list from _config.yml -->
+    
+    <script src="/js/script.js"></script>
+    
+    <script src="/js/tocbot.min.js"></script>
+    
+
+
+
+    
+    
+        
+            <!-- MathJax配置，可通过单美元符号书写行内公式等 -->
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+    "HTML-CSS": {
+        preferredFont: "TeX",
+        availableFonts: ["STIX","TeX"],
+        linebreaks: { automatic:true },
+        EqnChunk: (MathJax.Hub.Browser.isMobile ? 10 : 50)
+    },
+    tex2jax: {
+        inlineMath: [ ["$", "$"], ["\\(","\\)"] ],
+        processEscapes: true,
+        ignoreClass: "tex2jax_ignore|dno",
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    },
+    TeX: {
+        equationNumbers: { autoNumber: "AMS" },
+        noUndefined: { attributes: { mathcolor: "red", mathbackground: "#FFEEEE", mathsize: "90%" } },
+        Macros: { href: "{}" }
+    },
+    messageStyle: "none"
+    });
+</script>
+<!-- 给MathJax元素添加has-jax class -->
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+<!-- 通过连接CDN加载MathJax的js代码 -->
+<script type="text/javascript" async
+        src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+
+
+        
+    
+
+
+<meta name="generator" content="Hexo 5.2.0"></head>
+<body>
+    <div class="wrapper">
+        <header>
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-header header-logo"><a href="/">Richard&#39;s Blog</a></div>
+            <div class="menu navbar-right">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+                <input id="switch_default" type="checkbox" class="switch_default">
+                <label for="switch_default" class="toggleBtn"></label>
+            </div>
+        </div>
+    </nav>
+
+    
+    <nav class="navbar-mobile" id="nav-mobile">
+        <div class="container">
+            <div class="navbar-header">
+                <div>
+                    <a href="/">Richard&#39;s Blog</a><a id="mobile-toggle-theme">·&nbsp;Light</a>
+                </div>
+                <div class="menu-toggle" onclick="mobileBtn()">&#9776; Menu</div>
+            </div>
+            <div class="menu" id="mobile-menu">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+            </div>
+        </div>
+    </nav>
+
+</header>
+<script>
+    var mobileBtn = function f() {
+        var toggleMenu = document.getElementsByClassName("menu-toggle")[0];
+        var mobileMenu = document.getElementById("mobile-menu");
+        if(toggleMenu.classList.contains("active")){
+           toggleMenu.classList.remove("active")
+            mobileMenu.classList.remove("active")
+        }else{
+            toggleMenu.classList.add("active")
+            mobileMenu.classList.add("active")
+        }
+    }
+</script>
+        <div class="main">
+            <div class="container">
+    
+    
+        <div class="post-toc">
+    <div class="tocbot-list">
+    </div>
+    <div class="tocbot-list-menu">
+        <a class="tocbot-toc-expand" onclick="expand_toc()">Expand all</a>
+        <a onclick="go_top()">Back to top</a>
+        <a onclick="go_bottom()">Go to bottom</a>
+    </div>
+</div>
+
+<script>
+    document.ready(
+        function () {
+            tocbot.init({
+                tocSelector: '.tocbot-list',
+                contentSelector: '.post-content',
+                headingSelector: 'h1, h2, h3, h4, h5',
+                collapseDepth: 1,
+                orderedList: false,
+                scrollSmooth: true,
+            })
+        }
+    )
+
+    function expand_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 6,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "collapse_toc()");
+        b.innerHTML = "Collapse all"
+    }
+
+    function collapse_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 1,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "expand_toc()");
+        b.innerHTML = "Expand all"
+    }
+
+    function go_top() {
+        window.scrollTo(0, 0);
+    }
+
+    function go_bottom() {
+        window.scrollTo(0, document.body.scrollHeight);
+    }
+
+</script>
+    
+
+    
+    <article class="post-wrap">
+        <header class="post-header">
+            <h1 class="post-title">ICPC2019-银川</h1>
+            
+                <div class="post-meta">
+                    
+                        Author: <a itemprop="author" rel="author" href="/">John Doe</a>
+                    
+
+                    
+                        <span class="post-time">
+                        Date: <a href="#">December 2, 2020&nbsp;&nbsp;19:52:14</a>
+                        </span>
+                    
+                    
+                        <span class="post-category">
+                    Category:
+                            
+                                <a href="/categories/%E8%AE%B0%E5%BD%95/">记录</a>
+                            
+                        </span>
+                    
+                </div>
+            
+        </header>
+
+        <div class="post-content">
+            <p>按照做题顺序</p>
+<h1 id="N-Fibonacci-Sequence"><a href="#N-Fibonacci-Sequence" class="headerlink" title="N-Fibonacci Sequence"></a>N-Fibonacci Sequence</h1><p>ZRC</p>
+<h1 id="B-So-Easy"><a href="#B-So-Easy" class="headerlink" title="B-So Easy"></a>B-So Easy</h1><p>LYF</p>
+<h1 id="I-Base62"><a href="#I-Base62" class="headerlink" title="I-Base62"></a>I-Base62</h1><p>ZRC 高精</p>
+<h1 id="A-Girls-and-Party"><a href="#A-Girls-and-Party" class="headerlink" title="A-Girls and Party"></a>A-Girls and Party</h1><p>题意:</p>
+<p>有一个游戏，给定一些卡牌，卡牌具有名称和颜色和分值三个属性</p>
+<p>对选定的五张卡牌的分值求和sum，每拥有一张特殊名称(共5个)的卡牌则bonus+=0.1，每拥有一张特殊颜色(共1个)卡牌则bonus+=0.2</p>
+<p>ans=sum*(1+bonus)</p>
+<p>LYF解：</p>
+<p>分类讨论，然后我好像没怎么看懂写法，网上的解答都是dp写的</p>
+<h1 id="G-Pot"><a href="#G-Pot" class="headerlink" title="G-Pot!!"></a>G-Pot!!</h1><p>题意：</p>
+<p>设f(x)为x的最大质因数次数(例如f(8)=f(24)=3,f(9)=f(18)=2)</p>
+<p>初始有一个初值均为1的有$n\le 10^5$个数的数列。有两种操作，一种是区间乘一个<strong>小于等于10</strong>的值，一种是询问区间内f(a[i])的最大值，操作$q\le 10^5$次</p>
+<p>ZRC解：</p>
+<p>注意到乘的是小于等于10的值</p>
+<p>对于2 3 5 7各开一个线段树，做完了</p>
+<p>没注意到这个特点的话这个数据范围没法做，或许换个数据范围可以树套树</p>
+<h1 id="F-Function"><a href="#F-Function" class="headerlink" title="F-Function!"></a>F-Function!</h1><p>题意：<br>$$<br>\sum_{a=2}^{n}(a\sum_{b=a}^{n}\lfloor{\log_{a}{b}}\rfloor\cdot\lceil{\log_b{a}}\rceil)<br>$$<br>$n\le 10^6$</p>
+<p>ZRC解,WD写：</p>
+<p>注意到$\lceil{\log_b{a}}\rceil$永远是1，所以推式子可以简化运算，显然可以把复杂度降到$O(n\log n)$</p>
+<p>然后发现当$a&gt;10^6\ge\sqrt{n}$时，$\lfloor{\log_{a}{b}}\rfloor$一定为1</p>
+<p>故只需在$10^6$以下做暴力，以上利用公式计算。</p>
+<p>复杂度$O(\sqrt{n}\log{n})$</p>
+<p>这个高中公式还是得记住啊…<br>$$<br>\sum_{a=1}^n{a^2}=\frac{n(n+1)(2n+1)}{6}<br>$$<br>可能有更优的办法？可能对于$\lfloor{\log_{a}{b}}\rfloor$为2、为3、为任意值时都可以推出公式，这样可能可以在$O(\log n)$时间内求出答案？(暂时懒得想了)</p>
+<h1 id="补题"><a href="#补题" class="headerlink" title="补题"></a>补题</h1><h1 id="D-Easy-Problem"><a href="#D-Easy-Problem" class="headerlink" title="D-Easy Problem"></a>D-Easy Problem</h1><p>WD</p>
+<h1 id="E-XOR-Tree"><a href="#E-XOR-Tree" class="headerlink" title="E-XOR Tree"></a>E-XOR Tree</h1><p>树神WD说很难写</p>
+<p>题意貌似是求(每个子树的(每个点对的异或和)的平方和)</p>
+<p>但是大致上就是个dsu on tree</p>
+
+        </div>
+
+        
+            <section class="post-copyright">
+                
+                    <p class="copyright-item">
+                        <span>Author:</span>
+                        <span>John Doe</span>
+                    </p>
+                
+                
+                    <p class="copyright-item">
+                        <span>Permalink:</span>
+                        <span><a href="http://example.com/2020/12/02/ICPC2019-%E9%93%B6%E5%B7%9D/">http://example.com/2020/12/02/ICPC2019-%E9%93%B6%E5%B7%9D/</a></span>
+                    </p>
+                
+                
+                    <p class="copyright-item">
+                        <span>License:</span>
+                        <span>Copyright (c) 2019 <a target="_blank" rel="noopener" href="http://creativecommons.org/licenses/by-nc/4.0/">CC-BY-NC-4.0</a> LICENSE</span>
+                    </p>
+                
+                
+                     <p class="copyright-item">
+                         <span>Slogan:</span>
+                         <span>Do you believe in <strong>DESTINY</strong>?</span>
+                     </p>
+                
+
+            </section>
+        
+        <section class="post-tags">
+            <div>
+                <span>Tag(s):</span>
+                <span class="tag">
+                    
+                    
+                        <a href="/tags/XCPC/"># XCPC</a>
+                    
+                        
+                </span>
+            </div>
+            <div>
+                <a href="javascript:window.history.back();">back</a>
+                <span>· </span>
+                <a href="/">home</a>
+            </div>
+        </section>
+        <section class="post-nav">
+            
+            
+            <a class="next" rel="next" href="/2020/11/01/%E9%93%B6%E4%BA%86/">银了</a>
+            
+        </section>
+
+
+    </article>
+</div>
+
+        </div>
+        <footer id="footer" class="footer">
+    <div class="copyright">
+        <span>© John Doe | Powered by <a href="https://hexo.io" target="_blank">Hexo</a> & <a href="https://github.com/Siricee/hexo-theme-Chic" target="_blank">Chic</a></span>
+    </div>
+</footer>
+
+    </div>
+</body>
+</html>

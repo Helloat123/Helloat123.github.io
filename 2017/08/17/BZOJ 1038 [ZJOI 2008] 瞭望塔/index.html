@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <meta name="author" content="John Doe">
+
+
+
+
+
+<title>BZOJ 1038 【ZJOI 2008】 瞭望塔 | Hexo</title>
+
+
+
+    <link rel="icon" href="/favicon.ico">
+
+
+
+
+    <!-- stylesheets list from _config.yml -->
+    
+    <link rel="stylesheet" href="/css/style.css">
+    
+
+
+
+    <!-- scripts list from _config.yml -->
+    
+    <script src="/js/script.js"></script>
+    
+    <script src="/js/tocbot.min.js"></script>
+    
+
+
+
+    
+    
+        
+    
+
+
+<meta name="generator" content="Hexo 5.2.0"></head>
+<body>
+    <div class="wrapper">
+        <header>
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-header header-logo"><a href="/">Richard&#39;s Blog</a></div>
+            <div class="menu navbar-right">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+                <input id="switch_default" type="checkbox" class="switch_default">
+                <label for="switch_default" class="toggleBtn"></label>
+            </div>
+        </div>
+    </nav>
+
+    
+    <nav class="navbar-mobile" id="nav-mobile">
+        <div class="container">
+            <div class="navbar-header">
+                <div>
+                    <a href="/">Richard&#39;s Blog</a><a id="mobile-toggle-theme">·&nbsp;Light</a>
+                </div>
+                <div class="menu-toggle" onclick="mobileBtn()">&#9776; Menu</div>
+            </div>
+            <div class="menu" id="mobile-menu">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+            </div>
+        </div>
+    </nav>
+
+</header>
+<script>
+    var mobileBtn = function f() {
+        var toggleMenu = document.getElementsByClassName("menu-toggle")[0];
+        var mobileMenu = document.getElementById("mobile-menu");
+        if(toggleMenu.classList.contains("active")){
+           toggleMenu.classList.remove("active")
+            mobileMenu.classList.remove("active")
+        }else{
+            toggleMenu.classList.add("active")
+            mobileMenu.classList.add("active")
+        }
+    }
+</script>
+        <div class="main">
+            <div class="container">
+    
+    
+
+    
+    <article class="post-wrap">
+        <header class="post-header">
+            <h1 class="post-title">BZOJ 1038 【ZJOI 2008】 瞭望塔</h1>
+            
+                <div class="post-meta">
+                    
+                        Author: <a itemprop="author" rel="author" href="/">John Doe</a>
+                    
+
+                    
+                        <span class="post-time">
+                        Date: <a href="#">August 17, 2017&nbsp;&nbsp;16:09:45</a>
+                        </span>
+                    
+                    
+                        <span class="post-category">
+                    Category:
+                            
+                                <a href="/categories/%E8%AE%A1%E7%AE%97%E5%87%A0%E4%BD%95/">计算几何</a>
+                            
+                        </span>
+                    
+                </div>
+            
+        </header>
+
+        <div class="post-content">
+            <a id="more"></a>
+
+
+<p>学习半平面交，刚开始把边界的现在的1e6打了1e100于是爆炸...</p>
+<p><pre name="code" class="cpp">//By Richard
+#include &lt;cstdio&gt;
+#include &lt;algorithm&gt;
+#include &lt;cstring&gt;
+#include &lt;cstdlib&gt;
+#include &lt;cmath&gt;
+#include &lt;ctime&gt;
+#define rep(x,y,z) for (int x=(y);(x)&lt;=(z);(x)++)
+#define per(x,y,z) for (int x=(y);(x)&gt;=(z);(x)--)
+#define log2(x) (31-__builtin_clz(x))
+#define mod (int)(1e9+7)
+#define inf 0x3f3f3f3f
+#define cls(x) memset(x,0,sizeof(x))
+#ifdef DEBUG
+#define debugdo(X) X
+#define debugndo(X)
+#define debugout(X) cout&lt;&lt;(#X)&lt;&lt;&quot;=&quot;&lt;&lt;(X)&lt;&lt;endl
+#else
+#define debugdo(X)
+#define debugndo(X) X
+#define debugout(X)
+#endif // debug
+#ifdef ONLINE_JUDGE
+#define debugdo(X)
+#define debugndo(X)
+#define debugout(X)
+#endif
+#define putarray(x,n) rep(iiii,1,n) printf(&quot;%d &quot;,x[iiii])
+#define mp make_pair
+using namespace std;
+typedef pair&lt;int,int&gt; pairs;
+typedef long long LL;
+/////////////////////read4.0////////////////////////////////////
+template &lt;typename T&gt;
+inline void read(T &amp;x){char ch;x=0;bool flag=false;ch=getchar();while (ch&gt;'9'||ch&lt;'0') {if (ch=='-') flag=true;ch=getchar();}while ((ch&lt;='9'&amp;&amp;ch&gt;='0')){x=x*10+ch-'0';ch=getchar();}if (flag) x*=-1;}
+template &lt;typename T&gt;
+inline void read(T &amp;x,T &amp;y){read(x);read(y);}
+template &lt;typename T&gt;
+inline void read(T &amp;x,T &amp;y,T &amp;z){read(x);read(y);read(z);}
+/////////////////variables&amp;functions////////////////////
+const int maxn=301;
+const double eps=0.000000000001;
+int n,cnt;
+#define angel angle
+struct Point
+{
+    double x,y;
+    Point(int a,int b):x((double)a),y((double)b){}
+    Point(double a=0,double b=0):x(a),y(b){}
+    inline Point operator-(Point b)const{return Point(x-b.x,y-b.y);}
+    inline double operator*(Point b)const{return x*b.y-y*b.x;}
+}res[maxn],p[maxn];
+double mul(Point x,Point y,Point z){return (y.x-x.x)*(z.y-x.y)-(y.y-x.y)*(z.x-x.x);}
+struct Line
+{
+    Point x,y;
+    double angle;
+    Line(Point a=Point(0,0),Point b=Point(0,0),double e=0):x(a),y(b),angle(e){}
+    inline bool operator&lt;(Line b)const{return abs(angle-b.angle)&lt;eps?mul(x,b.x,b.y)&gt;0:angel&lt;b.angel;}
+    inline bool operator==(Line b)const{return abs(angel-b.angle)&lt;eps;}
+}data[maxn];
+struct deque
+{
+    int top,bot,data[maxn];
+    ~deque(){top=1;bot=0;}
+    inline int front(){return data[bot];}
+    inline int front2(){return data[bot+1];}
+    inline int back(){return data[top-1];}
+    inline int back2(){return data[top-2];}
+    inline void pop_front(){bot++;}
+    inline void pop_back(){top--;}
+    inline bool empty(){return top&lt;=bot;}
+    inline void push_front(int x){data[--bot]=x;}
+    inline void push_back(int x){data[top++]=x;}
+    inline bool judge(){return top&gt;bot+1;}
+    inline bool judge2(){return top&gt;bot+2;}
+}deq;
+Point intersect(Line a,Line b)
+{
+    double k1,k2,t;
+    k1=(b.y-a.x)*(a.y-a.x);
+    k2=(a.y-a.x)*(b.x-a.x);
+    t=k1/(k1+k2);
+    return Point(b.y.x+(b.x.x-b.y.x)*t,b.y.y+(b.x.y-b.y.y)*t);
+}
+inline bool judge(Line x,Line y,Line z)
+{
+    Point temp=intersect(x,y);
+    return (z.y-z.x)*(temp-z.x)&lt;0;
+}
+void hpi(Line *a,int n)//Half-Plane Intersection
+{
+    sort(a+1,a+n+1);
+    int m=unique(a+1,a+n+1)-a-1;
+    deq.push_back(1);deq.push_back(2);
+    rep(i,3,m)
+    {
+        while (deq.judge()&amp;&amp;judge(a[deq.back2()],a[deq.back()],a[i])) deq.pop_back();
+        while (deq.judge()&amp;&amp;judge(a[deq.front2()],a[deq.front()],a[i])) deq.pop_front();
+        deq.push_back(i);
+    }
+    while (deq.judge2()&amp;&amp;judge(a[deq.back2()],a[deq.back()],a[deq.front()])) deq.pop_back();
+    while (deq.judge2()&amp;&amp;judge(a[deq.front2()],a[deq.front()],a[deq.back()])) deq.pop_front();
+    deq.push_back(deq.front());
+//  rep(i,deq.bot,deq.top-1) printf(&quot;%lf %lf %lf %lf\n&quot;,a[deq.data[i]].x.x,a[deq.data[i]].x.y,a[deq.data[i]].y.x,a[deq.data[i]].y.y);
+    rep(i,deq.bot,deq.top-2) res[++cnt]=intersect(a[deq.data[i]],a[deq.data[i+1]]);
+}
+int main()
+{
+    read(n);
+    rep(i,1,n) read(p[i].x);
+    rep(i,1,n) read(p[i].y);
+    p[0]=Point((double)p[1].x,1e6);
+    p[n+1]=Point((double)p[n].x,1e6);
+    double beforex=p[0].x,beforey=p[0].y;
+    //data[1]=Line(Point(),Point(beforex,beforey));
+    rep(i,1,n+1) 
+    {
+//      if (y[i]&gt;=beforey) 
+
+<pre><code>    data[i]=Line(Point(beforex,beforey),Point(p[i].x,p[i].y),atan2(p[i].y-beforey,p[i].x-beforex));</code></pre>
+<p>//      else data[i-1]=Line(Point(x[i],y[i]),Point(beforex,beforey),atan2(beforey-y[i],beforex-x[i]));<br>        beforex=p[i].x;beforey=p[i].y;<br>    }<br>    //data[n+1]=Line(Point(beforex,beforey),Point();<br>    hpi(data,n+1);<br>    double ans=1e18;<br>    rep(i,1,cnt)<br>    {<br>        rep(j,1,n-1)<br>        {<br>            Point t(res[i].x,(double)(-1));<br>            if (res[i].x&gt;p[j].x&amp;&amp;res[i].x&lt;=p[j+1].x) ans=min(ans,res[i].y-intersect(Line(p[j],p[j+1]),Line(t,res[i])).y);<br>        }<br>    }<br>    rep(i,1,n)<br>        rep(j,1,cnt-1)<br>        {<br>            Point t(p[i].x,(double)(-1));<br>            if (p[i].x&gt;res[j].x&amp;&amp;p[i].x&lt;=res[j+1].x) ans=min(ans,intersect(Line(res[j],res[j+1]),Line(t,p[i])).y-p[i].y);<br>        }<br>    printf(&quot;%.3lf\n&quot;,ans);<br>    return 0;<br>}</pre><br><br><br></p>
+</p>
+
+        </div>
+
+        
+            <section class="post-copyright">
+                
+                    <p class="copyright-item">
+                        <span>Author:</span>
+                        <span>John Doe</span>
+                    </p>
+                
+                
+                    <p class="copyright-item">
+                        <span>Permalink:</span>
+                        <span><a href="http://example.com/2017/08/17/BZOJ%201038%20[ZJOI%202008]%20%E7%9E%AD%E6%9C%9B%E5%A1%94/">http://example.com/2017/08/17/BZOJ%201038%20[ZJOI%202008]%20%E7%9E%AD%E6%9C%9B%E5%A1%94/</a></span>
+                    </p>
+                
+                
+                    <p class="copyright-item">
+                        <span>License:</span>
+                        <span>Copyright (c) 2019 <a target="_blank" rel="noopener" href="http://creativecommons.org/licenses/by-nc/4.0/">CC-BY-NC-4.0</a> LICENSE</span>
+                    </p>
+                
+                
+                     <p class="copyright-item">
+                         <span>Slogan:</span>
+                         <span>Do you believe in <strong>DESTINY</strong>?</span>
+                     </p>
+                
+
+            </section>
+        
+        <section class="post-tags">
+            <div>
+                <span>Tag(s):</span>
+                <span class="tag">
+                    
+                    
+                        <a href="/tags/%E5%8D%8A%E5%B9%B3%E9%9D%A2%E4%BA%A4/"># 半平面交</a>
+                    
+                        
+                </span>
+            </div>
+            <div>
+                <a href="javascript:window.history.back();">back</a>
+                <span>· </span>
+                <a href="/">home</a>
+            </div>
+        </section>
+        <section class="post-nav">
+            
+                <a class="prev" rel="prev" href="/2017/08/19/%5BCQOI%202006%5D%20%E5%87%B8%E5%A4%9A%E8%BE%B9%E5%BD%A2/">【CQOI 2006】 凸多边形</a>
+            
+            
+            <a class="next" rel="next" href="/2017/08/12/LJOJ%201576%20Easy%20Problem/">LJOJ 1576 Easy Problem</a>
+            
+        </section>
+
+
+    </article>
+</div>
+
+        </div>
+        <footer id="footer" class="footer">
+    <div class="copyright">
+        <span>© John Doe | Powered by <a href="https://hexo.io" target="_blank">Hexo</a> & <a href="https://github.com/Siricee/hexo-theme-Chic" target="_blank">Chic</a></span>
+    </div>
+</footer>
+
+    </div>
+</body>
+</html>
