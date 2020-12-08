@@ -291,14 +291,12 @@
 <h1 id="E-XOR-tree"><a href="#E-XOR-tree" class="headerlink" title="E-XOR tree"></a>E-XOR tree</h1><p>WD</p>
 <img src="http://ding-typora.oss-cn-beijing.aliyuncs.com/img/image-20201206105803051.png" alt="image-20201206105803051" style="zoom: 67%;">
 
-<ul>
-<li><p>分析</p>
+<p>分析</p>
 <p>相当于对每个子树求</p>
-</li>
-</ul>
-<p>$$<br>  \sum_{i = 1}^{m}\sum_{j = 1}^{i - 1}(\sum_{l = 0}^{31}b^{i}<em>{l}2^{l}\oplus b^{j}</em>{l} 2^{l})^2<br>  \ \sum_{i = 1}^{m}\sum_{j = 1}^{i - 1}(\sum_{l = 0}^{31}b^{i}<em>{l}2^{l}\oplus b^{j}</em>{l} 2^{l})(\sum_{k = 0}^{31}b^{i}<em>{k}2^{k}\oplus b^{j}</em>{k} 2^{k})<br>$$</p>
+<p>$$<br>\sum_{i=1}^m\sum_{j=1}^{i-1}(\sum_{l=0}^{31}b^i_l\cdot2^l\oplus b^j_l\cdot 2^l)^2<br>$$</p>
+<p>$$<br>\sum_{i=1}^m\sum_{j=1}^{i-1}(\sum_{l=0}^{31}b_l^i\cdot2^l\oplus b^j_l\cdot2^l)(\sum_{k=0}^{31}b^i_k\cdot2^k\oplus b^j_k\cdot2^k)<br>$$</p>
 <p>  枚举两位, 找不一样的.</p>
-<p>  对于枚举到的两位, 一共有 00,01,10,11 四种. 统计这四种的数量就可以计算贡献了. 00 乘 11, 01乘 10<br>$$<br>  \sum_{l = 0}^{31}\sum_{k = 0}^{31}2^{l + k}\sum_{i = 1}^{m}\sum_{j = 1}^{i - 1}[b_{i}^{l}\neq b_{j}^{l}][b_{i}^{k} \neq b_{j}^{k}]<br>$$</p>
+<p>  对于枚举到的两位, 一共有 00,01,10,11 四种. 统计这四种的数量就可以计算贡献了. 00 乘 11, 01乘 10<br>$$<br>\sum_{l = 0}^{31}\sum_{k = 0}^{31}2^{l + k}\sum_{i = 1}^{m}\sum_{j = 1}^{i - 1}[b_{i}^{l}\neq b_{j}^{l}][b_{i}^{k} \neq b_{j}^{k}]<br>$$</p>
 <p>  就是统计这两位不同的的对数. 有两种方法. 一种是用长链剖分维护四种情况的后缀和. 一种是暴力做…. </p>
 <p>  <strong>暴力:</strong></p>
 <p>  3.7s过</p>
