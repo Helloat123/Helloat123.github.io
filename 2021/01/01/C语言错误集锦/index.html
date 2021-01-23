@@ -12,7 +12,7 @@
 
 
 
-<title>C语言错误集锦 | Richard&#39;s Blog</title>
+<title>C语言笔记 | Richard&#39;s Blog</title>
 
 
 
@@ -107,73 +107,11 @@
             <div class="container">
     
     
-        <div class="post-toc">
-    <div class="tocbot-list">
-    </div>
-    <div class="tocbot-list-menu">
-        <a class="tocbot-toc-expand" onclick="expand_toc()">Expand all</a>
-        <a onclick="go_top()">Back to top</a>
-        <a onclick="go_bottom()">Go to bottom</a>
-    </div>
-</div>
-
-<script>
-    document.ready(
-        function () {
-            tocbot.init({
-                tocSelector: '.tocbot-list',
-                contentSelector: '.post-content',
-                headingSelector: 'h1, h2, h3, h4, h5',
-                collapseDepth: 1,
-                orderedList: false,
-                scrollSmooth: true,
-            })
-        }
-    )
-
-    function expand_toc() {
-        var b = document.querySelector(".tocbot-toc-expand");
-        tocbot.init({
-            tocSelector: '.tocbot-list',
-            contentSelector: '.post-content',
-            headingSelector: 'h1, h2, h3, h4, h5',
-            collapseDepth: 6,
-            orderedList: false,
-            scrollSmooth: true,
-        });
-        b.setAttribute("onclick", "collapse_toc()");
-        b.innerHTML = "Collapse all"
-    }
-
-    function collapse_toc() {
-        var b = document.querySelector(".tocbot-toc-expand");
-        tocbot.init({
-            tocSelector: '.tocbot-list',
-            contentSelector: '.post-content',
-            headingSelector: 'h1, h2, h3, h4, h5',
-            collapseDepth: 1,
-            orderedList: false,
-            scrollSmooth: true,
-        });
-        b.setAttribute("onclick", "expand_toc()");
-        b.innerHTML = "Expand all"
-    }
-
-    function go_top() {
-        window.scrollTo(0, 0);
-    }
-
-    function go_bottom() {
-        window.scrollTo(0, document.body.scrollHeight);
-    }
-
-</script>
-    
 
     
     <article class="post-wrap">
         <header class="post-header">
-            <h1 class="post-title">C语言错误集锦</h1>
+            <h1 class="post-title">C语言笔记</h1>
             
                 <div class="post-meta">
                     
@@ -216,17 +154,16 @@
 </li>
 <li><p>a void* pointer can’t be assigned to a char* pointer implicitly：<code>void*</code>指针不能被隐式转换成<code>char*</code>。记住implicitly的意思。猜测可能<code>void*</code>只会把地址存下来，而不同的指针类型变量会同时把类型存下来，这样的话<code>void*</code>直接转成别的就会丢掉一些数据就会出问题，就被禁止了。之前猜测可能会有int=double时候自动强转类型的情况，可能就不需要强转(char*)了，这样的猜测是错误的</p>
 </li>
-<li><pre><code class="c">#include &lt;stdio.h&gt;
-int main()
-&#123;
-    int a[]=&#123;11,22,33,44,55,66&#125;;
-    printf(&quot;%d\n&quot;,&amp;a[5]-&amp;a[3]);
-    return 0;
-&#125;
-/*结果是2 取地址之后的结果事实上就是一个指针，指针加减是按照变量数量来的，而非字节数*/</code></pre>
+<li><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> a[]=&#123;<span class="number">11</span>,<span class="number">22</span>,<span class="number">33</span>,<span class="number">44</span>,<span class="number">55</span>,<span class="number">66</span>&#125;;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;%d\n&quot;</span>,&amp;a[<span class="number">5</span>]-&amp;a[<span class="number">3</span>]);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/*结果是2 取地址之后的结果事实上就是一个指针，指针加减是按照变量数量来的，而非字节数*/</span></span><br></pre></td></tr></table></figure>
+
+
+
 </li>
 </ul>
-<h2 id="注释"><a href="#注释" class="headerlink" title="注释"></a>注释</h2><p>目前的是October Test+Midterm Test+December Test。就只剩一个期末考试了，占比最大，考前还是需要复习的哦。</p>
+<ul>
+<li>enum</li>
+</ul>
+<p>* </p>
 
         </div>
 

@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <meta name="author" content="Helloat123">
+
+
+
+
+
+<title>原根 | Richard&#39;s Blog</title>
+
+
+
+    <link rel="icon" href="/favicon.png">
+
+
+
+
+    <!-- stylesheets list from _config.yml -->
+    
+    <link rel="stylesheet" href="/css/style.css">
+    
+
+
+
+    <!-- scripts list from _config.yml -->
+    
+    <script src="/js/script.js"></script>
+    
+    <script src="/js/tocbot.min.js"></script>
+    
+
+
+
+    
+    
+        
+            <!-- MathJax配置，可通过单美元符号书写行内公式等 -->
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+    "HTML-CSS": {
+        preferredFont: "TeX",
+        availableFonts: ["STIX","TeX"],
+        linebreaks: { automatic:true },
+        EqnChunk: (MathJax.Hub.Browser.isMobile ? 10 : 50)
+    },
+    tex2jax: {
+        inlineMath: [ ["$", "$"], ["\\(","\\)"] ],
+        processEscapes: true,
+        ignoreClass: "tex2jax_ignore|dno",
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    },
+    TeX: {
+        equationNumbers: { autoNumber: "AMS" },
+        noUndefined: { attributes: { mathcolor: "red", mathbackground: "#FFEEEE", mathsize: "90%" } },
+        Macros: { href: "{}" }
+    },
+    messageStyle: "none"
+    });
+</script>
+<!-- 给MathJax元素添加has-jax class -->
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+<!-- 通过连接CDN加载MathJax的js代码 -->
+<script type="text/javascript" async
+        src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+
+
+        
+    
+
+
+<meta name="generator" content="Hexo 5.2.0"></head>
+<body>
+    <div class="wrapper">
+        <header>
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-header header-logo"><a href="/">Richard&#39;s Blog</a></div>
+            <div class="menu navbar-right">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+                <input id="switch_default" type="checkbox" class="switch_default">
+                <label for="switch_default" class="toggleBtn"></label>
+            </div>
+        </div>
+    </nav>
+
+    
+    <nav class="navbar-mobile" id="nav-mobile">
+        <div class="container">
+            <div class="navbar-header">
+                <div>
+                    <a href="/">Richard&#39;s Blog</a><a id="mobile-toggle-theme">·&nbsp;Light</a>
+                </div>
+                <div class="menu-toggle" onclick="mobileBtn()">&#9776; Menu</div>
+            </div>
+            <div class="menu" id="mobile-menu">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+            </div>
+        </div>
+    </nav>
+
+</header>
+<script>
+    var mobileBtn = function f() {
+        var toggleMenu = document.getElementsByClassName("menu-toggle")[0];
+        var mobileMenu = document.getElementById("mobile-menu");
+        if(toggleMenu.classList.contains("active")){
+           toggleMenu.classList.remove("active")
+            mobileMenu.classList.remove("active")
+        }else{
+            toggleMenu.classList.add("active")
+            mobileMenu.classList.add("active")
+        }
+    }
+</script>
+        <div class="main">
+            <div class="container">
+    
+    
+
+    
+    <article class="post-wrap">
+        <header class="post-header">
+            <h1 class="post-title">原根</h1>
+            
+                <div class="post-meta">
+                    
+                        Author: <a itemprop="author" rel="author" href="/">Helloat123</a>
+                    
+
+                    
+                        <span class="post-time">
+                        Date: <a href="#">January 22, 2021&nbsp;&nbsp;16:57:54</a>
+                        </span>
+                    
+                    
+                        <span class="post-category">
+                    Category:
+                            
+                                <a href="/categories/%E6%95%B0%E5%AD%A6/">数学</a>
+                            
+                        </span>
+                    
+                </div>
+            
+        </header>
+
+        <div class="post-content">
+            <p>首先给出阶的定义:$m&gt;1$且$(a,m)=1$的情况下,使得$a^l\equiv 1(mod\ m)$的$l$最小值为$a$对模$m$的阶.</p>
+<p>由欧拉定理,$a^{\phi(m)}\equiv1(mod\ m)$,则显然$l|\phi(m)$且$l\le \phi(m)$.</p>
+<p>于是给出原根的定义:设$m$为正整数,$a$为整数,如果$a$对$m$的阶等于$\phi(m)$,那么称$a$为模$m$的一个原根.</p>
+<p>原根的性质:</p>
+<ul>
+<li><p>一个正整数$m$有原根的充要条件是$m=2,4,p^e,2p^e$,其中$p$为奇素数,$e$为正整数.</p>
+</li>
+<li><p>每个有原根的正整数$m$都有$\phi(\phi(m))$个原根</p>
+</li>
+<li><p>${g,g^2,g^3,\cdots,g^{\phi(m)}}$构成模$m$的一个既约剩余系(指每个与模数互质的剩余系取一个出来形成的玩意)</p>
+<p>平常我们用的都是质数的原根,那么这时候这个既约剩余系就取遍了$1\sim m-1$.</p>
+</li>
+</ul>
+<p>于是我们得到了最直观的寻找原根的方法:可以从2开始枚举,判断它的$1 \sim \phi(m)-1$次方是否重复.由于原根大致出现在$m^{0.25}$左右,因此求解的复杂度大约是$O(m^{1.25})$.</p>
+<p>然后考虑:据欧拉定理,若$(a,m)=1$,那么$a$的$\phi(m)$次方必定和$1$同余.显然若一个数和$m$不互质,一定不是原根.若互质且非原根,它的$n$次方的循环节必定是$\phi(m)$的约数.可以先列出$\phi(m)$的每个约数$d_k$,若一个数的$d_k$次与$1$同余则该数必定不是原根.</p>
+<p>再考虑这种方法的优化:我们发现若$x^d\equiv 1(mod\ m)$,那么当$d’=2d,3d,\cdots(d’&lt;\phi(m))$时,显然均有$x^{d’}\equiv 1(mod\ m)$.故我们不需要枚举所有约数,只需要枚举$\frac{m}{p_1},\frac{m}{p_2},\cdots,\frac{m}{p_k}$即可.因为如果其中任意一个的约数不符合就一定能通过该数检测出来.换句话说,他们涵盖了每个约数小于$\phi(m)$的倍数.</p>
+<p>下面是洛谷模板题的代码,题面含义为:T组数据,每组给出n和d,求原根总数并每d个输出一个.忽略了部分常见函数</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> divisors[maxn],sdiv;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">getdivisor</span><span class="params">(<span class="keyword">int</span> x)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    sdiv=<span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i=<span class="number">1</span>;x&gt;<span class="number">1</span>&amp;&amp;i&lt;=cnt;i++)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">if</span> (x%pri[i]==<span class="number">0</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            divisors[++sdiv]=pri[i];</span><br><span class="line">            <span class="keyword">while</span> (x%pri[i]==<span class="number">0</span>) x/=pri[i];</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">check</span><span class="params">(<span class="keyword">int</span> x,<span class="keyword">int</span> y,<span class="keyword">int</span> p)</span></span>&#123;<span class="keyword">return</span> <span class="built_in">pow</span>(x,y,p)==<span class="number">1</span>;&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    read(T);</span><br><span class="line">    getphi(<span class="number">1000000</span>);</span><br><span class="line">    <span class="keyword">while</span> (T--)</span><br><span class="line">    &#123;</span><br><span class="line">        read(n,d);</span><br><span class="line">        <span class="keyword">if</span> (n!=<span class="number">2</span>&amp;&amp;n!=<span class="number">4</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            getdivisor(n);</span><br><span class="line">            <span class="keyword">if</span> ((!(sdiv==<span class="number">1</span>||(sdiv==<span class="number">2</span>&amp;&amp;divisors[<span class="number">1</span>]==<span class="number">2</span>&amp;&amp;((n/<span class="number">2</span>)&amp;<span class="number">1</span>))))||(divisors[<span class="number">1</span>]==<span class="number">2</span>&amp;&amp;sdiv==<span class="number">1</span>))<span class="comment">//这句应该可以更简便</span></span><br><span class="line">            &#123;</span><br><span class="line">                <span class="built_in">puts</span>(<span class="string">&quot;0\n&quot;</span>);</span><br><span class="line">                <span class="keyword">continue</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span> (n==<span class="number">2</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="built_in">puts</span>(<span class="string">&quot;1&quot;</span>);</span><br><span class="line">            <span class="built_in">puts</span>(d==<span class="number">1</span>?<span class="string">&quot;1&quot;</span>:<span class="string">&quot;&quot;</span>);</span><br><span class="line">            <span class="keyword">continue</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">cout</span>&lt;&lt;phi[phi[n]]&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">        getdivisor(phi[n]);</span><br><span class="line">        <span class="keyword">int</span> minn=<span class="number">0</span>;</span><br><span class="line">        rep(i,<span class="number">2</span>,n<span class="number">-1</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">bool</span> flag=<span class="literal">true</span>;</span><br><span class="line">            <span class="keyword">if</span> (gcd(i,n)!=<span class="number">1</span>) flag=<span class="literal">false</span>;</span><br><span class="line">            <span class="keyword">if</span> (sdiv&gt;<span class="number">1</span>) rep(j,<span class="number">1</span>,sdiv) <span class="keyword">if</span> (check(i,phi[n]/divisors[j],n)) </span><br><span class="line">            &#123;</span><br><span class="line">                flag=<span class="literal">false</span>;</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span> (flag) &#123;minn=i;<span class="keyword">break</span>;&#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">int</span> num=<span class="number">1</span>;</span><br><span class="line">        ans[<span class="number">1</span>]=minn;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i=<span class="number">2</span>,now=((LL)minn*minn)%n;now!=<span class="number">1</span>;now=((LL)now*minn)%n,i++)</span><br><span class="line">            <span class="keyword">if</span> (gcd(i,phi[n])==<span class="number">1</span>) ans[++num]=now;</span><br><span class="line">        sort(ans+<span class="number">1</span>,ans+num+<span class="number">1</span>);</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i=d;i&lt;=num;i+=d) <span class="built_in">cout</span>&lt;&lt;ans[i]&lt;&lt;<span class="string">&#x27; &#x27;</span>;</span><br><span class="line">        <span class="built_in">putchar</span>(<span class="string">&#x27;\n&#x27;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+
+        </div>
+
+        
+        <section class="post-tags">
+            <div>
+                <span>Tag(s):</span>
+                <span class="tag">
+                    
+                    
+                        <a href="/tags/%E6%95%B0%E8%AE%BA/"># 数论</a>
+                    
+                        
+                </span>
+            </div>
+            <div>
+                <a href="javascript:window.history.back();">back</a>
+                <span>· </span>
+                <a href="/">home</a>
+            </div>
+        </section>
+        <section class="post-nav">
+            
+            
+            <a class="next" rel="next" href="/2021/01/20/16%E5%B9%B4%E6%A8%A1%E6%8B%9F%E9%A2%98%E5%9B%9E%E7%9C%8B/">16年模拟题回看</a>
+            
+        </section>
+
+
+    </article>
+</div>
+
+        </div>
+        <footer id="footer" class="footer">
+    <div class="copyright">
+        <span>© Helloat123 | Powered by <a href="https://hexo.io" target="_blank">Hexo</a> & <a href="https://github.com/Siricee/hexo-theme-Chic" target="_blank">Chic</a></span>
+    </div>
+</footer>
+
+    </div>
+</body>
+</html>
