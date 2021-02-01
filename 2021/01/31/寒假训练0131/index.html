@@ -245,6 +245,7 @@
 <p>题意：$L\cdots R$有多少个数的二进制不包含连续的$1$</p>
 <p>解：（规范的LYF写法）设$f[i][j][k]$表示第$i$位，$j$代表当前是否选择，$k$代表前面一个是否是$1$。然后转移还是比较显然的。我的是定义$f[i]$表示所有有$i$位的数加起来有几个符合，求前缀和$sum[i]$就代表从$0$到$i$有多少个符合。然后在计算具体数字$x$的答案$calc(x)$时候可以发现，$0\cdots x$之间的可行数量实际上等于$sum[log2(x)]+calc(x第2位是1?log2(x-1):x-highbit(x))$写起来比规范dp短但是容易写错。而且有点依赖于找规律。</p>
 <h1 id="E"><a href="#E" class="headerlink" title="E"></a>E</h1><p>签到题，但看着反正不看罚时于是多wa了几发。</p>
+<h1 id="B"><a href="#B" class="headerlink" title="B"></a>B</h1><p><a target="_blank" rel="noopener" href="https://loj.ac/p/6503">https://loj.ac/p/6503</a></p>
 
         </div>
 
