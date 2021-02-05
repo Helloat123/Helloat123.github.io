@@ -12,7 +12,7 @@
 
 
 
-<title>寒假训练0131 | Richard&#39;s Blog</title>
+<title>ICPC Shanghai Training Camp Powered by Huawei | Richard&#39;s Blog</title>
 
 
 
@@ -212,7 +212,7 @@
     
     <article class="post-wrap">
         <header class="post-header">
-            <h1 class="post-title">寒假训练0131</h1>
+            <h1 class="post-title">ICPC Shanghai Training Camp Powered by Huawei</h1>
             
                 <div class="post-meta">
                     
@@ -221,7 +221,7 @@
 
                     
                         <span class="post-time">
-                        Date: <a href="#">January 31, 2021&nbsp;&nbsp;17:18:51</a>
+                        Date: <a href="#">February 4, 2021&nbsp;&nbsp;9:46:55</a>
                         </span>
                     
                     
@@ -237,15 +237,22 @@
         </header>
 
         <div class="post-content">
-            <h1 id="A"><a href="#A" class="headerlink" title="A"></a>A</h1><p>题意：有$n\le 10^5$个物品，每个位置在$a_i$，选了就不能选$[a_i,a_i+x_i]$里面的东西，价值为$p_i$，问最大价值。</p>
-<p>解：dp，从后往前，设$f[i]$表示选择$i$处的物品且已经处理过$[i+1,n]$中的物品时的最大价值，同时设$g[i]$表示$max{a_{k}}(i+1\le k\le n)$。则显然可以利用二分查找方便找到选择$i$物品时可选的最近物品$y$，则显然$f[i]=p[i]+g[y]$。答案为$g(1)$。时间复杂度$O(n\lg n)$。许多同学是正着做的，其实本质差不多，只是更新的顺序不一样。</p>
-<h1 id="C"><a href="#C" class="headerlink" title="C"></a>C</h1><p>题意：给定数据是01矩阵画着扑克四种花色，判断是哪种。果然不同地方说这四种花色的说法也不一样，wzh应该是江苏人，刚才更多是习惯说红桃黑桃方片草花；杭州习惯说红桃黑桃方块草花。但是网上可以发现草花基本上不会被当作正式用语，都用的是梅花，而红桃经常被称作红心。</p>
-<p>解：wzh讲题时候给出的判断条件比如最宽的地方在哪里这种其实有点不精确。因为缩放时候差两三个像素其实也是不违反题意的。我的做法当中首先是判断横行和纵列是否出现了跳跃（即1方格当中夹着0方格）。容易发现，红桃会横着跳不会竖着跳，方块不会跳，剩下两种会竖着跳也会横着跳。接下来只需要区分黑桃和草花。这里观察发现，草花的竖跳列数远大于黑桃（刚开始我观察样例觉得至少是2倍，但有几组样例很不幸地故意把草花上面的弧线弄平了，但也至少是1.7倍），最后调参发现如果总列数/跳跃列数&gt;7就判断为黑桃比较合适。</p>
-<h1 id="D"><a href="#D" class="headerlink" title="D"></a>D</h1><p>裸的数位DP，算是唤醒了一下自己的脑子。好像三年没写数位dp了。但我写的其实不规范。</p>
-<p>题意：$L\cdots R$有多少个数的二进制不包含连续的$1$</p>
-<p>解：（规范的LYF写法）设$f[i][j][k]$表示第$i$位，$j$代表当前是否选择，$k$代表前面一个是否是$1$。然后转移还是比较显然的。我的是定义$f[i]$表示所有有$i$位的数加起来有几个符合，求前缀和$sum[i]$就代表从$0$到$i$有多少个符合。然后在计算具体数字$x$的答案$calc(x)$时候可以发现，$0\cdots x$之间的可行数量实际上等于$sum[log2(x)]+calc(x第2位是1?log2(x-1):x-highbit(x))$写起来比规范dp短但是容易写错。而且有点依赖于找规律。</p>
-<h1 id="E"><a href="#E" class="headerlink" title="E"></a>E</h1><p>签到题，但看着反正不看罚时于是多wa了几发。</p>
-<h1 id="B"><a href="#B" class="headerlink" title="B"></a>B</h1><p><a target="_blank" rel="noopener" href="https://loj.ac/p/6503">https://loj.ac/p/6503</a></p>
+            <h1 id="Day1"><a href="#Day1" class="headerlink" title="Day1"></a>Day1</h1><h2 id="C-Wandering"><a href="#C-Wandering" class="headerlink" title="C Wandering"></a>C Wandering</h2><p>题意：每一步等概率走到以当前位置为圆心，$R_i$为半径的圆的任意一点，$n\le 1000000$。问最终与原点期望的平方。</p>
+<p>解：首先观察样例可以发现可能答案就是每个$R_i$的平方和除以2，所以我们就做完了。（误）</p>
+<p>下面给出证明：</p>
+<p>最终要求的答案是<br>$$<br>E[(\sum^{n}<em>{i=1}x_i)^2+(\sum^{n}_{i=1}y_i)^2]<br>$$<br>而这显然等于<br>$$<br>\sum^{n}_{i=1}\sum^{n}</em>{j=1}E[(x_i\cdot x_j)+(y_i\cdot y_j)]<br>$$<br>考虑到$x_i与x_j$互相独立，则<br>$$<br>\sum^{n}<em>{i=1}\sum^{n}</em>{j=1}E(x_i\cdot x_j)=\sum^{n}<em>{i=1}E(x_i\cdot\sum_{j!=i}x_j)+E({x_i}^2)=\sum^{n}</em>{i=1}E(x_i\cdot\sum_{j!=i}E(x_j))+E({x_i}^2)<br>$$<br>显然$E(x_j)$是0。对$y$同理。因此所求答案等于<br>$$<br>\sum^{n}_{i=1}E[{x_i}^2+{y_i}^2]<br>$$<br>几何意义就是圆内随机撒点与原点的期望距离的平方，可以很方便利用积分进行求解。</p>
+<h2 id="E-Minimum-Spanning-Tree"><a href="#E-Minimum-Spanning-Tree" class="headerlink" title="E Minimum Spanning Tree"></a>E Minimum Spanning Tree</h2><p>需要水平长进一点之后再看看</p>
+<p><a target="_blank" rel="noopener" href="https://official.contest.yandex.com/icpc-camp-21/contest/24597/problems/E/">https://official.contest.yandex.com/icpc-camp-21/contest/24597/problems/E/</a></p>
+<p>可以发现任意环内的mst边必定比没加进去的小。因此可以找环然后处理出所有边之间的大小关系。然后状压dp即可。</p>
+<h1 id="Day2"><a href="#Day2" class="headerlink" title="Day2"></a>Day2</h1><h2 id="M-Discrete-Logarithm-is-a-Joke"><a href="#M-Discrete-Logarithm-is-a-Joke" class="headerlink" title="M Discrete Logarithm is a Joke"></a>M Discrete Logarithm is a Joke</h2><p>原来题目就说了这是个Joke…</p>
+<p>题意：已知$a_0=960002411612632915$，$g=42$，$M=10^{18}+31$，$g$是$M$的原根。每次操作求离散对数$\log _{g}a_i$。问$a_n$，其中$n\le 1000000$。</p>
+<p>解：不看最后一组样例不能做。最后一组样例$n=1000000,a_n=300$。反着即可。</p>
+<h2 id="G-Remove-the-Prime"><a href="#G-Remove-the-Prime" class="headerlink" title="G Remove the Prime"></a>G Remove the Prime</h2><p><a target="_blank" rel="noopener" href="https://official.contest.yandex.com/icpc-camp-21/contest/24598/problems/G/">https://official.contest.yandex.com/icpc-camp-21/contest/24598/problems/G/</a></p>
+<p>题意：给一个$n\le 1000$的数列$a_n\le 10^{18}$，两人博弈，每个操作可以选取一段区间和一个质数并将所有该区间内的数除该质数直到不能除尽(区间内每个数必须是该质数的倍数)。不能操作即输。问谁赢。</p>
+<p>解：可以发现，将某个数用$10^6$以内的质数试除后，发现不能除尽的一定至多只有两个质因子。用miller-rabin可以检验该数究竟是质数还是含有两个质因子的合数。对于相邻的数可以利用gcd求出他们的共同质因子。然后就可以转化成nim游戏进行判断（这步我还不太会…大概博弈论也要好好搞搞）。</p>
+<h2 id="J-Increasing-or-Decreasing"><a href="#J-Increasing-or-Decreasing" class="headerlink" title="J Increasing or Decreasing"></a>J Increasing or Decreasing</h2><p>思维题，没什么好说的…读题要读清楚</p>
+<h2 id="I-Trade"><a href="#I-Trade" class="headerlink" title="I Trade"></a>I Trade</h2><p>题意：有$n\le 100000$个商品，每个商品有$p_i$和$c_i$属性。已经买了$k$个物品，并准备买序号为$i$的物品时，需要花$c_i+k\times p_i$来购买。现在有$S\le 10^9$块钱，问最多能买几件。保证$p_i$为正整数，各不相同。$c_i$也为正整数。</p>
+<p>解：假设已经确定哪些物品需要选择，则必定先买$p_i$大的。反过来，如果物品已经按照$p_i$排好序，则可以比较方便研究哪些需要选择。先将物品降序排序。设$f[i][j]$表示处理了前$i$个物品，其中选取$j$个物品时的最小花费。转移方程比较显然。这样我们就得到了一个$O(n^2)$的做法。但没法过。观察发现（这有点脑筋急转弯的感觉啊）由于$p_i$各不相同，选取时由于$S$的限制是有上限的。所以第二维只要做到三四千，这个题目就ac了。</p>
 
         </div>
 
@@ -269,10 +276,8 @@
         </section>
         <section class="post-nav">
             
-                <a class="prev" rel="prev" href="/2021/02/01/17%E5%B9%B4%E6%A8%A1%E6%8B%9F%E9%A2%98%E5%9B%9E%E7%9C%8B/">17年模拟题回看</a>
             
-            
-            <a class="next" rel="next" href="/2021/01/30/%E5%AF%92%E5%81%87%E8%AE%AD%E7%BB%830129/">寒假训练0129</a>
+            <a class="next" rel="next" href="/2021/02/01/17%E5%B9%B4%E6%A8%A1%E6%8B%9F%E9%A2%98%E5%9B%9E%E7%9C%8B/">17年模拟题回看</a>
             
         </section>
 
