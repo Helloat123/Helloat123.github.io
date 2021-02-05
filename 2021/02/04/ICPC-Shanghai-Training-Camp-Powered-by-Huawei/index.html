@@ -240,7 +240,15 @@
             <h1 id="Day1"><a href="#Day1" class="headerlink" title="Day1"></a>Day1</h1><h2 id="C-Wandering"><a href="#C-Wandering" class="headerlink" title="C Wandering"></a>C Wandering</h2><p>题意：每一步等概率走到以当前位置为圆心，$R_i$为半径的圆的任意一点，$n\le 1000000$。问最终与原点期望的平方。</p>
 <p>解：首先观察样例可以发现可能答案就是每个$R_i$的平方和除以2，所以我们就做完了。（误）</p>
 <p>下面给出证明：</p>
-<p>最终要求的答案是<br>$$<br>E[(\sum^{n}<em>{i=1}x_i)^2+(\sum^{n}_{i=1}y_i)^2]<br>$$<br>而这显然等于<br>$$<br>\sum^{n}_{i=1}\sum^{n}</em>{j=1}E[(x_i\cdot x_j)+(y_i\cdot y_j)]<br>$$<br>考虑到$x_i与x_j$互相独立，则<br>$$<br>\sum^{n}<em>{i=1}\sum^{n}</em>{j=1}E(x_i\cdot x_j)=\sum^{n}<em>{i=1}E(x_i\cdot\sum_{j!=i}x_j)+E({x_i}^2)=\sum^{n}</em>{i=1}E(x_i\cdot\sum_{j!=i}E(x_j))+E({x_i}^2)<br>$$<br>显然$E(x_j)$是0。对$y$同理。因此所求答案等于<br>$$<br>\sum^{n}_{i=1}E[{x_i}^2+{y_i}^2]<br>$$<br>几何意义就是圆内随机撒点与原点的期望距离的平方，可以很方便利用积分进行求解。</p>
+<p>最终要求的答案是</p>
+<p>$$<br>E[(\sum^{n}_{i=1}x_i)^2+(\sum^{n}_{i=1}y_i)^2]<br>$$</p>
+<p>而这显然等于</p>
+<p>$$<br>\sum ^{n} _{i=1} \sum ^{n} _{j=1} E[(x_i\cdot x_j)+(y_i\cdot y_j)]<br>$$</p>
+<p>考虑到$x_i与x_j$互相独立，则</p>
+<p>$$<br>\sum ^{n} _{i=1} \sum ^{n} _{j=1} E(x_i \cdot x_j)= \sum ^{n} _{i=1}E(x_i \cdot \sum _{j!=i}x_j)+E({x_i}^2)= \sum ^{n} _{i=1}E(x_i \cdot \sum _{j!=i}E(x_j))+E({x_i}^2)<br>$$</p>
+<p>显然$E(x_j)$是0。对$y$同理。因此所求答案等于</p>
+<p>$$<br>\sum^{n}_{i=1}E[{x_i}^2+{y_i}^2]<br>$$</p>
+<p>几何意义就是圆内随机撒点与原点的期望距离的平方，可以很方便利用积分进行求解。</p>
 <h2 id="E-Minimum-Spanning-Tree"><a href="#E-Minimum-Spanning-Tree" class="headerlink" title="E Minimum Spanning Tree"></a>E Minimum Spanning Tree</h2><p>需要水平长进一点之后再看看</p>
 <p><a target="_blank" rel="noopener" href="https://official.contest.yandex.com/icpc-camp-21/contest/24597/problems/E/">https://official.contest.yandex.com/icpc-camp-21/contest/24597/problems/E/</a></p>
 <p>可以发现任意环内的mst边必定比没加进去的小。因此可以找环然后处理出所有边之间的大小关系。然后状压dp即可。</p>
