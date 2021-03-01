@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <meta name="author" content="Helloat123">
+
+
+
+
+
+<title>ICPC2019-首尔 | Richard&#39;s Blog</title>
+
+
+
+    <link rel="icon" href="/favicon.png">
+
+
+
+
+    <!-- stylesheets list from _config.yml -->
+    
+    <link rel="stylesheet" href="/css/style.css">
+    
+
+
+
+    <!-- scripts list from _config.yml -->
+    
+    <script src="/js/script.js"></script>
+    
+    <script src="/js/tocbot.min.js"></script>
+    
+
+
+
+    
+    
+        
+    
+
+
+<meta name="generator" content="Hexo 5.2.0"></head>
+<body>
+    <div class="wrapper">
+        <header>
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-header header-logo"><a href="/">Richard&#39;s Blog</a></div>
+            <div class="menu navbar-right">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+                <input id="switch_default" type="checkbox" class="switch_default">
+                <label for="switch_default" class="toggleBtn"></label>
+            </div>
+        </div>
+    </nav>
+
+    
+    <nav class="navbar-mobile" id="nav-mobile">
+        <div class="container">
+            <div class="navbar-header">
+                <div>
+                    <a href="/">Richard&#39;s Blog</a><a id="mobile-toggle-theme">·&nbsp;Light</a>
+                </div>
+                <div class="menu-toggle" onclick="mobileBtn()">&#9776; Menu</div>
+            </div>
+            <div class="menu" id="mobile-menu">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+            </div>
+        </div>
+    </nav>
+
+</header>
+<script>
+    var mobileBtn = function f() {
+        var toggleMenu = document.getElementsByClassName("menu-toggle")[0];
+        var mobileMenu = document.getElementById("mobile-menu");
+        if(toggleMenu.classList.contains("active")){
+           toggleMenu.classList.remove("active")
+            mobileMenu.classList.remove("active")
+        }else{
+            toggleMenu.classList.add("active")
+            mobileMenu.classList.add("active")
+        }
+    }
+</script>
+        <div class="main">
+            <div class="container">
+    
+    
+        <div class="post-toc">
+    <div class="tocbot-list">
+    </div>
+    <div class="tocbot-list-menu">
+        <a class="tocbot-toc-expand" onclick="expand_toc()">Expand all</a>
+        <a onclick="go_top()">Back to top</a>
+        <a onclick="go_bottom()">Go to bottom</a>
+    </div>
+</div>
+
+<script>
+    document.ready(
+        function () {
+            tocbot.init({
+                tocSelector: '.tocbot-list',
+                contentSelector: '.post-content',
+                headingSelector: 'h1, h2, h3, h4, h5',
+                collapseDepth: 1,
+                orderedList: false,
+                scrollSmooth: true,
+            })
+        }
+    )
+
+    function expand_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 6,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "collapse_toc()");
+        b.innerHTML = "Collapse all"
+    }
+
+    function collapse_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 1,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "expand_toc()");
+        b.innerHTML = "Expand all"
+    }
+
+    function go_top() {
+        window.scrollTo(0, 0);
+    }
+
+    function go_bottom() {
+        window.scrollTo(0, document.body.scrollHeight);
+    }
+
+</script>
+    
+
+    
+    <article class="post-wrap">
+        <header class="post-header">
+            <h1 class="post-title">ICPC2019-首尔</h1>
+            
+                <div class="post-meta">
+                    
+                        Author: <a itemprop="author" rel="author" href="/">Helloat123</a>
+                    
+
+                    
+                        <span class="post-time">
+                        Date: <a href="#">March 1, 2021&nbsp;&nbsp;16:23:41</a>
+                        </span>
+                    
+                    
+                        <span class="post-category">
+                    Category:
+                            
+                                <a href="/categories/%E8%AE%B0%E5%BD%95/">记录</a>
+                            
+                        </span>
+                    
+                </div>
+            
+        </header>
+
+        <div class="post-content">
+            <h1 id="A-Fire-on-Field"><a href="#A-Fire-on-Field" class="headerlink" title="A-Fire on Field"></a>A-Fire on Field</h1><p>题意：设A[0]=1,A[1]=1,后面的每一项都为不会和前面数字形成下标权值都等差的最小数字。问A[n]。n小于1000</p>
+<p>解：暴力。题目给出了一张图，1000以内的答案甚至不会超过300。但是这题我却WA在了没看懂英文：arithmetic progression意为等差数列，我却把其中的progression感受成了有向前、进击、提升意味的词。把它当成了递增等差数列。学好英语，特别要学好专业英语。</p>
+<h1 id="I-Thread-Knots"><a href="#I-Thread-Knots" class="headerlink" title="I-Thread Knots"></a>I-Thread Knots</h1><p>LYF 好像是简单dp</p>
+<h1 id="J-Triangulation"><a href="#J-Triangulation" class="headerlink" title="J-Triangulation"></a>J-Triangulation</h1><p>LYF</p>
+<p>题意：将正n边形分割成任意个三角形，设其中一个三角形与另一个三角形的距离为最少要走过的三角形个数。问最短的最大距离。</p>
+<p>解：考虑各种特殊情况，可以得到猜想：设一次操作为将多边形一半的角作为三角形的一个角</p>
+<p><img src="/2021/03/01/ICPC2019-%E9%A6%96%E5%B0%94/polygon.png"></p>
+<p>然后对中间剩下的多边形也一直这么操作直到变成两个三角形</p>
+<p>感受一下好像是对的举不出反例，交一发就过了</p>
+<h1 id="L-What’s-Mine-is-Mine"><a href="#L-What’s-Mine-is-Mine" class="headerlink" title="L-What’s Mine is Mine"></a>L-What’s Mine is Mine</h1><p>题意：给定一堆数轴上的线段，它们的权值也给定，问不重复地选择它们得到的最大代价。n小于10000</p>
+<p>解：先离散化。然后dp。设f[i]表示已经选的线段的限制不超过i得到的最大代价。因为显然只要限制不超过i，对于之后的决策来讲就是一模一样的。先把线段按照右端点排序。f[i]=max(f[1~i-1],f[left[j]]+w[j])其中right[j]=i。复杂度O(n)</p>
+<h1 id="B-Gene-Tree"><a href="#B-Gene-Tree" class="headerlink" title="B-Gene Tree"></a>B-Gene Tree</h1><p>树神WD</p>
+<h1 id="K-Washer"><a href="#K-Washer" class="headerlink" title="K-Washer"></a>K-Washer</h1><p>WD&amp;少量协作</p>
+<p>题意：100个三维点，把所有点分割进两个集合，问两个集合的{集合内三个维度的方差*集合大小}的最小值。</p>
+<p>解：枚举其中三个点形成的平面，利用这个平面来分割，暴力计算。复杂度O(n^4)。但是其实枚举时候常数比较小，所以虽然计算过程常数不小但能过。</p>
+<h1 id="C-Islands"><a href="#C-Islands" class="headerlink" title="C-Islands"></a>C-Islands</h1><p>WD/LYF</p>
+<p>题意：两个环上均匀分布n100000个点，标号从1-n，但是两个环上的顺序不同。问是否存在一个排列使得在两个环上都能按排列的顺序每一步走直线走出一条不会穿过自己的路。</p>
+<p>解：首先容易发现如果确定了一个初始点，接下来的每一步目的地都为已走点集的左右两端的未走点，判断两个环上当前步是否有相同的目的地点即可。这是暴力做法。</p>
+<p>可以加一个剪枝：观察发现，若在某一个初始点走失败了，则失败前走到的所有点都不可能被当作起始点。感受一下可以发现这玩意基本卡不掉。</p>
+<h1 id="补题-H-Strike-Zone"><a href="#补题-H-Strike-Zone" class="headerlink" title="补题 H-Strike Zone"></a>补题 H-Strike Zone</h1><p>题意：二维平面，有红点和蓝点，其中蓝点价值为+c1，红点为-c2，都最多1000个。问平面上所有边和坐标系平行的矩形中包含点价值最大的矩形的价值。</p>
+<p>解：扫描线</p>
+
+        </div>
+
+        
+        <section class="post-tags">
+            <div>
+                <span>Tag(s):</span>
+                <span class="tag">
+                    
+                    
+                        <a href="/tags/XCPC/"># XCPC</a>
+                    
+                        
+                </span>
+            </div>
+            <div>
+                <a href="javascript:window.history.back();">back</a>
+                <span>· </span>
+                <a href="/">home</a>
+            </div>
+        </section>
+        <section class="post-nav">
+            
+            
+            <a class="next" rel="next" href="/2021/03/01/ICPC2018-%E9%A6%96%E5%B0%94/">ICPC2018-首尔</a>
+            
+        </section>
+
+
+    </article>
+</div>
+
+        </div>
+        <footer id="footer" class="footer">
+    <div class="copyright">
+        <span>© Helloat123 | Powered by <a href="https://hexo.io" target="_blank">Hexo</a> & <a href="https://github.com/Siricee/hexo-theme-Chic" target="_blank">Chic</a></span>
+    </div>
+</footer>
+
+    </div>
+</body>
+</html>

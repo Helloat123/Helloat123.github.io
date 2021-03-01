@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <meta name="author" content="Helloat123">
+
+
+
+
+
+<title>ICPC2018-首尔 | Richard&#39;s Blog</title>
+
+
+
+    <link rel="icon" href="/favicon.png">
+
+
+
+
+    <!-- stylesheets list from _config.yml -->
+    
+    <link rel="stylesheet" href="/css/style.css">
+    
+
+
+
+    <!-- scripts list from _config.yml -->
+    
+    <script src="/js/script.js"></script>
+    
+    <script src="/js/tocbot.min.js"></script>
+    
+
+
+
+    
+    
+        
+    
+
+
+<meta name="generator" content="Hexo 5.2.0"></head>
+<body>
+    <div class="wrapper">
+        <header>
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-header header-logo"><a href="/">Richard&#39;s Blog</a></div>
+            <div class="menu navbar-right">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+                <input id="switch_default" type="checkbox" class="switch_default">
+                <label for="switch_default" class="toggleBtn"></label>
+            </div>
+        </div>
+    </nav>
+
+    
+    <nav class="navbar-mobile" id="nav-mobile">
+        <div class="container">
+            <div class="navbar-header">
+                <div>
+                    <a href="/">Richard&#39;s Blog</a><a id="mobile-toggle-theme">·&nbsp;Light</a>
+                </div>
+                <div class="menu-toggle" onclick="mobileBtn()">&#9776; Menu</div>
+            </div>
+            <div class="menu" id="mobile-menu">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+            </div>
+        </div>
+    </nav>
+
+</header>
+<script>
+    var mobileBtn = function f() {
+        var toggleMenu = document.getElementsByClassName("menu-toggle")[0];
+        var mobileMenu = document.getElementById("mobile-menu");
+        if(toggleMenu.classList.contains("active")){
+           toggleMenu.classList.remove("active")
+            mobileMenu.classList.remove("active")
+        }else{
+            toggleMenu.classList.add("active")
+            mobileMenu.classList.add("active")
+        }
+    }
+</script>
+        <div class="main">
+            <div class="container">
+    
+    
+        <div class="post-toc">
+    <div class="tocbot-list">
+    </div>
+    <div class="tocbot-list-menu">
+        <a class="tocbot-toc-expand" onclick="expand_toc()">Expand all</a>
+        <a onclick="go_top()">Back to top</a>
+        <a onclick="go_bottom()">Go to bottom</a>
+    </div>
+</div>
+
+<script>
+    document.ready(
+        function () {
+            tocbot.init({
+                tocSelector: '.tocbot-list',
+                contentSelector: '.post-content',
+                headingSelector: 'h1, h2, h3, h4, h5',
+                collapseDepth: 1,
+                orderedList: false,
+                scrollSmooth: true,
+            })
+        }
+    )
+
+    function expand_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 6,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "collapse_toc()");
+        b.innerHTML = "Collapse all"
+    }
+
+    function collapse_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 1,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "expand_toc()");
+        b.innerHTML = "Expand all"
+    }
+
+    function go_top() {
+        window.scrollTo(0, 0);
+    }
+
+    function go_bottom() {
+        window.scrollTo(0, document.body.scrollHeight);
+    }
+
+</script>
+    
+
+    
+    <article class="post-wrap">
+        <header class="post-header">
+            <h1 class="post-title">ICPC2018-首尔</h1>
+            
+                <div class="post-meta">
+                    
+                        Author: <a itemprop="author" rel="author" href="/">Helloat123</a>
+                    
+
+                    
+                        <span class="post-time">
+                        Date: <a href="#">March 1, 2021&nbsp;&nbsp;15:29:51</a>
+                        </span>
+                    
+                    
+                        <span class="post-category">
+                    Category:
+                            
+                                <a href="/categories/%E8%AE%B0%E5%BD%95/">记录</a>
+                            
+                        </span>
+                    
+                </div>
+            
+        </header>
+
+        <div class="post-content">
+            <h1 id="D-Go-Latin"><a href="#D-Go-Latin" class="headerlink" title="D-Go Latin"></a>D-Go Latin</h1><p>LYF 签到题</p>
+<h1 id="L-Working-Plan"><a href="#L-Working-Plan" class="headerlink" title="L-Working Plan"></a>L-Working Plan</h1><p>LYF 不知道啥题</p>
+<h1 id="E-LED"><a href="#E-LED" class="headerlink" title="E-LED"></a>E-LED</h1><p>我题目也没看 也不知道谁做的</p>
+<h1 id="K-TV-Show-Game"><a href="#K-TV-Show-Game" class="headerlink" title="K-TV Show Game"></a>K-TV Show Game</h1><p>题意：k个灯Red or Blue，n个人，每个人给出一个对于其中三盏灯的颜色的猜测。问存不存在一种灯的颜色的方案使得每个人都至少对两道题。</p>
+<p>解：发现可以类似2-sat构图。首先某盏灯的两种颜色情况是对立的，设成两个点。那么在一组猜测中，如果其中一个猜测是对的，另外两个猜测的反面就必须要是对的。尝试建图连边。当一组猜测所需要的六条边连完后我们发现，其实每一个猜测相当于2-sat问题中的三个排斥。重新从头思考一下其实也比较显然，假设猜的是A,B,C,反面是A’,B’,C’，则A’与B’排斥，A’与C’排斥，B’与C’排斥，当然相当于2-sat中的三个排斥。于是按照2-sat的一般方法进行操作。</p>
+<p>本题需要输出方案。显然（其实不那么显然，但是怎么感受这个结论都完全没有问题）方案可以把所建的图的所有边都反向指向后拓扑排序得到方案。但是，我们也可以利用tarjan求出的连通块标号来确定一对相互排斥的点应该如何选取。因为tarjan利用dfs进行标号，标号时以从底向上的顺序。如果两个点同在某一次dfs中，则显然越远离叶子节点的点的标号越大；若两个点并非在同一次dfs中访问到，则远离叶子节点的点必然在后一次dfs中访问到，否则该点继续dfs时将会访问到靠近叶子节点的点。因此，直接输出一对排斥点中连通块标号小的那个即可。</p>
+<h1 id="F-Parentheses"><a href="#F-Parentheses" class="headerlink" title="F-Parentheses"></a>F-Parentheses</h1><p>括号匹配相关？</p>
+<h1 id="A-Circuits"><a href="#A-Circuits" class="headerlink" title="A-Circuits"></a>A-Circuits</h1><p>题意：给一堆数轴上的线段，决定两个位置，使得被两个位置穿过的线段数最大。$n\le100000$</p>
+<p>解：考虑如果是一个位置怎么做。对于每个线段其实可以标记起始点和终点+1作为差分，做一遍前缀和找到最大值即答案。然后来思考两个位置的情况怎么做。</p>
+<p>离散化不题。</p>
+<p>其实可以发现这道题是个典型的定一动一问题（这个名字我是自己当年总结题目时候瞎取的）。首先枚举左位置，在确定左位置的情况下可以发现，右位置的答案等于去掉所有左位置已经经过的线段的情况下的线段覆盖最大值。显然可以先把线段以左端点排序后利用线段树求解右端点的答案（左端点答案直接利用差分求）。每一次左位置移动时将线段树中当前位置开始的线段造成的影响全都去除。以后也不用加进去，因为当左位置移动到线段右端后，前缀和中已经将线段的贡献删去，而统计右端点答案的线段树中显然早就没有也不再会有任何影响。</p>
+<h1 id="B-Cosmetic-Survey"><a href="#B-Cosmetic-Survey" class="headerlink" title="B-Cosmetic Survey"></a>B-Cosmetic Survey</h1><p>这题也没看</p>
+<p>貌似这场我的分工比较明确且两位队友效率极高，导致好几道题看都没看过就被A掉了。大量时间用在刚C但是这题没看上去那么简单。</p>
+
+        </div>
+
+        
+        <section class="post-tags">
+            <div>
+                <span>Tag(s):</span>
+                <span class="tag">
+                    
+                    
+                        <a href="/tags/XCPC/"># XCPC</a>
+                    
+                        
+                </span>
+            </div>
+            <div>
+                <a href="javascript:window.history.back();">back</a>
+                <span>· </span>
+                <a href="/">home</a>
+            </div>
+        </section>
+        <section class="post-nav">
+            
+                <a class="prev" rel="prev" href="/2021/03/01/ICPC2019-%E9%A6%96%E5%B0%94/">ICPC2019-首尔</a>
+            
+            
+            <a class="next" rel="next" href="/2021/02/07/CRT-%E4%B8%AD%E5%9B%BD%E5%89%A9%E4%BD%99%E5%AE%9A%E7%90%86/">CRT 中国剩余定理</a>
+            
+        </section>
+
+
+    </article>
+</div>
+
+        </div>
+        <footer id="footer" class="footer">
+    <div class="copyright">
+        <span>© Helloat123 | Powered by <a href="https://hexo.io" target="_blank">Hexo</a> & <a href="https://github.com/Siricee/hexo-theme-Chic" target="_blank">Chic</a></span>
+    </div>
+</footer>
+
+    </div>
+</body>
+</html>
