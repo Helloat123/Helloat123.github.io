@@ -40,6 +40,45 @@
     
     
         
+            <!-- MathJax配置，可通过单美元符号书写行内公式等 -->
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+    "HTML-CSS": {
+        preferredFont: "TeX",
+        availableFonts: ["STIX","TeX"],
+        linebreaks: { automatic:true },
+        EqnChunk: (MathJax.Hub.Browser.isMobile ? 10 : 50)
+    },
+    tex2jax: {
+        inlineMath: [ ["$", "$"], ["\\(","\\)"] ],
+        processEscapes: true,
+        ignoreClass: "tex2jax_ignore|dno",
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    },
+    TeX: {
+        equationNumbers: { autoNumber: "AMS" },
+        noUndefined: { attributes: { mathcolor: "red", mathbackground: "#FFEEEE", mathsize: "90%" } },
+        Macros: { href: "{}" }
+    },
+    messageStyle: "none"
+    });
+</script>
+<!-- 给MathJax元素添加has-jax class -->
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+<!-- 通过连接CDN加载MathJax的js代码 -->
+<script type="text/javascript" async
+        src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+
+
+        
     
 
 
@@ -210,7 +249,10 @@
 <p>可以发现，0是可以传递前面的状态的，相当于不存在。1是改变01状态，2是规定01状态必须为1。最后状态必须是0。</p>
 <p>（不知道怎么用语言描述了QAQ）</p>
 <h1 id="C-Dessert-Cafe"><a href="#C-Dessert-Cafe" class="headerlink" title="C Dessert Café"></a>C <a target="_blank" rel="noopener" href="http://codeforces.com/gym/102920/problem/C">Dessert Café</a></h1><p>树神WD</p>
-<h1 id="J-Switches"><a href="#J-Switches" class="headerlink" title="J Switches"></a>J <a target="_blank" rel="noopener" href="http://codeforces.com/gym/102920/problem/J">Switches</a></h1><p>LYF</p>
+<h1 id="J-Switches"><a href="#J-Switches" class="headerlink" title="J Switches"></a>J <a target="_blank" rel="noopener" href="http://codeforces.com/gym/102920/problem/J">Switches</a></h1><p>LYF （下面的是LYF写的）</p>
+<p>题意：有n个灯和n个开关，每个灯对应多个开关，每个开关对应多个灯，按下某个开关会使得对应的灯亮暗情况发生变化。问对于每个灯k，是否存在一种开关方案，使得除了k之外的灯都暗，只有第k个灯亮。</p>
+<p>解：把每个开关对应的灯号用二进制表示出来（如题目中输入的某一行），选择任意个开关后最终结果就是把所有行做异或之后的结果。题目也就是问用所有开关对应的数是否能异或出100..00 , 010..00 , 001..00 , … , 000..10 , 000..01每个数并输出方案，那么用异或线性基可以解决。唯一区别在于平时的异或线性基是在long long范围内的，但是这里二进制位数最多为500位，可以用类似于高精度的方法，用数组表示每个二进制，然后用循环实现异或。</p>
+<p>ZRC:看来啥时候得学一下线性基，感觉用得挺多但是不知道是啥。</p>
 <h1 id="G-Mobile-Robot"><a href="#G-Mobile-Robot" class="headerlink" title="G Mobile Robot"></a>G <a target="_blank" rel="noopener" href="http://codeforces.com/gym/102920/problem/G">Mobile Robot</a></h1><p>WD&amp;LYF 读入数据很多，有点卡常</p>
 <h1 id="H-Needle"><a href="#H-Needle" class="headerlink" title="H Needle"></a>H <a target="_blank" rel="noopener" href="http://codeforces.com/gym/102920/problem/H">Needle</a></h1><p>WD做出来FFT，ZRC在根本不知道题目什么意思的情况下用自己的板子经过WD的指示ac了</p>
 <h1 id="L-Two-Buildings"><a href="#L-Two-Buildings" class="headerlink" title="L Two Buildings"></a>L <a target="_blank" rel="noopener" href="http://codeforces.com/gym/102920/problem/L">Two Buildings</a></h1><p>好题 整了大约四个多小时，这种类型的之前没怎么碰过，其实说破了思想还是比较简单的</p>
@@ -221,6 +263,7 @@
 <p>考虑二分答案，二分个鬼啊。</p>
 <p>欸二分？</p>
 <p>考虑分治，乍一看还是不能做。但是我们可以结合上面扫描线处的思考。对于前数的位置我们取一个mid，枚举出后数的最优位置pos，则由前面的性质，mid之前的所有前数的最优后数必然都在pos或者pos前面；mid之后的所有前数的最优后数必然都在pos或pos后面。可以分治。时间复杂度$O(n\lg n)$</p>
+<h1 id="LYF补-A-Autonomous-Vehicle"><a href="#LYF补-A-Autonomous-Vehicle" class="headerlink" title="LYF补 A Autonomous Vehicle"></a>LYF补 A Autonomous Vehicle</h1><p>大模拟</p>
 
         </div>
 
@@ -243,6 +286,8 @@
             </div>
         </section>
         <section class="post-nav">
+            
+                <a class="prev" rel="prev" href="/2021/03/06/%E7%BA%BF%E6%80%A7%E5%9F%BA/">线性基</a>
             
             
             <a class="next" rel="next" href="/2021/03/01/ICPC2019-%E9%A6%96%E5%B0%94/">ICPC2019-首尔</a>

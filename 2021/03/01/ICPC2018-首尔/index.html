@@ -40,6 +40,45 @@
     
     
         
+            <!-- MathJax配置，可通过单美元符号书写行内公式等 -->
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+    "HTML-CSS": {
+        preferredFont: "TeX",
+        availableFonts: ["STIX","TeX"],
+        linebreaks: { automatic:true },
+        EqnChunk: (MathJax.Hub.Browser.isMobile ? 10 : 50)
+    },
+    tex2jax: {
+        inlineMath: [ ["$", "$"], ["\\(","\\)"] ],
+        processEscapes: true,
+        ignoreClass: "tex2jax_ignore|dno",
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    },
+    TeX: {
+        equationNumbers: { autoNumber: "AMS" },
+        noUndefined: { attributes: { mathcolor: "red", mathbackground: "#FFEEEE", mathsize: "90%" } },
+        Macros: { href: "{}" }
+    },
+    messageStyle: "none"
+    });
+</script>
+<!-- 给MathJax元素添加has-jax class -->
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+<!-- 通过连接CDN加载MathJax的js代码 -->
+<script type="text/javascript" async
+        src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+
+
+        
     
 
 
@@ -199,8 +238,13 @@
 
         <div class="post-content">
             <h1 id="D-Go-Latin"><a href="#D-Go-Latin" class="headerlink" title="D-Go Latin"></a>D-Go Latin</h1><p>LYF 签到题</p>
-<h1 id="L-Working-Plan"><a href="#L-Working-Plan" class="headerlink" title="L-Working Plan"></a>L-Working Plan</h1><p>LYF 不知道啥题</p>
-<h1 id="E-LED"><a href="#E-LED" class="headerlink" title="E-LED"></a>E-LED</h1><p>我题目也没看 也不知道谁做的</p>
+<h1 id="L-Working-Plan"><a href="#L-Working-Plan" class="headerlink" title="L-Working Plan"></a>L-Working Plan</h1><p>LYF 贪心</p>
+<h1 id="E-LED"><a href="#E-LED" class="headerlink" title="E-LED"></a>E-LED</h1><p>(不知道谁做的)  二分答案 下面摘抄前人的题解</p>
+<p>题意：给定一个函数图像上的一些点 (x,y)，求一个三段阶梯函数 f(x)，使得误差值 max(y−f(x)) 最小。</p>
+<p>题解：二分误差值。</p>
+<p>先将点贪心地加入第一段，再贪心加入第二段，再贪心加入第三段。</p>
+<p>点不能全加进去判否，第二段的函数值不可能比第三段小判否。</p>
+<p>重要坑点：如果存在 (0,y) 的点，根据题目中的定义，误差值一定要大于 y。</p>
 <h1 id="K-TV-Show-Game"><a href="#K-TV-Show-Game" class="headerlink" title="K-TV Show Game"></a>K-TV Show Game</h1><p>题意：k个灯Red or Blue，n个人，每个人给出一个对于其中三盏灯的颜色的猜测。问存不存在一种灯的颜色的方案使得每个人都至少对两道题。</p>
 <p>解：发现可以类似2-sat构图。首先某盏灯的两种颜色情况是对立的，设成两个点。那么在一组猜测中，如果其中一个猜测是对的，另外两个猜测的反面就必须要是对的。尝试建图连边。当一组猜测所需要的六条边连完后我们发现，其实每一个猜测相当于2-sat问题中的三个排斥。重新从头思考一下其实也比较显然，假设猜的是A,B,C,反面是A’,B’,C’，则A’与B’排斥，A’与C’排斥，B’与C’排斥，当然相当于2-sat中的三个排斥。于是按照2-sat的一般方法进行操作。</p>
 <p>本题需要输出方案。显然（其实不那么显然，但是怎么感受这个结论都完全没有问题）方案可以把所建的图的所有边都反向指向后拓扑排序得到方案。但是，我们也可以利用tarjan求出的连通块标号来确定一对相互排斥的点应该如何选取。因为tarjan利用dfs进行标号，标号时以从底向上的顺序。如果两个点同在某一次dfs中，则显然越远离叶子节点的点的标号越大；若两个点并非在同一次dfs中访问到，则远离叶子节点的点必然在后一次dfs中访问到，否则该点继续dfs时将会访问到靠近叶子节点的点。因此，直接输出一对排斥点中连通块标号小的那个即可。</p>
@@ -209,7 +253,7 @@
 <p>解：考虑如果是一个位置怎么做。对于每个线段其实可以标记起始点和终点+1作为差分，做一遍前缀和找到最大值即答案。然后来思考两个位置的情况怎么做。</p>
 <p>离散化不题。</p>
 <p>其实可以发现这道题是个典型的定一动一问题（这个名字我是自己当年总结题目时候瞎取的）。首先枚举左位置，在确定左位置的情况下可以发现，右位置的答案等于去掉所有左位置已经经过的线段的情况下的线段覆盖最大值。显然可以先把线段以左端点排序后利用线段树求解右端点的答案（左端点答案直接利用差分求）。每一次左位置移动时将线段树中当前位置开始的线段造成的影响全都去除。以后也不用加进去，因为当左位置移动到线段右端后，前缀和中已经将线段的贡献删去，而统计右端点答案的线段树中显然早就没有也不再会有任何影响。</p>
-<h1 id="B-Cosmetic-Survey"><a href="#B-Cosmetic-Survey" class="headerlink" title="B-Cosmetic Survey"></a>B-Cosmetic Survey</h1><p>这题也没看</p>
+<h1 id="B-Cosmetic-Survey"><a href="#B-Cosmetic-Survey" class="headerlink" title="B-Cosmetic Survey"></a>B-Cosmetic Survey</h1><p>这题也没看 Floyd</p>
 <p>貌似这场我的分工比较明确且两位队友效率极高，导致好几道题看都没看过就被A掉了。大量时间用在刚C但是这题没看上去那么简单。</p>
 
         </div>
