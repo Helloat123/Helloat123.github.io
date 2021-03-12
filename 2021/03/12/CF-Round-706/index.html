@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <meta name="author" content="Helloat123">
+
+
+
+
+
+<title>CF Round 706 (Div.1) | Richard&#39;s Blog</title>
+
+
+
+    <link rel="icon" href="/favicon.png">
+
+
+
+
+    <!-- stylesheets list from _config.yml -->
+    
+    <link rel="stylesheet" href="/css/style.css">
+    
+
+
+
+    <!-- scripts list from _config.yml -->
+    
+    <script src="/js/script.js"></script>
+    
+    <script src="/js/tocbot.min.js"></script>
+    
+
+
+
+    
+    
+        
+    
+
+
+<meta name="generator" content="Hexo 5.2.0"></head>
+<body>
+    <div class="wrapper">
+        <header>
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-header header-logo"><a href="/">Richard&#39;s Blog</a></div>
+            <div class="menu navbar-right">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+                <input id="switch_default" type="checkbox" class="switch_default">
+                <label for="switch_default" class="toggleBtn"></label>
+            </div>
+        </div>
+    </nav>
+
+    
+    <nav class="navbar-mobile" id="nav-mobile">
+        <div class="container">
+            <div class="navbar-header">
+                <div>
+                    <a href="/">Richard&#39;s Blog</a><a id="mobile-toggle-theme">·&nbsp;Light</a>
+                </div>
+                <div class="menu-toggle" onclick="mobileBtn()">&#9776; Menu</div>
+            </div>
+            <div class="menu" id="mobile-menu">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+            </div>
+        </div>
+    </nav>
+
+</header>
+<script>
+    var mobileBtn = function f() {
+        var toggleMenu = document.getElementsByClassName("menu-toggle")[0];
+        var mobileMenu = document.getElementById("mobile-menu");
+        if(toggleMenu.classList.contains("active")){
+           toggleMenu.classList.remove("active")
+            mobileMenu.classList.remove("active")
+        }else{
+            toggleMenu.classList.add("active")
+            mobileMenu.classList.add("active")
+        }
+    }
+</script>
+        <div class="main">
+            <div class="container">
+    
+    
+        <div class="post-toc">
+    <div class="tocbot-list">
+    </div>
+    <div class="tocbot-list-menu">
+        <a class="tocbot-toc-expand" onclick="expand_toc()">Expand all</a>
+        <a onclick="go_top()">Back to top</a>
+        <a onclick="go_bottom()">Go to bottom</a>
+    </div>
+</div>
+
+<script>
+    document.ready(
+        function () {
+            tocbot.init({
+                tocSelector: '.tocbot-list',
+                contentSelector: '.post-content',
+                headingSelector: 'h1, h2, h3, h4, h5',
+                collapseDepth: 1,
+                orderedList: false,
+                scrollSmooth: true,
+            })
+        }
+    )
+
+    function expand_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 6,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "collapse_toc()");
+        b.innerHTML = "Collapse all"
+    }
+
+    function collapse_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 1,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "expand_toc()");
+        b.innerHTML = "Expand all"
+    }
+
+    function go_top() {
+        window.scrollTo(0, 0);
+    }
+
+    function go_bottom() {
+        window.scrollTo(0, document.body.scrollHeight);
+    }
+
+</script>
+    
+
+    
+    <article class="post-wrap">
+        <header class="post-header">
+            <h1 class="post-title">CF Round 706 (Div.1)</h1>
+            
+                <div class="post-meta">
+                    
+                        Author: <a itemprop="author" rel="author" href="/">Helloat123</a>
+                    
+
+                    
+                        <span class="post-time">
+                        Date: <a href="#">March 12, 2021&nbsp;&nbsp;13:52:28</a>
+                        </span>
+                    
+                    
+                        <span class="post-category">
+                    Category:
+                            
+                                <a href="/categories/%E8%AE%B0%E5%BD%95/">记录</a>
+                            
+                        </span>
+                    
+                </div>
+            
+        </header>
+
+        <div class="post-content">
+            <p>耻辱。</p>
+<h1 id="A-Diamond-Miner"><a href="#A-Diamond-Miner" class="headerlink" title="A Diamond Miner"></a>A <a target="_blank" rel="noopener" href="http://codeforces.com/contest/1495/problem/A">Diamond Miner</a></h1><p>题意：分别给 n 个 x 轴和 y 轴上的整点. 让他们两两匹配, 使得距离和最小</p>
+<p>解：首先显然可以利用对称性，搞绝对值来判断。其次有个不等式可以证明一定是绝对值小的和小的配更优。</p>
+<h1 id="B-Let’s-Go-Hiking"><a href="#B-Let’s-Go-Hiking" class="headerlink" title="B Let’s Go Hiking"></a>B <a target="_blank" rel="noopener" href="http://codeforces.com/contest/1495/problem/B">Let’s Go Hiking</a></h1><p>题意:</p>
+<p>一个数列，Q先选一个点, 然后D再选一个不同的点</p>
+<p>Q先走, 每次走到相邻且数字更小的位置，同时Q不能走到D所在的位置。然后D走, 只能走相邻的数字更大的位置, 并且不能走到Q所在的位置。谁先不能走谁输。问有多少个位子使得Q能先手必胜</p>
+<p>解：比赛时想到了如下几个条件</p>
+<ul>
+<li><p>必须在peak上，否则D在下面相邻一格的话，Q第一步就没地方走</p>
+</li>
+<li><p>peak向左向右走的距离应该相同或（差1且大的那个距离为偶数）。若差1且大的那个距离是奇数，则D放在大的山谷即必胜。若差别大于1，则D放在大的山谷距离为奇数的位置也必胜。</p>
+</li>
+<li><p>若边界是peak，不能选，理由和第一条相同</p>
+</li>
+<li><p>Q初始点左右延伸的最大值不能和其它peak一样。否则D选择在其它peak的谷底就必胜。</p>
+</li>
+</ul>
+<p>但是写出来fst wa了</p>
+<p>wa的数据是</p>
+<p>5<br>1 2 4 3 5</p>
+<p>这种情况下D可以放在2，把Q向右逼死。是一种特殊情况。</p>
+<p>同理，由于D放在距离奇数的位置都可以把Q向另一个方向逼，所以实际上必胜点两边延伸的距离一定要相同。把这个判断去掉就A了。</p>
+<h1 id="C-Garden-of-the-Sun"><a href="#C-Garden-of-the-Sun" class="headerlink" title="C Garden of the Sun"></a>C <a target="_blank" rel="noopener" href="http://codeforces.com/contest/1495/problem/C">Garden of the Sun</a></h1><p>题意：输入一个方阵，其中一些点已经被涂色，保证已经被涂色的点的不会出现在别的涂色点的九宫格内。现在你可以把一些空白点涂色，使得被涂色的点成为一棵树。</p>
+<p>解：每三行涂满，然后随便选一些地方连起来即可。比赛时候可能脑子已经耗尽了，这都没想出来，自暴自弃了。</p>
+<p><img src="/2021/03/12/CF-Round-706/a.png" alt="avatar"></p>
+
+        </div>
+
+        
+        <section class="post-tags">
+            <div>
+                <span>Tag(s):</span>
+                <span class="tag">
+                    
+                    
+                        <a href="/tags/CF/"># CF</a>
+                    
+                        
+                </span>
+            </div>
+            <div>
+                <a href="javascript:window.history.back();">back</a>
+                <span>· </span>
+                <a href="/">home</a>
+            </div>
+        </section>
+        <section class="post-nav">
+            
+            
+            <a class="next" rel="next" href="/2021/03/12/ICPC2020-%E4%B8%8A%E6%B5%B7/">ICPC2020-上海</a>
+            
+        </section>
+
+
+    </article>
+</div>
+
+        </div>
+        <footer id="footer" class="footer">
+    <div class="copyright">
+        <span>© Helloat123 | Powered by <a href="https://hexo.io" target="_blank">Hexo</a> & <a href="https://github.com/Siricee/hexo-theme-Chic" target="_blank">Chic</a></span>
+    </div>
+</footer>
+
+    </div>
+</body>
+</html>

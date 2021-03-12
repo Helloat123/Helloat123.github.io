@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <meta name="author" content="Helloat123">
+
+
+
+
+
+<title>ICPC2020-上海 | Richard&#39;s Blog</title>
+
+
+
+    <link rel="icon" href="/favicon.png">
+
+
+
+
+    <!-- stylesheets list from _config.yml -->
+    
+    <link rel="stylesheet" href="/css/style.css">
+    
+
+
+
+    <!-- scripts list from _config.yml -->
+    
+    <script src="/js/script.js"></script>
+    
+    <script src="/js/tocbot.min.js"></script>
+    
+
+
+
+    
+    
+        
+            <!-- MathJax配置，可通过单美元符号书写行内公式等 -->
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+    "HTML-CSS": {
+        preferredFont: "TeX",
+        availableFonts: ["STIX","TeX"],
+        linebreaks: { automatic:true },
+        EqnChunk: (MathJax.Hub.Browser.isMobile ? 10 : 50)
+    },
+    tex2jax: {
+        inlineMath: [ ["$", "$"], ["\\(","\\)"] ],
+        processEscapes: true,
+        ignoreClass: "tex2jax_ignore|dno",
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    },
+    TeX: {
+        equationNumbers: { autoNumber: "AMS" },
+        noUndefined: { attributes: { mathcolor: "red", mathbackground: "#FFEEEE", mathsize: "90%" } },
+        Macros: { href: "{}" }
+    },
+    messageStyle: "none"
+    });
+</script>
+<!-- 给MathJax元素添加has-jax class -->
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+<!-- 通过连接CDN加载MathJax的js代码 -->
+<script type="text/javascript" async
+        src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+
+
+        
+    
+
+
+<meta name="generator" content="Hexo 5.2.0"></head>
+<body>
+    <div class="wrapper">
+        <header>
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-header header-logo"><a href="/">Richard&#39;s Blog</a></div>
+            <div class="menu navbar-right">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+                <input id="switch_default" type="checkbox" class="switch_default">
+                <label for="switch_default" class="toggleBtn"></label>
+            </div>
+        </div>
+    </nav>
+
+    
+    <nav class="navbar-mobile" id="nav-mobile">
+        <div class="container">
+            <div class="navbar-header">
+                <div>
+                    <a href="/">Richard&#39;s Blog</a><a id="mobile-toggle-theme">·&nbsp;Light</a>
+                </div>
+                <div class="menu-toggle" onclick="mobileBtn()">&#9776; Menu</div>
+            </div>
+            <div class="menu" id="mobile-menu">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+            </div>
+        </div>
+    </nav>
+
+</header>
+<script>
+    var mobileBtn = function f() {
+        var toggleMenu = document.getElementsByClassName("menu-toggle")[0];
+        var mobileMenu = document.getElementById("mobile-menu");
+        if(toggleMenu.classList.contains("active")){
+           toggleMenu.classList.remove("active")
+            mobileMenu.classList.remove("active")
+        }else{
+            toggleMenu.classList.add("active")
+            mobileMenu.classList.add("active")
+        }
+    }
+</script>
+        <div class="main">
+            <div class="container">
+    
+    
+        <div class="post-toc">
+    <div class="tocbot-list">
+    </div>
+    <div class="tocbot-list-menu">
+        <a class="tocbot-toc-expand" onclick="expand_toc()">Expand all</a>
+        <a onclick="go_top()">Back to top</a>
+        <a onclick="go_bottom()">Go to bottom</a>
+    </div>
+</div>
+
+<script>
+    document.ready(
+        function () {
+            tocbot.init({
+                tocSelector: '.tocbot-list',
+                contentSelector: '.post-content',
+                headingSelector: 'h1, h2, h3, h4, h5',
+                collapseDepth: 1,
+                orderedList: false,
+                scrollSmooth: true,
+            })
+        }
+    )
+
+    function expand_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 6,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "collapse_toc()");
+        b.innerHTML = "Collapse all"
+    }
+
+    function collapse_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 1,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "expand_toc()");
+        b.innerHTML = "Expand all"
+    }
+
+    function go_top() {
+        window.scrollTo(0, 0);
+    }
+
+    function go_bottom() {
+        window.scrollTo(0, document.body.scrollHeight);
+    }
+
+</script>
+    
+
+    
+    <article class="post-wrap">
+        <header class="post-header">
+            <h1 class="post-title">ICPC2020-上海</h1>
+            
+                <div class="post-meta">
+                    
+                        Author: <a itemprop="author" rel="author" href="/">Helloat123</a>
+                    
+
+                    
+                        <span class="post-time">
+                        Date: <a href="#">March 12, 2021&nbsp;&nbsp;12:55:26</a>
+                        </span>
+                    
+                    
+                        <span class="post-category">
+                    Category:
+                            
+                                <a href="/categories/%E8%AE%B0%E5%BD%95/">记录</a>
+                            
+                        </span>
+                    
+                </div>
+            
+        </header>
+
+        <div class="post-content">
+            <h1 id="G-Fibonacci"><a href="#G-Fibonacci" class="headerlink" title="G Fibonacci"></a>G <a target="_blank" rel="noopener" href="http://codeforces.com/gym/102900/problem/G">Fibonacci</a></h1><p>WD</p>
+<p>题意：<br>$$<br>\sum _ {0\le i&lt;j\le n} (fib(i)\times fib(j)\mod 2)\\<br>$$<br>解：简单找规律，奇偶性一判再简单推个式子即可</p>
+<h1 id="B-Mine-Sweeper-II"><a href="#B-Mine-Sweeper-II" class="headerlink" title="B Mine Sweeper II"></a>B <a target="_blank" rel="noopener" href="http://codeforces.com/gym/102900/problem/B">Mine Sweeper II</a></h1><p>题意：给两个包含空和雷的地图，定义x为扫雷游戏内这样的地图上的数字和，给$\lfloor\frac{n\times m}{2}\rfloor$个机会改变第二张图的一个位置，问把第二张图的x变得和第一张图是否可能，若可能则输出方案。</p>
+<p>解：可以发现，若把一张地图的雷和空取反，答案相同。因此只需要改变成第一张图或者第一张图取反后的图即可。</p>
+<h1 id="M-Gitignore"><a href="#M-Gitignore" class="headerlink" title="M Gitignore"></a>M <a target="_blank" rel="noopener" href="http://codeforces.com/gym/102900/problem/M">Gitignore</a></h1><p>LYF&amp;ZRC LYF</p>
+<p>题意：模拟.gitignore，问最后有哪些文件夹不需要上传。</p>
+<p>解：树形结构，每个点代表一个字符串，用map指向它的儿子。</p>
+<h1 id="D-Walker"><a href="#D-Walker" class="headerlink" title="D Walker"></a>D <a target="_blank" rel="noopener" href="http://codeforces.com/gym/102900/problem/D">Walker</a></h1><p>合作 LYF</p>
+<p>题意：一段线段，两个人，速度不同，从两个不同的点出发，问 走过的路把线段覆盖需要的最短时间。</p>
+<p>解：分类讨论</p>
+<ul>
+<li>二分一个位置，左边都归左边的人，右边都归右边的人</li>
+<li>右边归左边的人，左边归右边的人（的确有这种可能性的）这种情况不需要二分，直接计算即可</li>
+<li>只需要右边的人走或者只需要左边的人走（和第一种情况下二分在边缘不一样，那种情况下还需要计算不需要走的人走到边缘的时间）</li>
+</ul>
+<h1 id="C-Sum-of-Log"><a href="#C-Sum-of-Log" class="headerlink" title="C Sum of Log"></a>C <a target="_blank" rel="noopener" href="http://codeforces.com/gym/102900/problem/C">Sum of Log</a></h1><p>WD</p>
+<p>数位dp+奇技淫巧卡常法？</p>
+<h1 id="I-Sky-Garden"><a href="#I-Sky-Garden" class="headerlink" title="I Sky Garden"></a>I <a target="_blank" rel="noopener" href="http://codeforces.com/gym/102900/problem/I">Sky Garden</a></h1><p>题意：有n个同心圆，半径为按顺序排列的自然数。有m条直线，直线均分同心圆。问 在所有画出来的图象的交点中（包括圆与直线的交点和直线与直线的交点），所有点对的距离（指在线上走的最短距离）和。</p>
+<p>解：可以发现，如果只有一个圆，如果要走到圆的对面，肯定走直线快；如果要走到同一个圆上很近的一个交点，那么还是走圆上快。两者的分界就是弧度制=2角度。如果有多个圈，从外圈到外圈，列式子可以发现不可能在内圈走一段之后回到外圈，只可能走直线或者只走外圈的圆。此外显然可以把内外圈互相走的情况转化成先把外圈沿直线走到内圈再走一遍内圈的过程。设考虑所有直线（但不考虑原点）且只考虑第i个圆时的答案为f[i]，考虑所有直线和前i个圆的答案为g[i]，推式子可以$O(n+m)$。这种情况最需要注意的是<strong>m=1时原点不是交点!!!</strong></p>
+<h1 id="H-Rice-Arrangement"><a href="#H-Rice-Arrangement" class="headerlink" title="H Rice Arrangement"></a>H <a target="_blank" rel="noopener" href="http://codeforces.com/gym/102900/problem/H">Rice Arrangement</a></h1><p>LYF</p>
+<p>贪心，但是过的人不知道为什么并不多。</p>
+<h1 id="补E-The-Journey-of-Geor-Autumn"><a href="#补E-The-Journey-of-Geor-Autumn" class="headerlink" title="补E The Journey of Geor Autumn"></a>补E <a target="_blank" rel="noopener" href="http://codeforces.com/gym/102900/problem/E">The Journey of Geor Autumn</a></h1><p>NEEDREVIEW</p>
+<p>题意：有多少个长度为$n$的数列满足$i&gt;k$,$i\le n$,$a_i&gt;min(a_{i-k},\cdots,a_{i-1})$，答案取模</p>
+<p>解：首先最小的数一定在前$k$位，假设最小的数在第$x$位，那么把这个排列分成$[1,x−1],[x+1,n]$两部分，前$x−1$位显然可以任意放，但$[x+1,n]$一定需要组成一个合法排列。</p>
+<p>设$dp[i]$表示长度为$i$的合法序列数。<br>$$<br>dp[i]=\sum _ {j=1}^{min(k,i)}dp[i-j]\cdot A _ {i-1}^{j-1}\\<br>=\sum _ {j=1}^{min(k,i)}dp[i-j]\cdot\frac{(i-1)!}{(i-j)!}\\<br>=(i-1)!\sum _ {j=1}^{min(k,i)}\frac{dp[i-j]}{(i-j)!}\\<br>$$<br>前缀和优化即可</p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_43860866/article/details/111552776">借鉴了这篇</a></p>
+
+        </div>
+
+        
+        <section class="post-tags">
+            <div>
+                <span>Tag(s):</span>
+                <span class="tag">
+                    
+                    
+                        <a href="/tags/XCPC/"># XCPC</a>
+                    
+                        
+                </span>
+            </div>
+            <div>
+                <a href="javascript:window.history.back();">back</a>
+                <span>· </span>
+                <a href="/">home</a>
+            </div>
+        </section>
+        <section class="post-nav">
+            
+                <a class="prev" rel="prev" href="/2021/03/12/CF-Round-706/">CF Round 706 (Div.1)</a>
+            
+            
+            <a class="next" rel="next" href="/2021/03/06/%E7%BA%BF%E6%80%A7%E5%9F%BA/">线性基</a>
+            
+        </section>
+
+
+    </article>
+</div>
+
+        </div>
+        <footer id="footer" class="footer">
+    <div class="copyright">
+        <span>© Helloat123 | Powered by <a href="https://hexo.io" target="_blank">Hexo</a> & <a href="https://github.com/Siricee/hexo-theme-Chic" target="_blank">Chic</a></span>
+    </div>
+</footer>
+
+    </div>
+</body>
+</html>
