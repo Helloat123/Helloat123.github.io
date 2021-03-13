@@ -12,7 +12,7 @@
 
 
 
-<title>CF Round 706 (Div.1) | Richard&#39;s Blog</title>
+<title>CF Round 707(Div.2) | Richard&#39;s Blog</title>
 
 
 
@@ -173,7 +173,7 @@
     
     <article class="post-wrap">
         <header class="post-header">
-            <h1 class="post-title">CF Round 706 (Div.1)</h1>
+            <h1 class="post-title">CF Round 707(Div.2)</h1>
             
                 <div class="post-meta">
                     
@@ -182,7 +182,7 @@
 
                     
                         <span class="post-time">
-                        Date: <a href="#">March 12, 2021&nbsp;&nbsp;13:52:28</a>
+                        Date: <a href="#">March 13, 2021&nbsp;&nbsp;22:54:43</a>
                         </span>
                     
                     
@@ -198,31 +198,10 @@
         </header>
 
         <div class="post-content">
-            <p>耻辱。</p>
-<h1 id="A-Diamond-Miner"><a href="#A-Diamond-Miner" class="headerlink" title="A Diamond Miner"></a>A <a target="_blank" rel="noopener" href="http://codeforces.com/contest/1495/problem/A">Diamond Miner</a></h1><p>题意：分别给 n 个 x 轴和 y 轴上的整点. 让他们两两匹配, 使得距离和最小</p>
-<p>解：首先显然可以利用对称性，搞绝对值来判断。其次有个不等式可以证明一定是绝对值小的和小的配更优。</p>
-<h1 id="B-Let’s-Go-Hiking"><a href="#B-Let’s-Go-Hiking" class="headerlink" title="B Let’s Go Hiking"></a>B <a target="_blank" rel="noopener" href="http://codeforces.com/contest/1495/problem/B">Let’s Go Hiking</a></h1><p>题意:</p>
-<p>一个数列，Q先选一个点, 然后D再选一个不同的点</p>
-<p>Q先走, 每次走到相邻且数字更小的位置，同时Q不能走到D所在的位置。然后D走, 只能走相邻的数字更大的位置, 并且不能走到Q所在的位置。谁先不能走谁输。问有多少个位子使得Q能先手必胜</p>
-<p>解：比赛时想到了如下几个条件</p>
-<ul>
-<li><p>必须在peak上，否则D在下面相邻一格的话，Q第一步就没地方走</p>
-</li>
-<li><p>peak向左向右走的距离应该相同或（差1且大的那个距离为偶数）。若差1且大的那个距离是奇数，则D放在大的山谷即必胜。若差别大于1，则D放在大的山谷距离为奇数的位置也必胜。</p>
-</li>
-<li><p>若边界是peak，不能选，理由和第一条相同</p>
-</li>
-<li><p>Q初始点左右延伸的最大值不能和其它peak一样。否则D选择在其它peak的谷底就必胜。</p>
-</li>
-</ul>
-<p>但是写出来fst wa了</p>
-<p>wa的数据是</p>
-<p>5<br>1 2 4 3 5</p>
-<p>这种情况下D可以放在2，把Q向右逼死。是一种特殊情况。</p>
-<p>同理，由于D放在距离奇数的位置都可以把Q向另一个方向逼，所以实际上必胜点两边延伸的距离一定要相同。把这个判断去掉就A了。</p>
-<h1 id="C-Garden-of-the-Sun"><a href="#C-Garden-of-the-Sun" class="headerlink" title="C Garden of the Sun"></a>C <a target="_blank" rel="noopener" href="http://codeforces.com/contest/1495/problem/C">Garden of the Sun</a></h1><p>题意：输入一个方阵，其中一些点已经被涂色，保证已经被涂色的点的不会出现在别的涂色点的九宫格内。现在你可以把一些空白点涂色，使得被涂色的点成为一棵树。</p>
-<p>解：每三行涂满，然后随便选一些地方连起来即可。比赛时候可能脑子已经耗尽了，这都没想出来，自暴自弃了。</p>
-<p><img src="/2021/03/12/CF-Round-706/a.png" alt="avatar"></p>
+            <h1 id="A-Alexey-and-Train"><a href="#A-Alexey-and-Train" class="headerlink" title="A.Alexey and Train"></a>A.<a target="_blank" rel="noopener" href="https://codeforces.com/contest/1501/problem/A">Alexey and Train</a></h1><p>模拟。读题不太顺。刚开始没看懂这是晚点的意思。</p>
+<h1 id="B-Napoleon-Cake"><a href="#B-Napoleon-Cake" class="headerlink" title="B.Napoleon Cake"></a>B.<a target="_blank" rel="noopener" href="https://codeforces.com/contest/1501/problem/B">Napoleon Cake</a></h1><p>差分，或者倒着做。差不多是个模拟了</p>
+<h1 id="C-Going-Home"><a href="#C-Going-Home" class="headerlink" title="C.Going Home"></a>C.<a target="_blank" rel="noopener" href="https://codeforces.com/contest/1501/problem/C">Going Home</a></h1><p>题意：给定2e5个整数，寻找里面是否有四个数满足其中两个的和等于另外两个。保证每个数小于等于2.5e6。</p>
+<p>解：首先把和相等的式子移项，发现寻找相同的差即可。然后可以发现，差的种类数一旦超过2.5e6之后一定会有重复，再过没几个就可以找到相减元素不重复的差。主要思路显然是暴力枚举。接下来重点是如何处理重复的问题。如果把每个重复的都存下来，好像不太方便；如果拿map判来判去，再针对特殊情况处理，容易在细节上搞崩，像我一样。其实只需要把原数组排完序之后，存下每个差值遇到的第一组即可。可以发现，如果有重复的话，假设之前发现的一组是a,b，后来发现的一组是b,c，则再以后来判断是否重复的数对不可能在与a,b重复的情况下不与b,c重复。因此b,c没有用，不需要存下来。</p>
 
         </div>
 
@@ -246,10 +225,8 @@
         </section>
         <section class="post-nav">
             
-                <a class="prev" rel="prev" href="/2021/03/13/CF-Round-707-Div-2/">CF Round 707(Div.2)</a>
             
-            
-            <a class="next" rel="next" href="/2021/03/12/ICPC2020-%E4%B8%8A%E6%B5%B7/">ICPC2020-上海</a>
+            <a class="next" rel="next" href="/2021/03/12/CF-Round-706/">CF Round 706 (Div.1)</a>
             
         </section>
 
