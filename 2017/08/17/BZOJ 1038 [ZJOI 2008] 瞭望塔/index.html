@@ -261,8 +261,8 @@ int main()
 //      if (y[i]&gt;=beforey) 
 
 <pre><code>    data[i]=Line(Point(beforex,beforey),Point(p[i].x,p[i].y),atan2(p[i].y-beforey,p[i].x-beforex));</code></pre>
-<p>//      else data[i-1]=Line(Point(x[i],y[i]),Point(beforex,beforey),atan2(beforey-y[i],beforex-x[i]));<br>        beforex=p[i].x;beforey=p[i].y;<br>    }<br>    //data[n+1]=Line(Point(beforex,beforey),Point();<br>    hpi(data,n+1);<br>    double ans=1e18;<br>    rep(i,1,cnt)<br>    {<br>        rep(j,1,n-1)<br>        {<br>            Point t(res[i].x,(double)(-1));<br>            if (res[i].x&gt;p[j].x&amp;&amp;res[i].x&lt;=p[j+1].x) ans=min(ans,res[i].y-intersect(Line(p[j],p[j+1]),Line(t,res[i])).y);<br>        }<br>    }<br>    rep(i,1,n)<br>        rep(j,1,cnt-1)<br>        {<br>            Point t(p[i].x,(double)(-1));<br>            if (p[i].x&gt;res[j].x&amp;&amp;p[i].x&lt;=res[j+1].x) ans=min(ans,intersect(Line(res[j],res[j+1]),Line(t,p[i])).y-p[i].y);<br>        }<br>    printf(&quot;%.3lf\n&quot;,ans);<br>    return 0;<br>}</pre><br><br><br></p>
-</p>
+<p>//      else data[i-1]=Line(Point(x[i],y[i]),Point(beforex,beforey),atan2(beforey-y[i],beforex-x[i]));<br>        beforex=p[i].x;beforey=p[i].y;<br>    }<br>    //data[n+1]=Line(Point(beforex,beforey),Point();<br>    hpi(data,n+1);<br>    double ans=1e18;<br>    rep(i,1,cnt)<br>    {<br>        rep(j,1,n-1)<br>        {<br>            Point t(res[i].x,(double)(-1));<br>            if (res[i].x&gt;p[j].x&amp;&amp;res[i].x&lt;=p[j+1].x) ans=min(ans,res[i].y-intersect(Line(p[j],p[j+1]),Line(t,res[i])).y);<br>        }<br>    }<br>    rep(i,1,n)<br>        rep(j,1,cnt-1)<br>        {<br>            Point t(p[i].x,(double)(-1));<br>            if (p[i].x&gt;res[j].x&amp;&amp;p[i].x&lt;=res[j+1].x) ans=min(ans,intersect(Line(res[j],res[j+1]),Line(t,p[i])).y-p[i].y);<br>        }<br>    printf(&quot;%.3lf\n&quot;,ans);<br>    return 0;<br>}</p></pre><br><br><br></p>
+<p></p>
 
         </div>
 
@@ -300,7 +300,11 @@ int main()
         </div>
         <footer id="footer" class="footer">
     <div class="copyright">
-        <span>© Helloat123 | Powered by <a href="https://hexo.io" target="_blank">Hexo</a> & <a href="https://github.com/Siricee/hexo-theme-Chic" target="_blank">Chic</a></span>
+        <span>© Helloat123 | Powered by <a href="https://hexo.io" target="_blank">Hexo</a> & <a href="https://github.com/Siricee/hexo-theme-Chic" target="_blank">Chic</a> | <span id="busuanzi_container_site_pv">
+    本站总访问量<span id="busuanzi_value_site_pv"></span>次
+</span> | <span id="busuanzi_container_site_uv">
+  本站访客数<span id="busuanzi_value_site_uv"></span>人次
+</span></span>
     </div>
 </footer>
 

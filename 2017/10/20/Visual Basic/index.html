@@ -139,8 +139,8 @@
 <p>Private Sub Command1_Click()<br>    For i = 1 To n<br>        dis(i) = 32767<br>    Next i<br>    q(1) = Val(Text2.Text)<br>    dis(q(1)) = 0<br>    head = 1<br>    tail = 1<br>    While tail &gt;= head<br>        Dim now, x As Integer<br>        x = q(head)<br>        now = first(q(head))<br>        While (now &lt;&gt; 0)<br>            If dis(v(now)) &gt; dis(x) + va(now) Then<br>                If inq(v(now)) Then<br>                    tail = tail + 1<br>                    q(tail) = True<br>                End If<br>                dis(v(now)) = dis(x) + va(now)<br>            End If<br>            now = nxt(now)<br>        Wend<br>        inq(x) = False<br>        head = head + 1<br>    Wend<br>    For i = 1 To n<br>        List1.AddItem (Str(i) + &quot; &quot; + Str(dis(i)))<br>    Next i</p>
 <p>End Sub</p>
 <p>Private Sub Command2_Click()<br>    Call addedge(Val(Text1.Text), Val(Text3.Text), Val(Text4.Text))<br>End Sub</p>
-<p>Private Sub Text5_Change()<br>    n = Val(Text5.Text)<br>End Sub<br></pre><br><br><br></p>
-</p>
+<p>Private Sub Text5_Change()<br>    n = Val(Text5.Text)<br>End Sub<br></p></pre><br><br><br></p>
+<p></p>
 
         </div>
 
@@ -178,7 +178,11 @@
         </div>
         <footer id="footer" class="footer">
     <div class="copyright">
-        <span>© Helloat123 | Powered by <a href="https://hexo.io" target="_blank">Hexo</a> & <a href="https://github.com/Siricee/hexo-theme-Chic" target="_blank">Chic</a></span>
+        <span>© Helloat123 | Powered by <a href="https://hexo.io" target="_blank">Hexo</a> & <a href="https://github.com/Siricee/hexo-theme-Chic" target="_blank">Chic</a> | <span id="busuanzi_container_site_pv">
+    本站总访问量<span id="busuanzi_value_site_pv"></span>次
+</span> | <span id="busuanzi_container_site_uv">
+  本站访客数<span id="busuanzi_value_site_uv"></span>人次
+</span></span>
     </div>
 </footer>
 

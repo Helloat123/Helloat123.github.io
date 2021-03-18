@@ -182,7 +182,7 @@ inline void read(T &amp;x,T &amp;y){read(x);read(y);}
 /////////////////variables&amp;functions////////////////////
 
 
-<p>int T;<br>double H,h,D;<br>const double eps=0.0000001;<br>// #define calc(x) (x+((h/(x+(h<em>D-H</em>x)/(H-h)))<em>(h</em>D-H<em>x)/(H-h)))<br>// #define calc(x) (x+((h</em>D-H<em>x)/(D-x)))<br>inline double calc(double x)<br>{<br>    double temp=(h</em>D-H*x)/(D-x);<br>    if (temp&gt;0) return x+temp;<br>    else return (D-x)/(H-h);<br>}<br>int main()<br>{<br>    read(T);<br>    while (T–)<br>    {<br>        scanf(&quot;%lf%lf%lf&quot;,&amp;H,&amp;h,&amp;D);<br>        double l=0,r=D;<br>        while (r-l&gt;eps)<br>        {<br>            double ll=(r-l)/3+l,rr=(r-l)*2/3+l;<br>            double ansll=calc(ll),ansrr=calc(rr);<br>            if (ansll&gt;ansrr) r=rr;<br>            else l=ll;<br>        }<br>        printf(&quot;%.3lf\n&quot;,calc(l));<br>    }<br>    return 0;<br>}</pre><br><br><br></p>
+<p>int T;<br>double H,h,D;<br>const double eps=0.0000001;<br>// #define calc(x) (x+((h/(x+(h<em>D-H</em>x)/(H-h)))<em>(h</em>D-H<em>x)/(H-h)))<br>// #define calc(x) (x+((h</em>D-H<em>x)/(D-x)))<br>inline double calc(double x)<br>{<br>    double temp=(h</em>D-H*x)/(D-x);<br>    if (temp&gt;0) return x+temp;<br>    else return (D-x)/(H-h);<br>}<br>int main()<br>{<br>    read(T);<br>    while (T–)<br>    {<br>        scanf(&quot;%lf%lf%lf&quot;,&amp;H,&amp;h,&amp;D);<br>        double l=0,r=D;<br>        while (r-l&gt;eps)<br>        {<br>            double ll=(r-l)/3+l,rr=(r-l)*2/3+l;<br>            double ansll=calc(ll),ansrr=calc(rr);<br>            if (ansll&gt;ansrr) r=rr;<br>            else l=ll;<br>        }<br>        printf(&quot;%.3lf\n&quot;,calc(l));<br>    }<br>    return 0;<br>}</p></pre><br><br><br><p></p>
 <p></p>
 
         </div>
@@ -221,7 +221,11 @@ inline void read(T &amp;x,T &amp;y){read(x);read(y);}
         </div>
         <footer id="footer" class="footer">
     <div class="copyright">
-        <span>© Helloat123 | Powered by <a href="https://hexo.io" target="_blank">Hexo</a> & <a href="https://github.com/Siricee/hexo-theme-Chic" target="_blank">Chic</a></span>
+        <span>© Helloat123 | Powered by <a href="https://hexo.io" target="_blank">Hexo</a> & <a href="https://github.com/Siricee/hexo-theme-Chic" target="_blank">Chic</a> | <span id="busuanzi_container_site_pv">
+    本站总访问量<span id="busuanzi_value_site_pv"></span>次
+</span> | <span id="busuanzi_container_site_uv">
+  本站访客数<span id="busuanzi_value_site_uv"></span>人次
+</span></span>
     </div>
 </footer>
 

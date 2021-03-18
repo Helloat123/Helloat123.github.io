@@ -182,7 +182,7 @@ template &lt;typename T&gt;
 inline void read(T &amp;x,T &amp;y){read(x);read(y);}
 /////////////////variables&amp;functions////////////////////
 
-<p>int n,m,f[10][10];<br>int solve(int n)<br>{<br>    if (n==0) return 0;<br>    int res=0,x=1000000,now=7,before=0,bbefore=0;<br>    while (n&lt;x) x/=10,now–;<br>    rep(i,0,n/x-1) if (i!=4) res+=f[now][i];<br>    if (now==1) res+=f[now][n/x];<br>    before=n/x;n%=x;x/=10;now–;<br>    while (x)<br>    {<br>        if (before!=4&amp;&amp;(!(before==2&amp;&amp;bbefore==6)))<br>        {<br>            rep(j,0,n/x-1) if (!(before==6&amp;&amp;j==2)) res+=f[now][j];<br>            if (now==1&amp;&amp;(!(before==6&amp;&amp;n/x==2))) res+=f[now][n/x];<br>            bbefore=before;before=n/x;<br>        }<br>        else return res-1;<br>        n%=x;x/=10;now–;<br>    }<br>    return res-1;<br>}<br>int main()<br>{<br>    rep(i,0,9) if (i!=4) f[1][i]=1;<br>    rep(i,2,8)<br>        rep(j,0,9)<br>            if (j!=4) rep(k,0,9) if (k!=4&amp;&amp;(!(j==2&amp;&amp;k==6))) f[i][k]+=f[i-1][j];<br>    while (scanf(&quot;%d%d&quot;,&amp;n,&amp;m)!=EOF)<br>    {<br>        if ((!n)&amp;&amp;(!m)) return 0;<br>        printf(&quot;%d\n&quot;,solve(m)-solve(n-1));<br>    }<br>    return -1;<br>}</pre><br><br><br></p>
+<p>int n,m,f[10][10];<br>int solve(int n)<br>{<br>    if (n==0) return 0;<br>    int res=0,x=1000000,now=7,before=0,bbefore=0;<br>    while (n&lt;x) x/=10,now–;<br>    rep(i,0,n/x-1) if (i!=4) res+=f[now][i];<br>    if (now==1) res+=f[now][n/x];<br>    before=n/x;n%=x;x/=10;now–;<br>    while (x)<br>    {<br>        if (before!=4&amp;&amp;(!(before==2&amp;&amp;bbefore==6)))<br>        {<br>            rep(j,0,n/x-1) if (!(before==6&amp;&amp;j==2)) res+=f[now][j];<br>            if (now==1&amp;&amp;(!(before==6&amp;&amp;n/x==2))) res+=f[now][n/x];<br>            bbefore=before;before=n/x;<br>        }<br>        else return res-1;<br>        n%=x;x/=10;now–;<br>    }<br>    return res-1;<br>}<br>int main()<br>{<br>    rep(i,0,9) if (i!=4) f[1][i]=1;<br>    rep(i,2,8)<br>        rep(j,0,9)<br>            if (j!=4) rep(k,0,9) if (k!=4&amp;&amp;(!(j==2&amp;&amp;k==6))) f[i][k]+=f[i-1][j];<br>    while (scanf(&quot;%d%d&quot;,&amp;n,&amp;m)!=EOF)<br>    {<br>        if ((!n)&amp;&amp;(!m)) return 0;<br>        printf(&quot;%d\n&quot;,solve(m)-solve(n-1));<br>    }<br>    return -1;<br>}</p></pre><br><br><br><p></p>
 <p></p>
 
         </div>
@@ -221,7 +221,11 @@ inline void read(T &amp;x,T &amp;y){read(x);read(y);}
         </div>
         <footer id="footer" class="footer">
     <div class="copyright">
-        <span>© Helloat123 | Powered by <a href="https://hexo.io" target="_blank">Hexo</a> & <a href="https://github.com/Siricee/hexo-theme-Chic" target="_blank">Chic</a></span>
+        <span>© Helloat123 | Powered by <a href="https://hexo.io" target="_blank">Hexo</a> & <a href="https://github.com/Siricee/hexo-theme-Chic" target="_blank">Chic</a> | <span id="busuanzi_container_site_pv">
+    本站总访问量<span id="busuanzi_value_site_pv"></span>次
+</span> | <span id="busuanzi_container_site_uv">
+  本站访客数<span id="busuanzi_value_site_uv"></span>人次
+</span></span>
     </div>
 </footer>
 

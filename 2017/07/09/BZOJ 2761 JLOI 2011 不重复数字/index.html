@@ -184,7 +184,7 @@ inline void read(T &amp;x,T &amp;y){read(x);read(y);}
 /////////////////variables&amp;functions////////////////////
 
 
-<p>vector &lt;int&gt; v[1030];<br>int n,T,x;<br>int main()<br>{<br>    scanf(&quot;%d&quot;,&amp;T);<br>    while (T–)<br>    {<br>        cls(v);<br>        scanf(&quot;%d&quot;,&amp;n);<br>        rep(i,1,n)<br>        {<br>            scanf(&quot;%d&quot;,&amp;x);<br>            int temp=abs(x)%1029;<br>            if (!v[temp].empty())<br>            {<br>                bool flag=false;<br>                for (vector&lt;int&gt;::iterator it=v[temp].begin();it!=v[temp].end();it++) if (*it==x) {flag=true;break;}<br>                if (!flag)<br>                {<br>                    v[temp].push_back(x);<br>                    printf(&quot; %d&quot;,x);<br>                }<br>            }<br>            else<br>            {<br>                v[temp].push_back(x);<br>                if (i==1) printf(&quot;%d&quot;,x);<br>                else printf(&quot; %d&quot;,x);<br>            }<br>        }<br>        putchar(‘\n’);<br>    }<br>    return 0;<br>}</pre><br><br><br></p>
+<p>vector &lt;int&gt; v[1030];<br>int n,T,x;<br>int main()<br>{<br>    scanf(&quot;%d&quot;,&amp;T);<br>    while (T–)<br>    {<br>        cls(v);<br>        scanf(&quot;%d&quot;,&amp;n);<br>        rep(i,1,n)<br>        {<br>            scanf(&quot;%d&quot;,&amp;x);<br>            int temp=abs(x)%1029;<br>            if (!v[temp].empty())<br>            {<br>                bool flag=false;<br>                for (vector&lt;int&gt;::iterator it=v[temp].begin();it!=v[temp].end();it++) if (*it==x) {flag=true;break;}<br>                if (!flag)<br>                {<br>                    v[temp].push_back(x);<br>                    printf(&quot; %d&quot;,x);<br>                }<br>            }<br>            else<br>            {<br>                v[temp].push_back(x);<br>                if (i==1) printf(&quot;%d&quot;,x);<br>                else printf(&quot; %d&quot;,x);<br>            }<br>        }<br>        putchar(‘\n’);<br>    }<br>    return 0;<br>}</p></pre><br><br><br><p></p>
 <p></p>
 
         </div>
@@ -223,7 +223,11 @@ inline void read(T &amp;x,T &amp;y){read(x);read(y);}
         </div>
         <footer id="footer" class="footer">
     <div class="copyright">
-        <span>© Helloat123 | Powered by <a href="https://hexo.io" target="_blank">Hexo</a> & <a href="https://github.com/Siricee/hexo-theme-Chic" target="_blank">Chic</a></span>
+        <span>© Helloat123 | Powered by <a href="https://hexo.io" target="_blank">Hexo</a> & <a href="https://github.com/Siricee/hexo-theme-Chic" target="_blank">Chic</a> | <span id="busuanzi_container_site_pv">
+    本站总访问量<span id="busuanzi_value_site_pv"></span>次
+</span> | <span id="busuanzi_container_site_uv">
+  本站访客数<span id="busuanzi_value_site_uv"></span>人次
+</span></span>
     </div>
 </footer>
 
