@@ -12,7 +12,7 @@
 
 
 
-<title>CF Round 707 (Div.2) | Richard&#39;s Blog</title>
+<title>20学年第一学期总结与第二学期展望 | Richard&#39;s Blog</title>
 
 
 
@@ -173,7 +173,7 @@
     
     <article class="post-wrap">
         <header class="post-header">
-            <h1 class="post-title">CF Round 707 (Div.2)</h1>
+            <h1 class="post-title">20学年第一学期总结与第二学期展望</h1>
             
                 <div class="post-meta">
                     
@@ -182,14 +182,14 @@
 
                     
                         <span class="post-time">
-                        Date: <a href="#">March 13, 2021&nbsp;&nbsp;22:54:43</a>
+                        Date: <a href="#">March 18, 2021&nbsp;&nbsp;14:58:38</a>
                         </span>
                     
                     
                         <span class="post-category">
                     Category:
                             
-                                <a href="/categories/%E8%AE%B0%E5%BD%95/">记录</a>
+                                <a href="/categories/%E6%9D%82/">杂</a>
                             
                         </span>
                     
@@ -198,10 +198,12 @@
         </header>
 
         <div class="post-content">
-            <h1 id="A-Alexey-and-Train"><a href="#A-Alexey-and-Train" class="headerlink" title="A.Alexey and Train"></a>A.<a target="_blank" rel="noopener" href="https://codeforces.com/contest/1501/problem/A">Alexey and Train</a></h1><p>模拟。读题不太顺。刚开始没看懂这是晚点的意思。</p>
-<h1 id="B-Napoleon-Cake"><a href="#B-Napoleon-Cake" class="headerlink" title="B.Napoleon Cake"></a>B.<a target="_blank" rel="noopener" href="https://codeforces.com/contest/1501/problem/B">Napoleon Cake</a></h1><p>差分，或者倒着做。差不多是个模拟了</p>
-<h1 id="C-Going-Home"><a href="#C-Going-Home" class="headerlink" title="C.Going Home"></a>C.<a target="_blank" rel="noopener" href="https://codeforces.com/contest/1501/problem/C">Going Home</a></h1><p>题意：给定2e5个整数，寻找里面是否有四个数满足其中两个的和等于另外两个。保证每个数小于等于2.5e6。</p>
-<p>解：首先把和相等的式子移项，发现寻找相同的差即可。然后可以发现，差的种类数一旦超过2.5e6之后一定会有重复，再过没几个就可以找到相减元素不重复的差。主要思路显然是暴力枚举。接下来重点是如何处理重复的问题。如果把每个重复的都存下来，好像不太方便；如果拿map判来判去，再针对特殊情况处理，容易在细节上搞崩，像我一样。其实只需要把原数组排完序之后，存下每个差值遇到的第一组即可。可以发现，如果有重复的话，假设之前发现的一组是a,b，后来发现的一组是b,c，则再以后来判断是否重复的数对不可能在与a,b重复的情况下不与b,c重复。因此b,c没有用，不需要存下来。</p>
+            <h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>第一学期总体感觉：在各种事情上浪费时间过多，没法静下心来搞竞赛或者搞课程。大部分时候都在吃老本，考试基本都是期末突击。虽然最后成绩能看（其中不乏我投机取巧的功劳），比预期也好了不少，但没学到什么东西，且竞赛上提升很小。这样下去的话，很多同学进步飞快（比如cf:supergcd同学目前就给了我很大压力），我这样吃老本是吃不了多久的。</p>
+<h4 id="成绩"><a href="#成绩" class="headerlink" title="成绩"></a>成绩</h4><p><img src="/2021/03/18/20%E5%AD%A6%E5%B9%B4%E7%AC%AC%E4%B8%80%E5%AD%A6%E6%9C%9F%E6%80%BB%E7%BB%93/image-20210318151046381.png" alt="image-20210318151046381"></p>
+<h3 id="辅导员通知"><a href="#辅导员通知" class="headerlink" title="辅导员通知"></a>辅导员通知</h3><p>各位，两个行政班参加考试有成绩的一共124名同学，第一名平均绩点3.86；绩点在3.35及以上的处于前三分之一；绩点在3.34-2.92区间属于中间三分之一；2.9以下属于后三分之一，其中2.4以下的属于最后10名。补充一下：前10名的绩点在3.86-3.69之间</p>
+<h3 id="新学期目标绩点"><a href="#新学期目标绩点" class="headerlink" title="新学期目标绩点"></a>新学期目标绩点</h3><p><img src="/2021/03/18/20%E5%AD%A6%E5%B9%B4%E7%AC%AC%E4%B8%80%E5%AD%A6%E6%9C%9F%E6%80%BB%E7%BB%93/image-20210318150349530.png" alt="image-20210318150349530"></p>
+<h3 id="展望"><a href="#展望" class="headerlink" title="展望"></a>展望</h3><p>虽然有底子，但是这样子混还能拿第一是完全没想到的…不过这种模式完全不可持续 加油！加油！加油！静下心来</p>
+<p>希望能早日拿到区域金，也一定要保证自己不会在比赛中拖后腿。希望有机会能去现场赛，希望有机会参加EC-Final和CCPC决赛（不求 得很好名次了）</p>
 
         </div>
 
@@ -212,7 +214,7 @@
                 <span class="tag">
                     
                     
-                        <a href="/tags/CF/"># CF</a>
+                        <a href="/tags/%E6%9D%82/"># 杂</a>
                     
                         
                 </span>
@@ -225,10 +227,8 @@
         </section>
         <section class="post-nav">
             
-                <a class="prev" rel="prev" href="/2021/03/16/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1C-%E7%AC%94%E8%AE%B0/">面向对象C++笔记</a>
             
-            
-            <a class="next" rel="next" href="/2021/03/12/CF-Round-706/">CF Round 706 (Div.1)</a>
+            <a class="next" rel="next" href="/2021/03/17/ICPC2020-%E5%8C%97%E4%BA%9A%E6%AC%A7%E5%8C%BA/">ICPC2020-NorthernEurasia-NERC</a>
             
         </section>
 

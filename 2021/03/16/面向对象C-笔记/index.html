@@ -12,7 +12,7 @@
 
 
 
-<title>CF Round 707 (Div.2) | Richard&#39;s Blog</title>
+<title>面向对象C++笔记 | Richard&#39;s Blog</title>
 
 
 
@@ -107,73 +107,11 @@
             <div class="container">
     
     
-        <div class="post-toc">
-    <div class="tocbot-list">
-    </div>
-    <div class="tocbot-list-menu">
-        <a class="tocbot-toc-expand" onclick="expand_toc()">Expand all</a>
-        <a onclick="go_top()">Back to top</a>
-        <a onclick="go_bottom()">Go to bottom</a>
-    </div>
-</div>
-
-<script>
-    document.ready(
-        function () {
-            tocbot.init({
-                tocSelector: '.tocbot-list',
-                contentSelector: '.post-content',
-                headingSelector: 'h1, h2, h3, h4, h5',
-                collapseDepth: 1,
-                orderedList: false,
-                scrollSmooth: true,
-            })
-        }
-    )
-
-    function expand_toc() {
-        var b = document.querySelector(".tocbot-toc-expand");
-        tocbot.init({
-            tocSelector: '.tocbot-list',
-            contentSelector: '.post-content',
-            headingSelector: 'h1, h2, h3, h4, h5',
-            collapseDepth: 6,
-            orderedList: false,
-            scrollSmooth: true,
-        });
-        b.setAttribute("onclick", "collapse_toc()");
-        b.innerHTML = "Collapse all"
-    }
-
-    function collapse_toc() {
-        var b = document.querySelector(".tocbot-toc-expand");
-        tocbot.init({
-            tocSelector: '.tocbot-list',
-            contentSelector: '.post-content',
-            headingSelector: 'h1, h2, h3, h4, h5',
-            collapseDepth: 1,
-            orderedList: false,
-            scrollSmooth: true,
-        });
-        b.setAttribute("onclick", "expand_toc()");
-        b.innerHTML = "Expand all"
-    }
-
-    function go_top() {
-        window.scrollTo(0, 0);
-    }
-
-    function go_bottom() {
-        window.scrollTo(0, document.body.scrollHeight);
-    }
-
-</script>
-    
 
     
     <article class="post-wrap">
         <header class="post-header">
-            <h1 class="post-title">CF Round 707 (Div.2)</h1>
+            <h1 class="post-title">面向对象C++笔记</h1>
             
                 <div class="post-meta">
                     
@@ -182,14 +120,14 @@
 
                     
                         <span class="post-time">
-                        Date: <a href="#">March 13, 2021&nbsp;&nbsp;22:54:43</a>
+                        Date: <a href="#">March 16, 2021&nbsp;&nbsp;14:15:13</a>
                         </span>
                     
                     
                         <span class="post-category">
                     Category:
                             
-                                <a href="/categories/%E8%AE%B0%E5%BD%95/">记录</a>
+                                <a href="/categories/%E7%AC%94%E8%AE%B0/">笔记</a>
                             
                         </span>
                     
@@ -198,10 +136,27 @@
         </header>
 
         <div class="post-content">
-            <h1 id="A-Alexey-and-Train"><a href="#A-Alexey-and-Train" class="headerlink" title="A.Alexey and Train"></a>A.<a target="_blank" rel="noopener" href="https://codeforces.com/contest/1501/problem/A">Alexey and Train</a></h1><p>模拟。读题不太顺。刚开始没看懂这是晚点的意思。</p>
-<h1 id="B-Napoleon-Cake"><a href="#B-Napoleon-Cake" class="headerlink" title="B.Napoleon Cake"></a>B.<a target="_blank" rel="noopener" href="https://codeforces.com/contest/1501/problem/B">Napoleon Cake</a></h1><p>差分，或者倒着做。差不多是个模拟了</p>
-<h1 id="C-Going-Home"><a href="#C-Going-Home" class="headerlink" title="C.Going Home"></a>C.<a target="_blank" rel="noopener" href="https://codeforces.com/contest/1501/problem/C">Going Home</a></h1><p>题意：给定2e5个整数，寻找里面是否有四个数满足其中两个的和等于另外两个。保证每个数小于等于2.5e6。</p>
-<p>解：首先把和相等的式子移项，发现寻找相同的差即可。然后可以发现，差的种类数一旦超过2.5e6之后一定会有重复，再过没几个就可以找到相减元素不重复的差。主要思路显然是暴力枚举。接下来重点是如何处理重复的问题。如果把每个重复的都存下来，好像不太方便；如果拿map判来判去，再针对特殊情况处理，容易在细节上搞崩，像我一样。其实只需要把原数组排完序之后，存下每个差值遇到的第一组即可。可以发现，如果有重复的话，假设之前发现的一组是a,b，后来发现的一组是b,c，则再以后来判断是否重复的数对不可能在与a,b重复的情况下不与b,c重复。因此b,c没有用，不需要存下来。</p>
+            <ul>
+<li><p>写sort的时候可以用lambda表达式</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sort(vi.begin(),vi.end(),[](<span class="keyword">const</span> <span class="keyword">int</span> elem1, <span class="keyword">const</span> <span class="keyword">int</span> elem2)-&gt;<span class="keyword">bool</span>&#123;<span class="keyword">return</span> elem1&lt;elem2;&#125;); </span><br></pre></td></tr></table></figure>
+</li>
+<li><p>stl中的set有set_intersection，set_union，set_difference的功能，使用方法如</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">set_difference(a.begin(),a.end(),b.begin(),b.end(),inserter(c,c.begin()));</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>unique_copy是unique相似用法</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">unique_copy(ss.begin(),ss.end(),back_inserter(s));</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>extern int i代表要到别的文件中找i</p>
+</li>
+<li><p>const的含义是不能修改，可能是不能被修改的变量；constexpr的含义是真正的常量(比如固定的数字)，可以直接在编译期处理出来</p>
+</li>
+<li><p>加::可以在局部调用全局变量，即使局部有同名变量</p>
+</li>
+<li><p>const int *p或者int const *p表示p指向的位置是个常量，但p不是；int *const p即可。若需要两者皆为常量，则int const *const p</p>
+</li>
+<li><p>nullptr代表空指针，但c中是NULL或0</p>
+</li>
+</ul>
 
         </div>
 
@@ -212,7 +167,9 @@
                 <span class="tag">
                     
                     
-                        <a href="/tags/CF/"># CF</a>
+                        <a href="/tags/C/"># C++</a>
+                    
+                        <a href="/tags/OOP/"># OOP</a>
                     
                         
                 </span>
@@ -225,10 +182,10 @@
         </section>
         <section class="post-nav">
             
-                <a class="prev" rel="prev" href="/2021/03/16/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1C-%E7%AC%94%E8%AE%B0/">面向对象C++笔记</a>
+                <a class="prev" rel="prev" href="/2021/03/17/ICPC2020-%E5%8C%97%E4%BA%9A%E6%AC%A7%E5%8C%BA/">ICPC2020-NorthernEurasia-NERC</a>
             
             
-            <a class="next" rel="next" href="/2021/03/12/CF-Round-706/">CF Round 706 (Div.1)</a>
+            <a class="next" rel="next" href="/2021/03/13/CF-Round-707-Div-2/">CF Round 707 (Div.2)</a>
             
         </section>
 
