@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <meta name="author" content="Helloat123">
+
+
+
+
+
+<title>EOJ 2021.3 | Richard&#39;s Blog</title>
+
+
+
+    <link rel="icon" href="/favicon.png">
+
+
+
+
+    <!-- stylesheets list from _config.yml -->
+    
+    <link rel="stylesheet" href="/css/style.css">
+    
+
+
+
+    <!-- scripts list from _config.yml -->
+    
+    <script src="/js/script.js"></script>
+    
+    <script src="/js/tocbot.min.js"></script>
+    
+
+
+
+    
+    
+        
+    
+
+
+<meta name="generator" content="Hexo 5.2.0"></head>
+<body>
+    <div class="wrapper">
+        <header>
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-header header-logo"><a href="/">Richard&#39;s Blog</a></div>
+            <div class="menu navbar-right">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+                <input id="switch_default" type="checkbox" class="switch_default">
+                <label for="switch_default" class="toggleBtn"></label>
+            </div>
+        </div>
+    </nav>
+
+    
+    <nav class="navbar-mobile" id="nav-mobile">
+        <div class="container">
+            <div class="navbar-header">
+                <div>
+                    <a href="/">Richard&#39;s Blog</a><a id="mobile-toggle-theme">·&nbsp;Light</a>
+                </div>
+                <div class="menu-toggle" onclick="mobileBtn()">&#9776; Menu</div>
+            </div>
+            <div class="menu" id="mobile-menu">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+            </div>
+        </div>
+    </nav>
+
+</header>
+<script>
+    var mobileBtn = function f() {
+        var toggleMenu = document.getElementsByClassName("menu-toggle")[0];
+        var mobileMenu = document.getElementById("mobile-menu");
+        if(toggleMenu.classList.contains("active")){
+           toggleMenu.classList.remove("active")
+            mobileMenu.classList.remove("active")
+        }else{
+            toggleMenu.classList.add("active")
+            mobileMenu.classList.add("active")
+        }
+    }
+</script>
+        <div class="main">
+            <div class="container">
+    
+    
+        <div class="post-toc">
+    <div class="tocbot-list">
+    </div>
+    <div class="tocbot-list-menu">
+        <a class="tocbot-toc-expand" onclick="expand_toc()">Expand all</a>
+        <a onclick="go_top()">Back to top</a>
+        <a onclick="go_bottom()">Go to bottom</a>
+    </div>
+</div>
+
+<script>
+    document.ready(
+        function () {
+            tocbot.init({
+                tocSelector: '.tocbot-list',
+                contentSelector: '.post-content',
+                headingSelector: 'h1, h2, h3, h4, h5',
+                collapseDepth: 1,
+                orderedList: false,
+                scrollSmooth: true,
+            })
+        }
+    )
+
+    function expand_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 6,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "collapse_toc()");
+        b.innerHTML = "Collapse all"
+    }
+
+    function collapse_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 1,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "expand_toc()");
+        b.innerHTML = "Expand all"
+    }
+
+    function go_top() {
+        window.scrollTo(0, 0);
+    }
+
+    function go_bottom() {
+        window.scrollTo(0, document.body.scrollHeight);
+    }
+
+</script>
+    
+
+    
+    <article class="post-wrap">
+        <header class="post-header">
+            <h1 class="post-title">EOJ 2021.3</h1>
+            
+                <div class="post-meta">
+                    
+                        Author: <a itemprop="author" rel="author" href="/">Helloat123</a>
+                    
+
+                    
+                        <span class="post-time">
+                        Date: <a href="#">March 20, 2021&nbsp;&nbsp;19:09:19</a>
+                        </span>
+                    
+                    
+                        <span class="post-category">
+                    Category:
+                            
+                                <a href="/categories/%E8%AE%B0%E5%BD%95/">记录</a>
+                            
+                        </span>
+                    
+                </div>
+            
+        </header>
+
+        <div class="post-content">
+            <h1 id="A-读不懂古神语的程序员不是一个合格的探险家-补"><a href="#A-读不懂古神语的程序员不是一个合格的探险家-补" class="headerlink" title="A 读不懂古神语的程序员不是一个合格的探险家 补"></a>A 读不懂古神语的程序员不是一个合格的探险家 补</h1><p>题意：交互题，给一个环，环上每个点的值为1 to 2^n的排列，保证从1出发不管顺时针还是逆时针总是单增到最大值。给2^n个机会询问某个点是多少，找到最大值的位置。</p>
+<p>解：询问相邻两个点就可以知道最大值的方向，因此每次询问两个点，二分查找即可。细节稍微有点多因此来不及A掉，想补的但是密码条忘拿了又懒得重新写…</p>
+<h1 id="C-不会吧不会吧不会这道题还有同学答案错误吧"><a href="#C-不会吧不会吧不会这道题还有同学答案错误吧" class="headerlink" title="C 不会吧不会吧不会这道题还有同学答案错误吧"></a>C 不会吧不会吧不会这道题还有同学答案错误吧</h1><p>题意：提交答案题。给定一种分治一颗树的方式：每次遍历每条边，取分割后两颗新树的大小最接近的边删除。要求构造一棵树，使得按照你的分治方式，迭代层数小于上面的方法。</p>
+<p>解：考虑长链+菊花。最优解肯定是把链剖开之后把链二分，菊花一个一个切。但是给定方法会把菊花和一大段链切走，就差了。</p>
+<h1 id="D-关于小方的爆款桌游还没面世就要夭折这回事"><a href="#D-关于小方的爆款桌游还没面世就要夭折这回事" class="headerlink" title="D 关于小方的爆款桌游还没面世就要夭折这回事"></a>D 关于小方的爆款桌游还没面世就要夭折这回事</h1><p>题意：<a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Cram_(game)">Cram</a> 游戏，初始给定n乘m的方块棋盘，每次填满一个日字格，问必胜情况。n保证偶数。</p>
+<p>解：可以发现，当nm皆为偶数时，棋盘中心对称且没法在最中央放东西，因此后手只需要下在先手的对称位置即可获胜。若m为奇数，则先手者第一步下在棋盘中央即可把局面变成中心对称且不能放中央的情况，即先手必胜。</p>
+<h1 id="E-蟹老板的梦幻传送门真的能让宅男走出家门吗"><a href="#E-蟹老板的梦幻传送门真的能让宅男走出家门吗" class="headerlink" title="E 蟹老板的梦幻传送门真的能让宅男走出家门吗"></a>E 蟹老板的梦幻传送门真的能让宅男走出家门吗</h1><p>题意：数轴上有n1000000个房子，放置两个传送门，效果是两个传送门之间距离为0，问最优放置方案下最远的两个房子的距离。</p>
+<p>解：枚举左传送门管到的位置，设为i，则左传送门必定放在a[1]和a[i]的中间，右传送门同理。计算最远距离即可。（考试时题目的提示有误，坑读题，因此wa了4发）</p>
+<p><em>由于没有密码条交不了题，所以B不补了</em></p>
+
+        </div>
+
+        
+        <section class="post-tags">
+            <div>
+                <span>Tag(s):</span>
+                <span class="tag">
+                    
+                    
+                        <a href="/tags/EOJ/"># EOJ</a>
+                    
+                        
+                </span>
+            </div>
+            <div>
+                <a href="javascript:window.history.back();">back</a>
+                <span>· </span>
+                <a href="/">home</a>
+            </div>
+        </section>
+        <section class="post-nav">
+            
+            
+            <a class="next" rel="next" href="/2021/03/19/%E3%80%90CQOI-2015%E3%80%91-%E4%BB%BB%E5%8A%A1%E6%9F%A5%E8%AF%A2%E7%B3%BB%E7%BB%9F/">【CQOI 2015】 任务查询系统</a>
+            
+        </section>
+
+
+    </article>
+</div>
+
+        </div>
+        <footer id="footer" class="footer">
+        <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <div class="copyright">
+        <span>© Helloat123 | Powered by <a href="https://hexo.io" target="_blank">Hexo</a> & <a href="https://github.com/Siricee/hexo-theme-Chic" target="_blank">Chic</a> | <span id="busuanzi_container_site_pv">
+    本站总访问量<span id="busuanzi_value_site_pv"></span>次
+</span> | <span id="busuanzi_container_site_uv">
+  本站访客数<span id="busuanzi_value_site_uv"></span>人次
+</span></span>
+    </div>
+</footer>
+
+    </div>
+</body>
+</html>
