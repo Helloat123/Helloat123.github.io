@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <meta name="author" content="Helloat123">
+
+
+
+
+
+<title>博弈论 | Richard&#39;s Blog</title>
+
+
+
+    <link rel="icon" href="/favicon.png">
+
+
+
+
+    <!-- stylesheets list from _config.yml -->
+    
+    <link rel="stylesheet" href="/css/style.css">
+    
+
+
+
+    <!-- scripts list from _config.yml -->
+    
+    <script src="/js/script.js"></script>
+    
+    <script src="/js/tocbot.min.js"></script>
+    
+
+
+
+    
+    
+        
+            <!-- MathJax配置，可通过单美元符号书写行内公式等 -->
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+    "HTML-CSS": {
+        preferredFont: "TeX",
+        availableFonts: ["STIX","TeX"],
+        linebreaks: { automatic:true },
+        EqnChunk: (MathJax.Hub.Browser.isMobile ? 10 : 50)
+    },
+    tex2jax: {
+        inlineMath: [ ["$", "$"], ["\\(","\\)"] ],
+        processEscapes: true,
+        ignoreClass: "tex2jax_ignore|dno",
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    },
+    TeX: {
+        equationNumbers: { autoNumber: "AMS" },
+        noUndefined: { attributes: { mathcolor: "red", mathbackground: "#FFEEEE", mathsize: "90%" } },
+        Macros: { href: "{}" }
+    },
+    messageStyle: "none"
+    });
+</script>
+<!-- 给MathJax元素添加has-jax class -->
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+<!-- 通过连接CDN加载MathJax的js代码 -->
+<script type="text/javascript" async
+        src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+
+
+        
+    
+
+
+<meta name="generator" content="Hexo 5.2.0"></head>
+<body>
+    <div class="wrapper">
+        <header>
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-header header-logo"><a href="/">Richard&#39;s Blog</a></div>
+            <div class="menu navbar-right">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+                <input id="switch_default" type="checkbox" class="switch_default">
+                <label for="switch_default" class="toggleBtn"></label>
+            </div>
+        </div>
+    </nav>
+
+    
+    <nav class="navbar-mobile" id="nav-mobile">
+        <div class="container">
+            <div class="navbar-header">
+                <div>
+                    <a href="/">Richard&#39;s Blog</a><a id="mobile-toggle-theme">·&nbsp;Light</a>
+                </div>
+                <div class="menu-toggle" onclick="mobileBtn()">&#9776; Menu</div>
+            </div>
+            <div class="menu" id="mobile-menu">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+            </div>
+        </div>
+    </nav>
+
+</header>
+<script>
+    var mobileBtn = function f() {
+        var toggleMenu = document.getElementsByClassName("menu-toggle")[0];
+        var mobileMenu = document.getElementById("mobile-menu");
+        if(toggleMenu.classList.contains("active")){
+           toggleMenu.classList.remove("active")
+            mobileMenu.classList.remove("active")
+        }else{
+            toggleMenu.classList.add("active")
+            mobileMenu.classList.add("active")
+        }
+    }
+</script>
+        <div class="main">
+            <div class="container">
+    
+    
+        <div class="post-toc">
+    <div class="tocbot-list">
+    </div>
+    <div class="tocbot-list-menu">
+        <a class="tocbot-toc-expand" onclick="expand_toc()">Expand all</a>
+        <a onclick="go_top()">Back to top</a>
+        <a onclick="go_bottom()">Go to bottom</a>
+    </div>
+</div>
+
+<script>
+    document.ready(
+        function () {
+            tocbot.init({
+                tocSelector: '.tocbot-list',
+                contentSelector: '.post-content',
+                headingSelector: 'h1, h2, h3, h4, h5',
+                collapseDepth: 1,
+                orderedList: false,
+                scrollSmooth: true,
+            })
+        }
+    )
+
+    function expand_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 6,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "collapse_toc()");
+        b.innerHTML = "Collapse all"
+    }
+
+    function collapse_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 1,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "expand_toc()");
+        b.innerHTML = "Expand all"
+    }
+
+    function go_top() {
+        window.scrollTo(0, 0);
+    }
+
+    function go_bottom() {
+        window.scrollTo(0, document.body.scrollHeight);
+    }
+
+</script>
+    
+
+    
+    <article class="post-wrap">
+        <header class="post-header">
+            <h1 class="post-title">博弈论</h1>
+            
+                <div class="post-meta">
+                    
+                        Author: <a itemprop="author" rel="author" href="/">Helloat123</a>
+                    
+
+                    
+                        <span class="post-time">
+                        Date: <a href="#">March 22, 2021&nbsp;&nbsp;19:24:38</a>
+                        </span>
+                    
+                    
+                        <span class="post-category">
+                    Category:
+                            
+                                <a href="/categories/%E5%8D%9A%E5%BC%88%E8%AE%BA/">博弈论</a>
+                            
+                        </span>
+                    
+                </div>
+            
+        </header>
+
+        <div class="post-content">
+            <a href="/2017/07/06/BZOJ%202463%20%E8%B0%81%E8%83%BD%E8%B5%A2%E5%91%A2%EF%BC%9F/" title="BZOJ 2463 谁能赢呢？">BZOJ 2463 谁能赢呢？</a>
+
+<p>这篇是当年无知时期写的关于一道博弈题的无知记录。说来惭愧，接触博弈论题目这么多年，居然只知道SG函数的名字和要用到异或（部分因为忘了，部分因为当年没好好学）。是应该好好学习一下。</p>
+<h1 id="几个引理"><a href="#几个引理" class="headerlink" title="几个引理"></a>几个引理</h1><ul>
+<li>如果对于先手方，后手方总有办法能够走等价步骤，必定先手必败</li>
+<li>能一步走到必败态的状态为必胜态</li>
+<li>只能走到必胜态的状态为必败态</li>
+<li>无状态可走为必败态</li>
+</ul>
+<h1 id="抵消"><a href="#抵消" class="headerlink" title="抵消"></a>抵消</h1><ul>
+<li><p>在一个圆形桌面上，甲、乙轮流放一元硬币，不许重叠，甲先放，首先放不下硬币的一方为负。甲如何取胜呢？</p>
+<p>只要桌面比硬币大就是甲必胜。甲首先把硬币放在桌面中央，然后乙放在哪里甲就放在他的中心对称位置，即可取胜。</p>
+</li>
+<li><p><a href="/2021/03/20/EOJ-2021-3/#D-关于小方的爆款桌游还没面世就要夭折这回事">最近EOJ月赛的一道题</a></p>
+</li>
+<li><p>回到<a href="/2017/07/06/BZOJ%202463%20%E8%B0%81%E8%83%BD%E8%B5%A2%E5%91%A2%EF%BC%9F/" title="BZOJ 2463 谁能赢呢？">BZOJ 2463 谁能赢呢？</a></p>
+<p>题意：一个n×n的棋盘，一个石头被放在左上角。每回合，选上下左右中的一个移动一格，要求目的地未被访问过。不能移动者输。</p>
+<p>解：</p>
+<p>如果n是奇数，去掉初始格后一定能被1×2的骨牌覆盖。先手走的第一步一定走到其中一个骨牌中的一格，那么对于先手者的每一步，后手者只需要把当前所在的骨牌走完便可以将状态抵消掉。<br>如果n是偶数，走了一步就变成奇数情况，分析同理。</p>
+</li>
+</ul>
+<h1 id="线性递推"><a href="#线性递推" class="headerlink" title="线性递推"></a>线性递推</h1><ul>
+<li><p>一堆火柴有N根，A，B两人轮流取出。每次可以取1根或2根，问先取者能否有必胜策略？</p>
+<p>设f[x]为剩x根火柴时轮到某个人取，他的必胜必败状态，必胜为1，必败为0，则首先f[0]=0</p>
+<p>f[x]=(!f[x-1])&amp;&amp;(!f[x-2])，找规律即显然得到答案</p>
+</li>
+<li><p>若每次可以取1..t根火柴（t&lt;N）呢？</p>
+<p>一样的方法，N=(n+1)*k则必败，剩余情况必胜</p>
+</li>
+</ul>
+<h1 id="NIM"><a href="#NIM" class="headerlink" title="NIM"></a>NIM</h1><p>甲乙两人面对若干堆石子，其中每一堆石子的数目可以任意确定。例如下所示的初始局面：共3堆，其中第一堆的石子数$a_1=3$，第二堆石子数$a_2=3$，第三堆石子数$a_3=1$。两人轮流按下列规则取走一些石子，游戏的规则如下：</p>
+<p> 每一步应取走至少一枚石子</p>
+<ul>
+<li><p>每一步只能从某一堆中取走部分或全部石子</p>
+</li>
+<li><p>如果谁无法按规则取子，谁就是输家</p>
+</li>
+</ul>
+<p><img src="/2021/03/22/%E5%8D%9A%E5%BC%88%E8%AE%BA/image-20210322201414149.png" alt="image-20210322201414149"></p>
+<p>对于只需要异或起来判是否是0的证明参见<a target="_blank" rel="noopener" href="https://oi-wiki.org/math/game-theory/#_3">OIWIKI</a></p>
+<h1 id="有向图游戏与-SG-函数"><a href="#有向图游戏与-SG-函数" class="headerlink" title="有向图游戏与 SG 函数"></a>有向图游戏与 SG 函数</h1><ul>
+<li>在一个有向无环图中，只有一个起点，上面有一个棋子，两个玩家轮流沿着有向边推动棋子，不能走的玩家判负。</li>
+</ul>
+<p>显然上面的所有游戏都可以转化为有向图游戏（但有一些转化了反而不容易做）</p>
+<p>显然我们可以类似<a href="#%E7%BA%BF%E6%80%A7%E9%80%92%E6%8E%A8">线性递推</a>的方法定义每个点的f[x]，拓扑排序求出答案。</p>
+<p>同时，我们也可以引入SG定理：</p>
+<p>定义mex(minimal excludant)运算，表示最小的不属于某个集合的非负整数。例如<br>$$<br>mex{0,1,2,4}=3\\<br>mex{2,3,5}=0\\<br>mex{\empty}=0<br>$$<br>对于任意状态$x$，定义$SG(x) = mex(S)$,其中$S$是$x$后继状态的$SG$函数值的集合。如$x$有三个后继状态分别为 $SG(a),SG(b),SG(c)$，那么$SG(x) = mex{SG(a),SG(b),SG(c)}$。 </p>
+<p><strong>游戏的SG函数等于各个子游戏(互相没有边指向的DAG)SG函数的Nim和(异或和)。</strong></p>
+<h2 id="证明"><a href="#证明" class="headerlink" title="证明"></a>证明</h2><p>令状态x=(x1,x2,…,xn)，b=SG(x1,…xn)=SG(x1)^SG(x2)^…^SG(xn)。我们只需证明一下两点：</p>
+<ul>
+<li><p>对于每一个非负整数a &lt; b，我们一定可以从x到达另一个状态使得新状态的SG函数值为a</p>
+</li>
+<li><p>由x可以到达的每一个状态的SG函数值都不等于b</p>
+</li>
+</ul>
+<p>第一条：</p>
+<p>令d=a^b，设k为d的二进制位数，那么d在二进制的第k位上的数字一定是1，由于a&lt;b，故b的二进制形式第k位上一定是1，而a是0。由于b=SG(x1,…xn)，故至少由一个SG(xi)在二进制的第k位上是1，不妨令i=1，所以d^SG(x1)&lt;SG(x1)。由SG函数的定义得在这个有向图中一定可以由位置x1到达另一个位置x1’，使得SG(x1’)=d^SG(x1)，那么由原来得状态(x1,x2,…,xn)就可以到达(x1’,x2,…,xn)，而且SG(x1’,x2,…,xn)=SG(x1’)^SG(x2)^…^SG(xn)=d^SG(x1)^SG(x2)^…^SG(xn)=d^b=a^b^b=a。</p>
+<p>第二条：</p>
+<p>假设存在状态(x1’,x2,…,xn)使得SG(x1’,x2,…,xn) = b，即SG(x1’)^SG(x2)^…^SG(xn)=SG(x1)^SG(x2)^…SG(xn)，所以我们得到SG(x1’)=SG(x1)，而由SG函数得定义这是不可能出现的。</p>
+<p>证毕</p>
+<p>这样按照定义，状态x的函数值就一定是b了。</p>
+<p>这样，我们只要依次求出每个有向图的SG函数值，然后在将它们进行异或操作，就得到了整个状态的SG函数值，便也可以判断出这个位置是必胜还是必败。</p>
+<ul>
+<li><p>有1堆n个的石子，每次只能取1或3或4个石子，先取完石子者胜利，那么胜负状态？</p>
+<p>SG[0]=0</p>
+<p>SG[1]=mex(SG[0])=1</p>
+<p>SG[2]=mex(SG[1])=0</p>
+<p>SG[3]=mex(SG[2],SG[0])=1</p>
+<p>SG[4]=mex(SG[0],SG[1],SG[3])=2</p>
+<p>依此类推</p>
+</li>
+<li><p>有k堆n个的石子，每次只能取1或3或4个石子，先取完石子者胜利，那么胜负状态？</p>
+<p>显然对每一堆求出上面题目中的SG函数，异或即可</p>
+</li>
+</ul>
+<h1 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h1><p>回到</p>
+<ul>
+<li>状压DP结合的<a href="/2021/03/17/ICPC2020-%E5%8C%97%E4%BA%9A%E6%AC%A7%E5%8C%BA/#D-Down-We-Dig补">一道典型题</a></li>
+</ul>
+<h1 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h1><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/luomingjun12315/article/details/45555495">https://blog.csdn.net/luomingjun12315/article/details/45555495</a></p>
+<p><a target="_blank" rel="noopener" href="https://oi-wiki.org/math/game-theory/">https://oi-wiki.org/math/game-theory/</a></p>
+<p>博弈论在信息学竞赛中的应用 杭州第二中学 李建 NOI教师培训·长沙 2016 – 09</p>
+
+        </div>
+
+        
+        <section class="post-tags">
+            <div>
+                <span>Tag(s):</span>
+                <span class="tag">
+                    
+                    
+                        <a href="/tags/%E5%8D%9A%E5%BC%88%E8%AE%BA/"># 博弈论</a>
+                    
+                        
+                </span>
+            </div>
+            <div>
+                <a href="javascript:window.history.back();">back</a>
+                <span>· </span>
+                <a href="/">home</a>
+            </div>
+        </section>
+        <section class="post-nav">
+            
+            
+            <a class="next" rel="next" href="/2021/03/20/EOJ-2021-3/">EOJ 2021.3</a>
+            
+        </section>
+
+
+    </article>
+</div>
+
+        </div>
+        <footer id="footer" class="footer">
+        <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <div class="copyright">
+        <span>© Helloat123 | Powered by <a href="https://hexo.io" target="_blank">Hexo</a> & <a href="https://github.com/Siricee/hexo-theme-Chic" target="_blank">Chic</a> | <span id="busuanzi_container_site_pv">
+    本站总访问量<span id="busuanzi_value_site_pv"></span>次
+</span> | <span id="busuanzi_container_site_uv">
+  本站访客数<span id="busuanzi_value_site_uv"></span>人次
+</span></span>
+    </div>
+</footer>
+
+    </div>
+</body>
+</html>
