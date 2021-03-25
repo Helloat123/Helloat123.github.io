@@ -221,7 +221,7 @@
 
                     
                         <span class="post-time">
-                        Date: <a href="#">March 22, 2021&nbsp;&nbsp;19:24:38</a>
+                        Date: <a href="#">March 25, 2021&nbsp;&nbsp;20:12:38</a>
                         </span>
                     
                     
@@ -275,7 +275,7 @@
 <li><p>如果谁无法按规则取子，谁就是输家</p>
 </li>
 </ul>
-<p><img src="/2021/03/22/%E5%8D%9A%E5%BC%88%E8%AE%BA/image-20210322201414149.png" alt="image-20210322201414149"></p>
+<p><img src="/2021/03/25/%E5%8D%9A%E5%BC%88%E8%AE%BA/image-20210322201414149.png" alt="image-20210322201414149"></p>
 <p>对于只需要异或起来判是否是0的证明参见<a target="_blank" rel="noopener" href="https://oi-wiki.org/math/game-theory/#_3">OIWIKI</a></p>
 <h1 id="有向图游戏与-SG-函数"><a href="#有向图游戏与-SG-函数" class="headerlink" title="有向图游戏与 SG 函数"></a>有向图游戏与 SG 函数</h1><ul>
 <li>在一个有向无环图中，只有一个起点，上面有一个棋子，两个玩家轮流沿着有向边推动棋子，不能走的玩家判负。</li>
@@ -312,6 +312,27 @@
 <p>显然对每一堆求出上面题目中的SG函数，异或即可</p>
 </li>
 </ul>
+<h1 id="二分图博弈"><a href="#二分图博弈" class="headerlink" title="二分图博弈"></a>二分图博弈</h1><p>双方在一张二分图上博弈，首先有一个初始点，每一步可以选择走到与当前点有边相连的别的点上（显然其中一方只会到达在二分图同一边的节点），不得走重复的点，无处走判负。</p>
+<p>首先说结论：</p>
+<p><strong>若初始点一定被最大匹配包含，则先手必胜；反之，则后手必胜</strong></p>
+<p>下面证明：</p>
+<p>若初始点一定被最大匹配包含，则先手走到相应匹配点，后手方只能走到别的匹配而不可能走到非匹配点，否则从初始点到结束时的整条路径符合增广路的定义，可以通过将路径上所有边取反（连着的断掉，没连着的连起来）形成一个更大的最大匹配。因此等能走的匹配走完，轮到后手，先手胜。</p>
+<p>若初始点不一定被最大匹配包含，则先手第一步一定会走到某个匹配点，否则在该匹配方案中就可以添加先手走的这一对点。于是后手每次走到相应匹配点即可。先手不可能走到非匹配点，否则也会形成一条增广路。</p>
+<h2 id="模型"><a href="#模型" class="headerlink" title="模型"></a>模型</h2><h3 id="JSOI2009-游戏"><a href="#JSOI2009-游戏" class="headerlink" title="JSOI2009 游戏"></a>JSOI2009 游戏</h3><p>题意：</p>
+<p>在$n\times m$的迷宫中有一个棋子，AA 首先任意选择棋子放置的位置。然后，YY 和 AA 轮流将棋子移动到相邻的格子里。</p>
+<p>游戏的规则规定，在一次游戏中，同一个格子不能进入两次，且不能将棋子移动到某些格子中去。当玩家无法继续移动棋子时，游戏结束，最后一个移动棋子的玩家赢得了游戏。</p>
+<p>求 AA 初始将棋子放在哪些格子会有必胜策略。</p>
+<p>解：</p>
+<p>网格图一人一步，则显然会形成奇偶两种点。利用上述二分图博弈的思想建图即可。</p>
+<h3 id="CCPC2020长春-H-Combination-Lock"><a href="#CCPC2020长春-H-Combination-Lock" class="headerlink" title="CCPC2020长春 H Combination Lock"></a>CCPC2020长春 H Combination Lock</h3><p>题意：</p>
+<p>有一个密码锁，两个人博弈，给出初始的密码，规定：</p>
+<ol>
+<li>每一次都可以转动一个位置的数字一个单位</li>
+<li>不可以转动到已经出现过的数字</li>
+<li>不可以转动到被 ban 掉的数字</li>
+</ol>
+<p>解：</p>
+<p>每操作一次都会改变当前所有数字之和的奇偶性，因此整个图是一个二分图。</p>
 <h1 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h1><p>回到</p>
 <ul>
 <li>状压DP结合的<a href="/2021/03/17/ICPC2020-%E5%8C%97%E4%BA%9A%E6%AC%A7%E5%8C%BA/#D-Down-We-Dig补">一道典型题</a></li>
@@ -343,7 +364,7 @@
         <section class="post-nav">
             
             
-            <a class="next" rel="next" href="/2021/03/20/EOJ-2021-3/">EOJ 2021.3</a>
+            <a class="next" rel="next" href="/2021/03/25/ICPC2019-ECFinal/">ICPC2019-ECFinal</a>
             
         </section>
 

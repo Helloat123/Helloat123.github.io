@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <meta name="author" content="Helloat123">
+
+
+
+
+
+<title>ICPC2019-ECFinal | Richard&#39;s Blog</title>
+
+
+
+    <link rel="icon" href="/favicon.png">
+
+
+
+
+    <!-- stylesheets list from _config.yml -->
+    
+    <link rel="stylesheet" href="/css/style.css">
+    
+
+
+
+    <!-- scripts list from _config.yml -->
+    
+    <script src="/js/script.js"></script>
+    
+    <script src="/js/tocbot.min.js"></script>
+    
+
+
+
+    
+    
+        
+            <!-- MathJax配置，可通过单美元符号书写行内公式等 -->
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+    "HTML-CSS": {
+        preferredFont: "TeX",
+        availableFonts: ["STIX","TeX"],
+        linebreaks: { automatic:true },
+        EqnChunk: (MathJax.Hub.Browser.isMobile ? 10 : 50)
+    },
+    tex2jax: {
+        inlineMath: [ ["$", "$"], ["\\(","\\)"] ],
+        processEscapes: true,
+        ignoreClass: "tex2jax_ignore|dno",
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    },
+    TeX: {
+        equationNumbers: { autoNumber: "AMS" },
+        noUndefined: { attributes: { mathcolor: "red", mathbackground: "#FFEEEE", mathsize: "90%" } },
+        Macros: { href: "{}" }
+    },
+    messageStyle: "none"
+    });
+</script>
+<!-- 给MathJax元素添加has-jax class -->
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+<!-- 通过连接CDN加载MathJax的js代码 -->
+<script type="text/javascript" async
+        src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+
+
+        
+    
+
+
+<meta name="generator" content="Hexo 5.2.0"></head>
+<body>
+    <div class="wrapper">
+        <header>
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-header header-logo"><a href="/">Richard&#39;s Blog</a></div>
+            <div class="menu navbar-right">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+                <input id="switch_default" type="checkbox" class="switch_default">
+                <label for="switch_default" class="toggleBtn"></label>
+            </div>
+        </div>
+    </nav>
+
+    
+    <nav class="navbar-mobile" id="nav-mobile">
+        <div class="container">
+            <div class="navbar-header">
+                <div>
+                    <a href="/">Richard&#39;s Blog</a><a id="mobile-toggle-theme">·&nbsp;Light</a>
+                </div>
+                <div class="menu-toggle" onclick="mobileBtn()">&#9776; Menu</div>
+            </div>
+            <div class="menu" id="mobile-menu">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+            </div>
+        </div>
+    </nav>
+
+</header>
+<script>
+    var mobileBtn = function f() {
+        var toggleMenu = document.getElementsByClassName("menu-toggle")[0];
+        var mobileMenu = document.getElementById("mobile-menu");
+        if(toggleMenu.classList.contains("active")){
+           toggleMenu.classList.remove("active")
+            mobileMenu.classList.remove("active")
+        }else{
+            toggleMenu.classList.add("active")
+            mobileMenu.classList.add("active")
+        }
+    }
+</script>
+        <div class="main">
+            <div class="container">
+    
+    
+        <div class="post-toc">
+    <div class="tocbot-list">
+    </div>
+    <div class="tocbot-list-menu">
+        <a class="tocbot-toc-expand" onclick="expand_toc()">Expand all</a>
+        <a onclick="go_top()">Back to top</a>
+        <a onclick="go_bottom()">Go to bottom</a>
+    </div>
+</div>
+
+<script>
+    document.ready(
+        function () {
+            tocbot.init({
+                tocSelector: '.tocbot-list',
+                contentSelector: '.post-content',
+                headingSelector: 'h1, h2, h3, h4, h5',
+                collapseDepth: 1,
+                orderedList: false,
+                scrollSmooth: true,
+            })
+        }
+    )
+
+    function expand_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 6,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "collapse_toc()");
+        b.innerHTML = "Collapse all"
+    }
+
+    function collapse_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 1,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "expand_toc()");
+        b.innerHTML = "Expand all"
+    }
+
+    function go_top() {
+        window.scrollTo(0, 0);
+    }
+
+    function go_bottom() {
+        window.scrollTo(0, document.body.scrollHeight);
+    }
+
+</script>
+    
+
+    
+    <article class="post-wrap">
+        <header class="post-header">
+            <h1 class="post-title">ICPC2019-ECFinal</h1>
+            
+                <div class="post-meta">
+                    
+                        Author: <a itemprop="author" rel="author" href="/">Helloat123</a>
+                    
+
+                    
+                        <span class="post-time">
+                        Date: <a href="#">March 25, 2021&nbsp;&nbsp;18:50:29</a>
+                        </span>
+                    
+                    
+                        <span class="post-category">
+                    Category:
+                            
+                                <a href="/categories/%E8%AE%B0%E5%BD%95/">记录</a>
+                            
+                        </span>
+                    
+                </div>
+            
+        </header>
+
+        <div class="post-content">
+            <p>最近感觉状态不知道咋回事….每次写出来基本都没有编译错误且一次性过样例，然而完全都做不到1A，甚至要五六发才能过。真奇怪</p>
+<h1 id="A-City"><a href="#A-City" class="headerlink" title="A City"></a><a target="_blank" rel="noopener" href="https://codeforces.com/gym/102471/problem/A">A City</a></h1><p>WD 签到</p>
+<h1 id="M-value"><a href="#M-value" class="headerlink" title="M value"></a><a target="_blank" rel="noopener" href="https://codeforces.com/gym/102471/problem/M">M value</a></h1><p>题意：给两个100000长数列$a,b$，选一堆1到n之间的数，最终收益是<br>$$<br>\sum _ {i被选}a[i]-\sum _ {i\ne j都被选且i|j,i\ne1}b[j]<br>$$<br>其中$b[j]$是可以被不同的i减很多次的</p>
+<p>解：显然$2^1,2^2,2^3,2^4$与$3^1,3^2,3^3$以及其它的互不干扰。可以分开统计。发现数的数量减少得很快，可以直接对每一组暴力枚举。</p>
+<h1 id="E-Flow"><a href="#E-Flow" class="headerlink" title="E Flow"></a><a target="_blank" rel="noopener" href="https://codeforces.com/gym/102471/problem/E">E Flow</a></h1><p>合作 &amp; LYF写 下面的题解几乎完全照搬LYF写的</p>
+<p>题意：给定一张网络图，边带权，1为起点n为终点，1到n的每条路径都没有交点，且每条路径长度都相同。可以进行任意次操作，每次操作使得一条边容量-1，另一条边容量+1，问使得最大流达到最大的前提下，最少的操作数。</p>
+<p>一开始读错题浪费了好多时间（以为路径长度不相同）</p>
+<p>然后WD提供了一个贪心的思路，就是先把能跑的流全部跑掉，这时候每条路径的残余网络边的最小值一定为0，然后把路径根据边值为0的个数从小到大排序，优先从填个数小的边一定是最优的。</p>
+<p>发现可以优化一下这个过程：对于每条路径和$i∈[0,len]$（$len$为路径长度）可以预处理出，有多少流量是可以通过只填$i$个值为0的边来使其产生流量的。预处理完之后把所有路径的情况累加起来，就可以从小到大贪心了。（我当时想的是priority_queue，显然复杂度多一个log）</p>
+<p>这个过程中不需要关心容量被减的是哪条边，因为当把图操作到流量和最大值相等的那一刻一定刚好把被减的用光或是还剩着，不会有不可行的情况。</p>
+<h1 id="C-Dirichlet-k-th-root"><a href="#C-Dirichlet-k-th-root" class="headerlink" title="C Dirichlet k-th root"></a><a target="_blank" rel="noopener" href="https://codeforces.com/gym/102471/problem/C">C Dirichlet k-th root</a></h1><p>WD</p>
+<p>狄利克雷卷积相关</p>
+<h1 id="H-King"><a href="#H-King" class="headerlink" title="H King"></a><a target="_blank" rel="noopener" href="https://codeforces.com/gym/102471/problem/H">H King</a></h1><p>题意：给定200000的数列，找模意义下的最长等比子列的长度，若长度$&lt;\frac{n}{2}$则只要输出-1。</p>
+<p>解：</p>
+<p>假设长度大于$\frac{n}{2}$，则随机取一个位置$x$，则$a[x],a[x+1]$或$a[x],a[x+2]$相邻出现在最长等比数列里的概率是$\frac{1}{4}$，因此随机取$m$个位置检测的话，找不到最长等比数列的概率为$(\frac{3}{4})^m$。每次找时暴力向左右两端延伸看长度即可。写之前对题目意思比较清晰，但写的时候搞错了，以为只需要把长度大于$\frac{n}{2}$的等比子列长度任意输出一个即可，事实上完全可以构造出有两个等比子列长度都大于$\frac{n}{2}$的情况，因为两个数列中有些数是可以共用的。后来因为$m$取值过大(50以上)T了。其实稍微计算一下就可以知道，不管n的数据规模，m大于30时其实错误率就已经在万分之一到千分之一级别了，也就是说需要有一千到一万组数据才期望能卡掉。复杂度$O(n*m)$</p>
+<p>LYF在赛场上也想出了一个方法，因为概率是$\frac{1}{4}$，因此把每个数和后两位的比值都拿出来，则该比值应该在总数中大约占比大于$\frac{1}{8}$。把所有符合的比值都尝试找一遍最长延伸即可。看起来是$O(n)$非常优秀，但是一些细节比较难写，比如从哪里开始尝试延伸，如果把位置记下来的话怎么记？数列中可能同时存在很多个比值相同的长度各异的等比子列，如何区分它们。</p>
+<h1 id="G-Happiness"><a href="#G-Happiness" class="headerlink" title="G Happiness"></a><a target="_blank" rel="noopener" href="https://codeforces.com/gym/102471/problem/G">G Happiness</a></h1><p>LYF 大模拟 下面题解直接照搬LYF’s blog</p>
+<p>英语阅读+读入处理，先把要读的内容以字符串取出来，然后用sscanf来处理读入还是挺香的</p>
+<p>暴力的运算次数整体是$10!O(\lg n)$，估计测试用例没有极端数据，所以写的差一点也能过。常数主要还是递归传参部分，比如递归的时候如果直接创建一个变量来记录原状态其实很费时间，还原状态是可以$O(1)$完成的，优化了一下只要400+ms</p>
+
+        </div>
+
+        
+        <section class="post-tags">
+            <div>
+                <span>Tag(s):</span>
+                <span class="tag">
+                    
+                    
+                        <a href="/tags/XCPC/"># XCPC</a>
+                    
+                        
+                </span>
+            </div>
+            <div>
+                <a href="javascript:window.history.back();">back</a>
+                <span>· </span>
+                <a href="/">home</a>
+            </div>
+        </section>
+        <section class="post-nav">
+            
+                <a class="prev" rel="prev" href="/2021/03/25/%E5%8D%9A%E5%BC%88%E8%AE%BA/">博弈论</a>
+            
+            
+            <a class="next" rel="next" href="/2021/03/20/EOJ-2021-3/">EOJ 2021.3</a>
+            
+        </section>
+
+
+    </article>
+</div>
+
+        </div>
+        <footer id="footer" class="footer">
+        <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <div class="copyright">
+        <span>© Helloat123 | Powered by <a href="https://hexo.io" target="_blank">Hexo</a> & <a href="https://github.com/Siricee/hexo-theme-Chic" target="_blank">Chic</a> | <span id="busuanzi_container_site_pv">
+    本站总访问量<span id="busuanzi_value_site_pv"></span>次
+</span> | <span id="busuanzi_container_site_uv">
+  本站访客数<span id="busuanzi_value_site_uv"></span>人次
+</span></span>
+    </div>
+</footer>
+
+    </div>
+</body>
+</html>
