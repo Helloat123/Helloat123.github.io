@@ -265,6 +265,7 @@
 </li>
 <li><p>若每次可以取1..t根火柴（t&lt;N）呢？</p>
 <p>一样的方法，N=(n+1)*k则必败，剩余情况必胜</p>
+<p>听说这个叫<strong>巴什博弈</strong></p>
 </li>
 </ul>
 <h1 id="NIM"><a href="#NIM" class="headerlink" title="NIM"></a>NIM</h1><p>甲乙两人面对若干堆石子，其中每一堆石子的数目可以任意确定。例如下所示的初始局面：共3堆，其中第一堆的石子数$a_1=3$，第二堆石子数$a_2=3$，第三堆石子数$a_3=1$。两人轮流按下列规则取走一些石子，游戏的规则如下：</p>
@@ -312,6 +313,23 @@
 <p>显然对每一堆求出上面题目中的SG函数，异或即可</p>
 </li>
 </ul>
+<h1 id="模型的转化"><a href="#模型的转化" class="headerlink" title="模型的转化"></a>模型的转化</h1><ul>
+<li>一个100x100的棋盘，坐标范围是[0,100]的，上面有n个棋子。Alice 和 Bob轮流操作，每次操作可以把一枚棋子向左或者向下或者向斜下方移动任意步，也就是(x,y)有这三种移动(x−l,y),(x,y−l),(x−l,y−l)。多个棋子可以同时在同一位置。第一个把棋子移动到(0,0)点的人获胜。问是否先手必胜。</li>
+</ul>
+<p>因为这道题是第一个到原点的获胜，所以没法直接按照常规SG来设置。但是可以发现，不能把棋子移到三条直线上，否则下一步对方就能胜利。因此应该把末态放在(1,2)和(2,1)两个点，对每个棋子分开算SG值再异或得到答案。</p>
+<ul>
+<li>在一个阶梯上,每层有若干个石子,每次可以将某一层中若干个石子移动到他下一层阶梯中去.问胜负情况</li>
+</ul>
+<p>胜负情况仅由奇数层石子决定。若对方将偶数堆石子移动到奇数堆，则我方只要将这些石子从该层移到下一层的偶数堆，则该回合没有对奇数层的石子造成影响。而将奇数层石子移动到偶数层则可以看做是nim游戏中将这些石子拿走。因此以该种方法，若奇数层nim游戏计算结果为必胜，则我方必胜。</p>
+<p>为何奇数层结果必败则我方必败？没有别的方式取胜吗？确实，因为一旦奇数层nim必败，则对方可以用相同方法使我方必败，且没有其它情况。</p>
+<ul>
+<li>定义有如下操作的游戏:<ol>
+<li>从一堆中取走任意个数的石子.</li>
+<li>将一堆石子分成两堆不为空的石子.</li>
+</ol>
+</li>
+</ul>
+<p>只需要改变SG函数的计算方式，利用上面提到的有向图游戏进行建模，就能想清楚。</p>
 <h1 id="二分图博弈"><a href="#二分图博弈" class="headerlink" title="二分图博弈"></a>二分图博弈</h1><p>双方在一张二分图上博弈，首先有一个初始点，每一步可以选择走到与当前点有边相连的别的点上（显然其中一方只会到达在二分图同一边的节点），不得走重复的点，无处走判负。</p>
 <p>首先说结论：</p>
 <p><strong>若初始点一定被最大匹配包含，则先手必胜；反之，则后手必胜</strong></p>
@@ -340,6 +358,7 @@
 <h1 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h1><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/luomingjun12315/article/details/45555495">https://blog.csdn.net/luomingjun12315/article/details/45555495</a></p>
 <p><a target="_blank" rel="noopener" href="https://oi-wiki.org/math/game-theory/">https://oi-wiki.org/math/game-theory/</a></p>
 <p>博弈论在信息学竞赛中的应用 杭州第二中学 李建 NOI教师培训·长沙 2016 – 09</p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_37517391/article/details/82944606">https://blog.csdn.net/weixin_37517391/article/details/82944606</a></p>
 
         </div>
 
