@@ -224,6 +224,9 @@
 </li>
 </ol>
 <p>参考:<a target="_blank" rel="noopener" href="https://my.oschina.net/u/4417528/blog/3943851">https://my.oschina.net/u/4417528/blog/3943851</a></p>
+<h1 id="最小路径覆盖"><a href="#最小路径覆盖" class="headerlink" title="最小路径覆盖"></a>最小路径覆盖</h1><h2 id="定义-1"><a href="#定义-1" class="headerlink" title="定义"></a>定义</h2><p>给定有向图$G=(V,E)$。设$P$是$G$的一个简单路（顶点不相交）的集合。如果$V$中每个顶点恰好在$P$的一条路上，则称$P$是$G$的一个路径覆盖。$P$中路径可以从$V$的任何一个顶点开始，长度也是任意的，特别地，可以为$0$。$G$的最小路径覆盖是$G$的所含路径条数最少的路径覆盖。</p>
+<h2 id="建模"><a href="#建模" class="headerlink" title="建模"></a>建模</h2><p>将每个点拆成两个点，形成一张二分图。设$x$点拆成$x_1$与$x_2$两个点。则若原图中存在$x$到$y$的有向边，则添加一条$x1$指向$y2$的边。原图的点数减去新图的二分图最大匹配即为答案。</p>
+<h3 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h3><p>首先，若不存在任何边，显然答案为原图点数。同时，把拆成的两个点$x_1$当作出点，$x_2$当作入点。当新图中有一个匹配，即意味着匹配中的某个$x_1$可以连到$y_2$，则原本的$pre\rightarrow x$以及$y\rightarrow nxt$($pre$和$nxt$表示已存在的在$x$结束/从$y$开始的路径，且可以为空)两条路径显然可以变为$pre\rightarrow x\rightarrow y\rightarrow nxt$一条路径，减少了一条，答案减一。而二分图匹配的定义表明了$x_1$无法指向多个入点，$x_2$也无法指向多个出点。</p>
 
         </div>
 

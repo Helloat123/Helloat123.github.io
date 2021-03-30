@@ -156,6 +156,42 @@
 </li>
 <li><p>nullptr代表空指针，但c中是NULL或0</p>
 </li>
+<li><p>文件输入输出流fstream包含ifstream和ofstream，定义时</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">ifstream fin&#123;<span class="string">&quot;a.txt&quot;</span>&#125;;<span class="comment">//或者下面这样</span></span><br><span class="line">ifstream fin;fin.open(<span class="string">&quot;a.txt&quot;</span>);<span class="comment">//注意程序结束前要close</span></span><br><span class="line">fin.close();</span><br></pre></td></tr></table></figure>
+
+<p>然后fin就可以当作一般的cin差不多用法了。</p>
+<p>同时，这里定义的fin和cin都属于istream，其它也属于istream的还有stringstream，用法如下</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">string</span> s;</span><br><span class="line"><span class="function"><span class="built_in">stringstream</span> <span class="title">strin</span><span class="params">(s)</span></span>;</span><br><span class="line"><span class="keyword">int</span> n;</span><br><span class="line">strin&gt;&gt;n;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>cin&gt;&gt;当中右移符号的返回值为左端的istream&amp;对象，因此在cin&gt;&gt;x&gt;&gt;y中，cin&gt;&gt;x执行完返回一个cin，继续读cin&gt;&gt;y。判断语句中cin会被强转为bool型。当cin.eof()为true的时候条件判断中的cin是false</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">while</span> (<span class="built_in">cin</span>&gt;&gt;n) &#123;<span class="comment">/*what you want to do here*/</span>&#125;</span><br><span class="line"><span class="keyword">while</span> (getline(<span class="built_in">cin</span>,s)) &#123;<span class="comment">/*...*/</span>&#125;<span class="comment">//返回值实际上也是个istream&amp;，和上面这句的返回值类型相同</span></span><br><span class="line"><span class="keyword">while</span> (!<span class="built_in">cin</span>.eof()) &#123;<span class="built_in">cin</span>&gt;&gt;n;<span class="comment">/*...*/</span>&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><pre><code class="c++">void f(char);
+void g(char &amp;);
+void h(const char&amp;);
+char c=&#39;A&#39;;int d=97;
+f(&#39;a&#39;);//right
+f(49);//right
+f(c);//right
+f(d);//right
+g(&#39;a&#39;);//wrong you can&#39;t refer a constant
+g(49);//wrong
+g(c);//right
+g(d);//wrong you can&#39;t refer a different variable type
+h(&#39;a&#39;);//right  the compiler would introduce a temporary variable
+h(49);//right the compiler would introduce a temporary variable
+h(c);//right
+h(d);//right the compiler would introduce a temporary variable
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">* &#96;&#96;&#96;c++</span><br><span class="line">  namespace My</span><br><span class="line">  &#123;</span><br><span class="line">      int a;</span><br><span class="line">      void f()&#123;a++&#125;;</span><br><span class="line">  &#125;</span><br><span class="line">  namespace AA</span><br><span class="line">  &#123;</span><br><span class="line">      using namespace My;&#x2F;&#x2F;直接把两个杂糅起来</span><br><span class="line">  &#125;</span><br><span class="line">  namespace AA</span><br><span class="line">  &#123;</span><br><span class="line">      int b;&#x2F;&#x2F;这样算作添加</span><br><span class="line">  &#125;</span><br><span class="line">  int main()</span><br><span class="line">  &#123;</span><br><span class="line">      using namespace My;&#x2F;&#x2F;1 introduce all，更接近于全局和局部的关系 </span><br><span class="line">      using My::f;&#x2F;&#x2F;2 introduce My::f</span><br><span class="line">      using My::a;&#x2F;&#x2F;3 introduce My::a，只引入了一个局部标识符，和下面a同级</span><br><span class="line">      int a;&#x2F;&#x2F;4 与上面这行会矛盾，但与1不矛盾</span><br><span class="line">      cout&lt;&lt;a&lt;&lt;My::a&lt;&lt;endl;</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure></code></pre>
+</li>
+<li><p>for static global names, use unnamed namespace to avoid their use in other source files.</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">namespace</span><span class="comment">//effective in the whole source file </span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">int</span> a;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">f</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    a=<span class="number">1</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>ADL，又称koenig查找，会根据参数所在的命名空间找调用的函数</p>
+</li>
+<li><pre><code class="c++">namespace s=std;//重命名</code></pre>
+</li>
+<li></li>
 </ul>
 
         </div>
