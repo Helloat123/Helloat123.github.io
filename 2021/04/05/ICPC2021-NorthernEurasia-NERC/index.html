@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <meta name="author" content="Helloat123">
+
+
+
+
+
+<title>ICPC2021-NorthernEurasia-NERC | Richard&#39;s Blog</title>
+
+
+
+    <link rel="icon" href="/favicon.png">
+
+
+
+
+    <!-- stylesheets list from _config.yml -->
+    
+    <link rel="stylesheet" href="/css/style.css">
+    
+
+
+
+    <!-- scripts list from _config.yml -->
+    
+    <script src="/js/script.js"></script>
+    
+    <script src="/js/tocbot.min.js"></script>
+    
+
+
+
+    
+    
+        
+    
+
+
+<meta name="generator" content="Hexo 5.2.0"></head>
+<body>
+    <div class="wrapper">
+        <header>
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-header header-logo"><a href="/">Richard&#39;s Blog</a></div>
+            <div class="menu navbar-right">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+                <input id="switch_default" type="checkbox" class="switch_default">
+                <label for="switch_default" class="toggleBtn"></label>
+            </div>
+        </div>
+    </nav>
+
+    
+    <nav class="navbar-mobile" id="nav-mobile">
+        <div class="container">
+            <div class="navbar-header">
+                <div>
+                    <a href="/">Richard&#39;s Blog</a><a id="mobile-toggle-theme">·&nbsp;Light</a>
+                </div>
+                <div class="menu-toggle" onclick="mobileBtn()">&#9776; Menu</div>
+            </div>
+            <div class="menu" id="mobile-menu">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+            </div>
+        </div>
+    </nav>
+
+</header>
+<script>
+    var mobileBtn = function f() {
+        var toggleMenu = document.getElementsByClassName("menu-toggle")[0];
+        var mobileMenu = document.getElementById("mobile-menu");
+        if(toggleMenu.classList.contains("active")){
+           toggleMenu.classList.remove("active")
+            mobileMenu.classList.remove("active")
+        }else{
+            toggleMenu.classList.add("active")
+            mobileMenu.classList.add("active")
+        }
+    }
+</script>
+        <div class="main">
+            <div class="container">
+    
+    
+        <div class="post-toc">
+    <div class="tocbot-list">
+    </div>
+    <div class="tocbot-list-menu">
+        <a class="tocbot-toc-expand" onclick="expand_toc()">Expand all</a>
+        <a onclick="go_top()">Back to top</a>
+        <a onclick="go_bottom()">Go to bottom</a>
+    </div>
+</div>
+
+<script>
+    document.ready(
+        function () {
+            tocbot.init({
+                tocSelector: '.tocbot-list',
+                contentSelector: '.post-content',
+                headingSelector: 'h1, h2, h3, h4, h5',
+                collapseDepth: 1,
+                orderedList: false,
+                scrollSmooth: true,
+            })
+        }
+    )
+
+    function expand_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 6,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "collapse_toc()");
+        b.innerHTML = "Collapse all"
+    }
+
+    function collapse_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 1,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "expand_toc()");
+        b.innerHTML = "Expand all"
+    }
+
+    function go_top() {
+        window.scrollTo(0, 0);
+    }
+
+    function go_bottom() {
+        window.scrollTo(0, document.body.scrollHeight);
+    }
+
+</script>
+    
+
+    
+    <article class="post-wrap">
+        <header class="post-header">
+            <h1 class="post-title">ICPC2021-NorthernEurasia-NERC</h1>
+            
+                <div class="post-meta">
+                    
+                        Author: <a itemprop="author" rel="author" href="/">Helloat123</a>
+                    
+
+                    
+                        <span class="post-time">
+                        Date: <a href="#">April 5, 2021&nbsp;&nbsp;20:04:28</a>
+                        </span>
+                    
+                    
+                        <span class="post-category">
+                    Category:
+                            
+                                <a href="/categories/%E8%AE%B0%E5%BD%95/">记录</a>
+                            
+                        </span>
+                    
+                </div>
+            
+        </header>
+
+        <div class="post-content">
+            <h1 id="K-King’s-Task"><a href="#K-King’s-Task" class="headerlink" title="K King’s Task"></a>K <a target="_blank" rel="noopener" href="https://codeforces.com/contest/1510/problem/K">King’s Task</a></h1><p>题意：给一个1000以内偶数个排列，两种操作，一种是前一半元素和后一半互换，一种是从1,2开始每两个互换，问给定数列转化为排序结束数列的最小步数，不行则-1.</p>
+<p>解：显然两种操作都不能连续执行两次，否则就会抵消。因此，除了初始状态可以进行两种操作，其它到达的状态均只能进行一种操作。通过一些小数据可以发现，能到的状态数相当少，因此如果不想计算可以直接搜索到1e7次看看能不能到达。</p>
+<p>分析1：观察小数据可以知道，123…n这个排列能到达的状态中，所有数均错位，且在每个位置上均出现一遍，因此状态数应该为排列的长度</p>
+<p>分析2：将两次操作合在一起看效果，发现事实上进行一次操作相当于在一个大小为数字数量的置换群当中置换一次，所以得到结果。</p>
+<h1 id="D-Digits"><a href="#D-Digits" class="headerlink" title="D Digits"></a>D <a target="_blank" rel="noopener" href="https://codeforces.com/contest/1510/problem/D">Digits</a></h1><p>WD</p>
+<p>dp，由于数字很大，所以取个log</p>
+<h1 id="G-Guide"><a href="#G-Guide" class="headerlink" title="G Guide"></a>G <a target="_blank" rel="noopener" href="https://codeforces.com/contest/1510/problem/G">Guide</a></h1><p>LYF</p>
+<p>树形dp</p>
+<h1 id="I-Is-It-Rated"><a href="#I-Is-It-Rated" class="headerlink" title="I Is It Rated?"></a>I <a target="_blank" rel="noopener" href="https://codeforces.com/contest/1510/problem/I">Is It Rated?</a></h1><p>未补</p>
+<p>题意：交互题，有n个人和你一起猜01，有m轮。每次你猜之前都知道别人这轮猜啥，要求你的错误场数不超过表现最好的一个人的1.3倍+100。</p>
+<p>解：考虑两种极端情况，一种是大家都差不多胜率，那我就跟着人多的选即可；一种是大家都猜不对只有一个人一骑绝尘，那我得跟着牛逼人走，不然就会输。具体如何实现这两种情况的平衡，其实很难做。根据题解，除了采用合适的估值函数以外还得加上随机化。过了的都有随机化。</p>
+<h1 id="B-Button-Lock"><a href="#B-Button-Lock" class="headerlink" title="B Button Lock"></a>B <a target="_blank" rel="noopener" href="https://codeforces.com/contest/1510/problem/B">Button Lock</a></h1><p>未补</p>
+<p>看起来像费用流，但是又不知道到底是不是</p>
+<p>等复习完费用流再回头看看</p>
+
+        </div>
+
+        
+        <section class="post-tags">
+            <div>
+                <span>Tag(s):</span>
+                <span class="tag">
+                    
+                    
+                        <a href="/tags/XCPC/"># XCPC</a>
+                    
+                        
+                </span>
+            </div>
+            <div>
+                <a href="javascript:window.history.back();">back</a>
+                <span>· </span>
+                <a href="/">home</a>
+            </div>
+        </section>
+        <section class="post-nav">
+            
+                <a class="prev" rel="prev" href="/2021/04/05/ICPC2021-%E6%98%86%E6%98%8E/">ICPC2021-昆明</a>
+            
+            
+            <a class="next" rel="next" href="/2021/03/27/%E7%BD%91%E7%BB%9C%E6%B5%81/">网络流</a>
+            
+        </section>
+
+
+    </article>
+</div>
+
+        </div>
+        <footer id="footer" class="footer">
+        <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <div class="copyright">
+        <span>© Helloat123 | Powered by <a href="https://hexo.io" target="_blank">Hexo</a> & <a href="https://github.com/Siricee/hexo-theme-Chic" target="_blank">Chic</a> | <span id="busuanzi_container_site_pv">
+    本站总访问量<span id="busuanzi_value_site_pv"></span>次
+</span> | <span id="busuanzi_container_site_uv">
+  本站访客数<span id="busuanzi_value_site_uv"></span>人次
+</span></span>
+    </div>
+</footer>
+
+    </div>
+</body>
+</html>
