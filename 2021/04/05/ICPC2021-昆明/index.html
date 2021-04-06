@@ -223,9 +223,9 @@
 <li><p>调试时没有看清楚强制在线的方式，以为自己错了，对着正确的地方调了半天</p>
 </li>
 </ul>
-<h1 id="补K-Parallel-Sort"><a href="#补K-Parallel-Sort" class="headerlink" title="补K Parallel Sort"></a>补K <a target="_blank" rel="noopener" href="https://ac.nowcoder.com/acm/contest/14055/K">Parallel Sort</a></h1><p>NEEDREVIEW</p>
-<p>题意：给定一个排列，每一轮可以挑选一堆位置对，使那些位置对上的数相互交换，但要保证位置对中的数互不重复。问至少几轮，输出方案</p>
-<p>解：首先显然可以找出环来，然后可以发现每个环最多只需要两次就能解决。接下来的事情我今天没脑子想了</p>
+<h1 id="补K-Parallel-Sort"><a href="#补K-Parallel-Sort" class="headerlink" title="补K Parallel Sort"></a>补K <a target="_blank" rel="noopener" href="https://ac.nowcoder.com/acm/contest/14055/K">Parallel Sort</a></h1><p>题意：给定一个排列，每一轮可以挑选一堆位置对，使那些位置对上的数相互交换，但要保证位置对中的数互不重复。问至少几轮，输出方案</p>
+<p>解：首先显然可以找出环来，然后可以发现每个环最多只需要两次就能解决。考虑对于开始的那张图，交换两个数将会造成的影响。显然这两个位置的入边是不受影响的，交换两个数相当于交换出边。如果每次交换相邻的边，将会每次将环缩小一半，会得到一个看似很优秀的log次做法。比赛时王鼎写这个分治写得无比正确，我写的gen和spj在100000也完全检测不出错误。所以估计是有比log次更优的做法。</p>
+<p>可以发现，如果采取相邻两两交换方法的反面——另一个极端——对称交换，那么拆一次就可以把任意大小的环拆成若干个大小为1和2的环。然后这道题就做完了。比如234561就换成165432然后就可以一步到位123456。</p>
 <h1 id="补G-Gift"><a href="#补G-Gift" class="headerlink" title="补G Gift"></a>补G <a target="_blank" rel="noopener" href="https://ac.nowcoder.com/acm/contest/14055/G">Gift</a></h1><p>题意：很长</p>
 <p>解：两个DP拼起来，注意一下特殊情况大概就行了？但是我看出是DP也没设计出状态</p>
 <p>LYF</p>
