@@ -210,7 +210,17 @@ h(d);//right the compiler would introduce a temporary variable
     //重载就是同一个变量名不同函数
 &#125;
 int A::getd() const&#123;return d;&#125;
-int A::getd()&#123;return d++;&#125;</code></pre>
+int A::getd()&#123;return d++;&#125;
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">* &#96;&#96;&#96;c++</span><br><span class="line">  class A</span><br><span class="line">  &#123;</span><br><span class="line">  private:</span><br><span class="line">     	int x,y;</span><br><span class="line">  public:</span><br><span class="line">      A&amp; operator+(const &amp;A);&#x2F;&#x2F;A后面的&amp;表示返回一个引用，可以修改。否则返回的是const的局部变量</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure></code></pre>
+</li>
+<li><pre><code class="c++">class A
+&#123;
+    void operator==(const &amp;A)=delete//禁止使用默认的==运算符
+    void operator&amp;(const &amp;A)=delete//禁止使用默认的取地址运算符
+&#125;
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">* &#96;&#96;&#96;c++</span><br><span class="line">  class complex</span><br><span class="line">  &#123;</span><br><span class="line">  public:</span><br><span class="line">      complex&amp; operator+(const int &amp;b);</span><br><span class="line">  &#125;;</span><br><span class="line">  complex a;</span><br><span class="line">  int main()&#123;2+a&#x2F;&#x2F;wrong 只定义了a+2,没定义2+a</span><br><span class="line">  &#x2F;&#x2F;但是可以在class里面写个complex(const int &amp;b) &#123;x&#x3D;b;&#125;然后它就会自动转类型了</span><br></pre></td></tr></table></figure></code></pre>
+</li>
+<li><p>由于ADL，namespace当中会自动寻找操作数相同的重定义运算符来用。重载前后操作数相同，不能变化结合性</p>
 </li>
 <li></li>
 </ul>
