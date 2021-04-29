@@ -12,7 +12,7 @@
 
 
 
-<title>ICPC2018-ECFinal | Richard&#39;s Blog</title>
+<title>ICPC2021-浙江省赛 | Richard&#39;s Blog</title>
 
 
 
@@ -173,7 +173,7 @@
     
     <article class="post-wrap">
         <header class="post-header">
-            <h1 class="post-title">ICPC2018-ECFinal</h1>
+            <h1 class="post-title">ICPC2021-浙江省赛</h1>
             
                 <div class="post-meta">
                     
@@ -182,7 +182,7 @@
 
                     
                         <span class="post-time">
-                        Date: <a href="#">April 25, 2021&nbsp;&nbsp;14:05:36</a>
+                        Date: <a href="#">April 29, 2021&nbsp;&nbsp;20:30:07</a>
                         </span>
                     
                     
@@ -198,12 +198,28 @@
         </header>
 
         <div class="post-content">
-            <h1 id="D-Deja-vu-of-…-Go-Players"><a href="#D-Deja-vu-of-…-Go-Players" class="headerlink" title="D Deja vu of … Go Players"></a>D <a target="_blank" rel="noopener" href="http://codeforces.com/gym/102056/problem/D">Deja vu of … Go Players</a></h1><p>lyf签到</p>
-<h1 id="L-Eventual-…-Journey"><a href="#L-Eventual-…-Journey" class="headerlink" title="L Eventual … Journey"></a>L <a target="_blank" rel="noopener" href="http://codeforces.com/gym/102056/problem/L">Eventual … Journey</a></h1><p>模拟</p>
-<h1 id="I-Misunderstood-…-Missing"><a href="#I-Misunderstood-…-Missing" class="headerlink" title="I Misunderstood … Missing"></a>I <a target="_blank" rel="noopener" href="http://codeforces.com/gym/102056/problem/I">Misunderstood … Missing</a></h1><p>lyf </p>
-<h1 id="C-Heretical-…-Mobius"><a href="#C-Heretical-…-Mobius" class="headerlink" title="C Heretical … Möbius"></a>C <a target="_blank" rel="noopener" href="http://codeforces.com/gym/102056/problem/C">Heretical … Möbius</a></h1><p>莫比乌斯函数相关 wd</p>
-<h1 id="F-Interstellar-…-Fantasy"><a href="#F-Interstellar-…-Fantasy" class="headerlink" title="F Interstellar … Fantasy"></a>F <a target="_blank" rel="noopener" href="http://codeforces.com/gym/102056/problem/F">Interstellar … Fantasy</a></h1><p>题意：给定一个球心和一个半径，再给定两个点。求不经过球内的两点间最短距离</p>
-<p>解：把图想象出来可以发现，路径一定在两个点和球心所在的平面上。然后发现，两段直线可以利用勾股定理计算，角度也可以利用向量计算。调用cmath当中的acos函数即可。</p>
+            <h1 id="A-League-of-Legends"><a href="#A-League-of-Legends" class="headerlink" title="A League of Legends"></a>A <a target="_blank" rel="noopener" href="http://codeforces.com/gym/103055/problem/A">League of Legends</a></h1><p>LYF 签到</p>
+<h1 id="C-Cube"><a href="#C-Cube" class="headerlink" title="C Cube"></a>C <a target="_blank" rel="noopener" href="http://codeforces.com/gym/103055/problem/C">Cube</a></h1><p>题意：给定八个三维点，问是不是立方体</p>
+<p>解：算一下每个点到所有点的距离的平方，一定是3个a^2，3个2a^2，1个3a^2。感性理解显然如果每个点到别的点的距离都符合着个规律，它一定是立方体。</p>
+<h1 id="F-Fair-Distribution"><a href="#F-Fair-Distribution" class="headerlink" title="F Fair Distribution"></a>F <a target="_blank" rel="noopener" href="http://codeforces.com/gym/103055/problem/F">Fair Distribution</a></h1><p>题意：给定1000组1e8以内的n,m。可以减少n或增加m，n和m每更改1的花费为1。问使得n可以整除m的最小花费</p>
+<p>LYF解：</p>
+<p>首先显然可以在时限内枚举根号m以内n’的值求这部分的答案。</p>
+<p>然后考虑当n在根号m以外时，k一定在根号m以内。如果枚举k可以得到n’和m’，那么就做完了。但是k一定时n’和m’并不固定。那么从贪心的角度考虑，改动n时，kn会变化k；而改动m时，m只会变化1。因此可以优先变化n再变化m，得到答案。</p>
+<h1 id="G-Wall-Game"><a href="#G-Wall-Game" class="headerlink" title="G Wall Game"></a>G <a target="_blank" rel="noopener" href="http://codeforces.com/gym/103055/problem/G">Wall Game</a></h1><p>题意：有蜂窝状的格子。每次操作将一个点染黑，或询问当前格子所在的连通块的边界长度(六边形每条边算1)。</p>
+<p>LYF解：</p>
+<p>并查集看六个方向的六边形是否在同一个连通块内，如果在的话就对连通块的边数-1，不在的话+1。因为数据范围比较大，需要map维护。同时貌似卡了哈希。</p>
+<h1 id="I-Grammy-and-Ropes"><a href="#I-Grammy-and-Ropes" class="headerlink" title="I Grammy and Ropes"></a>I <a target="_blank" rel="noopener" href="http://codeforces.com/gym/103055/problem/I">Grammy and Ropes</a></h1><p>LYF?</p>
+<h1 id="J-Grammy-and-Jewelry"><a href="#J-Grammy-and-Jewelry" class="headerlink" title="J Grammy and Jewelry"></a>J <a target="_blank" rel="noopener" href="http://codeforces.com/gym/103055/problem/J">Grammy and Jewelry</a></h1><p>LYF 基础DP</p>
+<h1 id="L-String-Freshman"><a href="#L-String-Freshman" class="headerlink" title="L String Freshman"></a>L <a target="_blank" rel="noopener" href="http://codeforces.com/gym/103055/problem/L">String Freshman</a></h1><p>合作。读题容易读错的字符串题。问kmp的nxt数组是否有不为0的位</p>
+<h1 id="M-Game-Theory"><a href="#M-Game-Theory" class="headerlink" title="M Game Theory"></a>M <a target="_blank" rel="noopener" href="http://codeforces.com/gym/103055/problem/M">Game Theory</a></h1><p>签到。输出0</p>
+<h1 id="补B-Restore-Atlantis"><a href="#补B-Restore-Atlantis" class="headerlink" title="补B Restore Atlantis"></a>补B <a target="_blank" rel="noopener" href="http://codeforces.com/gym/103055/problem/B">Restore Atlantis</a></h1><p><del>可持久化树套树</del>虽然好像能写，但是肯定常数大得飞起</p>
+<p><del>线段树套平衡树</del>套了个set 常数太大T了</p>
+<p>题意：给定n100000个边和坐标轴平行的矩形，保证矩形的顶点都在0到maxc=2000。有q100000个询问，每个询问给定l,r，问若把编号l到r的这些矩形删掉，剩下矩形的面积并。</p>
+<p>解：首先可以发现点只有2000乘2000，加起来是4e6，突破口肯定在这里。</p>
+<p>直接利用主席树之类的数据结构并没有办法处理l到r删掉的情况，顶多只能处理l到r保留的情况。因此考虑从这里思考特殊性质。</p>
+<p>可以发现，如果覆盖某个点的矩形的最大编号为M，最小编号为m，那么只要M&gt;r或者m&lt;l，该点就需要被统计到答案中。因此可以考虑先算出每个点的M和m。</p>
+<p>类似的题目经常是用扫描线+数据结构进行计算的，这道题也不例外。扫描线惯例先把矩形拆成两部分：压入和弹出。按顺序枚举x轴，开一棵线段树，每次将线段树的区间压入当前矩形的编号（由于我们只需要max和min，所以可以对线段树每个节点开两个priority_queue，同时为了存储删除的数据，再开两个priority_queue），每次时间复杂度$O(\lg^2C)$。在右边界为该x值的矩形都处理完后，dfs该线段树得到该列上每个点的M和m值$O(C)$。因此这一步的总复杂度为$O(n\lg^2C+C^2)$。</p>
+<p>得到每个点的答案后，下一步是统计询问的答案。可以发现，$\sum _ {M&gt;r或m&lt;l} Point=\sum Point - \sum _ {M\le r且m\ge l} Point$。而后者可以较为简单地利用扫描线+树状数组解答(差不多是模板题了)。将询问排序后，扫描线枚举的右边界的编号，每次修改树状数组并询问。</p>
 
         </div>
 
@@ -227,10 +243,8 @@
         </section>
         <section class="post-nav">
             
-                <a class="prev" rel="prev" href="/2021/04/27/HDU-3333-Turing-Tree/">HDU 3333 Turing Tree</a>
             
-            
-            <a class="next" rel="next" href="/2021/04/25/ECNU%E6%A0%A1%E8%B5%9B2021/">ECNU校赛2021</a>
+            <a class="next" rel="next" href="/2021/04/27/HDU-3333-Turing-Tree/">HDU 3333 Turing Tree</a>
             
         </section>
 

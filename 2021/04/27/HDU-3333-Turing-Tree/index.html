@@ -12,7 +12,7 @@
 
 
 
-<title>Archives | Richard&#39;s Blog</title>
+<title>HDU 3333 Turing Tree | Richard&#39;s Blog</title>
 
 
 
@@ -104,107 +104,77 @@
     }
 </script>
         <div class="main">
-            <div class="post-wrap archive">
+            <div class="container">
     
     
-        
 
-        
-            <h3>2021</h3>
-        
-
-        <article class="archive-item">
-            <a class="archive-item-link" href="/2021/04/29/ICPC2021-%E6%B5%99%E6%B1%9F%E7%9C%81%E8%B5%9B/">ICPC2021-浙江省赛</a>
-            <span class="archive-item-date">April 29, 2021</span>
-        </article>
     
-        
+    <article class="post-wrap">
+        <header class="post-header">
+            <h1 class="post-title">HDU 3333 Turing Tree</h1>
+            
+                <div class="post-meta">
+                    
+                        Author: <a itemprop="author" rel="author" href="/">Helloat123</a>
+                    
+
+                    
+                        <span class="post-time">
+                        Date: <a href="#">April 27, 2021&nbsp;&nbsp;13:25:19</a>
+                        </span>
+                    
+                    
+                        <span class="post-category">
+                    Category:
+                            
+                                <a href="/categories/%E9%AB%98%E7%BA%A7%E6%95%B0%E6%8D%AE/">高级数据</a>
+                            
+                        </span>
+                    
+                </div>
+            
+        </header>
+
+        <div class="post-content">
+            <p>由于EC-Final不会做G的离线线段树，于是打算在这方面做几道题学习一下。</p>
+<p>题意：给定一个数列和许多询问，每次询问数列的某一段中所有不重复数字的和。比如1,2,1,2,3这个数列，1-3区间答案是3，2-5区间答案6。</p>
+<p>解：首先发现在线不好做，尝试反着做。可以发现，若从后往前一个个将数字加入，则仅会影响加入位置到最近的相同数字之间的位置的答案。于是就预处理一下nxt并排序询问，从后往前加数，用线段树维护一下答案即可。</p>
+<p>当然这里线段树也可以用区间树状数组代替</p>
+<p>同时，假设强制在线，把上述的线段树可持久化一下即可</p>
+
+        </div>
 
         
+        <section class="post-tags">
+            <div>
+                <span>Tag(s):</span>
+                <span class="tag">
+                    
+                    
+                        <a href="/tags/%E7%BA%BF%E6%AE%B5%E6%A0%91/"># 线段树</a>
+                    
+                        
+                </span>
+            </div>
+            <div>
+                <a href="javascript:window.history.back();">back</a>
+                <span>· </span>
+                <a href="/">home</a>
+            </div>
+        </section>
+        <section class="post-nav">
+            
+                <a class="prev" rel="prev" href="/2021/04/29/ICPC2021-%E6%B5%99%E6%B1%9F%E7%9C%81%E8%B5%9B/">ICPC2021-浙江省赛</a>
+            
+            
+            <a class="next" rel="next" href="/2021/04/25/ICPC2018-ECFinal/">ICPC2018-ECFinal</a>
+            
+        </section>
 
-        <article class="archive-item">
-            <a class="archive-item-link" href="/2021/04/27/HDU-3333-Turing-Tree/">HDU 3333 Turing Tree</a>
-            <span class="archive-item-date">April 27, 2021</span>
-        </article>
-    
-        
 
-        
-
-        <article class="archive-item">
-            <a class="archive-item-link" href="/2021/04/25/ICPC2018-ECFinal/">ICPC2018-ECFinal</a>
-            <span class="archive-item-date">April 25, 2021</span>
-        </article>
-    
-        
-
-        
-
-        <article class="archive-item">
-            <a class="archive-item-link" href="/2021/04/25/ECNU%E6%A0%A1%E8%B5%9B2021/">ECNU校赛2021</a>
-            <span class="archive-item-date">April 25, 2021</span>
-        </article>
-    
-        
-
-        
-
-        <article class="archive-item">
-            <a class="archive-item-link" href="/2021/04/05/ICPC2021-%E6%98%86%E6%98%8E/">ICPC2021-昆明</a>
-            <span class="archive-item-date">April 5, 2021</span>
-        </article>
-    
-        
-
-        
-
-        <article class="archive-item">
-            <a class="archive-item-link" href="/2021/04/05/ICPC2021-NorthernEurasia-NERC/">ICPC2021-NorthernEurasia-NERC</a>
-            <span class="archive-item-date">April 5, 2021</span>
-        </article>
-    
-        
-
-        
-
-        <article class="archive-item">
-            <a class="archive-item-link" href="/2021/03/27/%E7%BD%91%E7%BB%9C%E6%B5%81/">网络流</a>
-            <span class="archive-item-date">March 27, 2021</span>
-        </article>
-    
-        
-
-        
-
-        <article class="archive-item">
-            <a class="archive-item-link" href="/2021/03/26/%E7%BA%BF%E6%80%A7%E8%A7%84%E5%88%92%E4%B8%8E%E7%BD%91%E7%BB%9C%E6%B5%8124%E9%A2%98/">线性规划与网络流24题</a>
-            <span class="archive-item-date">March 26, 2021</span>
-        </article>
-    
-        
-
-        
-
-        <article class="archive-item">
-            <a class="archive-item-link" href="/2021/03/25/%E5%8D%9A%E5%BC%88%E8%AE%BA/">博弈论</a>
-            <span class="archive-item-date">March 25, 2021</span>
-        </article>
-    
-        
-
-        
-
-        <article class="archive-item">
-            <a class="archive-item-link" href="/2021/03/25/ICPC2019-ECFinal/">ICPC2019-ECFinal</a>
-            <span class="archive-item-date">March 25, 2021</span>
-        </article>
-    
-    
-    <nav class="pagination">
-        <span class="page-number current">1</span><a class="page-number" href="/archives/page/2/">2</a><a class="page-number" href="/archives/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/archives/page/8/">8</a>
-    </nav>
-
+    </article>
 </div>
+
         </div>
         <footer id="footer" class="footer">
         <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
