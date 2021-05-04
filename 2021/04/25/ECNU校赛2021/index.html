@@ -40,6 +40,45 @@
     
     
         
+            <!-- MathJax配置，可通过单美元符号书写行内公式等 -->
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+    "HTML-CSS": {
+        preferredFont: "TeX",
+        availableFonts: ["STIX","TeX"],
+        linebreaks: { automatic:true },
+        EqnChunk: (MathJax.Hub.Browser.isMobile ? 10 : 50)
+    },
+    tex2jax: {
+        inlineMath: [ ["$", "$"], ["\\(","\\)"] ],
+        processEscapes: true,
+        ignoreClass: "tex2jax_ignore|dno",
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    },
+    TeX: {
+        equationNumbers: { autoNumber: "AMS" },
+        noUndefined: { attributes: { mathcolor: "red", mathbackground: "#FFEEEE", mathsize: "90%" } },
+        Macros: { href: "{}" }
+    },
+    messageStyle: "none"
+    });
+</script>
+<!-- 给MathJax元素添加has-jax class -->
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+<!-- 通过连接CDN加载MathJax的js代码 -->
+<script type="text/javascript" async
+        src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+
+
+        
     
 
 
@@ -210,8 +249,14 @@
 <h1 id="F-Function-Cuber"><a href="#F-Function-Cuber" class="headerlink" title="F Function-Cuber"></a>F Function-Cuber</h1><p>其实题目还没读完</p>
 <p>是个数学交互题</p>
 <h1 id="G-Group-QQ-Speed"><a href="#G-Group-QQ-Speed" class="headerlink" title="G Group QQ Speed"></a>G Group QQ Speed</h1><p>简单找规律，输入大于某个数，答案就都是3</p>
-<h1 id="H-Histogram-in-3D"><a href="#H-Histogram-in-3D" class="headerlink" title="H Histogram in 3D"></a>H Histogram in 3D</h1><p>NEEDREVIEW</p>
-<p>广告牌问题的3维扩展。要求O(nlgn)</p>
+<h1 id="补H-Histogram-in-3D"><a href="#补H-Histogram-in-3D" class="headerlink" title="补H Histogram in 3D"></a>补H Histogram in 3D</h1><p>广告牌问题的3维扩展。数据2e5</p>
+<p>首先发现二维问题的单调栈方法完全不能用了。把要求的答案公式化：<br>$$<br>设x(i,j)是i到j之间的最小的x，y(i,j)同理\\<br>ans=max{x(i,j)\cdot y(i,j)\cdot (j-i+1)}<br>$$<br>考虑分治。分治的每一次调用都统计跨过mid的答案。那么可以将答案产生的可能分为四个种类：x的最小值在左边还是右边取到，y的最小值在左边还是右边取到</p>
+<p>如果x和y的最小值在同一端取到，那么假设是在左边：i从mid向左移动时，j必然向右扩展到比左边i-mid之间的两维数据都大或者等于的最远的地方。所以i向左移动时j必然单调向右移动，因此可以two pointers快速求出答案（eoj上的正确提交用了rmq 但实际上完全不必要吧）</p>
+<p>如果x和y的最小值并不在同一端取到，那么假设x在左边取到最小值、y在右边：</p>
+<p>分析答案的式子：<br>$$<br>ans_now=x(i,mid)\cdot y(mid+1,j)\cdot (j-i+1)\\<br>=x(i,mid)\cdot y(mid+1,j)\cdot j +x(i,mid)\cdot y(mid+1,j)\cdot(-i+1)\\<br>=\left( \begin{array}{c}<br>          x(i,mid)\cdot(-i+1) \\<br>          x(i,mid)<br> \end{array} \right)\cdot<br> \left( \begin{array}{c}<br>          y(mid+1,j) \\<br>          y(mid+1,j)\cdot j<br> \end{array} \right)<br>$$<br>这样就转化成了一个求向量集当中与所询问向量的内积最大的问题了。用<a target="_blank" rel="noopener" href="https://loj.ac/p/2197">SDOI 2014 向量集</a>类似的方法可求（线段树维护凸包）。同时可以注意到，所询问向量是会按照凸包逆时针一个个排下去的，所以是有单调性的，可以用更小复杂度（无需像SDOI这题一样二分）解决问题。</p>
+<p>假设是定i问j的话，那么需要在询问的区间为 使y在右边取到最小值的第一个位置 到 使x在左边取到最小值的最后一个位置。线段树当中每个节点都挂一个凸包，每次更新到使x在左边取到最小值的最后一个位置再进行询问。</p>
+<p>同时可以发现，不在同一端取到答案的这种情况的求解过程中，需要求和同一端取到的一样的扩展位置，因此第一种和第二种情况可以合并写在一个函数内。</p>
+<p>而且，仅考虑x在左边取到最小值、y在右边即可，做一遍之后将原数组reverse之后再做一遍就能求出x在右边取最小值、y在左边的情况。</p>
 <h1 id="I-I-Love-You"><a href="#I-I-Love-You" class="headerlink" title="I I Love You"></a>I I Love You</h1><p>签到题</p>
 <h1 id="J-Just-the-Chosen-One"><a href="#J-Just-the-Chosen-One" class="headerlink" title="J Just the Chosen One"></a>J Just the Chosen One</h1><p>概率DP</p>
 <p>题目忘了</p>

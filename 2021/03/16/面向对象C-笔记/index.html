@@ -222,7 +222,18 @@ int A::getd()&#123;return d++;&#125;
 </li>
 <li><p>由于ADL，namespace当中会自动寻找操作数相同的重定义运算符来用。重载前后操作数相同，不能变化结合性</p>
 </li>
-<li></li>
+<li><p>字面量操作符literal，可以实现1+2.0i这样的表示，方法就是</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">complex</span> <span class="keyword">operator</span><span class="string">&quot;&quot;</span>_i(<span class="keyword">long</span> <span class="keyword">double</span> x)&#123;<span class="keyword">return</span> &#123;<span class="number">0</span>,x&#125;;&#125;<span class="comment">//必须放在class外</span></span><br></pre></td></tr></table></figure>
+
+<p>其中long double是因为double不合法…这些是合法类型</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">char</span> <span class="keyword">const</span>*</span><br><span class="line"><span class="keyword">unsigned</span> <span class="keyword">long</span> <span class="keyword">long</span></span><br><span class="line"><span class="keyword">long</span> <span class="keyword">double</span></span><br><span class="line"><span class="keyword">char</span> <span class="keyword">const</span>*, <span class="built_in">std</span>::<span class="keyword">size_t</span></span><br><span class="line"><span class="keyword">wchar_t</span> <span class="keyword">const</span>*, <span class="built_in">std</span>::<span class="keyword">size_t</span></span><br><span class="line"><span class="keyword">char16_t</span> <span class="keyword">const</span>*, <span class="built_in">std</span>::<span class="keyword">size_t</span></span><br><span class="line"><span class="keyword">char32_t</span> <span class="keyword">const</span>*, <span class="built_in">std</span>::<span class="keyword">size_t</span></span><br></pre></td></tr></table></figure>
+
+<p>老师ppt给的例子的字面量操作符没有下划线，但是貌似用户自定义的建议以下划线开头，因为以后的c++版本可能会用到不带下划线的。只会报warning</p>
+</li>
+<li><p>假设需要把当前class转化为已有类型T，那么在class里面写operator T(const T &amp;x)const{return xxxx;}</p>
+</li>
+<li><p>隐式转换最多帮你转一级，因为更多就会产生歧义</p>
+</li>
 </ul>
 
         </div>
