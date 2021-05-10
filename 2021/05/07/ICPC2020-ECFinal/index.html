@@ -12,7 +12,7 @@
 
 
 
-<title>HDU 3333 Turing Tree | Richard&#39;s Blog</title>
+<title>ICPC2020-ECFinal | Richard&#39;s Blog</title>
 
 
 
@@ -107,11 +107,73 @@
             <div class="container">
     
     
+        <div class="post-toc">
+    <div class="tocbot-list">
+    </div>
+    <div class="tocbot-list-menu">
+        <a class="tocbot-toc-expand" onclick="expand_toc()">Expand all</a>
+        <a onclick="go_top()">Back to top</a>
+        <a onclick="go_bottom()">Go to bottom</a>
+    </div>
+</div>
+
+<script>
+    document.ready(
+        function () {
+            tocbot.init({
+                tocSelector: '.tocbot-list',
+                contentSelector: '.post-content',
+                headingSelector: 'h1, h2, h3, h4, h5',
+                collapseDepth: 1,
+                orderedList: false,
+                scrollSmooth: true,
+            })
+        }
+    )
+
+    function expand_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 6,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "collapse_toc()");
+        b.innerHTML = "Collapse all"
+    }
+
+    function collapse_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 1,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "expand_toc()");
+        b.innerHTML = "Expand all"
+    }
+
+    function go_top() {
+        window.scrollTo(0, 0);
+    }
+
+    function go_bottom() {
+        window.scrollTo(0, document.body.scrollHeight);
+    }
+
+</script>
+    
 
     
     <article class="post-wrap">
         <header class="post-header">
-            <h1 class="post-title">HDU 3333 Turing Tree</h1>
+            <h1 class="post-title">ICPC2020-ECFinal</h1>
             
                 <div class="post-meta">
                     
@@ -120,14 +182,14 @@
 
                     
                         <span class="post-time">
-                        Date: <a href="#">April 27, 2021&nbsp;&nbsp;13:25:19</a>
+                        Date: <a href="#">May 7, 2021&nbsp;&nbsp;14:24:03</a>
                         </span>
                     
                     
                         <span class="post-category">
                     Category:
                             
-                                <a href="/categories/%E9%AB%98%E7%BA%A7%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">高级数据结构</a>
+                                <a href="/categories/%E8%AE%B0%E5%BD%95/">记录</a>
                             
                         </span>
                     
@@ -136,11 +198,20 @@
         </header>
 
         <div class="post-content">
-            <p>由于EC-Final不会做G的离线线段树，于是打算在这方面做几道题学习一下。</p>
-<p>题意：给定一个数列和许多询问，每次询问数列的某一段中所有不重复数字的和。比如1,2,1,2,3这个数列，1-3区间答案是3，2-5区间答案6。</p>
-<p>解：首先发现在线不好做，尝试反着做。可以发现，若从后往前一个个将数字加入，则仅会影响加入位置到最近的相同数字之间的位置的答案。于是就预处理一下nxt并排序询问，从后往前加数，用线段树维护一下答案即可。</p>
-<p>当然这里线段树也可以用区间树状数组代替</p>
-<p>同时，假设强制在线，把上述的线段树可持久化一下即可</p>
+            <p>初回のOnsite比赛</p>
+<p>比较失败</p>
+<p>一题未出</p>
+<p>旅游也没怎么旅游 比赛也只有cu</p>
+<p>但是第一次去了西北（马上又要去），第一次坐这么长途的火车</p>
+<p><img src="/2021/05/07/ICPC2020-ECFinal/image-20210507142819158.png" alt="image-20210507142819158"></p>
+<h1 id="F-Rooks"><a href="#F-Rooks" class="headerlink" title="F. Rooks"></a>F. Rooks</h1><p>LYF签到</p>
+<p>平面上双方都有有好多个给定位置的国际象棋rook(城堡，车)，问有多少个下一步就能被吃掉</p>
+<h1 id="L-Square"><a href="#L-Square" class="headerlink" title="L. Square"></a>L. Square</h1><p>LYF&amp;WD</p>
+<p>数学 思维题+简单dp？</p>
+<h1 id="A-Namomo-Subsequence"><a href="#A-Namomo-Subsequence" class="headerlink" title="A. Namomo Subsequence"></a>A. Namomo Subsequence</h1><p>LYF&amp;WD</p>
+<p>DP</p>
+<h1 id="K-Allin"><a href="#K-Allin" class="headerlink" title="*K. Allin"></a>*K. Allin</h1><p>德州扑克</p>
+<p>可能写挂了</p>
 
         </div>
 
@@ -151,7 +222,9 @@
                 <span class="tag">
                     
                     
-                        <a href="/tags/%E7%BA%BF%E6%AE%B5%E6%A0%91/"># 线段树</a>
+                        <a href="/tags/XCPC/"># XCPC</a>
+                    
+                        <a href="/tags/yo/"># yo</a>
                     
                         
                 </span>
@@ -164,10 +237,10 @@
         </section>
         <section class="post-nav">
             
-                <a class="prev" rel="prev" href="/2021/04/29/ICPC2021-%E6%B5%99%E6%B1%9F%E7%9C%81%E8%B5%9B/">ICPC2021-浙江省赛</a>
+                <a class="prev" rel="prev" href="/2021/05/10/Luogu-P5631-%E6%9C%80%E5%B0%8Fmex%E7%94%9F%E6%88%90%E6%A0%91/">Luogu P5631 最小mex生成树</a>
             
             
-            <a class="next" rel="next" href="/2021/04/25/ICPC2018-ECFinal/">ICPC2018-ECFinal</a>
+            <a class="next" rel="next" href="/2021/04/29/ICPC2021-%E6%B5%99%E6%B1%9F%E7%9C%81%E8%B5%9B/">ICPC2021-浙江省赛</a>
             
         </section>
 
