@@ -12,7 +12,7 @@
 
 
 
-<title>Category: 记录 | Richard&#39;s Blog</title>
+<title>EOJ 2021.5 | Richard&#39;s Blog</title>
 
 
 
@@ -104,115 +104,75 @@
     }
 </script>
         <div class="main">
+            <div class="container">
+    
+    
+
+    
+    <article class="post-wrap">
+        <header class="post-header">
+            <h1 class="post-title">EOJ 2021.5</h1>
             
+                <div class="post-meta">
+                    
+                        Author: <a itemprop="author" rel="author" href="/">Helloat123</a>
+                    
 
+                    
+                        <span class="post-time">
+                        Date: <a href="#">May 11, 2021&nbsp;&nbsp;19:07:25</a>
+                        </span>
+                    
+                    
+                        <span class="post-category">
+                    Category:
+                            
+                                <a href="/categories/%E8%AE%B0%E5%BD%95/">记录</a>
+                            
+                        </span>
+                    
+                </div>
+            
+        </header>
 
-    
-<div class="container">
-    <div class="post-wrap categories">
-        <h2 class="post-title">-&nbsp;Categories&nbsp;·&nbsp;记录-</h2>
-    </div>
-    <div class="post-wrap archive">
-    
-    
-        
+        <div class="post-content">
+            <p>就说一下C.Sequence</p>
+<p>题意：交互，有一个长度2000到4000范围内的只包含abc的字符串，每次你可以问一个字符串是不是它的子<strong>序列</strong>，要你问的次数在1.7*长度以内，确定该字符串。</p>
+<p>解：</p>
+<p>容易想到，可以先二分得知abc各自的个数，然后拿短的插进长的判断，再拿另一个字母插进前面的结果字符串。</p>
+<p>每次查询当前位置的时候完全可以一个一个加，是均摊的！！！！</p>
+<p>考试时候搞了个倍增就被卡掉了，赛后想想确实有点傻。</p>
+<p>每次利用倍增二分的时候都应该想想是不是可以均摊线性。不然相当于明明可以two pointers的却要给它二分右边界加个log，太傻了</p>
 
-        
-            <h3>2021</h3>
-        
-
-        <article class="archive-item">
-            <a class="archive-item-link" href="/2021/03/13/CF-Round-707-Div-2/">CF Round 707 (Div.2)</a>
-            <span class="archive-item-date">March 13, 2021</span>
-        </article>
-    
-        
-
-        
-
-        <article class="archive-item">
-            <a class="archive-item-link" href="/2021/03/12/CF-Round-706/">CF Round 706 (Div.1)</a>
-            <span class="archive-item-date">March 12, 2021</span>
-        </article>
-    
-        
-
-        
-
-        <article class="archive-item">
-            <a class="archive-item-link" href="/2021/03/12/ICPC2020-%E4%B8%8A%E6%B5%B7/">ICPC2020-上海</a>
-            <span class="archive-item-date">March 12, 2021</span>
-        </article>
-    
-        
+        </div>
 
         
+        <section class="post-tags">
+            <div>
+                <span>Tag(s):</span>
+                <span class="tag">
+                    
+                    
+                        <a href="/tags/EOJ/"># EOJ</a>
+                    
+                        
+                </span>
+            </div>
+            <div>
+                <a href="javascript:window.history.back();">back</a>
+                <span>· </span>
+                <a href="/">home</a>
+            </div>
+        </section>
+        <section class="post-nav">
+            
+            
+            <a class="next" rel="next" href="/2021/05/10/Luogu-P5631-%E6%9C%80%E5%B0%8Fmex%E7%94%9F%E6%88%90%E6%A0%91/">Luogu P5631 最小mex生成树</a>
+            
+        </section>
 
-        <article class="archive-item">
-            <a class="archive-item-link" href="/2021/03/03/ICPC2020-%E9%A6%96%E5%B0%94/">ICPC2020-首尔</a>
-            <span class="archive-item-date">March 3, 2021</span>
-        </article>
-    
-        
 
-        
-
-        <article class="archive-item">
-            <a class="archive-item-link" href="/2021/03/01/ICPC2019-%E9%A6%96%E5%B0%94/">ICPC2019-首尔</a>
-            <span class="archive-item-date">March 1, 2021</span>
-        </article>
-    
-        
-
-        
-
-        <article class="archive-item">
-            <a class="archive-item-link" href="/2021/03/01/ICPC2018-%E9%A6%96%E5%B0%94/">ICPC2018-首尔</a>
-            <span class="archive-item-date">March 1, 2021</span>
-        </article>
-    
-        
-
-        
-
-        <article class="archive-item">
-            <a class="archive-item-link" href="/2021/02/04/ICPC-Shanghai-Training-Camp-Powered-by-Huawei/">ICPC Shanghai Training Camp Powered by Huawei</a>
-            <span class="archive-item-date">February 4, 2021</span>
-        </article>
-    
-        
-
-        
-
-        <article class="archive-item">
-            <a class="archive-item-link" href="/2021/02/01/17%E5%B9%B4%E6%A8%A1%E6%8B%9F%E9%A2%98%E5%9B%9E%E7%9C%8B/">17年模拟题回看</a>
-            <span class="archive-item-date">February 1, 2021</span>
-        </article>
-    
-        
-
-        
-
-        <article class="archive-item">
-            <a class="archive-item-link" href="/2021/01/31/%E5%AF%92%E5%81%87%E8%AE%AD%E7%BB%830131/">寒假训练0131</a>
-            <span class="archive-item-date">January 31, 2021</span>
-        </article>
-    
-        
-
-        
-
-        <article class="archive-item">
-            <a class="archive-item-link" href="/2021/01/30/%E5%AF%92%E5%81%87%E8%AE%AD%E7%BB%830129/">寒假训练0129</a>
-            <span class="archive-item-date">January 30, 2021</span>
-        </article>
-    
-    
-    <nav class="pagination">
-        <a class="page-number" href="/categories/%E8%AE%B0%E5%BD%95/">1</a><span class="page-number current">2</span><a class="page-number" href="/categories/%E8%AE%B0%E5%BD%95/page/3/">3</a>
-    </nav>
-
-</div>
+    </article>
 </div>
 
         </div>
