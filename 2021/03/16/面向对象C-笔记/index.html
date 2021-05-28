@@ -222,6 +222,8 @@ int A::getd()&#123;return d++;&#125;
 </li>
 <li><p>由于ADL，namespace当中会自动寻找操作数相同的重定义运算符来用。重载前后操作数相同，不能变化结合性</p>
 </li>
+<li><p>operator.和operator-&gt;的左边的东西不会被隐式转换</p>
+</li>
 <li><p>字面量操作符literal，可以实现1+2.0i这样的表示，方法就是</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">complex</span> <span class="keyword">operator</span><span class="string">&quot;&quot;</span>_i(<span class="keyword">long</span> <span class="keyword">double</span> x)&#123;<span class="keyword">return</span> &#123;<span class="number">0</span>,x&#125;;&#125;<span class="comment">//必须放在class外</span></span><br></pre></td></tr></table></figure>
 
@@ -232,8 +234,52 @@ int A::getd()&#123;return d++;&#125;
 </li>
 <li><p>假设需要把当前class转化为已有类型T，那么在class里面写operator T(const T &amp;x)const{return xxxx;}</p>
 </li>
+<li><p>在某些式子里可能调用转换函数或者构造函数进行类型转换 为了避免ambiguity 使用显示转换</p>
+</li>
 <li><p>隐式转换最多帮你转一级，因为更多就会产生歧义</p>
 </li>
+<li><p>隐式转换时候必须保证唯一性，比如有个f(x)一个f(y),同时x和y都可以由int构造成，那么f(1)就gg</p>
+</li>
+<li><ol>
+<li><p>Exact match</p>
+</li>
+<li><p>Match using promotions</p>
+</li>
+<li><p>Match using standard conversions</p>
+</li>
+<li><p>Match using user-defined conversions</p>
+</li>
+<li><p>Mismatch, function undeclared</p>
+</li>
+</ol>
+</li>
+<li><p>friend的声明位置无所谓private public</p>
+</li>
+<li><p>一个class的friend可以是另一个class的member function/一个class可以是另一个class的friend class</p>
+</li>
+<li><p>friend只是标明了这玩意存在，而没有真正定义它</p>
+</li>
+<li><p>friend class可以是前面定义过的class，也可以是后面定义、但在当前enclosing scope中定义的class</p>
+</li>
+<li><p>friend function可以是类似friend class的地方定义的，也可以是参数所在enclosing scope中定义的</p>
+</li>
+<li><p>关于右值引用和拷贝构造 <a target="_blank" rel="noopener" href="https://www.jianshu.com/p/d19fc8447eaa">看这里</a></p>
+</li>
+<li><p>构造函数前加explicit就可以让这个构造函数只能被显式调用</p>
+</li>
+<li><p>为了区分是a++还是++a，定义的时候后缀多一个标记用的参数int。a++相当于a.operator++(0)</p>
+</li>
+<li><p>vtbl (v table)虚函数表 vptr虚函数表指针</p>
+</li>
+<li><p>析构通常都是虚函数</p>
+</li>
+<li><p>virtual void f()=0; 有纯虚函数的就是抽象类</p>
+</li>
+<li><pre><code class="c++">class D:public A,private B,protected C&#123;
+//多重继承时要避免两边有一样的东西 二义性   
+&#125;</code></pre>
+</li>
+<li></li>
 </ul>
 
         </div>
