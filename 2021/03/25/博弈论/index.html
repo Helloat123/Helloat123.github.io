@@ -284,7 +284,7 @@
 <p>显然上面的所有游戏都可以转化为有向图游戏（但有一些转化了反而不容易做）</p>
 <p>显然我们可以类似<a href="#%E7%BA%BF%E6%80%A7%E9%80%92%E6%8E%A8">线性递推</a>的方法定义每个点的f[x]，拓扑排序求出答案。</p>
 <p>同时，我们也可以引入SG定理：</p>
-<p>定义mex(minimal excludant)运算，表示最小的不属于某个集合的非负整数。例如<br>$$<br>mex\lbrace0,1,2,4\rbrace=3\\<br>mex\lbrace2,3,5\rbrace=0\\<br>mex\lbrace\varnothing\rbrace=0<br>$$<br>对于任意状态$x$，定义$SG(x) = mex(S)$,其中$S$是$x$后继状态的$SG$函数值的集合。如$x$有三个后继状态分别为 $SG(a),SG(b),SG(c)$，那么$SG(x) = mex{SG(a),SG(b),SG(c)}$。 </p>
+<p>定义mex(minimal excludant)运算，表示最小的不属于某个集合的非负整数。例如<br>$$<br>mex\lbrace0,1,2,4\rbrace=3\\<br>mex\lbrace2,3,5\rbrace=0\\<br>mex\lbrace\varnothing\rbrace=0<br>$$<br>对于任意状态$x$，定义$SG(x) = mex(S)$,其中$S$是$x$后继状态的$SG$函数值的集合。如$x$有三个后继状态分别为 $SG(a),SG(b),SG(c)$，那么$SG(x) = mex { SG(a),SG(b),SG(c) }$。 </p>
 <p><strong>游戏的SG函数等于各个子游戏(互相没有边指向的DAG)SG函数的Nim和(异或和)。</strong></p>
 <h2 id="证明"><a href="#证明" class="headerlink" title="证明"></a>证明</h2><p>令状态x=(x1,x2,…,xn)，b=SG(x1,…xn)=SG(x1)^SG(x2)^…^SG(xn)。我们只需证明一下两点：</p>
 <ul>
@@ -299,7 +299,7 @@
 <p>假设存在状态(x1’,x2,…,xn)使得SG(x1’,x2,…,xn) = b，即SG(x1’)^SG(x2)^…^SG(xn)=SG(x1)^SG(x2)^…SG(xn)，所以我们得到SG(x1’)=SG(x1)，而由SG函数得定义这是不可能出现的。</p>
 <p>证毕</p>
 <p>这样按照定义，状态x的函数值就一定是b了。</p>
-<p>这样，我们只要依次求出每个有向图的SG函数值，然后在将它们进行异或操作，就得到了整个状态的SG函数值，便也可以判断出这个位置是必胜还是必败。</p>
+<p>这样，我们只要依次求出每个有向图的SG函数值，然后再将它们进行异或操作，就得到了整个状态的SG函数值，便也可以判断出这个位置是必胜还是必败。</p>
 <ul>
 <li><p>有1堆n个的石子，每次只能取1或3或4个石子，先取完石子者胜利，那么胜负状态？</p>
 <p>SG[0]=0</p>

@@ -12,7 +12,7 @@
 
 
 
-<title>EOJ 2021.5 | Richard&#39;s Blog</title>
+<title>牛客2021-1 | Richard&#39;s Blog</title>
 
 
 
@@ -107,11 +107,73 @@
             <div class="container">
     
     
+        <div class="post-toc">
+    <div class="tocbot-list">
+    </div>
+    <div class="tocbot-list-menu">
+        <a class="tocbot-toc-expand" onclick="expand_toc()">Expand all</a>
+        <a onclick="go_top()">Back to top</a>
+        <a onclick="go_bottom()">Go to bottom</a>
+    </div>
+</div>
+
+<script>
+    document.ready(
+        function () {
+            tocbot.init({
+                tocSelector: '.tocbot-list',
+                contentSelector: '.post-content',
+                headingSelector: 'h1, h2, h3, h4, h5',
+                collapseDepth: 1,
+                orderedList: false,
+                scrollSmooth: true,
+            })
+        }
+    )
+
+    function expand_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 6,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "collapse_toc()");
+        b.innerHTML = "Collapse all"
+    }
+
+    function collapse_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 1,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "expand_toc()");
+        b.innerHTML = "Expand all"
+    }
+
+    function go_top() {
+        window.scrollTo(0, 0);
+    }
+
+    function go_bottom() {
+        window.scrollTo(0, document.body.scrollHeight);
+    }
+
+</script>
+    
 
     
     <article class="post-wrap">
         <header class="post-header">
-            <h1 class="post-title">EOJ 2021.5</h1>
+            <h1 class="post-title">牛客2021-1</h1>
             
                 <div class="post-meta">
                     
@@ -120,7 +182,7 @@
 
                     
                         <span class="post-time">
-                        Date: <a href="#">May 11, 2021&nbsp;&nbsp;19:07:25</a>
+                        Date: <a href="#">July 17, 2021&nbsp;&nbsp;22:30:11</a>
                         </span>
                     
                     
@@ -136,13 +198,44 @@
         </header>
 
         <div class="post-content">
-            <p>就说一下C.Sequence</p>
-<p>题意：交互，有一个长度2000到4000范围内的只包含abc的字符串，每次你可以问一个字符串是不是它的子<strong>序列</strong>，要你问的次数在1.7*长度以内，确定该字符串。</p>
+            <p>好久没写了 鸽了三次训练赛以及swerc的记录…慢慢补</p>
+<p>这是牛客多校训练的第一场，感觉难度接近区域赛？稍微比区域赛难一些？</p>
+<h1 id="D"><a href="#D" class="headerlink" title="D"></a>D</h1><p>LYF签到</p>
+<h1 id="B"><a href="#B" class="headerlink" title="B"></a>B</h1><p>ZRC 初中几何 仅利用相似三角形和勾股定理就能做出来</p>
+<h1 id="A"><a href="#A" class="headerlink" title="A"></a>A</h1><p>LYF 博弈</p>
+<p>题意：两堆石子，一堆n个一堆m个，每次在一堆中拿走x(&gt;0)个，同时在另一堆拿走k(&gt;=0)*x个，问必胜情况。1e4组 n m 5e3</p>
 <p>解：</p>
-<p>容易想到，可以先二分得知abc各自的个数，然后拿短的插进长的判断，再拿另一个字母插进前面的结果字符串。</p>
-<p>每次查询当前位置的时候完全可以一个一个加，是均摊的！！！！</p>
-<p>考试时候搞了个倍增就被卡掉了，赛后想想确实有点傻。</p>
-<p>每次利用倍增二分的时候都应该想想是不是可以均摊线性。不然相当于明明可以two pointers的却要给它二分右边界加个log，太傻了</p>
+<p>设win[x][y]表示一堆x个一堆y个时的必胜情况，不妨假设x&lt;=y。</p>
+<p>显然</p>
+<p>win[0][0]=false</p>
+<p>win[0][x]=true</p>
+<p>win[1][x]=true</p>
+<p>win[2][3]=false</p>
+<p>win[2][!=3]=true</p>
+<p>win[3][x]=true</p>
+<p>win[4][x]=true</p>
+<p>可以找到一些规律：</p>
+<ol>
+<li>如果win[x][y]=false，那么win[x][&gt;y]必然true，因此每个x最多对应一个false的y，比如2对应3，3对应2</li>
+<li>别的某些规律</li>
+</ol>
+<p>但是貌似没啥用处</p>
+<p>我们观察数据范围 nm5000，很可能是n^2预处理一个胜负情况表</p>
+<p>那么就暴力预处理试试（类似素数筛法，从小往大搞，如果当前位置不能win，那么能到达当前位置的状态都能win）</p>
+<p>显然能做 就A了</p>
+<h1 id="F"><a href="#F" class="headerlink" title="F"></a>F</h1><p>WD ZRC辅助</p>
+<p>题意：给定L和R，问之间有多少数包含是3的倍数的子串(0算作3的倍数)</p>
+<p>解：</p>
+<p>WD一眼看到就是数位dp，然而大家A得太快 有点不敢相信</p>
+<p>重新思考后显然任意连续三个数一定能找到是3的倍数的子串，所以大于99的都在答案内。</p>
+<h1 id="H"><a href="#H" class="headerlink" title="H"></a>H</h1><p>WD</p>
+<p>题意：给定一个数列a，有一个哈希函数，仅仅是对m取个模，问最小的能让哈希函数完美哈希的m是多少。n5e5，a值域5e5</p>
+<p>解：</p>
+<p>如果对m取模会导致冲突，那么就说明a中两个数的差是m的倍数</p>
+<p>因此，只要对a中每两个数的差的集合取“不包含0的mex”即可</p>
+<p>怎么在比n^2更优的时间里跑出来呢？FFT。把每个数都看成多项式的指数即可。指数是负的怎么办？全都加五十万</p>
+<h1 id="补I"><a href="#补I" class="headerlink" title="补I"></a>补I</h1><p>暂时还没学会</p>
+<h1 id="补K"><a href="#补K" class="headerlink" title="补K"></a>补K</h1><p>为啥各种贪心爬山都能过</p>
 
         </div>
 
@@ -153,7 +246,7 @@
                 <span class="tag">
                     
                     
-                        <a href="/tags/EOJ/"># EOJ</a>
+                        <a href="/tags/%E5%A4%9A%E6%A0%A1/"># 多校</a>
                     
                         
                 </span>
@@ -166,10 +259,8 @@
         </section>
         <section class="post-nav">
             
-                <a class="prev" rel="prev" href="/2021/07/17/%E7%89%9B%E5%AE%A22021-1/">牛客2021-1</a>
             
-            
-            <a class="next" rel="next" href="/2021/05/10/Luogu-P5631-%E6%9C%80%E5%B0%8Fmex%E7%94%9F%E6%88%90%E6%A0%91/">Luogu P5631 最小mex生成树</a>
+            <a class="next" rel="next" href="/2021/05/11/EOJ-2021-5/">EOJ 2021.5</a>
             
         </section>
 
