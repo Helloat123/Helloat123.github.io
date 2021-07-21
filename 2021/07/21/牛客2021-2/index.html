@@ -12,7 +12,7 @@
 
 
 
-<title>牛客2021-1 | Richard&#39;s Blog</title>
+<title>牛客2021-2 | Richard&#39;s Blog</title>
 
 
 
@@ -173,7 +173,7 @@
     
     <article class="post-wrap">
         <header class="post-header">
-            <h1 class="post-title">牛客2021-1</h1>
+            <h1 class="post-title">牛客2021-2</h1>
             
                 <div class="post-meta">
                     
@@ -182,7 +182,7 @@
 
                     
                         <span class="post-time">
-                        Date: <a href="#">July 17, 2021&nbsp;&nbsp;22:30:11</a>
+                        Date: <a href="#">July 21, 2021&nbsp;&nbsp;20:29:22</a>
                         </span>
                     
                     
@@ -198,44 +198,27 @@
         </header>
 
         <div class="post-content">
-            <p>好久没写了 鸽了三次训练赛以及swerc的记录…慢慢补</p>
-<p>这是牛客多校训练的第一场，感觉难度接近区域赛？稍微比区域赛难一些？</p>
-<h1 id="D"><a href="#D" class="headerlink" title="D"></a>D</h1><p>LYF签到</p>
-<h1 id="B"><a href="#B" class="headerlink" title="B"></a>B</h1><p>ZRC 初中几何 仅利用相似三角形和勾股定理就能做出来</p>
-<h1 id="A"><a href="#A" class="headerlink" title="A"></a>A</h1><p>LYF 博弈</p>
-<p>题意：两堆石子，一堆n个一堆m个，每次在一堆中拿走x(&gt;0)个，同时在另一堆拿走k(&gt;=0)*x个，问必胜情况。1e4组 n m 5e3</p>
-<p>解：</p>
-<p>设win[x][y]表示一堆x个一堆y个时的必胜情况，不妨假设x&lt;=y。</p>
-<p>显然</p>
-<p>win[0][0]=false</p>
-<p>win[0][x]=true</p>
-<p>win[1][x]=true</p>
-<p>win[2][3]=false</p>
-<p>win[2][!=3]=true</p>
-<p>win[3][x]=true</p>
-<p>win[4][x]=true</p>
-<p>可以找到一些规律：</p>
-<ol>
-<li>如果win[x][y]=false，那么win[x][&gt;y]必然true，因此每个x最多对应一个false的y，比如2对应3，3对应2</li>
-<li>别的某些规律</li>
-</ol>
-<p>但是貌似没啥用处</p>
-<p>我们观察数据范围 nm5000，很可能是n^2预处理一个胜负情况表</p>
-<p>那么就暴力预处理试试（类似素数筛法，从小往大搞，如果当前位置不能win，那么能到达当前位置的状态都能win）</p>
-<p>显然能做 就A了</p>
-<h1 id="F"><a href="#F" class="headerlink" title="F"></a>F</h1><p>WD ZRC辅助</p>
-<p>题意：给定L和R，问之间有多少数包含是3的倍数的子串(0算作3的倍数)</p>
-<p>解：</p>
-<p>WD一眼看到就是数位dp，然而大家A得太快 有点不敢相信</p>
-<p>重新思考后显然任意连续三个数一定能找到是3的倍数的子串，所以大于99的都在答案内。</p>
-<h1 id="H"><a href="#H" class="headerlink" title="H"></a>H</h1><p>WD</p>
-<p>题意：给定一个数列a，有一个哈希函数，仅仅是对m取个模，问最小的能让哈希函数完美哈希的m是多少。n5e5，a值域5e5</p>
-<p>解：</p>
-<p>如果对m取模会导致冲突，那么就说明a中两个数的差是m的倍数</p>
-<p>因此，只要对a中每两个数的差的集合取“不包含0的mex”即可</p>
-<p>怎么在比n^2更优的时间里跑出来呢？FFT。把每个数都看成多项式的指数即可。指数是负的怎么办？全都加五十万</p>
-<h1 id="补I"><a href="#补I" class="headerlink" title="补I"></a>补I</h1><p>暂时还没学会</p>
-<h1 id="补K"><a href="#补K" class="headerlink" title="补K"></a>补K</h1><p>为啥各种贪心爬山都能过</p>
+            <h1 id="D"><a href="#D" class="headerlink" title="D"></a>D</h1><p>LYF 模拟</p>
+<h1 id="C"><a href="#C" class="headerlink" title="C"></a>C</h1><p>题意：给定n,m，在n*m个格点上两个人玩游戏，每一轮都可以画一条的起点与终点相邻的路径（路径就是正常的连接各个相邻格点的那种），并且不能使盘面上出现任何多边形。不能走的人输。(n,m&lt;=4)</p>
+<p>ZRC解：</p>
+<p>不能形成任何多边形，即画线不能成环。可以发现，每一步后盘面状态必然是森林，而形成生成树后就无法走动。因此总共可以连接n<em>m-1条线。对于每一轮，由于起点与终点需要相邻，因此连接的线一定是偶数条。判断n\</em>m的奇偶性即可。</p>
+<h1 id="K"><a href="#K" class="headerlink" title="K"></a>K</h1><p>题意：</p>
+<p>某个操作是对给定的1e6的a数组跑单调栈，并记录下每个时刻栈的大小于b数组中。现有b数组的几个位置的值，构造一组a数组的可能取值。</p>
+<p>LYF解：</p>
+<p>首先发现对于每个位置，栈的大小只会是前面的位置+x(x&lt;=1)。可以先遵循这个规律构造出一种可能的b数组（感性认识这玩意一定会对应某种a的取值），再利用链表跑出可能的a数组取值。</p>
+<p>题解：</p>
+<p>遵循上述规律可以搞出一个非常简单的构造方式：除了给定的位置以外每个点都+1。构造完成后可以发现形成了一系列拓扑关系，做拓扑排序即可。</p>
+<h1 id="I"><a href="#I" class="headerlink" title="I"></a>I</h1><p>ZRC BFS</p>
+<h1 id="F"><a href="#F" class="headerlink" title="F"></a>F</h1><p>题意：</p>
+<p>求两个阿波罗尼斯球的体积交</p>
+<p>ZRC WD解：</p>
+<p>几何题。没板子的话余弦定理+积分可做</p>
+<h1 id="补L"><a href="#补L" class="headerlink" title="补L"></a>补L</h1><p>题意：</p>
+<p>给定n2e5个人之间的好友关系(无向图)，每次单点增加一个人的步数，求每个人在自己列表里保持冠军的时间。保证每个人在每一秒的步数都不超过10000</p>
+<p>LYF解：</p>
+<p>考虑临界值B=sqrt(n)，以B为基准对点分类，分为度数&gt;=B的大点和&lt;B的小点，显然每次修改至多使一个人从非冠军变为冠军，也就是说冠军的变化次数是O(n)的，意味着我们可以在每次修改后都更新冠军情况，保持所有人的冠军情况是最新的，从而求出答案。</p>
+<p>对于小点，每次修改后主动查询相邻的所有点并更新这些点的冠军情况O(B)，并且将修改后的权值信息传递给相邻的大点O(B)，记录在对应大点的集合中</p>
+<p>对于大点，主动查询周围所有大点并更新这些点的冠军情况O(B)。然后考虑小点：如果查询所有当前状态为冠军的小点，则显然可以被1个走不了几步的大点和一圈走很多的小点的情况卡掉。这里由于题目保证每一秒步数不超过10000，因此可以将周围所有冠军小点按步数存进vector，每次查询原步数~现步数间的所有小点，更新他们的冠军情况。这样的信息在所有大点的集合中的数量为O(nB)，且不会重复查询，因此复杂度有保证。为了避免重复查询，可以根据权值再将集合分成多个区间，每次将点u增加v后，仅查询[val[u]+1,val[u]+v]区间</p>
 
         </div>
 
@@ -259,10 +242,10 @@
         </section>
         <section class="post-nav">
             
-                <a class="prev" rel="prev" href="/2021/07/21/%E7%89%9B%E5%AE%A22021-2/">牛客2021-2</a>
+                <a class="prev" rel="prev" href="/2021/07/21/%E6%9D%AD%E7%94%B52021-1/">杭电2021-1</a>
             
             
-            <a class="next" rel="next" href="/2021/05/11/EOJ-2021-5/">EOJ 2021.5</a>
+            <a class="next" rel="next" href="/2021/07/17/%E7%89%9B%E5%AE%A22021-1/">牛客2021-1</a>
             
         </section>
 

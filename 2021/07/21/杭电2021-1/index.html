@@ -12,7 +12,7 @@
 
 
 
-<title>牛客2021-1 | Richard&#39;s Blog</title>
+<title>杭电2021-1 | Richard&#39;s Blog</title>
 
 
 
@@ -173,7 +173,7 @@
     
     <article class="post-wrap">
         <header class="post-header">
-            <h1 class="post-title">牛客2021-1</h1>
+            <h1 class="post-title">杭电2021-1</h1>
             
                 <div class="post-meta">
                     
@@ -182,7 +182,7 @@
 
                     
                         <span class="post-time">
-                        Date: <a href="#">July 17, 2021&nbsp;&nbsp;22:30:11</a>
+                        Date: <a href="#">July 21, 2021&nbsp;&nbsp;21:35:55</a>
                         </span>
                     
                     
@@ -198,44 +198,24 @@
         </header>
 
         <div class="post-content">
-            <p>好久没写了 鸽了三次训练赛以及swerc的记录…慢慢补</p>
-<p>这是牛客多校训练的第一场，感觉难度接近区域赛？稍微比区域赛难一些？</p>
-<h1 id="D"><a href="#D" class="headerlink" title="D"></a>D</h1><p>LYF签到</p>
-<h1 id="B"><a href="#B" class="headerlink" title="B"></a>B</h1><p>ZRC 初中几何 仅利用相似三角形和勾股定理就能做出来</p>
-<h1 id="A"><a href="#A" class="headerlink" title="A"></a>A</h1><p>LYF 博弈</p>
-<p>题意：两堆石子，一堆n个一堆m个，每次在一堆中拿走x(&gt;0)个，同时在另一堆拿走k(&gt;=0)*x个，问必胜情况。1e4组 n m 5e3</p>
+            <h1 id="1001"><a href="#1001" class="headerlink" title="1001"></a>1001</h1><p>LYF签到</p>
+<h1 id="1005"><a href="#1005" class="headerlink" title="1005"></a>1005</h1><p>WD签到 贪心</p>
+<h1 id="1008"><a href="#1008" class="headerlink" title="1008"></a>1008</h1><p>LYF签到 单调栈</p>
+<h1 id="1006"><a href="#1006" class="headerlink" title="1006"></a>1006</h1><p>WD签到 trie树 细节稍微有些复杂</p>
+<h1 id="1009"><a href="#1009" class="headerlink" title="1009"></a>1009</h1><p>LYF ZRC 签到(英语题面意义不清)</p>
+<h1 id="1007"><a href="#1007" class="headerlink" title="1007"></a>1007</h1><p>WD BSGS</p>
+<p>推导过程极其简单，应该学一学BSGS就能做了</p>
+<h1 id="补1010"><a href="#补1010" class="headerlink" title="补1010"></a>补1010</h1><p>好题！！！</p>
+<p>题意：</p>
+<p>给定n1e5的值域1e5的a数组，m1e5个询问，在下标l到r中，值域d到u中有多少个不同的数。离线</p>
+<p>比赛时想法：</p>
+<p>比赛时先想到主席树，写了半天发现是假做法，又没有发现更好的维护方案。想别的方法时想到了莫队，但是要根号套log估计过不了（但是比赛时确实有人过了，数据水+评测机快）；也有树套树做法（但是一时半会儿写不出来）。一直在刚这题，结果却没做出来。</p>
 <p>解：</p>
-<p>设win[x][y]表示一堆x个一堆y个时的必胜情况，不妨假设x&lt;=y。</p>
-<p>显然</p>
-<p>win[0][0]=false</p>
-<p>win[0][x]=true</p>
-<p>win[1][x]=true</p>
-<p>win[2][3]=false</p>
-<p>win[2][!=3]=true</p>
-<p>win[3][x]=true</p>
-<p>win[4][x]=true</p>
-<p>可以找到一些规律：</p>
-<ol>
-<li>如果win[x][y]=false，那么win[x][&gt;y]必然true，因此每个x最多对应一个false的y，比如2对应3，3对应2</li>
-<li>别的某些规律</li>
-</ol>
-<p>但是貌似没啥用处</p>
-<p>我们观察数据范围 nm5000，很可能是n^2预处理一个胜负情况表</p>
-<p>那么就暴力预处理试试（类似素数筛法，从小往大搞，如果当前位置不能win，那么能到达当前位置的状态都能win）</p>
-<p>显然能做 就A了</p>
-<h1 id="F"><a href="#F" class="headerlink" title="F"></a>F</h1><p>WD ZRC辅助</p>
-<p>题意：给定L和R，问之间有多少数包含是3的倍数的子串(0算作3的倍数)</p>
+<p>莫队真的要靠线段树来维护吗？不是的。考虑莫队在运行时的情况，修改O(m<em>sqrt(n))，查询O(m)；如果利用线段树，那就在修改和查询时都套上log。但是如果采取最简单的分块策略，修改可以做到O(1)，而查询在O(sqrt(n))。取长补短，相得益彰。这样两边乘起来，最终复杂度就是O(m\</em>sqrt(n))啦！</p>
+<h1 id="补1002"><a href="#补1002" class="headerlink" title="补1002"></a>补1002</h1><p>题意：</p>
+<p>给n1e5个点，每个点有两个属性，r和v。当一个点在另一个点为圆心的半径为r的圆内的时候，答案增加v。问v</p>
 <p>解：</p>
-<p>WD一眼看到就是数位dp，然而大家A得太快 有点不敢相信</p>
-<p>重新思考后显然任意连续三个数一定能找到是3的倍数的子串，所以大于99的都在答案内。</p>
-<h1 id="H"><a href="#H" class="headerlink" title="H"></a>H</h1><p>WD</p>
-<p>题意：给定一个数列a，有一个哈希函数，仅仅是对m取个模，问最小的能让哈希函数完美哈希的m是多少。n5e5，a值域5e5</p>
-<p>解：</p>
-<p>如果对m取模会导致冲突，那么就说明a中两个数的差是m的倍数</p>
-<p>因此，只要对a中每两个数的差的集合取“不包含0的mex”即可</p>
-<p>怎么在比n^2更优的时间里跑出来呢？FFT。把每个数都看成多项式的指数即可。指数是负的怎么办？全都加五十万</p>
-<h1 id="补I"><a href="#补I" class="headerlink" title="补I"></a>补I</h1><p>暂时还没学会</p>
-<h1 id="补K"><a href="#补K" class="headerlink" title="补K"></a>补K</h1><p>为啥各种贪心爬山都能过</p>
+<p>圆数点。kdtree裸题</p>
 
         </div>
 
@@ -259,10 +239,8 @@
         </section>
         <section class="post-nav">
             
-                <a class="prev" rel="prev" href="/2021/07/21/%E7%89%9B%E5%AE%A22021-2/">牛客2021-2</a>
             
-            
-            <a class="next" rel="next" href="/2021/05/11/EOJ-2021-5/">EOJ 2021.5</a>
+            <a class="next" rel="next" href="/2021/07/21/%E7%89%9B%E5%AE%A22021-2/">牛客2021-2</a>
             
         </section>
 
