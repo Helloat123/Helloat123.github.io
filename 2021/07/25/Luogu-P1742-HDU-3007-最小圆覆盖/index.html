@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <meta name="author" content="Helloat123">
+
+
+
+
+
+<title>Luogu P1742 HDU 3007 最小圆覆盖 | Richard&#39;s Blog</title>
+
+
+
+    <link rel="icon" href="/favicon.png">
+
+
+
+
+    <!-- stylesheets list from _config.yml -->
+    
+    <link rel="stylesheet" href="/css/style.css">
+    
+
+
+
+    <!-- scripts list from _config.yml -->
+    
+    <script src="/js/script.js"></script>
+    
+    <script src="/js/tocbot.min.js"></script>
+    
+
+
+
+    
+    
+        
+            <!-- MathJax配置，可通过单美元符号书写行内公式等 -->
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+    "HTML-CSS": {
+        preferredFont: "TeX",
+        availableFonts: ["STIX","TeX"],
+        linebreaks: { automatic:true },
+        EqnChunk: (MathJax.Hub.Browser.isMobile ? 10 : 50)
+    },
+    tex2jax: {
+        inlineMath: [ ["$", "$"], ["\\(","\\)"] ],
+        processEscapes: true,
+        ignoreClass: "tex2jax_ignore|dno",
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    },
+    TeX: {
+        equationNumbers: { autoNumber: "AMS" },
+        noUndefined: { attributes: { mathcolor: "red", mathbackground: "#FFEEEE", mathsize: "90%" } },
+        Macros: { href: "{}" }
+    },
+    messageStyle: "none"
+    });
+</script>
+<!-- 给MathJax元素添加has-jax class -->
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+<!-- 通过连接CDN加载MathJax的js代码 -->
+<script type="text/javascript" async
+        src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+
+
+        
+    
+
+
+<meta name="generator" content="Hexo 5.2.0"></head>
+<body>
+    <div class="wrapper">
+        <header>
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-header header-logo"><a href="/">Richard&#39;s Blog</a></div>
+            <div class="menu navbar-right">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+                <input id="switch_default" type="checkbox" class="switch_default">
+                <label for="switch_default" class="toggleBtn"></label>
+            </div>
+        </div>
+    </nav>
+
+    
+    <nav class="navbar-mobile" id="nav-mobile">
+        <div class="container">
+            <div class="navbar-header">
+                <div>
+                    <a href="/">Richard&#39;s Blog</a><a id="mobile-toggle-theme">·&nbsp;Light</a>
+                </div>
+                <div class="menu-toggle" onclick="mobileBtn()">&#9776; Menu</div>
+            </div>
+            <div class="menu" id="mobile-menu">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+            </div>
+        </div>
+    </nav>
+
+</header>
+<script>
+    var mobileBtn = function f() {
+        var toggleMenu = document.getElementsByClassName("menu-toggle")[0];
+        var mobileMenu = document.getElementById("mobile-menu");
+        if(toggleMenu.classList.contains("active")){
+           toggleMenu.classList.remove("active")
+            mobileMenu.classList.remove("active")
+        }else{
+            toggleMenu.classList.add("active")
+            mobileMenu.classList.add("active")
+        }
+    }
+</script>
+        <div class="main">
+            <div class="container">
+    
+    
+
+    
+    <article class="post-wrap">
+        <header class="post-header">
+            <h1 class="post-title">Luogu P1742 HDU 3007 最小圆覆盖</h1>
+            
+                <div class="post-meta">
+                    
+                        Author: <a itemprop="author" rel="author" href="/">Helloat123</a>
+                    
+
+                    
+                        <span class="post-time">
+                        Date: <a href="#">July 25, 2021&nbsp;&nbsp;13:03:06</a>
+                        </span>
+                    
+                    
+                        <span class="post-category">
+                    Category:
+                            
+                                <a href="/categories/%E8%AE%A1%E7%AE%97%E5%87%A0%E4%BD%95/">计算几何</a>
+                            
+                        </span>
+                    
+                </div>
+            
+        </header>
+
+        <div class="post-content">
+            <p>一直在我题单里没做掉 现在补一补：</p>
+<p>题意：给定n个点，问最小的包含所有点的圆。输出半径及圆心位置。</p>
+<p>解：</p>
+<p>首先完全可以想到随机化的模拟退火，写起来也比较模板 这里不说了。</p>
+<p>这道题的特点是可以用<strong>随机增量法</strong></p>
+<p>假设当前圆已经包含了前$i-1$个点，则第$i$个点要么在圆内要么在圆外。若在圆内则不用管他；在圆外的话，显然第i个点一定在前$i$个点的最小覆盖圆上。我们考虑一个暴力：首先找到包含前$i-1$个点的圆，加入第$i$个点，若$i$在圆内则无需操作，$i$在圆外则枚举前$i-1$个点中的两个点，使三个点确定的圆包含前$i$个点。</p>
+<p>这样，显然最外层的枚举次数是$O(n)$的；若数据随机，则进入内层枚举的概率为$\frac{3}{i}$(因为i个点的最小覆盖圆可以只由3个在圆上的点确定)。总复杂度就为$O(n)+O(\sum_ { i=1 } ^ { n } \frac{3}{i}\cdot i^2)=O(n^2)$（我们假装：<em>判断三个点是否能包含所有点</em>这个操作是$O(1)$的）</p>
+<p>如果上手写的话就会发现枚举这一步并不能做到$O(n^2)$。写的时候我们考虑先在外层（最外层我们已经想好了，不考虑了）枚举第二个点，用同样的思路，若前$j-1$个点与i点的覆盖圆已经包括了$j$点，那就不用管；若前$j-1$个点与$i$点的覆盖圆未包括j点，那$i$和$j$就是<strong>前$j$个点与$i$点的最小覆盖圆</strong>上的点，就需要继续开一层循环枚举第三个点。</p>
+<p>我们来分析一下复杂度。一共三层循环，最外层$O(n)$，中层$O(\sum_ { i=1 } ^ { n } \frac{3}{i}\cdot i)=O(n)$，内层$O(\sum_ { i=1 } ^ { n } \frac{3}{i} \sum_ { j=1 } ^ { i-1 } \frac{3}{j} \cdot j)=O(n)$，故总复杂度是$O(n)$的。</p>
+<p>其中还有一个计算几何的三点定圆的问题需要考虑</p>
+<p>联立圆的方程可以列出共三元的三个方程，加减方程去掉变量$R$后对式子稍作移项变换，就形成了一个线性方程组。克拉默法则解出即可。但洛谷这题卡精度…long double即可(这里直接define了)</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">define</span> double long double</span></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> maxn=<span class="number">111111</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">double</span> eps=<span class="number">1e-15</span>;</span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Point</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">    <span class="keyword">double</span> x,y;</span><br><span class="line">    Point():x(<span class="number">0</span>),y(<span class="number">0</span>)&#123;&#125;</span><br><span class="line">    Point(<span class="keyword">const</span> <span class="keyword">double</span> &amp;xx,<span class="keyword">const</span> <span class="keyword">double</span> &amp;yy):x(xx),y(yy)&#123;&#125;</span><br><span class="line">&#125;point[maxn];</span><br><span class="line"><span class="function"><span class="keyword">double</span> <span class="title">sqr</span><span class="params">(<span class="keyword">const</span> <span class="keyword">double</span> &amp;x)</span></span>&#123;<span class="keyword">return</span> x*x;&#125;</span><br><span class="line"><span class="function"><span class="keyword">double</span> <span class="title">dis</span><span class="params">(Point &amp;a,Point &amp;b)</span></span>&#123;<span class="keyword">return</span> <span class="built_in">sqrt</span>(sqr(a.x-b.x)+sqr(a.y-b.y));&#125;</span><br><span class="line"><span class="function">Point <span class="title">getO</span><span class="params">(<span class="keyword">const</span> Point &amp;a,<span class="keyword">const</span> Point &amp;b,<span class="keyword">const</span> Point &amp;c)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    Point res;</span><br><span class="line">    <span class="keyword">double</span> xx=b.x-a.x,yy=b.y-a.y,XX=c.x-b.x,YY=c.y-b.y;</span><br><span class="line">    <span class="keyword">double</span> d=sqr(b.x)+sqr(b.y)-sqr(a.x)-sqr(a.y),e=sqr(c.x)+sqr(c.y)-sqr(b.x)-sqr(b.y);</span><br><span class="line">    res.x=(e*yy-d*YY)/(XX*yy-xx*YY)/<span class="number">2</span>;</span><br><span class="line">    res.y=(e*xx-d*XX)/(xx*YY-XX*yy)/<span class="number">2</span>;</span><br><span class="line">    <span class="keyword">return</span> res;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function">Point <span class="title">midpoint</span><span class="params">(<span class="keyword">const</span> Point &amp;x,<span class="keyword">const</span> Point &amp;y)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> Point((x.x+y.x)/<span class="number">2</span>,(x.y+y.y)/<span class="number">2</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">int</span> n;</span><br><span class="line">pair&lt;double,Point&gt; mincircle()</span><br><span class="line">&#123;</span><br><span class="line">    Point O=point[<span class="number">1</span>];</span><br><span class="line">    <span class="keyword">double</span> R=<span class="number">0</span>;</span><br><span class="line">    rep(i,<span class="number">1</span>,n)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">if</span> (dis(point[i],O)-R&gt;eps)</span><br><span class="line">        &#123;</span><br><span class="line">            O=point[i];</span><br><span class="line">            R=<span class="number">0</span>;</span><br><span class="line">            rep(j,<span class="number">1</span>,i<span class="number">-1</span>)</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="keyword">if</span> (dis(point[j],O)-R&gt;eps)</span><br><span class="line">                &#123;</span><br><span class="line">                    O=midpoint(point[i],point[j]);</span><br><span class="line">                    R=dis(point[i],point[j])/<span class="number">2</span>;</span><br><span class="line">                    rep(k,<span class="number">1</span>,j<span class="number">-1</span>)</span><br><span class="line">                    &#123;</span><br><span class="line">                        <span class="keyword">if</span> (dis(point[k],O)-R&gt;eps)</span><br><span class="line">                        &#123;</span><br><span class="line">                            O=getO(point[i],point[j],point[k]);</span><br><span class="line">                            R=dis(point[i],O);</span><br><span class="line">                        &#125;</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">make_pair</span>(R,O);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    read(n);</span><br><span class="line">    rep(i,<span class="number">1</span>,n) <span class="built_in">scanf</span>(<span class="string">&quot;%Lf%Lf&quot;</span>,&amp;point[i].x,&amp;point[i].y);</span><br><span class="line">    srand(time(<span class="number">0</span>));</span><br><span class="line">    random_shuffle(point+<span class="number">1</span>,point+n+<span class="number">1</span>);</span><br><span class="line">    <span class="built_in">pair</span>&lt;<span class="keyword">double</span>,Point&gt; ans=mincircle();</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;%.10Lf\n%.10Lf %.10Lf\n&quot;</span>,ans.first,ans.second.x,ans.second.y);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+        </div>
+
+        
+        <section class="post-tags">
+            <div>
+                <span>Tag(s):</span>
+                <span class="tag">
+                    
+                    
+                        <a href="/tags/%E9%9A%8F%E6%9C%BA/"># 随机</a>
+                    
+                        
+                </span>
+            </div>
+            <div>
+                <a href="javascript:window.history.back();">back</a>
+                <span>· </span>
+                <a href="/">home</a>
+            </div>
+        </section>
+        <section class="post-nav">
+            
+            
+            <a class="next" rel="next" href="/2021/07/23/%E6%9D%AD%E7%94%B52021-2/">杭电2021-2</a>
+            
+        </section>
+
+
+    </article>
+</div>
+
+        </div>
+        <footer id="footer" class="footer">
+        <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <div class="copyright">
+        <span>© Helloat123 | Powered by <a href="https://hexo.io" target="_blank">Hexo</a> & <a href="https://github.com/Siricee/hexo-theme-Chic" target="_blank">Chic</a> | <span id="busuanzi_container_site_pv">
+    本站总访问量<span id="busuanzi_value_site_pv"></span>次
+</span> | <span id="busuanzi_container_site_uv">
+  本站访客数<span id="busuanzi_value_site_uv"></span>人次
+</span></span>
+    </div>
+</footer>
+
+    </div>
+</body>
+</html>
