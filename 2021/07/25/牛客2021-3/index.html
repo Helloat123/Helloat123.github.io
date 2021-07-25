@@ -12,7 +12,7 @@
 
 
 
-<title>杭电2021-2 | Richard&#39;s Blog</title>
+<title>牛客2021-3 | Richard&#39;s Blog</title>
 
 
 
@@ -39,45 +39,6 @@
 
     
     
-        
-            <!-- MathJax配置，可通过单美元符号书写行内公式等 -->
-<script type="text/x-mathjax-config">
-    MathJax.Hub.Config({
-    "HTML-CSS": {
-        preferredFont: "TeX",
-        availableFonts: ["STIX","TeX"],
-        linebreaks: { automatic:true },
-        EqnChunk: (MathJax.Hub.Browser.isMobile ? 10 : 50)
-    },
-    tex2jax: {
-        inlineMath: [ ["$", "$"], ["\\(","\\)"] ],
-        processEscapes: true,
-        ignoreClass: "tex2jax_ignore|dno",
-        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
-    },
-    TeX: {
-        equationNumbers: { autoNumber: "AMS" },
-        noUndefined: { attributes: { mathcolor: "red", mathbackground: "#FFEEEE", mathsize: "90%" } },
-        Macros: { href: "{}" }
-    },
-    messageStyle: "none"
-    });
-</script>
-<!-- 给MathJax元素添加has-jax class -->
-<script type="text/x-mathjax-config">
-    MathJax.Hub.Queue(function() {
-        var all = MathJax.Hub.getAllJax(), i;
-        for(i=0; i < all.length; i += 1) {
-            all[i].SourceElement().parentNode.className += ' has-jax';
-        }
-    });
-</script>
-<!-- 通过连接CDN加载MathJax的js代码 -->
-<script type="text/javascript" async
-        src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML">
-</script>
-
-
         
     
 
@@ -212,7 +173,7 @@
     
     <article class="post-wrap">
         <header class="post-header">
-            <h1 class="post-title">杭电2021-2</h1>
+            <h1 class="post-title">牛客2021-3</h1>
             
                 <div class="post-meta">
                     
@@ -221,7 +182,7 @@
 
                     
                         <span class="post-time">
-                        Date: <a href="#">July 23, 2021&nbsp;&nbsp;8:45:33</a>
+                        Date: <a href="#">July 25, 2021&nbsp;&nbsp;22:55:11</a>
                         </span>
                     
                     
@@ -237,29 +198,14 @@
         </header>
 
         <div class="post-content">
-            <h1 id="1012"><a href="#1012" class="headerlink" title="1012"></a>1012</h1><p>签到</p>
-<h1 id="1005"><a href="#1005" class="headerlink" title="1005"></a>1005</h1><p>WD签到</p>
-<h1 id="1001"><a href="#1001" class="headerlink" title="1001"></a>1001</h1><p>LYF签到 推式子（找规律）+套公式</p>
-<h1 id="1008"><a href="#1008" class="headerlink" title="1008"></a>1008</h1><p>LYF 读入输出有点麻烦其他还好？的dp</p>
-<h1 id="1011"><a href="#1011" class="headerlink" title="1011"></a>1011</h1><p>WD </p>
-<p>题意：给两个数列A,B(n&lt;=2^18)，定义$C_k=max{ A_i B_j  },i\ bitand\ j\ge k$求C数列。</p>
-<p>解：</p>
-<p>首先可以想到 如果能求出i&amp;j=k情况下，定义为D数列,做后缀max即可得出C数列。但这也不好做。考虑求i&amp;j$\in$k情况下的数列E。可以发现，E的每一项都大于等于D但小于等于C。感受一下可以得到，对E求后缀max的结果就是C。</p>
-<p>那么如何求E呢？$E_k=max { A_i B_j },i\ bitand\ j \in k$</p>
-<p>显然，$E_k=max { A_i }\cdot max { B_j }$，类似状压DP转移即可。（还需要注意处理负数的情况）</p>
-<h1 id="补1004"><a href="#补1004" class="headerlink" title="补1004"></a>补1004</h1><p>题意：给定数列c，n100000。有q100000个询问，问c[l]到c[r]之间有多少个不同的c，使得c xor a&lt;=b</p>
-<p>解：</p>
-<p>LYF赛场上由于小地方写挂而没有ac，思路是正确的。</p>
-<p>首先了解到上一场中1010的莫队做法，若将c xor a&lt;=b改为a&lt;=c&lt;=b是可以在根号时间内做出的（这个询问我称之为老询问）。条件改为c xor a&lt;=b（新询问），是可以转化为多次老询问的。根据xor的特性，我们可以方便地从高位向低位递归c各二进制位的01情况，在每一层中至少有一棵子树是全部满足或全部不满足的。对于全部满足的情况，即可转化为老询问。故每次新询问最多进行log次老询问即可求出答案。总体而言，新询问也经常只需要不到log次老询问。所以复杂度是小于$O(n^\frac{3}{2}\lg n)$的。由于时限2s且评测机很快，可过。</p>
-<h1 id="补1002"><a href="#补1002" class="headerlink" title="补1002"></a>补1002</h1><p>树剖</p>
-<h1 id="补1010"><a href="#补1010" class="headerlink" title="补1010"></a>补1010</h1><p>题意：给定奇质数P及小于它的正整数a，求数列$b_x\equiv ax \pmod P,x\le P-1$中的逆序对的奇偶性。</p>
-<p>正解：</p>
-<p>首先显然可以发现b数列是一个排列。然后就做不下去了…原来是道数学推导题目…<br>$$<br>将排列记作\pi，排列逆序数为n(\pi)，定义sgn(\pi)为(-1)^{n(\pi)}，则求逆序数奇偶性可转化为求sgn(\pi)的正负性\\<br>sgn(\pi)=\frac{\prod _ { i\lt j\le P-1 } c_i-c_j}{\prod _ { i\lt j\le P-1 } i-j}=\prod _ { i\lt j\le P-1 }\frac{c_i-c_j}{i-j}\equiv \prod _ { i\lt j\le P-1 }\frac{ai-aj}{i-j} \equiv \prod _ { i\lt j\le P-1 } a \equiv a^{\frac{P(P-1)}{2}}\equiv a^{\frac{P-1}{2}} \pmod{P}<br>$$<br>于是转化成傻逼题</p>
-<p>这tm是不是数竞题？</p>
-<p>打表：</p>
-<p>赛场上把每个p对应的a的奇偶情况打成了01三角矩阵样子的表，完全没有规律</p>
-<p>如果尝试每一行输出p a 01 或许是能发现规律的</p>
-<h1 id="补1007"><a href="#补1007" class="headerlink" title="补1007"></a>补1007</h1><p>线段树维护矩阵</p>
+            <h1 id="J"><a href="#J" class="headerlink" title="J"></a>J</h1><p>题意：给定8000个点的完全图(邻接表)，边为黑色或白色。问能形成多少个边同色的三角形。（三角形为三个点和三条他们之间的边组成的子图</p>
+<p>LYF解：</p>
+<p>发现统计同色的不容易做。正难则反，考虑容斥：三角形总数为C(8000,3)，减去边不同色的三角形即为答案。容易发现，对于每个<strong>黑边-点-白边</strong>这样的东西，必然会出现在不同色三角形中，且数量为不同色三角形的两倍。做完了。</p>
+<h1 id="E"><a href="#E" class="headerlink" title="E"></a>E</h1><p>WD&amp;ZRC 打表</p>
+<p>推导可以利用数学竞赛中的韦达定理</p>
+<p>不然就打表找规律吧</p>
+<h1 id="F"><a href="#F" class="headerlink" title="F"></a>F</h1><p>ZRC 模拟 24点 没啥好说的 只是要感叹一句 开O2对stl的加速效果真的强</p>
+<h1 id="补B"><a href="#补B" class="headerlink" title="补B"></a>补B</h1><p>建模 最小生成树</p>
 
         </div>
 
@@ -283,10 +229,8 @@
         </section>
         <section class="post-nav">
             
-                <a class="prev" rel="prev" href="/2021/07/25/Luogu-P1742-HDU-3007-%E6%9C%80%E5%B0%8F%E5%9C%86%E8%A6%86%E7%9B%96/">Luogu P1742 HDU 3007 最小圆覆盖</a>
             
-            
-            <a class="next" rel="next" href="/2021/07/21/%E6%9D%AD%E7%94%B52021-1/">杭电2021-1</a>
+            <a class="next" rel="next" href="/2021/07/25/Luogu-P1742-HDU-3007-%E6%9C%80%E5%B0%8F%E5%9C%86%E8%A6%86%E7%9B%96/">Luogu P1742 HDU 3007 最小圆覆盖</a>
             
         </section>
 
