@@ -12,7 +12,7 @@
 
 
 
-<title>牛客2021-4 | Richard&#39;s Blog</title>
+<title>杭电2021-3 | Richard&#39;s Blog</title>
 
 
 
@@ -212,7 +212,7 @@
     
     <article class="post-wrap">
         <header class="post-header">
-            <h1 class="post-title">牛客2021-4</h1>
+            <h1 class="post-title">杭电2021-3</h1>
             
                 <div class="post-meta">
                     
@@ -221,7 +221,7 @@
 
                     
                         <span class="post-time">
-                        Date: <a href="#">July 26, 2021&nbsp;&nbsp;19:23:08</a>
+                        Date: <a href="#">July 27, 2021&nbsp;&nbsp;23:41:07</a>
                         </span>
                     
                     
@@ -237,22 +237,22 @@
         </header>
 
         <div class="post-content">
-            <h1 id="I"><a href="#I" class="headerlink" title="I"></a>I</h1><p>签到 WD</p>
-<h1 id="F"><a href="#F" class="headerlink" title="F"></a>F</h1><p>签到 LYF ZRC</p>
-<p>又是判奇偶性的博弈论</p>
-<h1 id="C"><a href="#C" class="headerlink" title="C"></a>C</h1><p>不知道是啥 WD</p>
-<h1 id="J"><a href="#J" class="headerlink" title="J"></a>J</h1><p>题意：式子稍微推一推就可以发现，题意可以转化为对a、b100000两个数组做一样的操作：求长度&gt;=k的区间的最大平均值。</p>
-<p>ZRC解：</p>
-<p>01分数规划。假设答案是$ans$，那么<br>$$<br>ans=\frac{\sum _ { i=l } ^ { r } a_i } { r-l+1 }\\<br>整理，\sum _ { i=l } ^ { r } a_i -ans\cdot(r-l+1)=0\\<br>f(x):=\sum _ { i=l } ^ { r } (a_i -ans)=0<br>$$<br>二分答案。当二分的答案小于真实答案时，f(x)&gt;0，否则&lt;0。</p>
-<p>那么题目就转化为 求f(x)的最大值，即求长度&gt;=k的区间的和的最大值</p>
-<p>前缀和+前缀min即可</p>
-<p>总复杂度$O(n\lg \frac{maxvalue}{eps})$</p>
-<h1 id="B"><a href="#B" class="headerlink" title="B"></a>B</h1><p>WD 概率dp</p>
-<h1 id="补E"><a href="#补E" class="headerlink" title="补E"></a>补E</h1><p>题意：</p>
-<p>转化一下就变成了求n个形如<br>$$<br>x\oplus a_i\in [l_i,r_i]<br>$$<br>的异或不等式方程组的解的个数</p>
+            <h1 id="1011"><a href="#1011" class="headerlink" title="1011"></a>1011</h1><p>ZRC 签到</p>
+<p>题意：</p>
+<p>一个动态开点线段树的build环节，如果是在1-n上build，当区间长度小于等于k就return的话，要开多少点。</p>
 <p>解：</p>
-<p>右边的区间异或$a_i$后会形成最多lg个区间，把这lg个区间在线段树上记录即可求出最终的区间交</p>
-<p>区间交的大小即答案</p>
+<p>考场上时刚开始觉得大家过得这么快肯定是什么打表随便看的东西，就没仔细想直接打表找规律了。看了好长时间之后得到结论：当$k\cdot 2^x=n$时，答案是$2^{x+1}-1$,$k\cdot 2^x&lt;n&lt;k\cdot 2^{x+1}$时，答案是$min{ 2^{x+1}-1+2\cdot (n-k\cdot 2^x),2^{x+2}-1 }$</p>
+<p>这样复杂度一个log即可判断。</p>
+<p>实际上不打表的方法也是显然的。对于每种长度记忆化搜索。对于每个输入最多只有$\lg n$层，所以就最多只有大约$O(\lg n)$级别种不同长度的区间。对他给的代码随便改改即可。</p>
+<h1 id="1007"><a href="#1007" class="headerlink" title="1007"></a>1007</h1><p>ZRC&amp;WD 无脑签到</p>
+<h1 id="1004"><a href="#1004" class="headerlink" title="1004"></a>1004</h1><p>LYF 博弈论</p>
+<h1 id="1003"><a href="#1003" class="headerlink" title="1003"></a>1003</h1><p>WD ntt字符串匹配</p>
+<h1 id="1009"><a href="#1009" class="headerlink" title="1009"></a>1009</h1><p>题意：</p>
+<p>n100的方阵，从左上角走到右下角，每一步只能向右或者向下。每个格子有a,b两个属性1e6，保证数据随机，问最终 路径上a的和*路径上b的和 的最大值是多少。</p>
+<p>ZRC&amp;LYF解：</p>
+<p>首先感受到退火对这道题貌似很不稳定，貌似局部爬山的峰都很小，比较难找到正确的峰。考虑A*。估值随便按局部最优解估，更重要的是如何剪枝。LYF想出了可以预处理当前点到终点的a+b的和的最大值，剪枝时利用这个最大值求出一个从当前状态走到终点时的答案的上界，与当前答案比较。跑得飞快。</p>
+<p>题解：</p>
+<p>设计一个状态$f[i][j][x]$表示走到i,j位置且a的和为x时的b的最大值。则对于同一个i,j位置，可能发展为最优解的x和f的值是具有单调性的。因此最多只有$n^2\cdot(有效的x)$个状态，而随机数据下有效的x大约是几千个。</p>
 
         </div>
 
@@ -276,10 +276,8 @@
         </section>
         <section class="post-nav">
             
-                <a class="prev" rel="prev" href="/2021/07/27/%E6%9D%AD%E7%94%B52021-3/">杭电2021-3</a>
             
-            
-            <a class="next" rel="next" href="/2021/07/25/%E7%89%9B%E5%AE%A22021-3/">牛客2021-3</a>
+            <a class="next" rel="next" href="/2021/07/26/%E7%89%9B%E5%AE%A22021-4/">牛客2021-4</a>
             
         </section>
 
