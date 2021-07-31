@@ -12,7 +12,7 @@
 
 
 
-<title>杭电2021-3 | Richard&#39;s Blog</title>
+<title>杭电2021-4 | Richard&#39;s Blog</title>
 
 
 
@@ -39,45 +39,6 @@
 
     
     
-        
-            <!-- MathJax配置，可通过单美元符号书写行内公式等 -->
-<script type="text/x-mathjax-config">
-    MathJax.Hub.Config({
-    "HTML-CSS": {
-        preferredFont: "TeX",
-        availableFonts: ["STIX","TeX"],
-        linebreaks: { automatic:true },
-        EqnChunk: (MathJax.Hub.Browser.isMobile ? 10 : 50)
-    },
-    tex2jax: {
-        inlineMath: [ ["$", "$"], ["\\(","\\)"] ],
-        processEscapes: true,
-        ignoreClass: "tex2jax_ignore|dno",
-        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
-    },
-    TeX: {
-        equationNumbers: { autoNumber: "AMS" },
-        noUndefined: { attributes: { mathcolor: "red", mathbackground: "#FFEEEE", mathsize: "90%" } },
-        Macros: { href: "{}" }
-    },
-    messageStyle: "none"
-    });
-</script>
-<!-- 给MathJax元素添加has-jax class -->
-<script type="text/x-mathjax-config">
-    MathJax.Hub.Queue(function() {
-        var all = MathJax.Hub.getAllJax(), i;
-        for(i=0; i < all.length; i += 1) {
-            all[i].SourceElement().parentNode.className += ' has-jax';
-        }
-    });
-</script>
-<!-- 通过连接CDN加载MathJax的js代码 -->
-<script type="text/javascript" async
-        src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML">
-</script>
-
-
         
     
 
@@ -212,7 +173,7 @@
     
     <article class="post-wrap">
         <header class="post-header">
-            <h1 class="post-title">杭电2021-3</h1>
+            <h1 class="post-title">杭电2021-4</h1>
             
                 <div class="post-meta">
                     
@@ -221,7 +182,7 @@
 
                     
                         <span class="post-time">
-                        Date: <a href="#">July 27, 2021&nbsp;&nbsp;23:41:07</a>
+                        Date: <a href="#">July 30, 2021&nbsp;&nbsp;19:48:01</a>
                         </span>
                     
                     
@@ -237,23 +198,16 @@
         </header>
 
         <div class="post-content">
-            <h1 id="1011"><a href="#1011" class="headerlink" title="1011"></a>1011</h1><p>ZRC 签到</p>
-<p>题意：</p>
-<p>一个动态开点线段树的build环节，如果是在1-n上build，当区间长度小于等于k就return的话，要开多少点。</p>
-<p>解：</p>
-<p>考场上时刚开始觉得大家过得这么快肯定是什么打表随便看的东西，就没仔细想直接打表找规律了。看了好长时间之后得到结论：当$k\cdot 2^x=n$时，答案是$2^{x+1}-1$,$k\cdot 2^x&lt;n&lt;k\cdot 2^{x+1}$时，答案是$min{ 2^{x+1}-1+2\cdot (n-k\cdot 2^x),2^{x+2}-1 }$</p>
-<p>这样复杂度一个log即可判断。</p>
-<p>实际上不打表的方法也是显然的。对于每种长度记忆化搜索。对于每个输入最多只有$\lg n$层，所以就最多只有大约$O(\lg n)$级别种不同长度的区间。对他给的代码随便改改即可。</p>
-<h1 id="1007"><a href="#1007" class="headerlink" title="1007"></a>1007</h1><p>ZRC&amp;WD 无脑签到</p>
-<h1 id="1004"><a href="#1004" class="headerlink" title="1004"></a>1004</h1><p>LYF 博弈论</p>
-<h1 id="1003"><a href="#1003" class="headerlink" title="1003"></a>1003</h1><p>WD ntt字符串匹配</p>
-<h1 id="1009"><a href="#1009" class="headerlink" title="1009"></a>1009</h1><p>题意：</p>
-<p>n100的方阵，从左上角走到右下角，每一步只能向右或者向下。每个格子有a,b两个属性1e6，保证数据随机，问最终 路径上a的和*路径上b的和 的最大值是多少。</p>
-<p>ZRC&amp;LYF解：</p>
-<p>首先感受到退火对这道题貌似很不稳定，貌似局部爬山的峰都很小，比较难找到正确的峰。考虑A*。估值随便按局部最优解估，更重要的是如何剪枝。LYF想出了可以预处理当前点到终点的a+b的和的最大值，剪枝时利用这个最大值求出一个从当前状态走到终点时的答案的上界，与当前答案比较。跑得飞快。</p>
-<p>题解：</p>
-<p>设计一个状态$f[i][j][x]$表示走到i,j位置且a的和为x时的b的最大值。则对于同一个i,j位置，可能发展为最优解的x和f的值是具有单调性的。因此最多只有$n^2\cdot(有效的x)$个状态，而随机数据下有效的x大约是几千个。</p>
-
+            <h1 id="1002"><a href="#1002" class="headerlink" title="1002"></a>1002</h1><p>LYF 签到</p>
+<h1 id="1001"><a href="#1001" class="headerlink" title="1001"></a>1001</h1><p>LYF 签到</p>
+<h1 id="1009"><a href="#1009" class="headerlink" title="1009"></a>1009</h1><p>ZRC 签到</p>
+<h1 id="1008"><a href="#1008" class="headerlink" title="1008"></a>1008</h1><p>LYF&amp;ZRC 找规律模拟</p>
+<h1 id="1004"><a href="#1004" class="headerlink" title="1004"></a>1004</h1><p>题意：</p>
+<p>每个字母都有一个权值，n1e5的字符串，问权值和第k大的字符串的权值</p>
+<p>WD解：</p>
+<p>二分答案+SA</p>
+<p>显然SA很容易干这个判断有多少个比他大的事情</p>
+<h1 id="1005补"><a href="#1005补" class="headerlink" title="1005补"></a>1005补</h1>
         </div>
 
         
@@ -276,10 +230,10 @@
         </section>
         <section class="post-nav">
             
-                <a class="prev" rel="prev" href="/2021/07/30/%E6%9D%AD%E7%94%B52021-4/">杭电2021-4</a>
+                <a class="prev" rel="prev" href="/2021/07/31/%E6%A8%A1%E6%8B%9F%E9%80%80%E7%81%AB/">模拟退火</a>
             
             
-            <a class="next" rel="next" href="/2021/07/26/%E7%89%9B%E5%AE%A22021-4/">牛客2021-4</a>
+            <a class="next" rel="next" href="/2021/07/27/%E6%9D%AD%E7%94%B52021-3/">杭电2021-3</a>
             
         </section>
 
