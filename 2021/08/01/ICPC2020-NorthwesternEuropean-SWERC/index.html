@@ -12,7 +12,7 @@
 
 
 
-<title>牛客2021-5 | Richard&#39;s Blog</title>
+<title>ICPC2020-NorthwesternEuropean-SWERC | Richard&#39;s Blog</title>
 
 
 
@@ -173,7 +173,7 @@
     
     <article class="post-wrap">
         <header class="post-header">
-            <h1 class="post-title">牛客2021-5</h1>
+            <h1 class="post-title">ICPC2020-NorthwesternEuropean-SWERC</h1>
             
                 <div class="post-meta">
                     
@@ -182,7 +182,7 @@
 
                     
                         <span class="post-time">
-                        Date: <a href="#">July 31, 2021&nbsp;&nbsp;23:22:01</a>
+                        Date: <a href="#">August 1, 2021&nbsp;&nbsp;10:02:59</a>
                         </span>
                     
                     
@@ -198,16 +198,42 @@
         </header>
 
         <div class="post-content">
-            <h1 id="H"><a href="#H" class="headerlink" title="H"></a>H</h1><p>ZRC 签到</p>
-<h1 id="K"><a href="#K" class="headerlink" title="K"></a>K</h1><p>ZRC 签到 双指针+ST表</p>
-<h1 id="D"><a href="#D" class="headerlink" title="D"></a>D</h1><p>LYF DP</p>
-<h1 id="B"><a href="#B" class="headerlink" title="B"></a>B</h1><p>WD&amp;LYF 签到 概率</p>
-<h1 id="J"><a href="#J" class="headerlink" title="J"></a>J</h1><p>题意：</p>
-<p>ZRC&amp;WD&amp;LYF解：模拟退火。具体过程参见<a href="/2021/07/31/%E6%A8%A1%E6%8B%9F%E9%80%80%E7%81%AB/#K">模拟退火 </a>。</p>
-<p>正解：KM 带权二分图匹配</p>
-<h1 id="G"><a href="#G" class="headerlink" title="G"></a>G</h1><p>LYF&amp;WD：搜索剪枝</p>
-<p>正解：搜索时利用一些二分的技巧</p>
-<p>待补</p>
+            <p>2021.5.12 asdfas</p>
+<h1 id="K"><a href="#K" class="headerlink" title="K"></a>K</h1><p>签到</p>
+<h1 id="C"><a href="#C" class="headerlink" title="C"></a>C</h1><p>签到</p>
+<h1 id="H"><a href="#H" class="headerlink" title="H"></a>H</h1><p>签到</p>
+<h1 id="D"><a href="#D" class="headerlink" title="D"></a>D</h1><p>交互</p>
+<p>题意：</p>
+<p>x和y都在0到1e6之间的平面上有n&lt;=7个宝藏（整点上），每次你询问时给定一个平面上的一个点，交互程序会给出最近的宝藏的距离的平方。要求在1000次询问以内找到所有点。</p>
+<p>ZRC解：</p>
+<p>首先询问第一行的连续八个点，则由抽屉原理，八个点中至少有两个对应的是同一个宝藏。且由两个点和各自距离可以计算出可能的宝藏位置。枚举八个点的所有点对，询问可能的宝藏位置；找到第一个后以同样方式继续寻找。</p>
+<p>题解1：</p>
+<p>相邻的两个点有很大概率对应的是同一个宝藏。随机选取相邻点不断重复这个过程。</p>
+<p>题解2：</p>
+<p>随机撒点，尝试探测所有对应的格点。</p>
+<p>题解3：</p>
+<p>用一些数据结构和一些我没看懂的做法</p>
+<h1 id="F"><a href="#F" class="headerlink" title="F"></a>F</h1><p>题意：</p>
+<p>数轴上有n1e5架drone，他们有各自的速度和出发点，一旦他们相遇就会双双坠机。问最后能留多少飞机。</p>
+<p>LYF&amp;ZRC解：</p>
+<p>考虑画一张x-t图像，可以发现，相撞的drone一定是在当前未相撞drone中出发点相邻的两个。用优先队列维护相邻两drone的相撞时间即可。每次两架撞了就在链表中删除，在优先队列中加入新的相邻drone的相撞时间。同时若优先队列顶上取出的相撞事件包含了已坠机drone，那就忽略它。</p>
+<h1 id="A"><a href="#A" class="headerlink" title="A"></a>A</h1><p>DP</p>
+<h1 id="补E"><a href="#补E" class="headerlink" title="补E"></a>补E</h1><p>博弈论壳子，随机题内核</p>
+<p>题意：</p>
+<p>n1e5大小的棋盘</p>
+<p>Alice Bob，每一轮能在种操作中选一个：</p>
+<ol>
+<li>把棋子走两步，并把路上的对方棋子都吃掉</li>
+<li>将棋子任意移动到棋盘任何位置</li>
+<li>不走</li>
+</ol>
+<p>棋子的走法给定，有n种（例：2 1即可理解为马向其中一个方向的走法）。同时给定Alice和Bob的位置，问谁胜 或是平局。平局需要输出Alice这一步瞬移到的位置</p>
+<p>解：</p>
+<p>1.首先，如果走两步能吃，那就是Alice胜；</p>
+<p>2.否则，判断能否找到一个Bob两步走不到的地方。</p>
+<p>问题1很好做，将Alice走一步能到的地方(最多n个点)与能一步吃到Bob的地方(同样最多n个点)都求出来并比较是否有重复即可。</p>
+<p>问题2乍一看没有什么办法</p>
+<p>但是，对稍大的数据手推即可发现，由于走法只有n种，在n大时走两步能到的地方占盘面的比例很小。因此，对于小数据搜索答案；对于大数据，随机k次，问每个点是否能被Bob两步走到。题解说盘面上只有约二分之一的点能被吃到，所以找平局点的操作期望只会进行不到2次。</p>
 
         </div>
 
@@ -218,7 +244,7 @@
                 <span class="tag">
                     
                     
-                        <a href="/tags/%E5%A4%9A%E6%A0%A1/"># 多校</a>
+                        <a href="/tags/XCPC/"># XCPC</a>
                     
                         
                 </span>
@@ -231,10 +257,8 @@
         </section>
         <section class="post-nav">
             
-                <a class="prev" rel="prev" href="/2021/08/01/ICPC2020-NorthwesternEuropean-SWERC/">ICPC2020-NorthwesternEuropean-SWERC</a>
             
-            
-            <a class="next" rel="next" href="/2021/07/31/%E6%A8%A1%E6%8B%9F%E9%80%80%E7%81%AB/">模拟退火</a>
+            <a class="next" rel="next" href="/2021/07/31/%E7%89%9B%E5%AE%A22021-5/">牛客2021-5</a>
             
         </section>
 
