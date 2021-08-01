@@ -12,7 +12,7 @@
 
 
 
-<title>牛客2021-1 | Richard&#39;s Blog</title>
+<title>牛客2021-5 | Richard&#39;s Blog</title>
 
 
 
@@ -173,7 +173,7 @@
     
     <article class="post-wrap">
         <header class="post-header">
-            <h1 class="post-title">牛客2021-1</h1>
+            <h1 class="post-title">牛客2021-5</h1>
             
                 <div class="post-meta">
                     
@@ -182,7 +182,7 @@
 
                     
                         <span class="post-time">
-                        Date: <a href="#">July 17, 2021&nbsp;&nbsp;22:30:11</a>
+                        Date: <a href="#">July 31, 2021&nbsp;&nbsp;23:22:01</a>
                         </span>
                     
                     
@@ -198,49 +198,16 @@
         </header>
 
         <div class="post-content">
-            <p>好久没写了 鸽了三次训练赛以及swerc的记录…慢慢补</p>
-<p>这是牛客多校训练的第一场，感觉难度接近区域赛？稍微比区域赛难一些？</p>
-<h1 id="D"><a href="#D" class="headerlink" title="D"></a>D</h1><p>LYF签到</p>
-<h1 id="B"><a href="#B" class="headerlink" title="B"></a>B</h1><p>ZRC 初中几何 仅利用相似三角形和勾股定理就能做出来</p>
-<h1 id="A"><a href="#A" class="headerlink" title="A"></a>A</h1><p>LYF 博弈</p>
-<p>题意：两堆石子，一堆n个一堆m个，每次在一堆中拿走x(&gt;0)个，同时在另一堆拿走k(&gt;=0)*x个，问必胜情况。1e4组 n m 5e3</p>
-<p>解：</p>
-<p>设win[x][y]表示一堆x个一堆y个时的必胜情况，不妨假设x&lt;=y。</p>
-<p>显然</p>
-<p>win[0][0]=false</p>
-<p>win[0][x]=true</p>
-<p>win[1][x]=true</p>
-<p>win[2][3]=false</p>
-<p>win[2][!=3]=true</p>
-<p>win[3][x]=true</p>
-<p>win[4][x]=true</p>
-<p>可以找到一些规律：</p>
-<ol>
-<li>如果win[x][y]=false，那么win[x][&gt;y]必然true，因此每个x最多对应一个false的y，比如2对应3，3对应2</li>
-<li>别的某些规律</li>
-</ol>
-<p>但是貌似没啥用处</p>
-<p>我们观察数据范围 nm5000，很可能是n^2预处理一个胜负情况表</p>
-<p>那么就暴力预处理试试（类似素数筛法，从小往大搞，如果当前位置不能win，那么能到达当前位置的状态都能win）</p>
-<p>显然能做 就A了</p>
-<h1 id="F"><a href="#F" class="headerlink" title="F"></a>F</h1><p>WD ZRC辅助</p>
-<p>题意：给定L和R，问之间有多少数包含是3的倍数的子串(0算作3的倍数)</p>
-<p>解：</p>
-<p>WD一眼看到就是数位dp，然而大家A得太快 有点不敢相信</p>
-<p>重新思考后显然任意连续三个数一定能找到是3的倍数的子串，所以大于99的都在答案内。</p>
-<h1 id="H"><a href="#H" class="headerlink" title="H"></a>H</h1><p>WD</p>
-<p>题意：给定一个数列a，有一个哈希函数，仅仅是对m取个模，问最小的能让哈希函数完美哈希的m是多少。n5e5，a值域5e5</p>
-<p>解：</p>
-<p>如果对m取模会导致冲突，那么就说明a中两个数的差是m的倍数</p>
-<p>因此，只要对a中每两个数的差的集合取“不包含0的mex”即可</p>
-<p>怎么在比n^2更优的时间里跑出来呢？FFT。把每个数都看成多项式的指数即可。指数是负的怎么办？全都加五十万</p>
-<h1 id="补I"><a href="#补I" class="headerlink" title="补I"></a>补I</h1><p>暂时还没学会 待补</p>
-<h1 id="补K"><a href="#补K" class="headerlink" title="补K"></a>补K</h1><p>题意：</p>
-<p>给定值域0<del>n-1的b数组，使其与0</del>n-1这n个数一一匹配，使得<br>$$<br>\sum \sqrt{|b[i]-j|}<br>$$<br>与最小值的差距不超过百分之四。保证数据随机生成，每组数据内含一百组以上的子数据（其中保证有一半多是小数据），百分之四取所有数据差异值的平均值。</p>
-<p>解：</p>
-<p>比赛时一直在退火坑里出不去，也没有在本地试验满数据范围的收敛情况，白白浪费许多时间。但是积累了经验。</p>
-<p>首先显然题目可以转化成带权二分图匹配问题。KM算法可以做到$O(n^3)$复杂度，因此对于小数据可以使用KM算法直接算出最优值，将误差值平摊下去。</p>
-<p>对于大数据，考虑贪心和随机化算法并用本地随机数据验证可行性。结论就是这道题贪心是可以做到很优的。</p>
+            <h1 id="H"><a href="#H" class="headerlink" title="H"></a>H</h1><p>ZRC 签到</p>
+<h1 id="K"><a href="#K" class="headerlink" title="K"></a>K</h1><p>ZRC 签到 双指针+ST表</p>
+<h1 id="D"><a href="#D" class="headerlink" title="D"></a>D</h1><p>LYF DP</p>
+<h1 id="B"><a href="#B" class="headerlink" title="B"></a>B</h1><p>WD&amp;LYF 签到 概率</p>
+<h1 id="J"><a href="#J" class="headerlink" title="J"></a>J</h1><p>题意：</p>
+<p>ZRC&amp;WD&amp;LYF解：模拟退火。具体过程参见<a href="/2021/07/31/%E6%A8%A1%E6%8B%9F%E9%80%80%E7%81%AB/#K">模拟退火 </a>。</p>
+<p>正解：KM 带权二分图匹配</p>
+<h1 id="G"><a href="#G" class="headerlink" title="G"></a>G</h1><p>LYF&amp;WD：搜索剪枝</p>
+<p>正解：搜索时利用一些二分的技巧</p>
+<p>待补</p>
 
         </div>
 
@@ -264,10 +231,8 @@
         </section>
         <section class="post-nav">
             
-                <a class="prev" rel="prev" href="/2021/07/21/%E7%89%9B%E5%AE%A22021-2/">牛客2021-2</a>
             
-            
-            <a class="next" rel="next" href="/2021/05/11/EOJ-2021-5/">EOJ 2021.5</a>
+            <a class="next" rel="next" href="/2021/07/31/%E6%A8%A1%E6%8B%9F%E9%80%80%E7%81%AB/">模拟退火</a>
             
         </section>
 
