@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <meta name="author" content="Helloat123">
+
+
+
+
+
+<title>杭电2021-6 | Richard&#39;s Blog</title>
+
+
+
+    <link rel="icon" href="/favicon.png">
+
+
+
+
+    <!-- stylesheets list from _config.yml -->
+    
+    <link rel="stylesheet" href="/css/style.css">
+    
+
+
+
+    <!-- scripts list from _config.yml -->
+    
+    <script src="/js/script.js"></script>
+    
+    <script src="/js/tocbot.min.js"></script>
+    
+
+
+
+    
+    
+        
+            <!-- MathJax配置，可通过单美元符号书写行内公式等 -->
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+    "HTML-CSS": {
+        preferredFont: "TeX",
+        availableFonts: ["STIX","TeX"],
+        linebreaks: { automatic:true },
+        EqnChunk: (MathJax.Hub.Browser.isMobile ? 10 : 50)
+    },
+    tex2jax: {
+        inlineMath: [ ["$", "$"], ["\\(","\\)"] ],
+        processEscapes: true,
+        ignoreClass: "tex2jax_ignore|dno",
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    },
+    TeX: {
+        equationNumbers: { autoNumber: "AMS" },
+        noUndefined: { attributes: { mathcolor: "red", mathbackground: "#FFEEEE", mathsize: "90%" } },
+        Macros: { href: "{}" }
+    },
+    messageStyle: "none"
+    });
+</script>
+<!-- 给MathJax元素添加has-jax class -->
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+<!-- 通过连接CDN加载MathJax的js代码 -->
+<script type="text/javascript" async
+        src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+
+
+        
+    
+
+
+<meta name="generator" content="Hexo 5.2.0"></head>
+<body>
+    <div class="wrapper">
+        <header>
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-header header-logo"><a href="/">Richard&#39;s Blog</a></div>
+            <div class="menu navbar-right">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+                <input id="switch_default" type="checkbox" class="switch_default">
+                <label for="switch_default" class="toggleBtn"></label>
+            </div>
+        </div>
+    </nav>
+
+    
+    <nav class="navbar-mobile" id="nav-mobile">
+        <div class="container">
+            <div class="navbar-header">
+                <div>
+                    <a href="/">Richard&#39;s Blog</a><a id="mobile-toggle-theme">·&nbsp;Light</a>
+                </div>
+                <div class="menu-toggle" onclick="mobileBtn()">&#9776; Menu</div>
+            </div>
+            <div class="menu" id="mobile-menu">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+            </div>
+        </div>
+    </nav>
+
+</header>
+<script>
+    var mobileBtn = function f() {
+        var toggleMenu = document.getElementsByClassName("menu-toggle")[0];
+        var mobileMenu = document.getElementById("mobile-menu");
+        if(toggleMenu.classList.contains("active")){
+           toggleMenu.classList.remove("active")
+            mobileMenu.classList.remove("active")
+        }else{
+            toggleMenu.classList.add("active")
+            mobileMenu.classList.add("active")
+        }
+    }
+</script>
+        <div class="main">
+            <div class="container">
+    
+    
+        <div class="post-toc">
+    <div class="tocbot-list">
+    </div>
+    <div class="tocbot-list-menu">
+        <a class="tocbot-toc-expand" onclick="expand_toc()">Expand all</a>
+        <a onclick="go_top()">Back to top</a>
+        <a onclick="go_bottom()">Go to bottom</a>
+    </div>
+</div>
+
+<script>
+    document.ready(
+        function () {
+            tocbot.init({
+                tocSelector: '.tocbot-list',
+                contentSelector: '.post-content',
+                headingSelector: 'h1, h2, h3, h4, h5',
+                collapseDepth: 1,
+                orderedList: false,
+                scrollSmooth: true,
+            })
+        }
+    )
+
+    function expand_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 6,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "collapse_toc()");
+        b.innerHTML = "Collapse all"
+    }
+
+    function collapse_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 1,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "expand_toc()");
+        b.innerHTML = "Expand all"
+    }
+
+    function go_top() {
+        window.scrollTo(0, 0);
+    }
+
+    function go_bottom() {
+        window.scrollTo(0, document.body.scrollHeight);
+    }
+
+</script>
+    
+
+    
+    <article class="post-wrap">
+        <header class="post-header">
+            <h1 class="post-title">杭电2021-6</h1>
+            
+                <div class="post-meta">
+                    
+                        Author: <a itemprop="author" rel="author" href="/">Helloat123</a>
+                    
+
+                    
+                        <span class="post-time">
+                        Date: <a href="#">August 6, 2021&nbsp;&nbsp;9:47:13</a>
+                        </span>
+                    
+                    
+                        <span class="post-category">
+                    Category:
+                            
+                                <a href="/categories/%E8%AE%B0%E5%BD%95/">记录</a>
+                            
+                        </span>
+                    
+                </div>
+            
+        </header>
+
+        <div class="post-content">
+            <h1 id="1001"><a href="#1001" class="headerlink" title="1001"></a>1001</h1><p>ZRC&amp;WD 签到</p>
+<p>主要是考虑全所有情况。尽量还是考虑周全了再写代码…在纸上把情况都写全吧</p>
+<h1 id="1005"><a href="#1005" class="headerlink" title="1005"></a>1005</h1><p>“签到”</p>
+<p>题意：</p>
+<p>把1~n分进m个集合，并使得第i个集合的中位数（偶数大小集合的中位数是较小的那个）是给定的bi。问是否可行。</p>
+<p>LYF解(即题解做法)：</p>
+<p>首先，bi一定被分别分进各个集合中。对于其它数，可以看作是m+1(或者少一点)个连续段。对于每两个不同的连续段，显然可以将其中的元素一一消去(放进介于两段之间的任意bi代表的集合中)。</p>
+<p>若最长的段不长于其它所有段之和，显然有解。</p>
+<p>否则，考虑最长段中多出来的元素是可以被分别加入到比最长段更小的中位数的集合中去(一段放一个)，因此判断最长段长度-其他段长度和是否大于比最长段小的中位数数量即可判断是否有解。</p>
+<h1 id="补1004"><a href="#补1004" class="headerlink" title="补1004"></a>补1004</h1><p>题意：</p>
+<p>n1000个点(多组数据，总数4e6)的完全图，给定l数组，li表示需要选出并删除完全图中li条边组成的简单路径，保证l的和为完全图的边数，且单个l&lt;=n-3。求方案。</p>
+<p>解：</p>
+<p>首先可以明显地看出，题目即为在完全图中找到(构造？)一条欧拉回路，使得其中任意n-3长度的子路径中无环。注意到n-3，这个限制耐人寻味。然而还是想不出来。</p>
+<p>题解给出的方案是，(为了方便叙述)将出发点看作中间点，其余点均匀摆放在以中间点为圆心的圆上。将从中心点出发并回到中心点的过程称作一次构造的话，那么在每一次构造中都将周围点分成两个部分，在两个部分对应点中左右横跳。在完成一次构造后，旋转一个角度。</p>
+<p>这样的构造方法可以保证欧拉回路中任意长度为n-2子路径中无环。</p>
+<p><img src="/2021/08/06/%E6%9D%AD%E7%94%B52021-6/image-20210806211735814.png" alt="image-20210806211735814"></p>
+<h1 id="补1009"><a href="#补1009" class="headerlink" title="补1009"></a>补1009</h1><p>题意：</p>
+<p>n100个人可选，每个人都有两个属性s和f。如果选中了其中k个人，第i个人的成绩会是$s_i\cdot(1-f_if_1-f_if_2-\cdots-f_if_{i-1}-f_if_{i-2}-\cdots-f_if_k)$。现在可以从n个人中选出任意个人参赛，问最终最好的成绩和是多少。(s是整数1e12，f是0到1之间、两位小数，答案要求九位小数精度)</p>
+<p>多组数据，对于n的总量有所限制：$\sum n&lt;1.2\times 10^4,\sum n^2&lt;2.4\times 10^5,\sum n^3&lt;1.2\times 10^7,\sum n^4&lt;9\times 10^8$</p>
+<p>解：</p>
+<p>首先发现，精度要求很高，那么显然可以先把式子乘上10000，最后再除掉。这样，每一个选手的成绩式子就是$s_i\cdot(10000-f_i\cdot(\sum f_j-f_i))$。对于i选手而言，影响他的成绩的仅仅只有$\sum f_j$一项。又由于f的值域只有1到100，n只有100，因此$\sum f_j$的取值总共只有10000种。考虑一个枚举sum的暴力。</p>
+<p>考虑若已经确定了sum，实际上就转化成了一个01背包问题。重量即选手的f，价值即成绩。</p>
+<p>这样的暴力的复杂度为$O(10000\cdot n \cdot 10000)$，第一个10000为sum枚举的复杂度，第二个10000为01背包中状态的容量这一维。</p>
+<p>01背包本就不具有优化空间了…吗？之前有过一些数据范围很奇怪的背包题，有各种巧妙的方法啊。也就是说，考虑10000的数据范围是否能不取满？</p>
+<p>这道题，我们可以感受到，sum较大的时候基本上不可能有最优解。到什么程度才能保证不可能呢？列列式子试试看吧！<br>$$<br>Ans=\sum _ { i } s_i\cdot(10000+f_i^2-f_i\cdot sum)<br>$$<br>显然当右式不为正数时不会选当前的同学。<br>$$<br>10000+f_i^2-f_i\cdot sum&gt;0\\<br>对上式求和，n\cdot 10000+\sum f_i^2-\sum f_i\cdot\sum f_j&gt;0\\<br>sum^2-n\cdot 10000&lt;\sum f_i^2\\<br>由1式得，10000f_i+f_i^3-f_i^2\cdot sum&gt;0\\<br>对上式求和，10000\cdot sum+\sum f_i^3-sum\cdot\sum f_i^2&gt;0\\<br>整理，\sum f_i^2&lt;\frac{\sum f_i^3}{sum}+10000\le20000\\<br>将两个涉及\sum f_i^2的不等式联立得sum&lt;100\sqrt{n+2}<br>$$<br>由此，我们在做01背包时可以只将sum枚举到$100\sqrt{n+2}$，那么01背包过程中状态数也变得与根号有关。总复杂度变成了$O(10000n^2)$，评测机快就能过了。</p>
+<p>但是谁能想到这样推式子？…可能是经验吧？我还需要再琢磨一下…</p>
+<h1 id="补1011"><a href="#补1011" class="headerlink" title="补1011"></a>补1011</h1><p>博弈 看出来(i+1,j-1)和(i,j)胜负状态相同之后就可以记忆化搜索了 待仔细研究</p>
+
+        </div>
+
+        
+        <section class="post-tags">
+            <div>
+                <span>Tag(s):</span>
+                <span class="tag">
+                    
+                    
+                        <a href="/tags/%E5%A4%9A%E6%A0%A1/"># 多校</a>
+                    
+                        
+                </span>
+            </div>
+            <div>
+                <a href="javascript:window.history.back();">back</a>
+                <span>· </span>
+                <a href="/">home</a>
+            </div>
+        </section>
+        <section class="post-nav">
+            
+            
+            <a class="next" rel="next" href="/2021/08/04/%E6%9D%AD%E7%94%B52021-5/">杭电2021-5</a>
+            
+        </section>
+
+
+    </article>
+</div>
+
+        </div>
+        <footer id="footer" class="footer">
+        <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <div class="copyright">
+        <span>© Helloat123 | Powered by <a href="https://hexo.io" target="_blank">Hexo</a> & <a href="https://github.com/Siricee/hexo-theme-Chic" target="_blank">Chic</a> | <span id="busuanzi_container_site_pv">
+    本站总访问量<span id="busuanzi_value_site_pv"></span>次
+</span> | <span id="busuanzi_container_site_uv">
+  本站访客数<span id="busuanzi_value_site_uv"></span>人次
+</span></span>
+    </div>
+</footer>
+
+    </div>
+</body>
+</html>

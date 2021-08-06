@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <meta name="author" content="Helloat123">
+
+
+
+
+
+<title>杭电2021-5 | Richard&#39;s Blog</title>
+
+
+
+    <link rel="icon" href="/favicon.png">
+
+
+
+
+    <!-- stylesheets list from _config.yml -->
+    
+    <link rel="stylesheet" href="/css/style.css">
+    
+
+
+
+    <!-- scripts list from _config.yml -->
+    
+    <script src="/js/script.js"></script>
+    
+    <script src="/js/tocbot.min.js"></script>
+    
+
+
+
+    
+    
+        
+            <!-- MathJax配置，可通过单美元符号书写行内公式等 -->
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+    "HTML-CSS": {
+        preferredFont: "TeX",
+        availableFonts: ["STIX","TeX"],
+        linebreaks: { automatic:true },
+        EqnChunk: (MathJax.Hub.Browser.isMobile ? 10 : 50)
+    },
+    tex2jax: {
+        inlineMath: [ ["$", "$"], ["\\(","\\)"] ],
+        processEscapes: true,
+        ignoreClass: "tex2jax_ignore|dno",
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    },
+    TeX: {
+        equationNumbers: { autoNumber: "AMS" },
+        noUndefined: { attributes: { mathcolor: "red", mathbackground: "#FFEEEE", mathsize: "90%" } },
+        Macros: { href: "{}" }
+    },
+    messageStyle: "none"
+    });
+</script>
+<!-- 给MathJax元素添加has-jax class -->
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+<!-- 通过连接CDN加载MathJax的js代码 -->
+<script type="text/javascript" async
+        src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+
+
+        
+    
+
+
+<meta name="generator" content="Hexo 5.2.0"></head>
+<body>
+    <div class="wrapper">
+        <header>
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-header header-logo"><a href="/">Richard&#39;s Blog</a></div>
+            <div class="menu navbar-right">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+                <input id="switch_default" type="checkbox" class="switch_default">
+                <label for="switch_default" class="toggleBtn"></label>
+            </div>
+        </div>
+    </nav>
+
+    
+    <nav class="navbar-mobile" id="nav-mobile">
+        <div class="container">
+            <div class="navbar-header">
+                <div>
+                    <a href="/">Richard&#39;s Blog</a><a id="mobile-toggle-theme">·&nbsp;Light</a>
+                </div>
+                <div class="menu-toggle" onclick="mobileBtn()">&#9776; Menu</div>
+            </div>
+            <div class="menu" id="mobile-menu">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+            </div>
+        </div>
+    </nav>
+
+</header>
+<script>
+    var mobileBtn = function f() {
+        var toggleMenu = document.getElementsByClassName("menu-toggle")[0];
+        var mobileMenu = document.getElementById("mobile-menu");
+        if(toggleMenu.classList.contains("active")){
+           toggleMenu.classList.remove("active")
+            mobileMenu.classList.remove("active")
+        }else{
+            toggleMenu.classList.add("active")
+            mobileMenu.classList.add("active")
+        }
+    }
+</script>
+        <div class="main">
+            <div class="container">
+    
+    
+        <div class="post-toc">
+    <div class="tocbot-list">
+    </div>
+    <div class="tocbot-list-menu">
+        <a class="tocbot-toc-expand" onclick="expand_toc()">Expand all</a>
+        <a onclick="go_top()">Back to top</a>
+        <a onclick="go_bottom()">Go to bottom</a>
+    </div>
+</div>
+
+<script>
+    document.ready(
+        function () {
+            tocbot.init({
+                tocSelector: '.tocbot-list',
+                contentSelector: '.post-content',
+                headingSelector: 'h1, h2, h3, h4, h5',
+                collapseDepth: 1,
+                orderedList: false,
+                scrollSmooth: true,
+            })
+        }
+    )
+
+    function expand_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 6,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "collapse_toc()");
+        b.innerHTML = "Collapse all"
+    }
+
+    function collapse_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 1,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "expand_toc()");
+        b.innerHTML = "Expand all"
+    }
+
+    function go_top() {
+        window.scrollTo(0, 0);
+    }
+
+    function go_bottom() {
+        window.scrollTo(0, document.body.scrollHeight);
+    }
+
+</script>
+    
+
+    
+    <article class="post-wrap">
+        <header class="post-header">
+            <h1 class="post-title">杭电2021-5</h1>
+            
+                <div class="post-meta">
+                    
+                        Author: <a itemprop="author" rel="author" href="/">Helloat123</a>
+                    
+
+                    
+                        <span class="post-time">
+                        Date: <a href="#">August 4, 2021&nbsp;&nbsp;12:23:58</a>
+                        </span>
+                    
+                    
+                        <span class="post-category">
+                    Category:
+                            
+                                <a href="/categories/%E8%AE%B0%E5%BD%95/">记录</a>
+                            
+                        </span>
+                    
+                </div>
+            
+        </header>
+
+        <div class="post-content">
+            <h1 id="1006"><a href="#1006" class="headerlink" title="1006"></a>1006</h1><p>签到 ZRC 记忆化搜索（可直接模拟</p>
+<h1 id="1003"><a href="#1003" class="headerlink" title="1003"></a>1003</h1><p>签到 LYF 猜结论</p>
+<h1 id="1007"><a href="#1007" class="headerlink" title="1007"></a>1007</h1><p>“rnm 退钱”</p>
+<p>签到 构造 ZRC&amp;LYF</p>
+<p>没啥好说的，出题人欺负我英语不好，样例给的还是1呜呜呜</p>
+<p>下次看到这种不明不白的样例就得觉得有坑</p>
+<h1 id="补1009"><a href="#补1009" class="headerlink" title="补1009"></a>补1009</h1><p>题意：</p>
+<p>问1e6的数列中，<em>存在 <strong>出现频率大于一半的众数</strong></em>的区间数有多少个。值域1e6</p>
+<p>解：</p>
+<p>先讲一讲赛场上的思路吧</p>
+<p>首先因为数据范围很大，就感觉像是O(n)题。同时可以想到一个O(n)的做法<a href="/2021/02/01/17%E5%B9%B4%E6%A8%A1%E6%8B%9F%E9%A2%98%E5%9B%9E%E7%9C%8B/#凤舞六幻">Boyer-Moore 投票算法</a>。但是不知道怎么用上去。</p>
+<p>曾经碰到过一些随机选择位置统计概率的题，显然这里要求的是准确的<strong>区间数</strong>，而不是判定性问题，没法做。</p>
+<p>那就从暴力开始思考：</p>
+<ol>
+<li>O(n)枚举起始位置，做n遍Moore投票算法，途中记录每个数的出现次数，每次查询投票算法中的当前数是否出现次数大于一半。总复杂度$O(n^2)$</li>
+<li>设一共出现了k种数，遍历每一种数，每一次把这种数看成+1，其它数看成-1，对它跑一遍$O(n\lg n)$的扫描。权值线段树或树状数组可以解决。总复杂度$O(kn\lg n)$</li>
+<li>分块，对出现次数小于$\sqrt{n}$的和大于的分别处理。比赛时没有细想，因为铁定过不了。题解说这样复杂度是$O(n^\frac{3}{2}\lg n+n^\frac{3}{2})$的，可以通过调整块大小将两者均摊到$O(n^{\frac{3}{2}}\sqrt{\lg n})$</li>
+<li>类似2的做法，拿权值线段树来维护前缀和。统计答案时统计有多少位置的前缀和比当前位置小。但是这样处理难以统计右端点不在+1上的答案，暴力统计的话复杂度又会和方法2一样。但是可以发现，右端点不在+1上的方案一定是在连续的一段-1内。而一共最多有$O(n)$段-1，考虑把一段的答案一起统计。推导式子，即可在线段树上维护。然而卡常。</li>
+<li>类似4的做法，用树套树维护，还没想清楚是否真的能做，但超高的复杂度$O(n\lg^2n)$和更高的代码难度让人望而却步</li>
+</ol>
+<p>于是就gg了</p>
+<p>能过的正解主要是两种：</p>
+<ol>
+<li><p>用区间树状数组维护上面的方法4</p>
+</li>
+<li><p>差分+前缀和。正解1可以被优化。具体看std吧</p>
+</li>
+</ol>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">long</span> <span class="keyword">long</span> LL;</span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> pb push_back</span></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> maxn=<span class="number">2222222</span>;</span><br><span class="line"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;G[maxn];<span class="comment">//出现位置</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> n,t;</span><br><span class="line">    <span class="built_in">cin</span>&gt;&gt;t;</span><br><span class="line">    <span class="keyword">while</span> (t--)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">cin</span>&gt;&gt;n;</span><br><span class="line">        <span class="built_in">unordered_set</span>&lt;<span class="keyword">int</span>&gt;s;<span class="comment">//存在哪些数</span></span><br><span class="line">        <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;a(n+<span class="number">1</span>);</span><br><span class="line">        rep(i,<span class="number">1</span>,n)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="built_in">cin</span>&gt;&gt;a[i];</span><br><span class="line">            s.insert(a[i]);</span><br><span class="line">            G[a[i]].pb(i);</span><br><span class="line">        &#125;</span><br><span class="line">        LL ans=<span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">auto</span> num:s) <span class="comment">// 枚举每个数作为众数</span></span><br><span class="line">        &#123;</span><br><span class="line">            LL res=<span class="number">0</span>;<span class="comment">// 答案</span></span><br><span class="line">            LL sum=<span class="number">0</span>;<span class="comment">// 当前前缀和</span></span><br><span class="line">            <span class="built_in">unordered_map</span>&lt;<span class="keyword">int</span>,<span class="keyword">int</span>&gt;f1,f2;<span class="comment">// 前缀和为sum的点有f1[sum]个</span></span><br><span class="line">            G[num].pb(n+<span class="number">1</span>);<span class="comment">//把没处理完的统计进答案</span></span><br><span class="line">            LL k=<span class="number">0</span>,minn=<span class="number">0</span>;</span><br><span class="line">            rep(j,<span class="number">1</span>,n)</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="keyword">if</span> (j&gt;G[num][k]) k++;</span><br><span class="line">                <span class="keyword">if</span> (a[j]!=num&amp;&amp;sum==minn)</span><br><span class="line">                &#123;</span><br><span class="line">                    LL len=G[num][k]-j<span class="number">-1</span>;</span><br><span class="line">                    f2[sum+<span class="number">1</span>]--;</span><br><span class="line">                    f2[sum-len]++;</span><br><span class="line">                    j+=len;</span><br><span class="line">                    sum-=len+<span class="number">1</span>;</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">else</span> <span class="keyword">if</span> (a[j]==num)</span><br><span class="line">                &#123;</span><br><span class="line">                    f1[sum]+=f2[sum];</span><br><span class="line">                    f2[sum+<span class="number">1</span>]+=f2[sum];</span><br><span class="line">                    f2[sum]=<span class="number">0</span>;</span><br><span class="line">                    f1[sum]++;</span><br><span class="line">                    res+=f1[sum];</span><br><span class="line">                    sum++;</span><br><span class="line">                    ans+=res;</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">else</span></span><br><span class="line">                &#123;</span><br><span class="line">                    f1[sum]++;</span><br><span class="line">                    sum--;</span><br><span class="line">                    res-=f1[sum];</span><br><span class="line">                    ans+=res;</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">if</span> (minn&gt;sum) minn=sum;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">cout</span>&lt;&lt;ans&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">auto</span> &amp;i:s) G[i].clear();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+        </div>
+
+        
+        <section class="post-tags">
+            <div>
+                <span>Tag(s):</span>
+                <span class="tag">
+                    
+                    
+                        <a href="/tags/%E5%A4%9A%E6%A0%A1/"># 多校</a>
+                    
+                        
+                </span>
+            </div>
+            <div>
+                <a href="javascript:window.history.back();">back</a>
+                <span>· </span>
+                <a href="/">home</a>
+            </div>
+        </section>
+        <section class="post-nav">
+            
+                <a class="prev" rel="prev" href="/2021/08/06/%E6%9D%AD%E7%94%B52021-6/">杭电2021-6</a>
+            
+            
+            <a class="next" rel="next" href="/2021/08/04/%E7%89%9B%E5%AE%A22021-6/">牛客2021-6</a>
+            
+        </section>
+
+
+    </article>
+</div>
+
+        </div>
+        <footer id="footer" class="footer">
+        <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <div class="copyright">
+        <span>© Helloat123 | Powered by <a href="https://hexo.io" target="_blank">Hexo</a> & <a href="https://github.com/Siricee/hexo-theme-Chic" target="_blank">Chic</a> | <span id="busuanzi_container_site_pv">
+    本站总访问量<span id="busuanzi_value_site_pv"></span>次
+</span> | <span id="busuanzi_container_site_uv">
+  本站访客数<span id="busuanzi_value_site_uv"></span>人次
+</span></span>
+    </div>
+</footer>
+
+    </div>
+</body>
+</html>
