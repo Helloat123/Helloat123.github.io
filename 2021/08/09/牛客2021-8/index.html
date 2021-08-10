@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <meta name="author" content="Helloat123">
+
+
+
+
+
+<title>牛客2021-8 | Richard&#39;s Blog</title>
+
+
+
+    <link rel="icon" href="/favicon.png">
+
+
+
+
+    <!-- stylesheets list from _config.yml -->
+    
+    <link rel="stylesheet" href="/css/style.css">
+    
+
+
+
+    <!-- scripts list from _config.yml -->
+    
+    <script src="/js/script.js"></script>
+    
+    <script src="/js/tocbot.min.js"></script>
+    
+
+
+
+    
+    
+        
+            <!-- MathJax配置，可通过单美元符号书写行内公式等 -->
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+    "HTML-CSS": {
+        preferredFont: "TeX",
+        availableFonts: ["STIX","TeX"],
+        linebreaks: { automatic:true },
+        EqnChunk: (MathJax.Hub.Browser.isMobile ? 10 : 50)
+    },
+    tex2jax: {
+        inlineMath: [ ["$", "$"], ["\\(","\\)"] ],
+        processEscapes: true,
+        ignoreClass: "tex2jax_ignore|dno",
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    },
+    TeX: {
+        equationNumbers: { autoNumber: "AMS" },
+        noUndefined: { attributes: { mathcolor: "red", mathbackground: "#FFEEEE", mathsize: "90%" } },
+        Macros: { href: "{}" }
+    },
+    messageStyle: "none"
+    });
+</script>
+<!-- 给MathJax元素添加has-jax class -->
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+<!-- 通过连接CDN加载MathJax的js代码 -->
+<script type="text/javascript" async
+        src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+
+
+        
+    
+
+
+<meta name="generator" content="Hexo 5.2.0"></head>
+<body>
+    <div class="wrapper">
+        <header>
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-header header-logo"><a href="/">Richard&#39;s Blog</a></div>
+            <div class="menu navbar-right">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+                <input id="switch_default" type="checkbox" class="switch_default">
+                <label for="switch_default" class="toggleBtn"></label>
+            </div>
+        </div>
+    </nav>
+
+    
+    <nav class="navbar-mobile" id="nav-mobile">
+        <div class="container">
+            <div class="navbar-header">
+                <div>
+                    <a href="/">Richard&#39;s Blog</a><a id="mobile-toggle-theme">·&nbsp;Light</a>
+                </div>
+                <div class="menu-toggle" onclick="mobileBtn()">&#9776; Menu</div>
+            </div>
+            <div class="menu" id="mobile-menu">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+            </div>
+        </div>
+    </nav>
+
+</header>
+<script>
+    var mobileBtn = function f() {
+        var toggleMenu = document.getElementsByClassName("menu-toggle")[0];
+        var mobileMenu = document.getElementById("mobile-menu");
+        if(toggleMenu.classList.contains("active")){
+           toggleMenu.classList.remove("active")
+            mobileMenu.classList.remove("active")
+        }else{
+            toggleMenu.classList.add("active")
+            mobileMenu.classList.add("active")
+        }
+    }
+</script>
+        <div class="main">
+            <div class="container">
+    
+    
+        <div class="post-toc">
+    <div class="tocbot-list">
+    </div>
+    <div class="tocbot-list-menu">
+        <a class="tocbot-toc-expand" onclick="expand_toc()">Expand all</a>
+        <a onclick="go_top()">Back to top</a>
+        <a onclick="go_bottom()">Go to bottom</a>
+    </div>
+</div>
+
+<script>
+    document.ready(
+        function () {
+            tocbot.init({
+                tocSelector: '.tocbot-list',
+                contentSelector: '.post-content',
+                headingSelector: 'h1, h2, h3, h4, h5',
+                collapseDepth: 1,
+                orderedList: false,
+                scrollSmooth: true,
+            })
+        }
+    )
+
+    function expand_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 6,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "collapse_toc()");
+        b.innerHTML = "Collapse all"
+    }
+
+    function collapse_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 1,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "expand_toc()");
+        b.innerHTML = "Expand all"
+    }
+
+    function go_top() {
+        window.scrollTo(0, 0);
+    }
+
+    function go_bottom() {
+        window.scrollTo(0, document.body.scrollHeight);
+    }
+
+</script>
+    
+
+    
+    <article class="post-wrap">
+        <header class="post-header">
+            <h1 class="post-title">牛客2021-8</h1>
+            
+                <div class="post-meta">
+                    
+                        Author: <a itemprop="author" rel="author" href="/">Helloat123</a>
+                    
+
+                    
+                        <span class="post-time">
+                        Date: <a href="#">August 9, 2021&nbsp;&nbsp;21:05:18</a>
+                        </span>
+                    
+                    
+                        <span class="post-category">
+                    Category:
+                            
+                                <a href="/categories/%E8%AE%B0%E5%BD%95/">记录</a>
+                            
+                        </span>
+                    
+                </div>
+            
+        </header>
+
+        <div class="post-content">
+            <h1 id="E"><a href="#E" class="headerlink" title="E"></a>E</h1><p>ZRC签到</p>
+<h1 id="A"><a href="#A" class="headerlink" title="A"></a>A</h1><p>ZRC签到</p>
+<h1 id="D"><a href="#D" class="headerlink" title="D"></a>D</h1><p>题意：</p>
+<p>有一个a数列，将相邻两项求位或得b数列，相邻两项求和得到c数列。已知b，c，问可能的a有多少种。</p>
+<p>LYF解：</p>
+<p>通过观察得到，c-b数列具有特殊性质，只有当相邻a在某一位的值均为1时c-b在该位值才为1。结合题给的b数列，可以对每一位枚举a_1的取值判断是否可行，计算出答案。</p>
+<p>LYF给我讲他的做法时，我还没想通c-b为啥会有性质，他就ac了。题解中才看出来，事实上c-b就是相邻两项的位与…显然</p>
+<p>由此得到一个经验：**(a&amp;b)+(a|b)=a+b**</p>
+<h1 id="K"><a href="#K" class="headerlink" title="K"></a>K</h1><p>题意：</p>
+<p>一个无穷大平面，横以间距d分割，纵以间距w分割，形成无穷多个矩形区域。任取一点画一条长度为pi的线，问最多经过几个区域。0&lt;d,w&lt;=5,八位小数。</p>
+<p>ZRC解：</p>
+<p>首先发现，只需要走无穷小的距离就可以经过四个区域。而且，显然走曲线并非最优决策。利用pi是超越数，不可能是任何格点间直线长度之和的特性，可以把题目转化成：到达格点算作经过四周四个区域，从某个格点出发，用pi的距离最多走几个区域。</p>
+<p>首先考虑比较优的一种走法：一直走短边。经过的区域数量为$\frac{\pi}{min(d,w)}\cdot2+4$</p>
+<p>然后考虑能否走斜线。最简单的斜线即对角线。一直走对角线的答案为$\frac{\pi}{l}\cdot3+4$，显然有可能选择。对于其余的斜线，日字格走法必定不如走两个短边更优，其余斜线依此类推。</p>
+<p>因此只有对角线和短边两种走法。那么设走x次对角线，y次短边，要求的问题即为：<br>$$<br>x\cdot min(d,w)+y\cdot l\le \pi\\<br>求max{ 2x+3y }<br>$$<br>显然要么x&lt;3，要么y&lt;2。枚举几种情况即可。</p>
+<p>考场上到了最后一步却没有将式子列出来看出性质，实在该吸取教训。</p>
+<h1 id="补J"><a href="#补J" class="headerlink" title="补J"></a>补J</h1><p>题意：</p>
+<p>给定一棵树5e5，指定两个节点S,T为树上两个人的初始节点。两个人轮流走，每走一个节点，原节点就会爆炸。最终两个人走的步数为各自的得分。游戏时双方都希望自己的分数减对方分数的值最大。问游戏结束时双方的分数差。</p>
+<p>解：</p>
+<p>首先定义S到T之间的链为主链。一旦两个人其中一个离开了主链，显然双方就都不能够互相影响，均会选择当前的最长路径走。若S在主链上的x节点时S首先选择离开主链，此时T一定在主链对应的位置上，那么这种情况下的双方分数差易于求得。若T首先选择离开主链，同理。显然可以方便地用ST表搞这个rmq问题。具体见我改的WD的代码(其中的注释):</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//Authorized by qwqbot. Modified by Richard.</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> mp make_pair</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> rep(x,y,z) for (int x=(y);(x)&lt;=(z);(x)++)</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> per(x,y,z) for (int x=(y);(x)&gt;=(z);(x)--)</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> lowbit(x) ((x)&amp;(-(x)))</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> cls(x) memset(x,0,sizeof(x))</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">ifdef</span> DEBUG</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> debugdo(X) X</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> debugndo(X)</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> debugout(X) cout&lt;&lt;(#X)&lt;&lt;<span class="meta-string">&quot;=&quot;</span>&lt;&lt;(X)&lt;&lt;endl</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">else</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> debugdo(X)</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> debugndo(X) X</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> debugout(X)</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">endif</span> <span class="comment">// debug</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="function">mt19937 <span class="title">rnd</span><span class="params">(<span class="number">19260817</span>)</span></span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> inf=<span class="number">0x3f3f3f3f</span>;</span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">long</span> <span class="keyword">long</span> LL;</span><br><span class="line"><span class="keyword">typedef</span> <span class="built_in">pair</span>&lt;<span class="keyword">int</span>,<span class="keyword">int</span>&gt; pii;</span><br><span class="line"><span class="comment">///////////////////////read5.1///////////////////////</span></span><br><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt;</span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">read</span><span class="params">(T &amp;x)</span></span>&#123;<span class="keyword">char</span> ch;x=<span class="number">0</span>;<span class="keyword">bool</span> flag=<span class="literal">false</span>;ch=getchar();<span class="keyword">while</span> (ch&gt;<span class="string">&#x27;9&#x27;</span>||ch&lt;<span class="string">&#x27;0&#x27;</span>) &#123;<span class="keyword">if</span> (ch==<span class="string">&#x27;-&#x27;</span>) flag=<span class="literal">true</span>;ch=getchar();&#125;<span class="keyword">while</span> ((ch&lt;=<span class="string">&#x27;9&#x27;</span>&amp;&amp;ch&gt;=<span class="string">&#x27;0&#x27;</span>))&#123;x=x*<span class="number">10</span>+ch-<span class="string">&#x27;0&#x27;</span>;ch=getchar();&#125;<span class="keyword">if</span> (flag) x*=<span class="number">-1</span>;&#125;</span><br><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> T,<span class="keyword">typename</span> U&gt;</span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">read</span><span class="params">(T &amp;x,U &amp;y)</span></span>&#123;read(x);read(y);&#125;</span><br><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> T,<span class="keyword">typename</span> U,<span class="keyword">typename</span> V&gt;</span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">read</span><span class="params">(T &amp;x,U &amp;y,V &amp;z)</span></span>&#123;read(x);read(y);read(z);&#125;</span><br><span class="line"><span class="comment">////////////////variables&amp;functions//////////////////</span></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> maxn=<span class="number">555555</span>;</span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> log2(x) (31-__builtin_clz(x))	<span class="comment">//Only for INT!!!!!!!!!!!!!!!!!!!!!!Not for LL!!!!!!!!!!</span></span></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> logn=log2(maxn);</span><br><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;</span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">ST_Table</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">    T a[maxn][logn+<span class="number">1</span>];</span><br><span class="line">    <span class="function">T <span class="title">f</span><span class="params">(T x,T y)</span></span></span><br><span class="line"><span class="function">	</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> max(x,y);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">init</span><span class="params">(<span class="keyword">int</span> n)</span></span></span><br><span class="line"><span class="function">	</span>&#123;</span><br><span class="line">        rep(i,<span class="number">1</span>,logn)</span><br><span class="line">            <span class="keyword">for</span> (T j=<span class="number">1</span>;j+(<span class="number">1</span>&lt;&lt;i)<span class="number">-1</span>&lt;=n;j++)</span><br><span class="line">                a[j][i]=f(a[j][i<span class="number">-1</span>],a[j+(<span class="number">1</span>&lt;&lt;(i<span class="number">-1</span>))][i<span class="number">-1</span>]);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function">T <span class="title">query</span><span class="params">(<span class="keyword">int</span> l,<span class="keyword">int</span> r)</span></span></span><br><span class="line"><span class="function">	</span>&#123;</span><br><span class="line">        <span class="keyword">int</span> s=log2(r-l+<span class="number">1</span>);</span><br><span class="line">        <span class="keyword">return</span> f(a[l][s],a[r-(<span class="number">1</span>&lt;&lt;s)+<span class="number">1</span>][s]);</span><br><span class="line">    &#125;</span><br><span class="line">    ST_Table&lt;T&gt;()&#123;&#125;</span><br><span class="line">&#125;;</span><br><span class="line">ST_Table&lt;<span class="keyword">int</span>&gt; pp,bb;</span><br><span class="line"></span><br><span class="line"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; g[maxn];</span><br><span class="line"><span class="keyword">int</span> dep[maxn],fa[maxn],n,s,t;</span><br><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">dfs</span><span class="params">(<span class="keyword">int</span> u,<span class="keyword">int</span> p)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">bool</span> in_main_chain=(u==t);</span><br><span class="line">    fa[u]=p;</span><br><span class="line">    dep[u]=<span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">auto</span> v:g[u])</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">if</span> (v==p) <span class="keyword">continue</span>;</span><br><span class="line">        <span class="keyword">if</span> (dfs(v,u)) in_main_chain=<span class="literal">true</span>;</span><br><span class="line">        <span class="keyword">else</span> dep[u]=max(dep[u],dep[v]+<span class="number">1</span>);<span class="comment">//calc the depth of subtrees</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> in_main_chain;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    read(n,s,t);</span><br><span class="line">    rep(i,<span class="number">1</span>,n<span class="number">-1</span>)<span class="comment">//add edges</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">int</span> u,v;</span><br><span class="line">        read(u,v);</span><br><span class="line">        g[u].push_back(v);</span><br><span class="line">        g[v].push_back(u);</span><br><span class="line">    &#125;</span><br><span class="line">    dfs(s,<span class="number">0</span>);</span><br><span class="line"></span><br><span class="line">    <span class="comment">//find the main chain</span></span><br><span class="line">    <span class="keyword">int</span> tt=t;</span><br><span class="line">    <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; main_chain;</span><br><span class="line">    <span class="keyword">while</span> (tt!=s)</span><br><span class="line">    &#123;</span><br><span class="line">        main_chain.push_back(tt);</span><br><span class="line">        tt=fa[tt];</span><br><span class="line">    &#125;</span><br><span class="line">    main_chain.push_back(s);</span><br><span class="line">    main_chain.push_back(<span class="number">0</span>);</span><br><span class="line">    reverse(main_chain.begin(), main_chain.end());</span><br><span class="line"></span><br><span class="line">    <span class="comment">//calculate how long would they travel if one player leaves the main chain from main_chain[i], and use ST table to solve RMQ problem</span></span><br><span class="line">    <span class="keyword">int</span> m=main_chain.size()<span class="number">-1</span>;</span><br><span class="line">    rep(i,<span class="number">1</span>,m) pp.a[i][<span class="number">0</span>]=dep[main_chain[i]]+i<span class="number">-1</span>;</span><br><span class="line">    per(i,m,<span class="number">1</span>) bb.a[i][<span class="number">0</span>]=dep[main_chain[i]]+(m-i);</span><br><span class="line">    pp.init(m);bb.init(m);</span><br><span class="line"></span><br><span class="line">    <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; Rans;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> l=<span class="number">1</span>,r=m,i=<span class="number">1</span>;l&lt;=(m+<span class="number">1</span>)/<span class="number">2</span>||r&gt;=(m+<span class="number">1</span>)/<span class="number">2</span>+<span class="number">1</span>;i++)<span class="comment">//simulate every step</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">if</span> (i&amp;<span class="number">1</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">int</span> u=main_chain[l],anss=dep[u]+l<span class="number">-1</span>,anst=bb.query(l+<span class="number">1</span>,r);<span class="comment">//obviously</span></span><br><span class="line">            <span class="keyword">if</span> (l==r) anst=m-l;<span class="comment">//if they are on the same node, only one of them (who comes first) can go down.</span></span><br><span class="line">            Rans.push_back(anss-anst);</span><br><span class="line">            l++;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">int</span> u=main_chain[r],anss=pp.query(l,r<span class="number">-1</span>),anst=dep[u]+(m-r);</span><br><span class="line">            <span class="keyword">if</span> (l==r) anss=r<span class="number">-1</span>;</span><br><span class="line">            Rans.push_back(anss-anst);</span><br><span class="line">            r--;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">bool</span> whose_turn=Rans.size()&amp;<span class="number">1</span>;</span><br><span class="line">    reverse(Rans.begin(),Rans.end());<span class="comment">//calculate from back. classical game theory</span></span><br><span class="line">    <span class="keyword">int</span> ans=whose_turn?-inf:inf;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">auto</span> to:Rans)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">if</span> (whose_turn) ans=max(ans,to);</span><br><span class="line">        <span class="keyword">else</span> ans=min(ans,to);</span><br><span class="line">        whose_turn^=<span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">cout</span>&lt;&lt;ans&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="补F"><a href="#补F" class="headerlink" title="补F"></a>补F</h1><p>待补</p>
+
+        </div>
+
+        
+        <section class="post-tags">
+            <div>
+                <span>Tag(s):</span>
+                <span class="tag">
+                    
+                    
+                        <a href="/tags/%E5%A4%9A%E6%A0%A1/"># 多校</a>
+                    
+                        
+                </span>
+            </div>
+            <div>
+                <a href="javascript:window.history.back();">back</a>
+                <span>· </span>
+                <a href="/">home</a>
+            </div>
+        </section>
+        <section class="post-nav">
+            
+            
+            <a class="next" rel="next" href="/2021/08/08/%E7%89%9B%E5%AE%A22021-7/">牛客2021-7</a>
+            
+        </section>
+
+
+    </article>
+</div>
+
+        </div>
+        <footer id="footer" class="footer">
+        <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <div class="copyright">
+        <span>© Helloat123 | Powered by <a href="https://hexo.io" target="_blank">Hexo</a> & <a href="https://github.com/Siricee/hexo-theme-Chic" target="_blank">Chic</a> | <span id="busuanzi_container_site_pv">
+    本站总访问量<span id="busuanzi_value_site_pv"></span>次
+</span> | <span id="busuanzi_container_site_uv">
+  本站访客数<span id="busuanzi_value_site_uv"></span>人次
+</span></span>
+    </div>
+</footer>
+
+    </div>
+</body>
+</html>

@@ -12,7 +12,7 @@
 
 
 
-<title>牛客2021-7 | Richard&#39;s Blog</title>
+<title>计算几何笔记 | Richard&#39;s Blog</title>
 
 
 
@@ -107,73 +107,11 @@
             <div class="container">
     
     
-        <div class="post-toc">
-    <div class="tocbot-list">
-    </div>
-    <div class="tocbot-list-menu">
-        <a class="tocbot-toc-expand" onclick="expand_toc()">Expand all</a>
-        <a onclick="go_top()">Back to top</a>
-        <a onclick="go_bottom()">Go to bottom</a>
-    </div>
-</div>
-
-<script>
-    document.ready(
-        function () {
-            tocbot.init({
-                tocSelector: '.tocbot-list',
-                contentSelector: '.post-content',
-                headingSelector: 'h1, h2, h3, h4, h5',
-                collapseDepth: 1,
-                orderedList: false,
-                scrollSmooth: true,
-            })
-        }
-    )
-
-    function expand_toc() {
-        var b = document.querySelector(".tocbot-toc-expand");
-        tocbot.init({
-            tocSelector: '.tocbot-list',
-            contentSelector: '.post-content',
-            headingSelector: 'h1, h2, h3, h4, h5',
-            collapseDepth: 6,
-            orderedList: false,
-            scrollSmooth: true,
-        });
-        b.setAttribute("onclick", "collapse_toc()");
-        b.innerHTML = "Collapse all"
-    }
-
-    function collapse_toc() {
-        var b = document.querySelector(".tocbot-toc-expand");
-        tocbot.init({
-            tocSelector: '.tocbot-list',
-            contentSelector: '.post-content',
-            headingSelector: 'h1, h2, h3, h4, h5',
-            collapseDepth: 1,
-            orderedList: false,
-            scrollSmooth: true,
-        });
-        b.setAttribute("onclick", "expand_toc()");
-        b.innerHTML = "Expand all"
-    }
-
-    function go_top() {
-        window.scrollTo(0, 0);
-    }
-
-    function go_bottom() {
-        window.scrollTo(0, document.body.scrollHeight);
-    }
-
-</script>
-    
 
     
     <article class="post-wrap">
         <header class="post-header">
-            <h1 class="post-title">牛客2021-7</h1>
+            <h1 class="post-title">计算几何笔记</h1>
             
                 <div class="post-meta">
                     
@@ -182,14 +120,14 @@
 
                     
                         <span class="post-time">
-                        Date: <a href="#">August 8, 2021&nbsp;&nbsp;15:31:01</a>
+                        Date: <a href="#">August 1, 2021&nbsp;&nbsp;21:07:43</a>
                         </span>
                     
                     
                         <span class="post-category">
                     Category:
                             
-                                <a href="/categories/%E8%AE%B0%E5%BD%95/">记录</a>
+                                <a href="/categories/%E8%AE%A1%E7%AE%97%E5%87%A0%E4%BD%95/">计算几何</a>
                             
                         </span>
                     
@@ -198,18 +136,50 @@
         </header>
 
         <div class="post-content">
-            <h1 id="I"><a href="#I" class="headerlink" title="I"></a>I</h1><p>LYF 签到</p>
-<h1 id="H"><a href="#H" class="headerlink" title="H"></a>H</h1><p>WD 签到</p>
-<h1 id="F"><a href="#F" class="headerlink" title="F"></a>F</h1><p>题意：</p>
-<p>给定两颗点数相同的、以一号点为根的树，要求一条A树上的不弯折的链(即顶点只选中一个儿子)，使得对应所有点在B树上没有祖先-后代关系。求这样的链的最大长度</p>
-<p>ZRC&amp;LYF解：</p>
-<p>由于主席树写挂了赛场上一直没过。首先在B树上利用dfn把子树改成区间。然后在A树上dfs。dfs的每一个时刻都对应着一条从根到当前点的链。我们在dfs到当前点时找以当前点结束的最长的链。那么其实问题就变成了如何寻找一个最高的、不会使链中节点在B树中冲突的位置。显然当一个节点出现在链上时，其在B树中的子树即不可选。因此当一个节点正在添加入链时，需要保证该节点不是已存在节点的后代，该节点的后代也不包括链上点。考虑利用主席树区间加1、区间查询（利用和的差是否为0来查询是否加过）来判断节点作为链上最高点是否可行(需要记录父亲这里已经得到的可行链的最高点，对两者取深者)。二分位置。总复杂度O(nlg^2n)</p>
-<p>题解的O(nlgn)主席树做法（相当于上面做法的优化）：</p>
-<p>在修改主席树时不像上面的+1，而是区间覆盖成当前深度。查询时区间查询最大值即可。</p>
-<p>LYF解：</p>
-<p>熊高越所谓“树上滑窗”。由于我对滑窗这个名词不熟悉，对双指针比较熟悉，所以我还是更倾向于叫它树上two pointers(手动狗头)。首先，显然如果A树是一条链的话可以利用线段树+双指针求解。然后我们考虑如何在树上推广。主要问题在于当回溯时，线段树的状态也需要回到之前的状态而导致链的上端不断上下跳转而使复杂度出现问题。</p>
-<p>考虑如果当前链长为l，那么如果向下dfs的过程中，链长变小了(即链的上端向下移动超过1个结点)，这个答案就不会有意义。因此我们可以在操作中保证链的下移次数不超过当前搜索深度（做法就是每搜一层最多将上端下移一层）。由此，回溯时的修改也是相同复杂度。</p>
-<p>故总复杂度O(nlgn)</p>
+            <p>点在不在多边形内部：</p>
+<p>法1 随机射线 看交点数（排除顶点）</p>
+<p>法2 用一圈相邻内积算角度</p>
+<p>求多边形重心：</p>
+<p>求面积时拆三角形的方法 加权平均</p>
+<p>旋转、对称、投影：</p>
+<p>变换坐标系，再用矩阵搞线性变换</p>
+<p>凸包：</p>
+<p>graham扫描（极角）、andrew（水平序）</p>
+<p>旋转卡壳：</p>
+<p>就是一个two pointers。维护对面对的两个点。</p>
+<p>直线和凸包交点：</p>
+<p>二分求出两边的最远点(预处理出斜率对应的对踵点？)</p>
+<p>然后再在结果中二分</p>
+<p>点对凸包切线：</p>
+<p>随机一个凸包顶点，连直线，若随机到的不是切点，就把凸包分成了两部分。显然切点分别在这两部分中，因此分别二分。二分时看相邻线的斜率与当前直线的斜率比较。</p>
+<p>点到凸包最近距离：</p>
+<p>在切线之间三分</p>
+<p>凸包到凸包最近点对：</p>
+<p>两个凸包同时旋转卡壳，每一次卡到点或者线的时候都求一求距离</p>
+<p>闵可夫斯基和：</p>
+<p>凸包端点可以看作平面中多个向量。凸包则可以看作集合S，包含所有凸包内的点对应的所有向量。</p>
+<p>两个凸包的闵可夫斯基和的意义就是S凸包中任意向量加上（T凸包中任意向量）所形成的新范围</p>
+<p>求解方法：！！！！</p>
+<p>半平面交：</p>
+<p>已有板子</p>
+<p>直线和圆的交点：</p>
+<p>已知半径，可求直线与圆心距离，即可求角度。</p>
+<p>点到圆的切线：</p>
+<p>已知半径，可求点到圆心距离，即可求角度。</p>
+<p>圆与圆的公切线：</p>
+<p>外公切线：已知两个半径，则半径、切线与圆心相连的直线之间形成相似三角形，可求交点，即可求角度。</p>
+<p>内公切线：方法大同小异</p>
+<p>三角形外接圆：</p>
+<p>用中垂线的交求圆心</p>
+<p>最小圆覆盖：</p>
+<p>随机增量法</p>
+<p>公切圆：</p>
+<p>给定相切的三个圆，求公切圆</p>
+<p>先定义一个概念叫做反演</p>
+<p>点P对O做反演，反演点P’，则OPxOP’=0且OP.OP’=1</p>
+<p>圆反演之后是圆或直线（反演点在圆内）</p>
+<p>两次反演会抵消</p>
+<p>对两个已知切点做反演，得到两个平行线和一个圆，作相切圆得答案</p>
 
         </div>
 
@@ -220,7 +190,7 @@
                 <span class="tag">
                     
                     
-                        <a href="/tags/%E5%A4%9A%E6%A0%A1/"># 多校</a>
+                        <a href="/tags/%E7%AC%94%E8%AE%B0/"># 笔记</a>
                     
                         
                 </span>
@@ -233,10 +203,10 @@
         </section>
         <section class="post-nav">
             
-                <a class="prev" rel="prev" href="/2021/08/09/%E7%89%9B%E5%AE%A22021-8/">牛客2021-8</a>
+                <a class="prev" rel="prev" href="/2021/08/04/%E7%89%9B%E5%AE%A22021-6/">牛客2021-6</a>
             
             
-            <a class="next" rel="next" href="/2021/08/06/%E6%9D%AD%E7%94%B52021-6/">杭电2021-6</a>
+            <a class="next" rel="next" href="/2021/08/01/ICPC2020-NorthwesternEuropean-SWERC/">ICPC2020-NorthwesternEuropean-SWERC</a>
             
         </section>
 
