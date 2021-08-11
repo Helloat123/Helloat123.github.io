@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <meta name="author" content="Helloat123">
+
+
+
+
+
+<title>杭电2021-7 | Richard&#39;s Blog</title>
+
+
+
+    <link rel="icon" href="/favicon.png">
+
+
+
+
+    <!-- stylesheets list from _config.yml -->
+    
+    <link rel="stylesheet" href="/css/style.css">
+    
+
+
+
+    <!-- scripts list from _config.yml -->
+    
+    <script src="/js/script.js"></script>
+    
+    <script src="/js/tocbot.min.js"></script>
+    
+
+
+
+    
+    
+        
+            <!-- MathJax配置，可通过单美元符号书写行内公式等 -->
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+    "HTML-CSS": {
+        preferredFont: "TeX",
+        availableFonts: ["STIX","TeX"],
+        linebreaks: { automatic:true },
+        EqnChunk: (MathJax.Hub.Browser.isMobile ? 10 : 50)
+    },
+    tex2jax: {
+        inlineMath: [ ["$", "$"], ["\\(","\\)"] ],
+        processEscapes: true,
+        ignoreClass: "tex2jax_ignore|dno",
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    },
+    TeX: {
+        equationNumbers: { autoNumber: "AMS" },
+        noUndefined: { attributes: { mathcolor: "red", mathbackground: "#FFEEEE", mathsize: "90%" } },
+        Macros: { href: "{}" }
+    },
+    messageStyle: "none"
+    });
+</script>
+<!-- 给MathJax元素添加has-jax class -->
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+<!-- 通过连接CDN加载MathJax的js代码 -->
+<script type="text/javascript" async
+        src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+
+
+        
+    
+
+
+<meta name="generator" content="Hexo 5.2.0"></head>
+<body>
+    <div class="wrapper">
+        <header>
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-header header-logo"><a href="/">Richard&#39;s Blog</a></div>
+            <div class="menu navbar-right">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+                <input id="switch_default" type="checkbox" class="switch_default">
+                <label for="switch_default" class="toggleBtn"></label>
+            </div>
+        </div>
+    </nav>
+
+    
+    <nav class="navbar-mobile" id="nav-mobile">
+        <div class="container">
+            <div class="navbar-header">
+                <div>
+                    <a href="/">Richard&#39;s Blog</a><a id="mobile-toggle-theme">·&nbsp;Light</a>
+                </div>
+                <div class="menu-toggle" onclick="mobileBtn()">&#9776; Menu</div>
+            </div>
+            <div class="menu" id="mobile-menu">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+            </div>
+        </div>
+    </nav>
+
+</header>
+<script>
+    var mobileBtn = function f() {
+        var toggleMenu = document.getElementsByClassName("menu-toggle")[0];
+        var mobileMenu = document.getElementById("mobile-menu");
+        if(toggleMenu.classList.contains("active")){
+           toggleMenu.classList.remove("active")
+            mobileMenu.classList.remove("active")
+        }else{
+            toggleMenu.classList.add("active")
+            mobileMenu.classList.add("active")
+        }
+    }
+</script>
+        <div class="main">
+            <div class="container">
+    
+    
+        <div class="post-toc">
+    <div class="tocbot-list">
+    </div>
+    <div class="tocbot-list-menu">
+        <a class="tocbot-toc-expand" onclick="expand_toc()">Expand all</a>
+        <a onclick="go_top()">Back to top</a>
+        <a onclick="go_bottom()">Go to bottom</a>
+    </div>
+</div>
+
+<script>
+    document.ready(
+        function () {
+            tocbot.init({
+                tocSelector: '.tocbot-list',
+                contentSelector: '.post-content',
+                headingSelector: 'h1, h2, h3, h4, h5',
+                collapseDepth: 1,
+                orderedList: false,
+                scrollSmooth: true,
+            })
+        }
+    )
+
+    function expand_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 6,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "collapse_toc()");
+        b.innerHTML = "Collapse all"
+    }
+
+    function collapse_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 1,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "expand_toc()");
+        b.innerHTML = "Expand all"
+    }
+
+    function go_top() {
+        window.scrollTo(0, 0);
+    }
+
+    function go_bottom() {
+        window.scrollTo(0, document.body.scrollHeight);
+    }
+
+</script>
+    
+
+    
+    <article class="post-wrap">
+        <header class="post-header">
+            <h1 class="post-title">杭电2021-7</h1>
+            
+                <div class="post-meta">
+                    
+                        Author: <a itemprop="author" rel="author" href="/">Helloat123</a>
+                    
+
+                    
+                        <span class="post-time">
+                        Date: <a href="#">August 11, 2021&nbsp;&nbsp;9:36:40</a>
+                        </span>
+                    
+                    
+                        <span class="post-category">
+                    Category:
+                            
+                                <a href="/categories/%E8%AE%B0%E5%BD%95/">记录</a>
+                            
+                        </span>
+                    
+                </div>
+            
+        </header>
+
+        <div class="post-content">
+            <h1 id="1010"><a href="#1010" class="headerlink" title="1010"></a>1010</h1><p>ZRC签到 想到了等于是一种特殊情况然而判反了wa了一发…</p>
+<h1 id="1012"><a href="#1012" class="headerlink" title="1012"></a>1012</h1><p>题意：</p>
+<p>给一个1e5的小写字符串(多组，总长5e6)，问字符串所有区间的权值和。权值为每个不同字符的<em>个数的平方</em>。</p>
+<p>ZRC卡常解：</p>
+<p>不管怎么看这题都是一个签到题的样子。考虑5e6允许我们带一个常数或者极小的log。对于26个字母分别求解，将原数组化为01数组，把式子列出来，把值用前缀和表示，就可以得到一个O(n)的处理前缀和以及前缀前缀和的做法。方法比较无脑，然而被卡常了。好像常数优秀的话能过。</p>
+<p>WD正解：</p>
+<p>设字符串第i位的字符为c，最终答案为sans(sum of ans)，在i处结尾的区间的总答案为$ans_i$，在当前位置结束的区间的答案当中字母$c$的贡献为$a[c]$，第$j$个字符$c$的位置为$pos[j]$。</p>
+<p>那么，显然$ans_i=ans_{i-1}-a[old\ c]+a[new\ c]$</p>
+<p>如何维护$a$数组呢<br>$$<br>a[old\ c]=\sum ^ { j-1 } _ { k=1 } (pos[k]-pos[k-1])\cdot(j-k)^2\\<br>a[new\ c]=\sum ^ { j } _ { k=1 } (pos[k]-pos[k-1])\cdot (j+1-k)^2\\<br>$$<br>可以发现，这两个式子有很大的相似性，考虑差分<br>$$<br>a[new\ c]-a[old\ c]=(pos[j]-pos[j-1])+\sum _ { k=1 } ^ { j-1 } (pos[k]-pos[k-1])\cdot(1+2j-2k)\\<br>=pos[j]-pos[j-1]+\sum _ { k=1 } ^ { j-2 } pos[k]\cdot((1+2j-2k)-(1+2j-2(k+1)))+pos[j-1]\cdot 3\\<br>=pos[j]+\sum _ { k=1 } ^ {j-1} pos[k]\cdot2\\<br>$$<br>即可方便维护</p>
+<p>题解：</p>
+<p>与上面方法相似，但$pos[k]-pos[k-1]$用$len[k]$来表示，因此最终式子推起来复杂一些</p>
+<h1 id="1007"><a href="#1007" class="headerlink" title="1007"></a>1007</h1><p>LYF 签到</p>
+<p>题意就是找数列中环的平均值。但有些点可能会指向环而自身不属于环</p>
+<h1 id="1003"><a href="#1003" class="headerlink" title="1003"></a>1003</h1><p>LYF 根据题目性质简单推式子即可，运算过程中似乎需要注意一下精度</p>
+<h1 id="1008"><a href="#1008" class="headerlink" title="1008"></a>1008</h1><p>ZRC大模拟 没啥好说的</p>
+<h1 id="1005"><a href="#1005" class="headerlink" title="1005"></a>1005</h1><p>题意：</p>
+<p>1e5个询问，每个询问包含一个n(1e6)。询问表示有n个座位。不断会有人来，等概率随机挑一个相邻位置无人的、与最近的人最远的位置坐下。问期望能坐几个人。</p>
+<p>WD解：</p>
+<p>首先根据数据范围可以想到，大致应该做到预处理+O(1)询问。考虑将区间分为三类，分别为两端受限制、一端受限制、两端不受限制。只有初始没坐人的区间才属于第三类。定义完后推式子就很简单：<br>$$<br>f[i][0]=f[i/2][0]+f[i-i/2][0]+1\\<br>f[i][1]=f[i-1][0]+1\\<br>ans[x]=\sum _ { i=1 } ^ { n } \frac{1}{n}\cdot(f[i-1][1]+f[x-i][1]+1)\\<br>=1+\frac{2}{n}\cdot\sum _ {i=1} ^ { n-1 } f[i][1]<br>$$<br>前缀和即可</p>
+<h1 id="1004"><a href="#1004" class="headerlink" title="1004"></a>1004</h1><p>题意：</p>
+<p>n1e6，有2n个桶，可以从第2x个桶里面拿到0~x个球，从2x+1个桶里拿到kx个球。问拿m1e6个球有多少种取法。</p>
+<p>LYF解：</p>
+<p>为什么题目要将桶的数量设置成必定是偶数？考虑配对。对相邻两个桶一起看成一个大桶，则这个大桶可以取任意个球，且均只有一种取法。因此问题就变成了一个简单的组合数学问题。</p>
+<h1 id="1006补"><a href="#1006补" class="headerlink" title="1006补"></a>1006补</h1><p>题意：</p>
+<p>有个人丢手雷，三维随机方向等概率丢出，丢出的速度为v0，重力加速度10，手雷伤害半径为r。丢出手雷后人不动，问手雷是否会伤人。</p>
+<p>解：</p>
+<p>首先将情况建模成两个球的交，然后余弦定理+积分。</p>
+<p>赛场上的思路非常弯折。首先我想到可以搞成两个球的交的问题，但是没往求角度的方向想，由于上次计算几何题目球冠公式中有个球冠高度，因此我也只想着先得到球冠高度。没有标清楚已知量导致我没看出来能用余弦定理，只是不停地用勾股定理算。算到一半还没算出来就被WD否了方法，转而用王鼎的推公式法。用推公式法原本是很顺利的，结果又进了个误区：三维任意角度抛出的话，球当中截一个圆，角度并非均匀分布。WD说的“概率密度函数”之类的概念我没听说过，但是其实这并不会妨碍我正常推式子（别的概率题我也是有能力直接推的，只是不知道这个概念，但用的都是这一套操作），但是让我更怀疑自己是否能成功推式子的能力。（但是对于有些情况确实不知道知识点就没法搞，看起来像搞出来了，结果也是错的）在角度均匀分布的错误假设下，我只能得到答案包含三角函数/反三角函数的结论，与题意显然不符。事实上在这里正确的概率就是应该算表面积。对着一个sin猜了个公式，结果WA；WD重新推了个式子，仍然是WA。但是谁能想到问题在我的特判上，两个球相离，答案是0；两个球相交，答案正常计算；两个球相包含，要分两种情况，而我只分了一种，爆炸。最后就没过。</p>
+<p>吃一堑长一智吧</p>
+<p>还有一个问题就是 在模意义下计算时不需要像某些物理或者数学题一样尽量把分子分母拆掉，只需要把真正公有的因式除掉就好了。这样可以少求几次逆元，且写代码也更方便。</p>
+
+        </div>
+
+        
+        <section class="post-tags">
+            <div>
+                <span>Tag(s):</span>
+                <span class="tag">
+                    
+                    
+                        <a href="/tags/%E5%A4%9A%E6%A0%A1/"># 多校</a>
+                    
+                        
+                </span>
+            </div>
+            <div>
+                <a href="javascript:window.history.back();">back</a>
+                <span>· </span>
+                <a href="/">home</a>
+            </div>
+        </section>
+        <section class="post-nav">
+            
+            
+            <a class="next" rel="next" href="/2021/08/09/%E7%89%9B%E5%AE%A22021-8/">牛客2021-8</a>
+            
+        </section>
+
+
+    </article>
+</div>
+
+        </div>
+        <footer id="footer" class="footer">
+        <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <div class="copyright">
+        <span>© Helloat123 | Powered by <a href="https://hexo.io" target="_blank">Hexo</a> & <a href="https://github.com/Siricee/hexo-theme-Chic" target="_blank">Chic</a> | <span id="busuanzi_container_site_pv">
+    本站总访问量<span id="busuanzi_value_site_pv"></span>次
+</span> | <span id="busuanzi_container_site_uv">
+  本站访客数<span id="busuanzi_value_site_uv"></span>人次
+</span></span>
+    </div>
+</footer>
+
+    </div>
+</body>
+</html>
