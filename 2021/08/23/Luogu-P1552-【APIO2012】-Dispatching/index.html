@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <meta name="author" content="Helloat123">
+
+
+
+
+
+<title>Luogu P1552 【APIO2012】 Dispatching | Richard&#39;s Blog</title>
+
+
+
+    <link rel="icon" href="/favicon.png">
+
+
+
+
+    <!-- stylesheets list from _config.yml -->
+    
+    <link rel="stylesheet" href="/css/style.css">
+    
+
+
+
+    <!-- scripts list from _config.yml -->
+    
+    <script src="/js/script.js"></script>
+    
+    <script src="/js/tocbot.min.js"></script>
+    
+
+
+
+    
+    
+        
+    
+
+
+<meta name="generator" content="Hexo 5.2.0"></head>
+<body>
+    <div class="wrapper">
+        <header>
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-header header-logo"><a href="/">Richard&#39;s Blog</a></div>
+            <div class="menu navbar-right">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+                <input id="switch_default" type="checkbox" class="switch_default">
+                <label for="switch_default" class="toggleBtn"></label>
+            </div>
+        </div>
+    </nav>
+
+    
+    <nav class="navbar-mobile" id="nav-mobile">
+        <div class="container">
+            <div class="navbar-header">
+                <div>
+                    <a href="/">Richard&#39;s Blog</a><a id="mobile-toggle-theme">·&nbsp;Light</a>
+                </div>
+                <div class="menu-toggle" onclick="mobileBtn()">&#9776; Menu</div>
+            </div>
+            <div class="menu" id="mobile-menu">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+            </div>
+        </div>
+    </nav>
+
+</header>
+<script>
+    var mobileBtn = function f() {
+        var toggleMenu = document.getElementsByClassName("menu-toggle")[0];
+        var mobileMenu = document.getElementById("mobile-menu");
+        if(toggleMenu.classList.contains("active")){
+           toggleMenu.classList.remove("active")
+            mobileMenu.classList.remove("active")
+        }else{
+            toggleMenu.classList.add("active")
+            mobileMenu.classList.add("active")
+        }
+    }
+</script>
+        <div class="main">
+            <div class="container">
+    
+    
+        <div class="post-toc">
+    <div class="tocbot-list">
+    </div>
+    <div class="tocbot-list-menu">
+        <a class="tocbot-toc-expand" onclick="expand_toc()">Expand all</a>
+        <a onclick="go_top()">Back to top</a>
+        <a onclick="go_bottom()">Go to bottom</a>
+    </div>
+</div>
+
+<script>
+    document.ready(
+        function () {
+            tocbot.init({
+                tocSelector: '.tocbot-list',
+                contentSelector: '.post-content',
+                headingSelector: 'h1, h2, h3, h4, h5',
+                collapseDepth: 1,
+                orderedList: false,
+                scrollSmooth: true,
+            })
+        }
+    )
+
+    function expand_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 6,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "collapse_toc()");
+        b.innerHTML = "Collapse all"
+    }
+
+    function collapse_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 1,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "expand_toc()");
+        b.innerHTML = "Expand all"
+    }
+
+    function go_top() {
+        window.scrollTo(0, 0);
+    }
+
+    function go_bottom() {
+        window.scrollTo(0, document.body.scrollHeight);
+    }
+
+</script>
+    
+
+    
+    <article class="post-wrap">
+        <header class="post-header">
+            <h1 class="post-title">Luogu P1552 【APIO2012】 Dispatching</h1>
+            
+                <div class="post-meta">
+                    
+                        Author: <a itemprop="author" rel="author" href="/">Helloat123</a>
+                    
+
+                    
+                        <span class="post-time">
+                        Date: <a href="#">August 23, 2021&nbsp;&nbsp;14:56:49</a>
+                        </span>
+                    
+                    
+                        <span class="post-category">
+                    Category:
+                            
+                                <a href="/categories/%E9%AB%98%E7%BA%A7%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">高级数据结构</a>
+                            
+                        </span>
+                    
+                </div>
+            
+        </header>
+
+        <div class="post-content">
+            <p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P1552">洛谷</a></p>
+<h2 id="题意："><a href="#题意：" class="headerlink" title="题意："></a>题意：</h2><p>一棵树，每个点有权值a与权值b。每个点的答案为该点的权值a乘子树（包括它自己）中选择的节点个数，其中要求选中的节点的权值和小于等于给定的M（仅一组询问）。问所有点的答案中最大的是多少。</p>
+<h2 id="解1："><a href="#解1：" class="headerlink" title="解1："></a>解1：</h2><p>如果单独对某个点做暴力询问，显然可以贪心选择权值b最小的节点。而这样的问题很方便在权值线段树上二分出答案。因此我们就得到了两种做法</p>
+<h3 id="主席树"><a href="#主席树" class="headerlink" title="主席树"></a>主席树</h3><p>是在主席树的题单里面看到这道题的，首先从主席树的角度考虑。由于这道题是子树中操作，显然应该利用dfs序先把树摊成序列。然后直接按照主席树的最经典应用做即可。</p>
+<h3 id="线段树合并"><a href="#线段树合并" class="headerlink" title="线段树合并"></a>线段树合并</h3><p>这种题主席树做法和线段树合并的做法通常是成对出现？对于每棵树的所有儿子做线段树启发式合并即可。</p>
+<h2 id="解2："><a href="#解2：" class="headerlink" title="解2："></a>解2：</h2><p>主席树的做法很显然，在想线段树合并做法时候发现直接可并堆做就好了，少写很多东西（thanks to pbds）（就算没有pbds，左偏树总也比主席树细节少）。每个点建一个大根堆，把儿子的堆都合并来，把自己插进去，维护每个堆的b权值和，如果和大于M就一直pop到和小于等于M。就做完了。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> maxn=<span class="number">111111</span>;</span><br><span class="line">__gnu_pbds::<span class="built_in">priority_queue</span>&lt;<span class="keyword">int</span>,less&lt;<span class="keyword">int</span>&gt;,__gnu_pbds::pairing_heap_tag&gt;h[maxn];</span><br><span class="line">LL sum[maxn];</span><br><span class="line"><span class="keyword">int</span> n,m;<span class="comment">//sum: sum of salary</span></span><br><span class="line"><span class="keyword">int</span> c[maxn],l[maxn];</span><br><span class="line">LL ans=<span class="number">0</span>;</span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">TREE</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">    <span class="keyword">int</span> nxt[maxn&lt;&lt;<span class="number">1</span>],to[maxn&lt;&lt;<span class="number">1</span>],first[maxn],cnt,fa[maxn];</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">addedge</span><span class="params">(<span class="keyword">int</span> u,<span class="keyword">int</span> v)</span></span></span><br><span class="line"><span class="function">	</span>&#123;</span><br><span class="line">        nxt[++cnt]=first[u];</span><br><span class="line">        first[u]=cnt;</span><br><span class="line">        to[cnt]=v;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">addedge2</span><span class="params">(<span class="keyword">int</span> u,<span class="keyword">int</span> v)</span></span>&#123;addedge(u,v);addedge(v,u);&#125;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">dfs</span><span class="params">(<span class="keyword">int</span> x)</span></span></span><br><span class="line"><span class="function">	</span>&#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> q=first[x];q;q=nxt[q]) <span class="keyword">if</span> (to[q]!=fa[x])</span><br><span class="line">        &#123;</span><br><span class="line">            dfs(to[q]);</span><br><span class="line">            h[x].join(h[to[q]]);</span><br><span class="line">            sum[x]+=sum[to[q]];</span><br><span class="line">        &#125;</span><br><span class="line">        h[x].push(c[x]);</span><br><span class="line">        sum[x]+=c[x];</span><br><span class="line">        <span class="keyword">while</span> (sum[x]&gt;m)</span><br><span class="line">        &#123;</span><br><span class="line">            sum[x]-=h[x].top();</span><br><span class="line">            h[x].pop();</span><br><span class="line">        &#125;</span><br><span class="line">        ans=max(ans,(LL)((LL)l[x]*h[x].size()));</span><br><span class="line">    &#125;</span><br><span class="line">&#125;tree;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    read(n,m);</span><br><span class="line">    rep(i,<span class="number">1</span>,n)</span><br><span class="line">    &#123;</span><br><span class="line">        read(tree.fa[i],c[i],l[i]);</span><br><span class="line">        <span class="keyword">if</span> (i!=<span class="number">0</span>) tree.addedge2(i,tree.fa[i]);</span><br><span class="line">    &#125;</span><br><span class="line">    tree.dfs(<span class="number">1</span>);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;%lld\n&quot;</span>,ans);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+        </div>
+
+        
+        <section class="post-tags">
+            <div>
+                <span>Tag(s):</span>
+                <span class="tag">
+                    
+                    
+                        <a href="/tags/%E4%B8%BB%E5%B8%AD%E6%A0%91/"># 主席树</a>
+                    
+                        <a href="/tags/%E5%8F%AF%E5%B9%B6%E5%A0%86/"># 可并堆</a>
+                    
+                        
+                </span>
+            </div>
+            <div>
+                <a href="javascript:window.history.back();">back</a>
+                <span>· </span>
+                <a href="/">home</a>
+            </div>
+        </section>
+        <section class="post-nav">
+            
+            
+            <a class="next" rel="next" href="/2021/08/23/UOJ-402-%E3%80%90CTSC2018%E3%80%91-%E6%B7%B7%E5%90%88%E6%9E%9C%E6%B1%81/">UOJ 402 【CTSC2018】 混合果汁</a>
+            
+        </section>
+
+
+    </article>
+</div>
+
+        </div>
+        <footer id="footer" class="footer">
+        <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <div class="copyright">
+        <span>© Helloat123 | Powered by <a href="https://hexo.io" target="_blank">Hexo</a> & <a href="https://github.com/Siricee/hexo-theme-Chic" target="_blank">Chic</a> | <span id="busuanzi_container_site_pv">
+    本站总访问量<span id="busuanzi_value_site_pv"></span>次
+</span> | <span id="busuanzi_container_site_uv">
+  本站访客数<span id="busuanzi_value_site_uv"></span>人次
+</span></span>
+    </div>
+</footer>
+
+    </div>
+</body>
+</html>
