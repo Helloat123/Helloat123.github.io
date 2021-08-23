@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <meta name="author" content="Helloat123">
+
+
+
+
+
+<title>UOJ 402 【CTSC2018】 混合果汁 | Richard&#39;s Blog</title>
+
+
+
+    <link rel="icon" href="/favicon.png">
+
+
+
+
+    <!-- stylesheets list from _config.yml -->
+    
+    <link rel="stylesheet" href="/css/style.css">
+    
+
+
+
+    <!-- scripts list from _config.yml -->
+    
+    <script src="/js/script.js"></script>
+    
+    <script src="/js/tocbot.min.js"></script>
+    
+
+
+
+    
+    
+        
+            <!-- MathJax配置，可通过单美元符号书写行内公式等 -->
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+    "HTML-CSS": {
+        preferredFont: "TeX",
+        availableFonts: ["STIX","TeX"],
+        linebreaks: { automatic:true },
+        EqnChunk: (MathJax.Hub.Browser.isMobile ? 10 : 50)
+    },
+    tex2jax: {
+        inlineMath: [ ["$", "$"], ["\\(","\\)"] ],
+        processEscapes: true,
+        ignoreClass: "tex2jax_ignore|dno",
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    },
+    TeX: {
+        equationNumbers: { autoNumber: "AMS" },
+        noUndefined: { attributes: { mathcolor: "red", mathbackground: "#FFEEEE", mathsize: "90%" } },
+        Macros: { href: "{}" }
+    },
+    messageStyle: "none"
+    });
+</script>
+<!-- 给MathJax元素添加has-jax class -->
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+<!-- 通过连接CDN加载MathJax的js代码 -->
+<script type="text/javascript" async
+        src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+
+
+        
+    
+
+
+<meta name="generator" content="Hexo 5.2.0"></head>
+<body>
+    <div class="wrapper">
+        <header>
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-header header-logo"><a href="/">Richard&#39;s Blog</a></div>
+            <div class="menu navbar-right">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+                <input id="switch_default" type="checkbox" class="switch_default">
+                <label for="switch_default" class="toggleBtn"></label>
+            </div>
+        </div>
+    </nav>
+
+    
+    <nav class="navbar-mobile" id="nav-mobile">
+        <div class="container">
+            <div class="navbar-header">
+                <div>
+                    <a href="/">Richard&#39;s Blog</a><a id="mobile-toggle-theme">·&nbsp;Light</a>
+                </div>
+                <div class="menu-toggle" onclick="mobileBtn()">&#9776; Menu</div>
+            </div>
+            <div class="menu" id="mobile-menu">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+            </div>
+        </div>
+    </nav>
+
+</header>
+<script>
+    var mobileBtn = function f() {
+        var toggleMenu = document.getElementsByClassName("menu-toggle")[0];
+        var mobileMenu = document.getElementById("mobile-menu");
+        if(toggleMenu.classList.contains("active")){
+           toggleMenu.classList.remove("active")
+            mobileMenu.classList.remove("active")
+        }else{
+            toggleMenu.classList.add("active")
+            mobileMenu.classList.add("active")
+        }
+    }
+</script>
+        <div class="main">
+            <div class="container">
+    
+    
+        <div class="post-toc">
+    <div class="tocbot-list">
+    </div>
+    <div class="tocbot-list-menu">
+        <a class="tocbot-toc-expand" onclick="expand_toc()">Expand all</a>
+        <a onclick="go_top()">Back to top</a>
+        <a onclick="go_bottom()">Go to bottom</a>
+    </div>
+</div>
+
+<script>
+    document.ready(
+        function () {
+            tocbot.init({
+                tocSelector: '.tocbot-list',
+                contentSelector: '.post-content',
+                headingSelector: 'h1, h2, h3, h4, h5',
+                collapseDepth: 1,
+                orderedList: false,
+                scrollSmooth: true,
+            })
+        }
+    )
+
+    function expand_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 6,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "collapse_toc()");
+        b.innerHTML = "Collapse all"
+    }
+
+    function collapse_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 1,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "expand_toc()");
+        b.innerHTML = "Expand all"
+    }
+
+    function go_top() {
+        window.scrollTo(0, 0);
+    }
+
+    function go_bottom() {
+        window.scrollTo(0, document.body.scrollHeight);
+    }
+
+</script>
+    
+
+    
+    <article class="post-wrap">
+        <header class="post-header">
+            <h1 class="post-title">UOJ 402 【CTSC2018】 混合果汁</h1>
+            
+                <div class="post-meta">
+                    
+                        Author: <a itemprop="author" rel="author" href="/">Helloat123</a>
+                    
+
+                    
+                        <span class="post-time">
+                        Date: <a href="#">August 23, 2021&nbsp;&nbsp;9:04:33</a>
+                        </span>
+                    
+                    
+                        <span class="post-category">
+                    Category:
+                            
+                                <a href="/categories/%E9%AB%98%E7%BA%A7%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">高级数据结构</a>
+                            
+                        </span>
+                    
+                </div>
+            
+        </header>
+
+        <div class="post-content">
+            <p><a target="_blank" rel="noopener" href="https://uoj.ac/problem/402">题面</a></p>
+<p>由于是中文题面，题面又不算特别绕，就不在这里说题意了</p>
+<h3 id="思路："><a href="#思路：" class="headerlink" title="思路："></a>思路：</h3><p>首先看到要求的是美味度最小值的最大值。这几乎就是二分答案的标志（除了某些贪心题）。</p>
+<p>考虑二分答案之后如何判定是否可行。子问题就变成了：对于给定的不同种类的饮料，从中任选L升，能否用g这么多钱买下。这个子问题显然可以从价格低的饮料开始贪心。暴力贪心的话复杂度是O(n)的，套上外面的二分答案以及更外面的询问次数m，总复杂度$O(nm\lg g)$。</p>
+<p>容易发现贪心的过程中有许多重复计算，考虑用带log的数据结构维护。首先可以想到，如果每一次二分答案之后都能有一棵线段树，容易在线段树上二分找到答案。又可以想到，相邻位置的线段树只有一个单点插入的区别，因此可以利用可持久化线段树做。总复杂度$O(n\lg n+m\lg g \lg n)$</p>
+<p>(然而创建node的地方忘开longlong导致惨夺15分，第二天早上一起来就看到了问题)</p>
+<h3 id="代码："><a href="#代码：" class="headerlink" title="代码："></a>代码：</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//by Richard</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;bits/extc++.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> mp make_pair</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> rep(x,y,z) for (int x=(y);(x)&lt;=(z);(x)++)</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> per(x,y,z) for (int x=(y);(x)&gt;=(z);(x)--)</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> lowbit(x) ((x)&amp;(-(x)))</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> cls(x) memset(x,0,sizeof(x))</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">ifdef</span> DEBUG</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> debugdo(X) X</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> debugndo(X)</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> debugout(X) cout&lt;&lt;(#X)&lt;&lt;<span class="meta-string">&quot;=&quot;</span>&lt;&lt;(X)&lt;&lt;endl</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">else</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> debugdo(X)</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> debugndo(X) X</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> debugout(X)</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">endif</span> <span class="comment">// debug</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="function">mt19937 <span class="title">rnd</span><span class="params">(<span class="number">19260817</span>)</span></span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> inf=<span class="number">0x3f3f3f3f</span>;</span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">long</span> <span class="keyword">long</span> LL;</span><br><span class="line"><span class="keyword">typedef</span> <span class="built_in">pair</span>&lt;<span class="keyword">int</span>,<span class="keyword">int</span>&gt; pii;</span><br><span class="line"><span class="comment">///////////////////////read5.1///////////////////////</span></span><br><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt;</span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">read</span><span class="params">(T &amp;x)</span></span>&#123;<span class="keyword">char</span> ch;x=<span class="number">0</span>;<span class="keyword">bool</span> flag=<span class="literal">false</span>;ch=getchar();<span class="keyword">while</span> (ch&gt;<span class="string">&#x27;9&#x27;</span>||ch&lt;<span class="string">&#x27;0&#x27;</span>) &#123;<span class="keyword">if</span> (ch==<span class="string">&#x27;-&#x27;</span>) flag=<span class="literal">true</span>;ch=getchar();&#125;<span class="keyword">while</span> ((ch&lt;=<span class="string">&#x27;9&#x27;</span>&amp;&amp;ch&gt;=<span class="string">&#x27;0&#x27;</span>))&#123;x=x*<span class="number">10</span>+ch-<span class="string">&#x27;0&#x27;</span>;ch=getchar();&#125;<span class="keyword">if</span> (flag) x*=<span class="number">-1</span>;&#125;</span><br><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> T,<span class="keyword">typename</span> U&gt;</span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">read</span><span class="params">(T &amp;x,U &amp;y)</span></span>&#123;read(x);read(y);&#125;</span><br><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> T,<span class="keyword">typename</span> U,<span class="keyword">typename</span> V&gt;</span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">read</span><span class="params">(T &amp;x,U &amp;y,V &amp;z)</span></span>&#123;read(x);read(y);read(z);&#125;</span><br><span class="line"><span class="comment">////////////////variables&amp;functions//////////////////</span></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> maxn=<span class="number">111111</span>,maxvalue=<span class="number">100000</span>;</span><br><span class="line"><span class="keyword">int</span> n,m;</span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">node</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">    node *l,*r;</span><br><span class="line">    LL sp,sv;<span class="comment">//sum of price;sum of volume</span></span><br><span class="line">    node():l(<span class="number">0</span>),r(<span class="number">0</span>),sp(<span class="number">0</span>),sv(<span class="number">0</span>)&#123;&#125;</span><br><span class="line">    node(node *ll,node *rr):l(ll),r(rr),sp((ll?ll-&gt;sp:<span class="number">0</span>)+(rr?rr-&gt;sp:<span class="number">0</span>)),sv((ll?ll-&gt;sv:<span class="number">0</span>)+(rr?rr-&gt;sv:<span class="number">0</span>))&#123;&#125;</span><br><span class="line">    node(LL v1,LL v2):l(<span class="number">0</span>),r(<span class="number">0</span>),sp(v1),sv(v2)&#123;&#125;</span><br><span class="line">&#125;;</span><br><span class="line">node *root[maxn];</span><br><span class="line">char memorypool[maxn*sizeof(node)*60];//1 char=1 byte</span><br><span class="line"><span class="keyword">char</span> *memorypoolptr=memorypool;</span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">void</span>* <span class="title">myalloc</span><span class="params">(<span class="keyword">size_t</span> size)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> (memorypoolptr+=size)-size;</span><br><span class="line">&#125;</span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> newnode new (myalloc(sizeof(node))) node</span></span><br><span class="line"><span class="function">node* <span class="title">insert</span><span class="params">(node *x,<span class="keyword">int</span> k,<span class="keyword">int</span> limit,<span class="keyword">int</span> L=<span class="number">1</span>,<span class="keyword">int</span> R=maxvalue)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (L==R) </span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">if</span> (!x)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">return</span> newnode((LL)k*limit,limit);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">        &#123;</span><br><span class="line">            LL temp=x-&gt;sv+limit;</span><br><span class="line">            <span class="keyword">return</span> newnode(temp*k,temp);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">int</span> mid=(L+R)&gt;&gt;<span class="number">1</span>;</span><br><span class="line">    <span class="keyword">if</span> (k&lt;=mid) <span class="keyword">return</span> newnode(insert(x?x-&gt;l:<span class="number">0</span>,k,limit,L,mid),x?x-&gt;r:<span class="number">0</span>);</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">return</span> newnode(x?x-&gt;l:<span class="number">0</span>,insert(x?x-&gt;r:<span class="number">0</span>,k,limit,mid+<span class="number">1</span>,R));</span><br><span class="line">&#125;</span><br><span class="line"><span class="function">LL <span class="title">query</span><span class="params">(node *x,LL maxp,<span class="keyword">int</span> L=<span class="number">1</span>,<span class="keyword">int</span> R=maxvalue)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">if</span> ((!x)||(!maxp)) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">if</span> (x-&gt;sp&lt;=maxp) <span class="keyword">return</span> x-&gt;sv;</span><br><span class="line">    <span class="keyword">if</span> (L==R) <span class="keyword">return</span> maxp/L;</span><br><span class="line">    <span class="keyword">int</span> mid=(L+R)&gt;&gt;<span class="number">1</span>;</span><br><span class="line">    <span class="keyword">if</span> (!x-&gt;l) <span class="keyword">return</span> x-&gt;r?query(x-&gt;r,maxp,mid+<span class="number">1</span>,R):<span class="number">0</span>;</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span> (x-&gt;l-&gt;sp&lt;maxp) <span class="keyword">return</span> x-&gt;l-&gt;sv+query(x-&gt;r,maxp-x-&gt;l-&gt;sp,mid+<span class="number">1</span>,R);</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">return</span> query(x-&gt;l,maxp,L,mid);</span><br><span class="line">&#125;</span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">DATA</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">    <span class="keyword">int</span> d,p,l;</span><br><span class="line">    <span class="keyword">bool</span> <span class="keyword">operator</span>&lt;(<span class="keyword">const</span> DATA &amp;b)<span class="keyword">const</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">return</span> d&gt;b.d;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;data[maxn];</span><br><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">check</span><span class="params">(<span class="keyword">const</span> <span class="keyword">int</span> &amp;mind,<span class="keyword">const</span> LL &amp;maxp,<span class="keyword">const</span> LL &amp;minv)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> l=<span class="number">0</span>,r=n;</span><br><span class="line">    <span class="keyword">while</span> (l&lt;r)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">int</span> mid=(l+r+<span class="number">1</span>)&gt;&gt;<span class="number">1</span>;</span><br><span class="line">        <span class="keyword">if</span> (data[mid].d&gt;=mind) l=mid;</span><br><span class="line">        <span class="keyword">else</span> r=mid<span class="number">-1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//cerr&lt;&lt;&quot;check mind=&quot;&lt;&lt;mind&lt;&lt;&quot; maxp=&quot;&lt;&lt;maxp&lt;&lt;&quot; minv=&quot;&lt;&lt;minv&lt;&lt;&quot; l=&quot;&lt;&lt;l&lt;&lt;endl;</span></span><br><span class="line">    <span class="keyword">int</span> tt=query(root[l],maxp);</span><br><span class="line">    <span class="comment">// cout&lt;&lt;&quot;mind=&quot;&lt;&lt;mind&lt;&lt;&quot; l=&quot;&lt;&lt;l&lt;&lt;&quot; res=&quot;&lt;&lt;tt&lt;&lt;endl;</span></span><br><span class="line">    <span class="keyword">return</span> tt&gt;=minv;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    read(n,m);</span><br><span class="line">    rep(i,<span class="number">1</span>,n) read(data[i].d,data[i].p,data[i].l);</span><br><span class="line">    sort(data+<span class="number">1</span>,data+n+<span class="number">1</span>);</span><br><span class="line">    root[<span class="number">0</span>]=newnode();</span><br><span class="line">    rep(i,<span class="number">1</span>,n) root[i]=insert(root[i<span class="number">-1</span>],data[i].p,data[i].l);</span><br><span class="line">    rep(i,<span class="number">1</span>,m)</span><br><span class="line">    &#123;</span><br><span class="line">        LL g,L;</span><br><span class="line">        read(g,L);</span><br><span class="line">        <span class="comment">// if (root[n]-&gt;sv&lt;L||g&lt;L||query(root[n],g)&lt;L)</span></span><br><span class="line">        <span class="comment">// &#123;</span></span><br><span class="line">            <span class="comment">// puts(&quot;-1&quot;);</span></span><br><span class="line">            <span class="comment">// continue;</span></span><br><span class="line">        <span class="comment">// &#125;</span></span><br><span class="line">        <span class="keyword">int</span> l=<span class="number">0</span>,r=<span class="number">100000</span>;</span><br><span class="line">        <span class="keyword">while</span> (l&lt;r)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">int</span> mid=(l+r+<span class="number">1</span>)&gt;&gt;<span class="number">1</span>;</span><br><span class="line">            <span class="keyword">if</span> (check(mid,g,L)) l=mid;<span class="comment">//if possible, ans can be larger(better)</span></span><br><span class="line">            <span class="keyword">else</span> r=mid<span class="number">-1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (l==<span class="number">0</span>) l=<span class="number">-1</span>;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;%d\n&quot;</span>,l);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+        </div>
+
+        
+        <section class="post-tags">
+            <div>
+                <span>Tag(s):</span>
+                <span class="tag">
+                    
+                    
+                        <a href="/tags/%E4%B8%BB%E5%B8%AD%E6%A0%91/"># 主席树</a>
+                    
+                        <a href="/tags/%E4%BA%8C%E5%88%86%E7%AD%94%E6%A1%88/"># 二分答案</a>
+                    
+                        
+                </span>
+            </div>
+            <div>
+                <a href="javascript:window.history.back();">back</a>
+                <span>· </span>
+                <a href="/">home</a>
+            </div>
+        </section>
+        <section class="post-nav">
+            
+            
+            <a class="next" rel="next" href="/2021/08/22/%E7%99%BE%E5%BA%A6%E4%B9%8B%E6%98%9F2021%E6%B8%B8%E8%AE%B0/">百度之星2021游记</a>
+            
+        </section>
+
+
+    </article>
+</div>
+
+        </div>
+        <footer id="footer" class="footer">
+        <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <div class="copyright">
+        <span>© Helloat123 | Powered by <a href="https://hexo.io" target="_blank">Hexo</a> & <a href="https://github.com/Siricee/hexo-theme-Chic" target="_blank">Chic</a> | <span id="busuanzi_container_site_pv">
+    本站总访问量<span id="busuanzi_value_site_pv"></span>次
+</span> | <span id="busuanzi_container_site_uv">
+  本站访客数<span id="busuanzi_value_site_uv"></span>人次
+</span></span>
+    </div>
+</footer>
+
+    </div>
+</body>
+</html>
