@@ -269,8 +269,15 @@
 
 <p>比如筛莫比乌斯函数时，式子1为-1，式子2为0，式子3为-f[i]</p>
 <p>筛欧拉函数时，式子1为i-1,式子2为f[i]*prime[j],式子3为phi[i]*(prime[j]-1)</p>
+<h2 id="数论分块"><a href="#数论分块" class="headerlink" title="数论分块"></a>数论分块</h2><p>含有$\lfloor\frac{n}{i}\rfloor$的求和式，如$\sum _ {i=1} ^ {n} \lfloor\frac{n}{i}\rfloor\cdot f(i)$，容易发现$\lfloor\frac{n}{i}\rfloor$的取值只有$\sqrt n$种。设当前值的左界为l，有界为r，则一个方便的跳l、r的方式是l=r+1,r=n/(n/l)。如果$f(x)$能用求和公式表示，那么整个式子的值就能在$O(\sqrt{n})$的时间复杂度内完成</p>
+<p>做了一道模板题<a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P2261">Luogu P2261</a>，因为太显然了，就不单独发blog，这里也不贴代码了。</p>
+<h4 id="二维数论分块"><a href="#二维数论分块" class="headerlink" title="二维数论分块"></a>二维数论分块</h4><p>$$<br>\sum _ {i=1} ^ {min(n,m)} \lfloor \frac{n}{i}\rfloor \cdot \lfloor \frac{m}{i}\rfloor<br>$$</p>
+<p>只是把跳$\sqrt{n}$次变成$2\sqrt{n}$次罢了，找n和m的跳跃点中最近的位置跳即可。</p>
 <h2 id="莫比乌斯反演"><a href="#莫比乌斯反演" class="headerlink" title="莫比乌斯反演"></a>莫比乌斯反演</h2><p>$$<br>f(n)=\sum _ {d|n} g(d)\Longleftrightarrow g(n)=\sum _ {d|n} \mu(d)f(\frac{n}{d})\\<br>f=g\ast 1\Longleftrightarrow g=f\ast \mu<br>$$</p>
 <p>由前文狄利克雷卷积部分知识，显然。</p>
+<h3 id="例："><a href="#例：" class="headerlink" title="例："></a><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P2522">例</a>：</h3><p>经过转化之后，问题的核心是<br>$$<br>\sum _ {i=1} ^ {\lfloor\frac{n}{k}\rfloor} \sum _ {j=1} ^ {\lfloor\frac{m}{k}\rfloor} (gcd(i,j)==1)<br>$$</p>
+<h4 id="解："><a href="#解：" class="headerlink" title="解："></a>解：</h4><p>看到==1这种东西，首先想到单位元函数<br>$$<br>原式=\sum _ {i=1} ^ {\lfloor\frac{n}{k}\rfloor} \sum _ {j=1} ^ {\lfloor\frac{m}{k}\rfloor} \varepsilon(gcd(i,j))\\<br>=\sum _ {i=1} ^ {\lfloor\frac{n}{k}\rfloor} \sum _ {j=1} ^ {\lfloor\frac{m}{k}\rfloor}\sum _ {d|gcd(i,j)} \mu(d)\ \ 莫比乌斯反演\\<br>=\sum _ {d=1} ^ {min{\lfloor\frac{n}{k}\rfloor,\lfloor\frac{m}{k}\rfloor}}\mu(d)\lfloor\frac{m}{k\cdot d}\rfloor\lfloor\frac{n}{k\cdot d}\rfloor<br>$$<br>其中推导的最后一步更换了枚举的变量。可以发现，倒数第二个式子中，对于每个$d$，当$d|i\or d|j$时$\mu(d)$都会被加一次，因此可以得到最终的式子。</p>
+<p>而最终的式子显然可以在预处理出莫比乌斯函数的前缀和后通过上面提到的二维数论分块的思路来快速解决</p>
 
         </div>
 
