@@ -247,7 +247,7 @@
 <h2 id="积性函数"><a href="#积性函数" class="headerlink" title="积性函数"></a>积性函数</h2><p>$k$表示质因子的数量，$e_i$表示第$i$个质因子的指数</p>
 <p>欧拉函数$\varphi(n)=\prod _ { i=1 } ^ { k } p_i^{e_i-1}(p_i-1)$，1到n中与n互素的数的个数</p>
 <p>约数个数函数$d(n)=\prod _ { i=1 } ^ { k } (e_i+1)$，n的约数个数</p>
-<p>约数和函数$\sigma(n)=\prod _ { i=1 } ^ { k } \sum _ { j=0 } ^ { e_i }p_i^j$，n的所有约数之和</p>
+<p>约数和函数$\sigma(n)=\prod _ { i=1 } ^ { k } \sum _ { j=0 } ^ { e_i }p_i^j=\sum _ {d|n} d$，n的所有约数之和</p>
 <p>莫比乌斯函数$\mu(n)=\prod _ { i=1 } ^ { k }(-\lfloor\frac{1}{e_i}\rfloor)$，若n有任何一个质因数大于1次，则0，若n为奇数个不同素数之积，则-1，否则1</p>
 <h3 id="完全积性函数"><a href="#完全积性函数" class="headerlink" title="完全积性函数"></a>完全积性函数</h3><p>不需要a，b互质即成立$f(a)\cdot f(b)=f(a\cdot b)$</p>
 <p>全1、全0函数（恒等函数）</p>
@@ -259,7 +259,7 @@
 <p>当$n$为质数时，$右式=\varphi(n)+\varphi(1)=n-1+1=n$，成立；</p>
 <p>当$n$为质数的幂时，设$n=p^k$，$右式=\sum _ {i=0} ^ { k }\varphi(p^i)=\sum _ { i=1 } ^ {k}[p^{i}-p^{i-1}]+1=p^k=n$</p>
 <p>当$n$为其它情况时，由于欧拉函数的积性，易证</p>
-<h3 id="1至n中与n互质的数的和为-frac-varphi-n-2-cdot-n-n-gt-1"><a href="#1至n中与n互质的数的和为-frac-varphi-n-2-cdot-n-n-gt-1" class="headerlink" title="1至n中与n互质的数的和为$\frac{\varphi(n)}{2}\cdot n(n&gt;1)$"></a>1至n中与n互质的数的和为$\frac{\varphi(n)}{2}\cdot n(n&gt;1)$</h3><p>$(x,n)=1$时，$(n-x,n)=1$，因此每一对与n互质的数的和为n。共有$\frac{\varphi(n)}{2}$对。</p>
+<h3 id="sum-i-1-n-i-cdot-gcd-n-i-1-frac-varphi-n-2-cdot-n-n-gt-1"><a href="#sum-i-1-n-i-cdot-gcd-n-i-1-frac-varphi-n-2-cdot-n-n-gt-1" class="headerlink" title="$\sum _ {i=1} ^ {n} i\cdot[\gcd(n,i)=1]=\frac{\varphi(n)}{2}\cdot n(n&gt;1)$"></a>$\sum _ {i=1} ^ {n} i\cdot[\gcd(n,i)=1]=\frac{\varphi(n)}{2}\cdot n(n&gt;1)$</h3><p>$(x,n)=1$时，$(n-x,n)=1$，因此每一对与n互质的数的和为n。共有$\frac{\varphi(n)}{2}$对。</p>
 <p>同时可以得到下面的结论：</p>
 <h3 id="n-gt-2-时，-varphi-n-为偶数"><a href="#n-gt-2-时，-varphi-n-为偶数" class="headerlink" title="$n&gt;2$时，$\varphi(n)$为偶数"></a>$n&gt;2$时，$\varphi(n)$为偶数</h3><h2 id="欧拉定理-gt-扩展欧拉定理"><a href="#欧拉定理-gt-扩展欧拉定理" class="headerlink" title="欧拉定理-&gt;扩展欧拉定理"></a>欧拉定理-&gt;扩展欧拉定理</h2><p>$$<br>a^c\equiv<br>\begin{cases}<br>a^{c\ \bmod\ \phi(m)} &amp;(a,m)\ =\ 1 \\<br>a^c &amp;(a,m)\ \neq\ 1\ \land\ c\ &lt;\ \varphi(m) \\<br>a^{c\ \bmod\ \phi(m)\ +\ \phi(m)} &amp;(a,m)\ \neq\ 1\ \land\ c\ \geq\ \varphi(m)<br>\end{cases}<br>$$</p>
 <h2 id="狄利克雷卷积"><a href="#狄利克雷卷积" class="headerlink" title="狄利克雷卷积"></a>狄利克雷卷积</h2><p>$$<br>h(n)=(f\ast g)(n)=\sum _ { i|n }f(i)\cdot g(\frac{n}{i})=\sum _ { ab=x }f(a)\cdot g(b)\\<br>记为h=f\ast g\\<br>交换律f\ast g=g\ast f，显然由上式，交换仅仅是ab交换，相等\\<br>结合律(f\ast g)\ast h=f\ast (g\ast h)\\<br>分配律f\ast(g+h)=f\ast g+f\ast h\\<br>单位元f\ast \varepsilon=f\\<br>若f和g都是积性函数，则f\ast g为积性函数\\<br>f=g的充要条件是f\ast h=g\ast h，其中保证h(1)\ne 0\\<br>若f\ast g=\varepsilon，则f和g互为逆元\\<br>积性函数必然有逆元，逆元也是积性函数\\<br>$$</p>
@@ -275,9 +275,17 @@
 <p>只是把跳$\sqrt{n}$次变成$2\sqrt{n}$次罢了，找n和m的跳跃点中最近的位置跳即可。</p>
 <h2 id="莫比乌斯反演"><a href="#莫比乌斯反演" class="headerlink" title="莫比乌斯反演"></a>莫比乌斯反演</h2><p>$$<br>f(n)=\sum _ {d|n} g(d)\Longleftrightarrow g(n)=\sum _ {d|n} \mu(d)f(\frac{n}{d})\\<br>f=g\ast 1\Longleftrightarrow g=f\ast \mu<br>$$</p>
 <p>由前文狄利克雷卷积部分知识，显然。</p>
-<h3 id="例："><a href="#例：" class="headerlink" title="例："></a><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P2522">例</a>：</h3><p>经过转化之后，问题的核心是<br>$$<br>\sum _ {i=1} ^ {\lfloor\frac{n}{k}\rfloor} \sum _ {j=1} ^ {\lfloor\frac{m}{k}\rfloor} (gcd(i,j)==1)<br>$$</p>
+<h3 id="例1："><a href="#例1：" class="headerlink" title="例1："></a><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P2522">例1</a>：</h3><p>经过转化之后，问题的核心是<br>$$<br>\sum _ {i=1} ^ {\lfloor\frac{n}{k}\rfloor} \sum _ {j=1} ^ {\lfloor\frac{m}{k}\rfloor} (gcd(i,j)==1)<br>$$</p>
 <h4 id="解："><a href="#解：" class="headerlink" title="解："></a>解：</h4><p>看到==1这种东西，首先想到单位元函数<br>$$<br>原式=\sum _ {i=1} ^ {\lfloor\frac{n}{k}\rfloor} \sum _ {j=1} ^ {\lfloor\frac{m}{k}\rfloor} \varepsilon(gcd(i,j))\\<br>=\sum _ {i=1} ^ {\lfloor\frac{n}{k}\rfloor} \sum _ {j=1} ^ {\lfloor\frac{m}{k}\rfloor}\sum _ {d|gcd(i,j)} \mu(d)\ \ 莫比乌斯反演\\<br>=\sum _ {d=1} ^ {min{\lfloor\frac{n}{k}\rfloor,\lfloor\frac{m}{k}\rfloor}}\mu(d)\lfloor\frac{m}{k\cdot d}\rfloor\lfloor\frac{n}{k\cdot d}\rfloor<br>$$<br>其中推导的最后一步更换了枚举的变量。可以发现，倒数第二个式子中，对于每个$d$，当$d|i\or d|j$时$\mu(d)$都会被加一次，因此可以得到最终的式子。</p>
 <p>而最终的式子显然可以在预处理出莫比乌斯函数的前缀和后通过上面提到的二维数论分块的思路来快速解决</p>
+<h3 id="例2"><a href="#例2" class="headerlink" title="例2"></a>例2</h3><p>求<br>$$<br>\sum _ {i=1} ^ n \sum _ {j=1} ^ m \gcd(i,j)<br>$$</p>
+<h4 id="解：-1"><a href="#解：-1" class="headerlink" title="解："></a>解：</h4><p>利用常见卷积的公式，<br>$$<br>原式=\sum _ {i=1} ^ n \sum _ {j=1} ^ m \sum _ {d|\gcd(i,j)} \varphi(d)\\<br>=\sum _ {d=1} \varphi(d) \cdot \lfloor\frac{n}{d} \rfloor \cdot \lfloor\frac{m}{d}\rfloor<br>$$<br>接下来处理和例1相同</p>
+<h3 id="例3"><a href="#例3" class="headerlink" title="例3"></a>例3</h3><p>$$<br>\sum _ {i=1} ^ {n} lcm(i,n)<br>$$</p>
+<p>3e5组询问，n范围1e6</p>
+<h4 id="解：-2"><a href="#解：-2" class="headerlink" title="解："></a>解：</h4><p>$$<br>原式=\sum _ {i=1} ^ {n} \frac{i\cdot n}{\gcd(i,n)}\\<br>=\sum _ {d|n} \sum _ {i=1} ^ {n} \frac{i\cdot n}{d}[\gcd(i,n)==d]\\<br>=n\cdot\sum _ {d|n} \sum _ {i=1} ^ {\lfloor \frac{n}{d}\rfloor} \frac{i}{d}[\gcd(i,\frac{n}{d})==1]，改变枚举的变量i的意义\\<br>=n\cdot \sum _ {d|n} \sum _ {i=1} ^ {d} i\cdot [\gcd(i,d)==1]，由于枚举d和枚举\frac{n}{d}等价\\<br>=n\cdot \sum _ {d|n} \frac{\varphi(d)\cdot d}{2}<br>$$</p>
+<p>至此可以得到$O(n)$预处理出欧拉函数，$O(\sqrt{n})$回答询问的方法。但是这样会TLE</p>
+<p>考虑将答案函数预处理：显然可以在调和级数复杂度下做出来。总复杂度$O(n\lg n+T)$</p>
+<p>似乎还有别的方法可以做到$O(n+T)$，待补</p>
 
         </div>
 
