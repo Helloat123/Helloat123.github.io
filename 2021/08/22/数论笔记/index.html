@@ -237,7 +237,13 @@
         </header>
 
         <div class="post-content">
-            <h2 id="线性求逆元"><a href="#线性求逆元" class="headerlink" title="线性求逆元"></a>线性求逆元</h2><p>$$<br>\lfloor\frac{p}{a}\rfloor\cdot a+(p\bmod a)=p\\<br>$$</p>
+            <p>参考：</p>
+<p>namomo summer camp 2021 吴航 数论</p>
+<p><a href="oi-wiki.org">OIWIKI</a></p>
+<p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/blog/An-Amazing-Blog/mu-bi-wu-si-fan-yan-ji-ge-ji-miao-di-dong-xi">这篇博客</a></p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/consciousman/article/details/77888386">这篇博客</a></p>
+<p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/106775790">xiejiadong发的数论专栏</a></p>
+<h2 id="线性求逆元"><a href="#线性求逆元" class="headerlink" title="线性求逆元"></a>线性求逆元</h2><p>$$<br>\lfloor\frac{p}{a}\rfloor\cdot a+(p\bmod a)=p\\<br>$$</p>
 <p>推导可得<br>$$<br>\lfloor\frac{p}{a}\rfloor\cdot inv[p\bmod a]+inv[a] \equiv0\pmod{p}<br>$$</p>
 <h2 id="二次剩余"><a href="#二次剩余" class="headerlink" title="二次剩余"></a>二次剩余</h2><p>名字比较高大上。实际意义就是类似求模意义下的根号。</p>
 <p>若p为奇素数，可用Cipolla算法</p>
@@ -282,15 +288,25 @@
 <p>而最终的式子显然可以在预处理出莫比乌斯函数的前缀和后通过上面提到的二维数论分块的思路来快速解决</p>
 <h3 id="例2"><a href="#例2" class="headerlink" title="例2"></a>例2</h3><p>求<br>$$<br>\sum _ {i=1} ^ n \sum _ {j=1} ^ m \gcd(i,j)<br>$$</p>
 <h4 id="解：-1"><a href="#解：-1" class="headerlink" title="解："></a>解：</h4><p>利用常见卷积的公式，<br>$$<br>原式=\sum _ {i=1} ^ n \sum _ {j=1} ^ m \sum _ {d|\gcd(i,j)} \varphi(d)\\<br>=\sum _ {d=1} \varphi(d) \cdot \lfloor\frac{n}{d} \rfloor \cdot \lfloor\frac{m}{d}\rfloor<br>$$<br>接下来处理和例1相同</p>
-<h3 id="例3"><a href="#例3" class="headerlink" title="例3"></a>例3</h3><p>$$<br>\sum _ {i=1} ^ {n} lcm(i,n)<br>$$</p>
+<h3 id="例3-SPOJ5971-LCMSUM"><a href="#例3-SPOJ5971-LCMSUM" class="headerlink" title="例3 SPOJ5971 LCMSUM"></a>例3 SPOJ5971 LCMSUM</h3><p>$$<br>\sum _ {i=1} ^ {n} lcm(i,n)<br>$$</p>
 <p>3e5组询问，n范围1e6</p>
-<h4 id="解：-2"><a href="#解：-2" class="headerlink" title="解："></a>解：</h4><p>$$<br>原式=\sum _ {i=1} ^ {n} \frac{i\cdot n}{\gcd(i,n)}\\<br>=\sum _ {d|n} \sum _ {i=1} ^ {n} \frac{i\cdot n}{d}[\gcd(i,n)==d]\\<br>=n\cdot\sum _ {d|n} \sum _ {i=1} ^ {\lfloor \frac{n}{d}\rfloor} \frac{i}{d}[\gcd(i,\frac{n}{d})==1]，改变枚举的变量i的意义\\<br>=n\cdot \sum _ {d|n} \sum _ {i=1} ^ {d} i\cdot [\gcd(i,d)==1]，由于枚举d和枚举\frac{n}{d}等价\\<br>=n\cdot \sum _ {d|n} \frac{\varphi(d)\cdot d}{2}<br>$$</p>
+<h4 id="解：-2"><a href="#解：-2" class="headerlink" title="解："></a>解：</h4><p>$$<br>原式=\sum _ {i=1} ^ {n} \frac{i\cdot n}{\gcd(i,n)}\\<br>=\sum _ {d|n} \sum _ {i=1} ^ {n} \frac{i\cdot n}{d}[\gcd(i,n)==d]\\<br>=n\cdot\sum _ {d|n} \sum _ {i=1} ^ {\lfloor \frac{n}{d}\rfloor} \frac{i}{d}[\gcd(i,\frac{n}{d})==1],改变枚举的变量i的意义\\<br>=n\cdot \sum _ {d|n} \sum _ {i=1} ^ {d} i\cdot [\gcd(i,d)==1],由于枚举d和枚举\frac{n}{d}等价\\<br>=n\cdot \sum _ {d|n} \frac{d\cdot \varphi(d)+[d==1]}{2},上文\varphi函数的性质一节中提到的公式\\<br>=\frac{n}{2}\cdot (\sum _ {d|n} \varphi(d)\cdot d+1),推导显然<br>$$</p>
 <p>至此可以得到$O(n)$预处理出欧拉函数，$O(\sqrt{n})$回答询问的方法。但是这样会TLE</p>
 <p>考虑将答案函数预处理：显然可以在调和级数复杂度下做出来。总复杂度$O(n\lg n+T)$</p>
-<p>似乎还有别的方法可以做到$O(n+T)$，待补</p>
+<p>通过推导可以发现，$\sum _ {d|n}\varphi(d)\cdot d$是个积性函数，可以线性预处理，因此可以做到$O(n+T)$，具体证明待补</p>
 <h3 id="例4"><a href="#例4" class="headerlink" title="例4"></a>例4</h3><p>$$<br>\sum _ {i=1} ^ {n} \sum _ {j=1} ^ m lcm(i,j)<br>$$</p>
-<h4 id="解：-3"><a href="#解：-3" class="headerlink" title="解："></a>解：</h4><p>$$<br>原式=\sum _ {i=1} ^ {n} \sum _ {j=1} ^ m \frac{i\cdot j}{\gcd(i,j)}\\<br>$$</p>
-
+<h4 id="解：-3"><a href="#解：-3" class="headerlink" title="解："></a>解：</h4><p>$$<br>原式=\sum _ {i=1} ^ {n} \sum _ {j=1} ^ m \frac{i\cdot j}{\gcd(i,j)}\\<br>=\sum _ {i=1} ^ {n} \sum _ {j=1} ^ m \frac{i\cdot j}{d}[gcd(i,j)==d]\\<br>=\sum _ {d=1} ^ n \sum _ {i=1} ^ {\lfloor\frac{n}{d}\rfloor} \sum _{j=1} ^ {\lfloor\frac{m}{d}\rfloor} i\cdot j\cdot d[gcd(i,j)==1]\\<br>=\sum _ {d=1} ^ {n} d\cdot\sum _ {i=1} ^ {\lfloor \frac{n}{d}\rfloor}i \sum _ {j=1} ^ {\lfloor \frac{m}{d}\rfloor} j\sum _ {k|\gcd(i,j)}\mu(k)\\<br>=\sum _ {k=1} ^ {n} k^2\mu(k)\sum _ {d=1} ^ {n} d\sum _ {i=1}^{\lfloor \frac{n}{dk}\rfloor}i \sum _ {j=1}^ {\lfloor \frac{m}{dk}\rfloor} j\\<br>下面设f(x)=\sum _ {i=1} ^ {x} i,设T=nk\\<br>=\sum _ {T=1} ^ n \sum _ {d|T} \frac{T^2}{d^2} d\mu(\frac{T}{d})f(\frac{n}{T})f(\frac{m}{T})\\<br>=\sum _ {T=1} ^ n f(\frac{n}{T}) f(\frac{m}{T}) \cdot T\sum _ {d|T} d\cdot\mu(d)\\<br>其中F(x)=\sum _ {d|T} d\cdot\mu(d)可以证明是一个积性函数，可以O(n)筛出来，前面部分数论分块即可<br>$$</p>
+<h3 id="例5-SDOI2015-约数个数和"><a href="#例5-SDOI2015-约数个数和" class="headerlink" title="例5 SDOI2015 约数个数和"></a>例5 SDOI2015 约数个数和</h3><p>$$<br>\sum _ {i=1} ^ {n} \sum _ {j=1} ^ m d(i\cdot j)<br>$$</p>
+<h4 id="解：-4"><a href="#解：-4" class="headerlink" title="解："></a>解：</h4><p>$$<br>首先利用约数个数函数的重要性质d(i\cdot j)=\sum _ {d|i} \sum _ {d|j} [\gcd(i,j)==1]\\<br>则原式=\sum _ {i=1} ^ {n} \sum _ {j=1} ^ {m} \sum _ {d|i} \sum _ {d|j} [\gcd(i,j)==1]\\<br>=\sum _ {i=1} ^ {n} \sum _ {j=1} ^ m \sum _ {d=1} ^ {i} \mu(d)\cdot \lfloor \frac{i}{d}\rfloor \cdot \lfloor \frac{j}{d} \rfloor\\<br>=\sum _ {d=1} ^ n \mu(d) \cdot \sum _ {i=1} ^ n \lfloor \frac{i}{d}\rfloor \cdot \sum _ {j=1} ^ m \lfloor \frac{j}{d} \rfloor\\<br>数论分块即可<br>$$</p>
+<h3 id="例6-SDOI2017-数字表格"><a href="#例6-SDOI2017-数字表格" class="headerlink" title="例6 SDOI2017 数字表格"></a>例6 SDOI2017 数字表格</h3><p>$$<br>\prod _ {i=1} ^ {n} \prod _ {j=1} ^ m fib(\gcd(i,j))\\<br>n,m\le 10^6,T\le1000,fib(0)=0<br>$$</p>
+<h4 id="解：-5"><a href="#解：-5" class="headerlink" title="解："></a>解：</h4><p>只1是把问题放到了指数上罢了。斐波那契数列显然和数论要用的这些没什么大关系，所以先常规操作：<br>$$<br>原式=\prod _ {i=1} ^ n \prod _ {j=1} ^ m f(d) ^ {[\gcd(i,j)=d]}\\<br>=\prod _ {d=1} \prod _ {i=1} ^ {\lfloor \frac{n}{d}\rfloor}\prod _ {j=1} ^ {\lfloor \frac{m}{d}\rfloor} f(d)^{[\gcd(i,j)=1]}\\<br>=\prod _ {d=1} \prod _ {i=1} ^ {\lfloor \frac{n}{d}\rfloor}\prod _ {j=1} ^ {\lfloor \frac{m}{d}\rfloor} \prod _ {k|\gcd(i,j)} f(d)^{\mu(k)}\\<br>=\prod _ {d=1}\prod _ {k=1} \prod _ {i=1} ^ {\lfloor \frac{n}{dk}\rfloor}\prod _ {j=1} ^ {\lfloor \frac{m}{dk}\rfloor} f(d)^{\mu(k)}\\<br>=\prod _ {T=1} ^ n \prod _ {d|T} f(d) ^ {\lfloor\frac{n}{T}\rfloor\cdot \lfloor\frac{m}{T}\rfloor\cdot\mu(\frac{T}{d})}\\<br>乍一看似乎没法继续推下去了，考虑把不能数论分块的部分提出\\<br>=\prod _ {T=1} ^ n (\prod _ {d|T} f(d)^{\mu(\frac{T}{d})})^{\lfloor\frac{n}{T}\rfloor\cdot\lfloor\frac{m}{T}\rfloor}\\<br>其中括号内的部分可以求前缀积，指数数论分块即可<br>$$</p>
+<h3 id="例7-BZOJ4407-于神之怒加强版"><a href="#例7-BZOJ4407-于神之怒加强版" class="headerlink" title="例7 BZOJ4407 于神之怒加强版"></a>例7 BZOJ4407 于神之怒加强版</h3><p>$$<br>\sum _ {i=1} ^ n \sum _ {j=1} ^ m \gcd(i,j)^k\\<br>n,m\le5\cdot 10^6,T\le 2000<br>$$</p>
+<h4 id="解：-6"><a href="#解：-6" class="headerlink" title="解："></a>解：</h4><p>$$<br>原式=\sum _ {d=1} ^ n \sum _ {i=1} ^ {\lfloor \frac{n}{d}\rfloor} \sum _ {j=1} ^ {\lfloor \frac{m}{d} \rfloor} d^k\cdot[gcd(i,j)=1]\\<br>=\sum _ {T=1} ^ n \lfloor\frac{m}{T}\rfloor\lfloor\frac{n}{T}\rfloor\sum _ {d|T} d^k\mu(\frac{T}{d}),常规操作\\<br>可以发现右边的式子是\sigma_k\ast \mu，显然是积性函数，可以线性预处理出来。询问时数论分块<br>$$</p>
+<h3 id="例8-BZOJ2820-YY的GCD"><a href="#例8-BZOJ2820-YY的GCD" class="headerlink" title="例8 BZOJ2820 YY的GCD"></a>例8 BZOJ2820 YY的GCD</h3><p>$$<br>\sum _ {i=1} ^ {n} \sum _ {j=1} ^ {m} [\gcd(i,j)\in prime]\\<br>n,m\le10^7<br>$$</p>
+<h4 id="解：-7"><a href="#解：-7" class="headerlink" title="解："></a>解：</h4><p>$$<br>先常规操作，得\\<br>原式=\sum _ {T=1} ^ {n} \lfloor\frac{n}{T}\rfloor \cdot \lfloor \frac{m}{T}\rfloor \sum _ {k|T,k\in prime} \mu(\frac{T}{k})\\<br>右式可以预处理，由于处理次数是\sum _ {p=1} ^ n {\lfloor\frac{n}{p}\rfloor}[p\in prime] ,因此复杂度小于调和级数\\<br>考虑质数个数粗略估计是\frac{n}{\lg n},调和级数求和复杂度O(n\lg n)，因此复杂度应该是接近O(n)的<br>$$</p>
+<h3 id="例9-HDU4944-FSF’s-game"><a href="#例9-HDU4944-FSF’s-game" class="headerlink" title="例9 HDU4944 FSF’s game"></a>例9 HDU4944 FSF’s game</h3><p>$$<br>\sum _ {i=1} ^ n \sum _ {j=i} ^ n \sum _ {d|i,j} \frac{ij}{\gcd(\frac{i}{d},\frac{j}{d})}\\<br>T=500000,n\le500000<br>$$</p>
+<h4 id="解：-8"><a href="#解：-8" class="headerlink" title="解："></a>解：</h4><p>首先看到这个gcd在分母上这个样子，很难受，同时形式很像是lcm，考虑转化<br>$$<br>原式=\sum _ {i=1} ^ n \sum _ {j=i} ^ {n} \sum _ {d|\gcd(i,j)} d\cdot lcm(i,j)\\<br>=\sum _ {d=1} ^ n d^2\sum _ {i=1} ^ {\lfloor\frac{n}{d}\rfloor} \sum _ {j=i} ^ {\lfloor\frac{n}{d}\rfloor}lcm(i,j)\\<br>调换ij位置=\sum _ {d=1} ^ n d^2\sum _ {i=1} ^ {\lfloor\frac{n}{d}\rfloor}\sum _ {j=1} ^ {i} lcm(i,j)\\<br>由例3，=\sum _ {d=1} ^ n d^2\sum _ {i=1} ^ {\lfloor\frac{n}{d}\rfloor}\frac{i}{2}(\sum _ {k|i} k\cdot\varphi(k)+1)\\<br>其中i右边的式子可以调和级数O(n\lg n)求出，乘上i前缀和即可预处理出\sum _ {i=1} ^ {\lfloor\frac{n}{d}\rfloor}\frac{i}{2}(\sum _ {k|i} k\cdot\varphi(k)+1)\\<br>将其记为f(\lfloor\frac{n}{d}\rfloor),则原式=\sum _ {d=1} ^ {n} d^2\cdot f(\lfloor\frac{n}{d}\rfloor),显然可以数论分块,但500000数据范围过大，考虑将f看作差分，对其求前缀和<br>$$</p>
+<h3 id="例10-BZOJ3601-一个人的数论"><a href="#例10-BZOJ3601-一个人的数论" class="headerlink" title="例10 BZOJ3601 一个人的数论"></a>例10 BZOJ3601 一个人的数论</h3><h4 id="解：-9"><a href="#解：-9" class="headerlink" title="解："></a>解：</h4>
         </div>
 
         
