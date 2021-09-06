@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <meta name="author" content="Helloat123">
+
+
+
+
+
+<title>莫比乌斯反演 | Richard&#39;s Blog</title>
+
+
+
+    <link rel="icon" href="/favicon.png">
+
+
+
+
+    <!-- stylesheets list from _config.yml -->
+    
+    <link rel="stylesheet" href="/css/style.css">
+    
+
+
+
+    <!-- scripts list from _config.yml -->
+    
+    <script src="/js/script.js"></script>
+    
+    <script src="/js/tocbot.min.js"></script>
+    
+
+
+
+    
+    
+        
+            <!-- MathJax配置，可通过单美元符号书写行内公式等 -->
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+    "HTML-CSS": {
+        preferredFont: "TeX",
+        availableFonts: ["STIX","TeX"],
+        linebreaks: { automatic:true },
+        EqnChunk: (MathJax.Hub.Browser.isMobile ? 10 : 50)
+    },
+    tex2jax: {
+        inlineMath: [ ["$", "$"], ["\\(","\\)"] ],
+        processEscapes: true,
+        ignoreClass: "tex2jax_ignore|dno",
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    },
+    TeX: {
+        equationNumbers: { autoNumber: "AMS" },
+        noUndefined: { attributes: { mathcolor: "red", mathbackground: "#FFEEEE", mathsize: "90%" } },
+        Macros: { href: "{}" }
+    },
+    messageStyle: "none"
+    });
+</script>
+<!-- 给MathJax元素添加has-jax class -->
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+<!-- 通过连接CDN加载MathJax的js代码 -->
+<script type="text/javascript" async
+        src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+
+
+        
+    
+
+
+<meta name="generator" content="Hexo 5.2.0"></head>
+<body>
+    <div class="wrapper">
+        <header>
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-header header-logo"><a href="/">Richard&#39;s Blog</a></div>
+            <div class="menu navbar-right">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+                <input id="switch_default" type="checkbox" class="switch_default">
+                <label for="switch_default" class="toggleBtn"></label>
+            </div>
+        </div>
+    </nav>
+
+    
+    <nav class="navbar-mobile" id="nav-mobile">
+        <div class="container">
+            <div class="navbar-header">
+                <div>
+                    <a href="/">Richard&#39;s Blog</a><a id="mobile-toggle-theme">·&nbsp;Light</a>
+                </div>
+                <div class="menu-toggle" onclick="mobileBtn()">&#9776; Menu</div>
+            </div>
+            <div class="menu" id="mobile-menu">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+            </div>
+        </div>
+    </nav>
+
+</header>
+<script>
+    var mobileBtn = function f() {
+        var toggleMenu = document.getElementsByClassName("menu-toggle")[0];
+        var mobileMenu = document.getElementById("mobile-menu");
+        if(toggleMenu.classList.contains("active")){
+           toggleMenu.classList.remove("active")
+            mobileMenu.classList.remove("active")
+        }else{
+            toggleMenu.classList.add("active")
+            mobileMenu.classList.add("active")
+        }
+    }
+</script>
+        <div class="main">
+            <div class="container">
+    
+    
+        <div class="post-toc">
+    <div class="tocbot-list">
+    </div>
+    <div class="tocbot-list-menu">
+        <a class="tocbot-toc-expand" onclick="expand_toc()">Expand all</a>
+        <a onclick="go_top()">Back to top</a>
+        <a onclick="go_bottom()">Go to bottom</a>
+    </div>
+</div>
+
+<script>
+    document.ready(
+        function () {
+            tocbot.init({
+                tocSelector: '.tocbot-list',
+                contentSelector: '.post-content',
+                headingSelector: 'h1, h2, h3, h4, h5',
+                collapseDepth: 1,
+                orderedList: false,
+                scrollSmooth: true,
+            })
+        }
+    )
+
+    function expand_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 6,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "collapse_toc()");
+        b.innerHTML = "Collapse all"
+    }
+
+    function collapse_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 1,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "expand_toc()");
+        b.innerHTML = "Expand all"
+    }
+
+    function go_top() {
+        window.scrollTo(0, 0);
+    }
+
+    function go_bottom() {
+        window.scrollTo(0, document.body.scrollHeight);
+    }
+
+</script>
+    
+
+    
+    <article class="post-wrap">
+        <header class="post-header">
+            <h1 class="post-title">莫比乌斯反演</h1>
+            
+                <div class="post-meta">
+                    
+                        Author: <a itemprop="author" rel="author" href="/">Helloat123</a>
+                    
+
+                    
+                        <span class="post-time">
+                        Date: <a href="#">September 4, 2021&nbsp;&nbsp;13:40:36</a>
+                        </span>
+                    
+                    
+                        <span class="post-category">
+                    Category:
+                            
+                                <a href="/categories/%E6%95%B0%E5%AD%A6/">数学</a>
+                            
+                        </span>
+                    
+                </div>
+            
+        </header>
+
+        <div class="post-content">
+            <h2 id="狄利克雷卷积"><a href="#狄利克雷卷积" class="headerlink" title="狄利克雷卷积"></a>狄利克雷卷积</h2><p>$$<br>h(n)=(f\ast g)(n)=\sum _ { i|n }f(i)\cdot g(\frac{n}{i})=\sum _ { ab=x }f(a)\cdot g(b)\\<br>记为h=f\ast g\\<br>交换律f\ast g=g\ast f，显然由上式，交换仅仅是ab交换，相等\\<br>结合律(f\ast g)\ast h=f\ast (g\ast h)\\<br>分配律f\ast(g+h)=f\ast g+f\ast h\\<br>单位元f\ast \varepsilon=f\\<br>若f和g都是积性函数，则f\ast g为积性函数\\<br>f=g的充要条件是f\ast h=g\ast h，其中保证h(1)\ne 0\\<br>若f\ast g=\varepsilon，则f和g互为逆元\\<br>积性函数必然有逆元，逆元也是积性函数\\<br>$$</p>
+<h3 id="常见卷积公式"><a href="#常见卷积公式" class="headerlink" title="常见卷积公式"></a>常见卷积公式</h3><p>$$<br>\varepsilon=\mu\ast 1\\d=1\ast 1\\\sigma=id\ast 1\\\varphi\ast 1=id\\<br>$$</p>
+<h2 id="积性函数线性筛"><a href="#积性函数线性筛" class="headerlink" title="积性函数线性筛"></a>积性函数线性筛</h2><p>利用欧拉筛的方法，显然容易线性筛出任何积性函数</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">getf</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    f[<span class="number">1</span>]=;</span><br><span class="line">    rep(i,<span class="number">2</span>,n)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">if</span> (!notprime[i]) prime[++tot]=i,f[i]=(式子<span class="number">1</span>);</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> j=<span class="number">1</span>;j&lt;=tot&amp;&amp;i*prime[j]&lt;=n;j++)</span><br><span class="line">        &#123;</span><br><span class="line">            notprime[i*p[j]]=<span class="number">1</span>;</span><br><span class="line">            <span class="keyword">if</span> (i%prime[j]==<span class="number">0</span>)</span><br><span class="line">            &#123;</span><br><span class="line">                f[i*prime[j]]=(式子<span class="number">2</span>);</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            f[i*prime[j]]=(式子<span class="number">3</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>式子1 质数，式子2 质数prime[j]的指数增加了一，式子3 互质</p>
+<p>比如筛莫比乌斯函数时，式子1为-1，式子2为0，式子3为-f[i]</p>
+<p>筛欧拉函数时，式子1为i-1,式子2为f[i]*prime[j],式子3为phi[i]*(prime[j]-1)</p>
+<h2 id="数论分块"><a href="#数论分块" class="headerlink" title="数论分块"></a>数论分块</h2><p>含有$\lfloor\frac{n}{i}\rfloor$的求和式，如$\sum _ {i=1} ^ {n} \lfloor\frac{n}{i}\rfloor\cdot f(i)$，容易发现$\lfloor\frac{n}{i}\rfloor$的取值只有$\sqrt n$种。设当前值的左界为l，有界为r，则一个方便的跳l、r的方式是l=r+1,r=n/(n/l)。如果$f(x)$能用求和公式表示，那么整个式子的值就能在$O(\sqrt{n})$的时间复杂度内完成</p>
+<p>做了一道模板题<a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P2261">Luogu P2261</a>，因为太显然了，就不单独发blog，这里也不贴代码了。</p>
+<h4 id="二维数论分块"><a href="#二维数论分块" class="headerlink" title="二维数论分块"></a>二维数论分块</h4><p>$$<br>\sum _ {i=1} ^ {min(n,m)} \lfloor \frac{n}{i}\rfloor \cdot \lfloor \frac{m}{i}\rfloor<br>$$</p>
+<p>只是把跳$\sqrt{n}$次变成$2\sqrt{n}$次罢了，找n和m的跳跃点中最近的位置跳即可。</p>
+<h2 id="莫比乌斯反演"><a href="#莫比乌斯反演" class="headerlink" title="莫比乌斯反演"></a>莫比乌斯反演</h2><p>$$<br>f(n)=\sum _ {d|n} g(d)\Longleftrightarrow g(n)=\sum _ {d|n} \mu(d)f(\frac{n}{d})\\<br>f=g\ast 1\Longleftrightarrow g=f\ast \mu<br>$$</p>
+<p>由前文狄利克雷卷积部分知识，显然。</p>
+<h3 id="如何应用"><a href="#如何应用" class="headerlink" title="如何应用"></a>如何应用</h3><h4 id="场景一"><a href="#场景一" class="headerlink" title="场景一"></a>场景一</h4><p>$$<br>g(i)难求，但f(i)=\sum _ {d|i} g(d) 较容易求，则利用下式：\\<br>f(i)=\sum _ {d|i} g(d)\Rightarrow g(i)=\sum _ {d|i} f(\frac{i}{d})\cdot\mu(d)<br>$$</p>
+<h4 id="场景二"><a href="#场景二" class="headerlink" title="场景二"></a>场景二</h4><p>$$<br>g(i)难求，但f(i)=\sum _ {d=1} ^ {\lfloor\frac{n}{i}\rfloor}g(d\cdot i)容易求，则利用下式\\<br>f(i)=\sum _ {d=1} ^ {\lfloor\frac{n}{i}\rfloor} g(d\cdot i)\Rightarrow g(i)=\sum _ {d=1} ^ {\lfloor\frac{n}{i}\rfloor} f(d\cdot i) \cdot\mu (d)<br>$$</p>
+<h4 id="技巧"><a href="#技巧" class="headerlink" title="技巧"></a>技巧</h4><p>等价变换：改变枚举顺序（内层外移）、变量替换等技巧</p>
+<p>线性筛：线性处理各种信息</p>
+<p>数论分块：重要工具</p>
+<h3 id="例1："><a href="#例1：" class="headerlink" title="例1："></a><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P2522">例1</a>：</h3><p>经过转化之后，问题的核心是<br>$$<br>\sum _ {i=1} ^ {\lfloor\frac{n}{k}\rfloor} \sum _ {j=1} ^ {\lfloor\frac{m}{k}\rfloor} (gcd(i,j)==1)<br>$$</p>
+<h4 id="解："><a href="#解：" class="headerlink" title="解："></a>解：</h4><p>看到==1这种东西，首先想到单位元函数<br>$$<br>原式=\sum _ {i=1} ^ {\lfloor\frac{n}{k}\rfloor} \sum _ {j=1} ^ {\lfloor\frac{m}{k}\rfloor} \varepsilon(gcd(i,j))\\<br>=\sum _ {i=1} ^ {\lfloor\frac{n}{k}\rfloor} \sum _ {j=1} ^ {\lfloor\frac{m}{k}\rfloor}\sum _ {d|gcd(i,j)} \mu(d)\ \ 莫比乌斯反演\\<br>=\sum _ {d=1} ^ {min{\lfloor\frac{n}{k}\rfloor,\lfloor\frac{m}{k}\rfloor}}\mu(d)\lfloor\frac{m}{k\cdot d}\rfloor\lfloor\frac{n}{k\cdot d}\rfloor<br>$$<br>其中推导的最后一步更换了枚举的变量。可以发现，倒数第二个式子中，对于每个$d$，当$d|i或 d|j$时$\mu(d)$都会被加一次，因此可以得到最终的式子。</p>
+<p>而最终的式子显然可以在预处理出莫比乌斯函数的前缀和后通过上面提到的二维数论分块的思路来快速解决</p>
+<h3 id="例2"><a href="#例2" class="headerlink" title="例2"></a>例2</h3><p>求<br>$$<br>\sum _ {i=1} ^ n \sum _ {j=1} ^ m \gcd(i,j)<br>$$</p>
+<h4 id="解：-1"><a href="#解：-1" class="headerlink" title="解："></a>解：</h4><p>利用常见卷积的公式，<br>$$<br>原式=\sum _ {i=1} ^ n \sum _ {j=1} ^ m \sum _ {d|\gcd(i,j)} \varphi(d)\\<br>=\sum _ {d=1} \varphi(d) \cdot \lfloor\frac{n}{d} \rfloor \cdot \lfloor\frac{m}{d}\rfloor<br>$$<br>接下来处理和例1相同</p>
+<h3 id="例3-SPOJ5971-LCMSUM"><a href="#例3-SPOJ5971-LCMSUM" class="headerlink" title="例3 SPOJ5971 LCMSUM"></a>例3 SPOJ5971 LCMSUM</h3><p>$$<br>\sum _ {i=1} ^ {n} lcm(i,n)<br>$$</p>
+<p>3e5组询问，n范围1e6</p>
+<h4 id="解：-2"><a href="#解：-2" class="headerlink" title="解："></a>解：</h4><p>$$<br>原式=\sum _ {i=1} ^ {n} \frac{i\cdot n}{\gcd(i,n)}\\<br>=\sum _ {d|n} \sum _ {i=1} ^ {n} \frac{i\cdot n}{d}[\gcd(i,n)==d]\\<br>=n\cdot\sum _ {d|n} \sum _ {i=1} ^ {\lfloor \frac{n}{d}\rfloor} \frac{i}{d}[\gcd(i,\frac{n}{d})==1],改变枚举的变量i的意义\\<br>=n\cdot \sum _ {d|n} \sum _ {i=1} ^ {d} i\cdot [\gcd(i,d)==1],由于枚举d和枚举\frac{n}{d}等价\\<br>=n\cdot \sum _ {d|n} \frac{d\cdot \varphi(d)+[d==1]}{2},上文\varphi函数的性质一节中提到的公式\\<br>=\frac{n}{2}\cdot (\sum _ {d|n} \varphi(d)\cdot d+1),推导显然<br>$$</p>
+<p>至此可以得到$O(n)$预处理出欧拉函数，$O(\sqrt{n})$回答询问的方法。但是这样会TLE</p>
+<p>考虑将答案函数预处理：显然可以在调和级数复杂度下做出来。总复杂度$O(n\lg n+T)$</p>
+<p>通过推导可以发现，$\sum _ {d|n}\varphi(d)\cdot d$是个积性函数，可以线性预处理，因此可以做到$O(n+T)$，具体证明待补</p>
+<h3 id="例4"><a href="#例4" class="headerlink" title="例4"></a>例4</h3><p>$$<br>\sum _ {i=1} ^ {n} \sum _ {j=1} ^ m lcm(i,j)<br>$$</p>
+<h4 id="解：-3"><a href="#解：-3" class="headerlink" title="解："></a>解：</h4><p>$$<br>原式=\sum _ {i=1} ^ {n} \sum _ {j=1} ^ m \frac{i\cdot j}{\gcd(i,j)}\\<br>=\sum _ {i=1} ^ {n} \sum _ {j=1} ^ m \frac{i\cdot j}{d}[gcd(i,j)==d]\\<br>=\sum _ {d=1} ^ n \sum _ {i=1} ^ {\lfloor\frac{n}{d}\rfloor} \sum _{j=1} ^ {\lfloor\frac{m}{d}\rfloor} i\cdot j\cdot d[gcd(i,j)==1]\\<br>=\sum _ {d=1} ^ {n} d\cdot\sum _ {i=1} ^ {\lfloor \frac{n}{d}\rfloor}i \sum _ {j=1} ^ {\lfloor \frac{m}{d}\rfloor} j\sum _ {k|\gcd(i,j)}\mu(k)\\<br>=\sum _ {k=1} ^ {n} k^2\mu(k)\sum _ {d=1} ^ {n} d\sum _ {i=1}^{\lfloor \frac{n}{dk}\rfloor}i \sum _ {j=1}^ {\lfloor \frac{m}{dk}\rfloor} j\\<br>下面设f(x)=\sum _ {i=1} ^ {x} i,设T=nk\\<br>=\sum _ {T=1} ^ n \sum _ {d|T} \frac{T^2}{d^2} d\mu(\frac{T}{d})f(\frac{n}{T})f(\frac{m}{T})\\<br>=\sum _ {T=1} ^ n f(\frac{n}{T}) f(\frac{m}{T}) \cdot T\sum _ {d|T} d\cdot\mu(d)\\<br>其中F(x)=\sum _ {d|T} d\cdot\mu(d)可以证明是一个积性函数，可以O(n)筛出来，前面部分数论分块即可<br>$$</p>
+<h3 id="例5-SDOI2015-约数个数和"><a href="#例5-SDOI2015-约数个数和" class="headerlink" title="例5 SDOI2015 约数个数和"></a>例5 SDOI2015 约数个数和</h3><p>$$<br>\sum _ {i=1} ^ {n} \sum _ {j=1} ^ m d(i\cdot j)<br>$$</p>
+<h4 id="解：-4"><a href="#解：-4" class="headerlink" title="解："></a>解：</h4><p>$$<br>首先利用约数个数函数的重要性质d(i\cdot j)=\sum _ {d|i} \sum _ {d|j} [\gcd(i,j)==1]\\<br>则原式=\sum _ {i=1} ^ {n} \sum _ {j=1} ^ {m} \sum _ {d|i} \sum _ {d|j} [\gcd(i,j)==1]\\<br>=\sum _ {i=1} ^ {n} \sum _ {j=1} ^ m \sum _ {d=1} ^ {i} \mu(d)\cdot \lfloor \frac{i}{d}\rfloor \cdot \lfloor \frac{j}{d} \rfloor\\<br>=\sum _ {d=1} ^ n \mu(d) \cdot \sum _ {i=1} ^ n \lfloor \frac{i}{d}\rfloor \cdot \sum _ {j=1} ^ m \lfloor \frac{j}{d} \rfloor\\<br>数论分块即可<br>$$</p>
+<h3 id="例6-SDOI2017-数字表格"><a href="#例6-SDOI2017-数字表格" class="headerlink" title="例6 SDOI2017 数字表格"></a>例6 SDOI2017 数字表格</h3><p>$$<br>\prod _ {i=1} ^ {n} \prod _ {j=1} ^ m fib(\gcd(i,j))\\<br>n,m\le 10^6,T\le1000,fib(0)=0<br>$$</p>
+<h4 id="解：-5"><a href="#解：-5" class="headerlink" title="解："></a>解：</h4><p>只1是把问题放到了指数上罢了。斐波那契数列显然和数论要用的这些没什么大关系，所以先常规操作：<br>$$<br>原式=\prod _ {i=1} ^ n \prod _ {j=1} ^ m f(d) ^ {[\gcd(i,j)=d]}\\<br>=\prod _ {d=1} \prod _ {i=1} ^ {\lfloor \frac{n}{d}\rfloor}\prod _ {j=1} ^ {\lfloor \frac{m}{d}\rfloor} f(d)^{[\gcd(i,j)=1]}\\<br>=\prod _ {d=1} \prod _ {i=1} ^ {\lfloor \frac{n}{d}\rfloor}\prod _ {j=1} ^ {\lfloor \frac{m}{d}\rfloor} \prod _ {k|\gcd(i,j)} f(d)^{\mu(k)}\\<br>=\prod _ {d=1}\prod _ {k=1} \prod _ {i=1} ^ {\lfloor \frac{n}{dk}\rfloor}\prod _ {j=1} ^ {\lfloor \frac{m}{dk}\rfloor} f(d)^{\mu(k)}\\<br>=\prod _ {T=1} ^ n \prod _ {d|T} f(d) ^ {\lfloor\frac{n}{T}\rfloor\cdot \lfloor\frac{m}{T}\rfloor\cdot\mu(\frac{T}{d})}\\<br>乍一看似乎没法继续推下去了，考虑把不能数论分块的部分提出\\<br>=\prod _ {T=1} ^ n (\prod _ {d|T} f(d)^{\mu(\frac{T}{d})})^{\lfloor\frac{n}{T}\rfloor\cdot\lfloor\frac{m}{T}\rfloor}\\<br>其中括号内的部分可以求前缀积，指数数论分块即可<br>$$</p>
+<h3 id="例7-BZOJ4407-于神之怒加强版"><a href="#例7-BZOJ4407-于神之怒加强版" class="headerlink" title="例7 BZOJ4407 于神之怒加强版"></a>例7 BZOJ4407 于神之怒加强版</h3><p>$$<br>\sum _ {i=1} ^ n \sum _ {j=1} ^ m \gcd(i,j)^k\\<br>n,m\le5\cdot 10^6,T\le 2000<br>$$</p>
+<h4 id="解：-6"><a href="#解：-6" class="headerlink" title="解："></a>解：</h4><p>$$<br>原式=\sum _ {d=1} ^ n \sum _ {i=1} ^ {\lfloor \frac{n}{d}\rfloor} \sum _ {j=1} ^ {\lfloor \frac{m}{d} \rfloor} d^k\cdot[gcd(i,j)=1]\\<br>=\sum _ {T=1} ^ n \lfloor\frac{m}{T}\rfloor\lfloor\frac{n}{T}\rfloor\sum _ {d|T} d^k\mu(\frac{T}{d}),常规操作\\<br>可以发现右边的式子是\sigma_k\ast \mu，显然是积性函数，可以线性预处理出来。询问时数论分块<br>$$</p>
+<h3 id="例8-BZOJ2820-YY的GCD"><a href="#例8-BZOJ2820-YY的GCD" class="headerlink" title="例8 BZOJ2820 YY的GCD"></a>例8 BZOJ2820 YY的GCD</h3><p>$$<br>\sum _ {i=1} ^ {n} \sum _ {j=1} ^ {m} [\gcd(i,j)\in prime]\\<br>n,m\le10^7<br>$$</p>
+<h4 id="解：-7"><a href="#解：-7" class="headerlink" title="解："></a>解：</h4><p>$$<br>先常规操作，得\\<br>原式=\sum _ {T=1} ^ {n} \lfloor\frac{n}{T}\rfloor \cdot \lfloor \frac{m}{T}\rfloor \sum _ {k|T,k\in prime} \mu(\frac{T}{k})\\<br>右式可以预处理，由于处理次数是\sum _ {p=1} ^ n {\lfloor\frac{n}{p}\rfloor}[p\in prime] ,因此复杂度小于调和级数\\<br>考虑质数个数粗略估计是\frac{n}{\lg n},调和级数求和复杂度O(n\lg n)，因此复杂度应该是接近O(n)的<br>$$</p>
+<h3 id="例9-HDU4944-FSF’s-game"><a href="#例9-HDU4944-FSF’s-game" class="headerlink" title="例9 HDU4944 FSF’s game"></a>例9 HDU4944 FSF’s game</h3><p>$$<br>\sum _ {i=1} ^ n \sum _ {j=i} ^ n \sum _ {d|i,j} \frac{ij}{\gcd(\frac{i}{d},\frac{j}{d})}\\<br>T=500000,n\le500000<br>$$</p>
+<h4 id="解：-8"><a href="#解：-8" class="headerlink" title="解："></a>解：</h4><p>首先看到这个gcd在分母上这个样子，很难受，同时形式很像是lcm，考虑转化<br>$$<br>原式=\sum _ {i=1} ^ n \sum _ {j=i} ^ {n} \sum _ {d|\gcd(i,j)} d\cdot lcm(i,j)\\<br>=\sum _ {d=1} ^ n d^2\sum _ {i=1} ^ {\lfloor\frac{n}{d}\rfloor} \sum _ {j=i} ^ {\lfloor\frac{n}{d}\rfloor}lcm(i,j)\\<br>调换ij位置=\sum _ {d=1} ^ n d^2\sum _ {i=1} ^ {\lfloor\frac{n}{d}\rfloor}\sum _ {j=1} ^ {i} lcm(i,j)\\<br>由例3，=\sum _ {d=1} ^ n d^2\sum _ {i=1} ^ {\lfloor\frac{n}{d}\rfloor}\frac{i}{2}(\sum _ {k|i} k\cdot\varphi(k)+1)\\<br>其中i右边的式子可以调和级数O(n\lg n)求出，乘上i前缀和即可预处理出\sum _ {i=1} ^ {\lfloor\frac{n}{d}\rfloor}\frac{i}{2}(\sum _ {k|i} k\cdot\varphi(k)+1)\\<br>将其记为f(\lfloor\frac{n}{d}\rfloor),则原式=\sum _ {d=1} ^ {n} d^2\cdot f(\lfloor\frac{n}{d}\rfloor),显然可以数论分块,但500000数据范围过大，考虑将f看作差分，对其求前缀和<br>$$</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> maxN=<span class="number">555555</span>,maxn=<span class="number">500000</span>;</span><br><span class="line"><span class="keyword">int</span> n,T,phi[maxN],prime[maxN],tot;</span><br><span class="line"><span class="keyword">bool</span> notprime[maxN];</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">getf</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    phi[<span class="number">1</span>]=<span class="number">1</span>;</span><br><span class="line">    notprime[<span class="number">1</span>]=<span class="literal">true</span>;</span><br><span class="line">    rep(i,<span class="number">2</span>,maxn)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">if</span> (!notprime[i]) prime[++tot]=i,phi[i]=i<span class="number">-1</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> j=<span class="number">1</span>;j&lt;=tot&amp;&amp;i*prime[j]&lt;=maxn;j++)</span><br><span class="line">        &#123;</span><br><span class="line">            notprime[i*prime[j]]=<span class="number">1</span>;</span><br><span class="line">            <span class="keyword">if</span> (i%prime[j]==<span class="number">0</span>)</span><br><span class="line">            &#123;</span><br><span class="line">                phi[i*prime[j]]=phi[i]*prime[j];</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            phi[i*prime[j]]=phi[i]*(prime[j]<span class="number">-1</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">LL f[maxN];</span><br><span class="line"><span class="keyword">unsigned</span> g[maxN];</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    getf();</span><br><span class="line">    rep(i,<span class="number">1</span>,maxn)</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> j=i;j&lt;=maxn;j+=i) f[j]+=(LL)i*phi[i];</span><br><span class="line">    rep(i,<span class="number">1</span>,maxn) f[i]=f[i<span class="number">-1</span>]+i*(f[i]+<span class="number">1</span>)/<span class="number">2L</span>L;</span><br><span class="line">    rep(i,<span class="number">1</span>,maxn) <span class="keyword">for</span> (LL j=<span class="number">1</span>;j*i&lt;=maxn;j++) </span><br><span class="line">    &#123;</span><br><span class="line">        g[j*i]+=(LL)i*i*f[j];</span><br><span class="line">        <span class="keyword">if</span> (i*(j+<span class="number">1</span>)&lt;=maxn) g[i*(j+<span class="number">1</span>)]-=(LL)i*i*f[j];</span><br><span class="line">    &#125;</span><br><span class="line">    rep(i,<span class="number">1</span>,maxn) g[i]+=g[i<span class="number">-1</span>];</span><br><span class="line">    read(T);</span><br><span class="line">    <span class="keyword">int</span> kase=<span class="number">0</span>;</span><br><span class="line">    <span class="keyword">while</span> (T--)</span><br><span class="line">    &#123;</span><br><span class="line">        read(n);</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;Case #%d: %u\n&quot;</span>,++kase,(<span class="keyword">unsigned</span>)g[n]);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="例10-HDU6428-Calculate"><a href="#例10-HDU6428-Calculate" class="headerlink" title="例10 HDU6428 Calculate"></a>例10 HDU6428 Calculate</h3><p>$$<br>\sum _ {i=1} ^ a \sum _ {j=1} ^ b \sum _ {k=1} ^ c \varphi(\gcd(i,j^2,k^3))<br>$$</p>
+<h4 id="解"><a href="#解" class="headerlink" title="解:"></a>解:</h4><p>$$<br>这种复合的式子首先考虑将里面的利用莫比乌斯反演提出\\<br>原式=\sum _ {i=1} ^ a \sum _ {j=1} ^ b \sum _ {k=1} ^ c \sum _ {d|\gcd(i,j^2,k^3)}(\varphi\ast\mu)(d)\\<br>=\sum _ {d=1} (\varphi\ast\mu)(d)\sum _ {i=1} ^ a \sum _ {j=1} ^ b \sum _ {k=1} ^ c [d|\gcd(i,j^2,k^3)]，内层外移\\<br>=\sum _ {d=1} (\varphi\ast\mu)(d)\sum _ {i=1} ^ a [d|i]\sum _ {j=1} ^ b [d|j^2]\sum _ {k=1} ^ c[d|k^3]，显然\\<br>到这里，我们发现前面的\varphi\ast\mu可以线性处理，后面的式子似乎没那么好做。将其单独拿出来考虑\\<br>首先感受一下发现，似乎只要某个数是离散意义下的\sqrt[k] d的倍数，即是符合式子的\\<br>用数学语言描述就是\sum _ {i=1} ^ x [d|i^k]中，d|i^k\Rightarrow 对于d的质因数分解，\prod _ {j} prime[j]^{\lceil\frac{a[j]}{k}\rceil}|i\\<br>则\sum _ {i=1} ^ x [d|i^k]=\lfloor \frac{x}{\prod _ {j} prime[j]^{\lceil\frac{a[j]}{k}\rceil}}\rfloor\\<br>设分母为f(d)，由于其积性，可以线性预处理<br>$$</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">get</span><span class="params">(<span class="keyword">const</span> <span class="keyword">unsigned</span> &amp;n)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    notprime[<span class="number">1</span>]=<span class="literal">true</span>;</span><br><span class="line">    mp[<span class="number">1</span>]=<span class="number">1</span>;f2[<span class="number">1</span>]=<span class="number">1</span>;f3[<span class="number">1</span>]=<span class="number">1</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">unsigned</span> i=<span class="number">2</span>;i&lt;=n;i++)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">if</span> (!notprime[i])</span><br><span class="line">        &#123;</span><br><span class="line">            prime[++tot]=i;</span><br><span class="line">            mp[i]=i<span class="number">-2</span>;</span><br><span class="line">            f2[i]=f3[i]=i;</span><br><span class="line">            cnt[i]=<span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">unsigned</span> j=<span class="number">1</span>;j&lt;=tot&amp;&amp;i*prime[j]&lt;=n;j++)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">unsigned</span> now=i*prime[j];</span><br><span class="line">            notprime[now]=<span class="literal">true</span>;</span><br><span class="line">            <span class="keyword">if</span> (i%prime[j]==<span class="number">0</span>) </span><br><span class="line">            &#123;</span><br><span class="line">                cnt[now]=cnt[i]+<span class="number">1</span>;</span><br><span class="line">                <span class="keyword">unsigned</span> temp=i/prime[j];</span><br><span class="line">                <span class="keyword">if</span> (temp%prime[j]) mp[now]=mp[temp]*sqr(prime[j]<span class="number">-1</span>);</span><br><span class="line">                <span class="keyword">else</span> mp[now]=mp[i]*prime[j];</span><br><span class="line">                f2[now]=f2[i]*(cnt[now]&amp;<span class="number">1</span>?prime[j]:<span class="number">1</span>);</span><br><span class="line">                f3[now]=f3[i]*(cnt[now]%<span class="number">3</span>==<span class="number">1</span>?prime[j]:<span class="number">1</span>);</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            cnt[now]=<span class="number">1</span>;</span><br><span class="line">            mp[now]=mp[i]*mp[prime[j]];</span><br><span class="line">            f2[now]=f2[i]*f2[prime[j]];</span><br><span class="line">            f3[now]=f3[i]*f3[prime[j]];</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;<span class="comment">//用unsigned是因为这道题的模数</span></span><br></pre></td></tr></table></figure>
+
+        </div>
+
+        
+        <section class="post-tags">
+            <div>
+                <span>Tag(s):</span>
+                <span class="tag">
+                    
+                    
+                        <a href="/tags/%E6%95%B0%E8%AE%BA/"># 数论</a>
+                    
+                        <a href="/tags/%E7%AC%94%E8%AE%B0/"># 笔记</a>
+                    
+                        
+                </span>
+            </div>
+            <div>
+                <a href="javascript:window.history.back();">back</a>
+                <span>· </span>
+                <a href="/">home</a>
+            </div>
+        </section>
+        <section class="post-nav">
+            
+            
+            <a class="next" rel="next" href="/2021/08/23/Luogu-P1552-%E3%80%90APIO2012%E3%80%91-Dispatching/">Luogu P1552 【APIO2012】 Dispatching</a>
+            
+        </section>
+
+
+    </article>
+</div>
+
+        </div>
+        <footer id="footer" class="footer">
+        <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <div class="copyright">
+        <span>© Helloat123 | Powered by <a href="https://hexo.io" target="_blank">Hexo</a> & <a href="https://github.com/Siricee/hexo-theme-Chic" target="_blank">Chic</a> | <span id="busuanzi_container_site_pv">
+    本站总访问量<span id="busuanzi_value_site_pv"></span>次
+</span> | <span id="busuanzi_container_site_uv">
+  本站访客数<span id="busuanzi_value_site_uv"></span>人次
+</span></span>
+    </div>
+</footer>
+
+    </div>
+</body>
+</html>
