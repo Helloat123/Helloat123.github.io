@@ -257,6 +257,8 @@
 <p>解：</p>
 <p>如果n是奇数，去掉初始格后一定能被1×2的骨牌覆盖。先手走的第一步一定走到其中一个骨牌中的一格，那么对于先手者的每一步，后手者只需要把当前所在的骨牌走完便可以将状态抵消掉。<br>如果n是偶数，走了一步就变成奇数情况，分析同理。</p>
 </li>
+<li><p>事实上下面大部分博弈论的题目考虑的本质就是后手是否必定能找到一个抵消先手的方案</p>
+</li>
 </ul>
 <h1 id="巴什博弈"><a href="#巴什博弈" class="headerlink" title="巴什博弈"></a>巴什博弈</h1><ul>
 <li><p>一堆火柴有N根，A，B两人轮流取出。每次可以取1根或2根，问先取者能否有必胜策略？</p>
@@ -337,6 +339,10 @@
 <li>有几个有根树，每次可以删除一个有父亲的子树（不能是整棵树），不能操作的人算输，求先手是否必胜</li>
 </ul>
 <p>结论：某棵树的SG值是其各子树SG值+1后的异或和</p>
+<p>证明：</p>
+<p>数学归纳法，假设对于点数&lt;n的情况结论均成立。分两类，第一类为在某个点数&lt;n的情况的根B上安一个新的根A，第二类为其它情况。</p>
+<p>对于第一类情况，删除AB间的边可以到达SG=0的状态；删除其它边后的SG值为以B为根时的SG值+1(由于这时点数已经&lt;n)。故当前状态可以经过一步到达0到B子树的SG之间的任意SG值，因此答案为B子树SG值+1</p>
+<p>对于第二类情况，由于这就是一个nim游戏，显然异或即可</p>
 <h2 id="Nim-k"><a href="#Nim-k" class="headerlink" title="Nim-k"></a>Nim-k</h2><ul>
 <li>有若干博弈游戏，每次可以一下子进行最多k个游戏，谁无法进行谁输。</li>
 </ul>
@@ -347,17 +353,35 @@
 <li>有n堆石头，三个人轮流取石子。拿走最后一个的是第一，倒数第二步是第二，倒数第三步是第三。每个人想让自己的名次最高。</li>
 </ul>
 <p>结论：将所有数字写成二进制表示，每位做模 3 加法，如果等于 0 就是最后一个玩家获胜。第一个玩家获胜当且仅当可以移动到必胜态，其他情况第二个玩家获胜</p>
-<h2 id="Anti-Nim"><a href="#Anti-Nim" class="headerlink" title="Anti-Nim"></a>Anti-Nim</h2><h2 id="Every-SG"><a href="#Every-SG" class="headerlink" title="Every-SG"></a>Every-SG</h2><h1 id="威佐夫博弈"><a href="#威佐夫博弈" class="headerlink" title="威佐夫博弈"></a>威佐夫博弈</h1><ul>
+<h2 id="Anti-Nim"><a href="#Anti-Nim" class="headerlink" title="Anti-Nim"></a>Anti-Nim</h2><p>拿走最后一个石子的人算赢，其余与nim游戏相同。</p>
+<h3 id="结论："><a href="#结论：" class="headerlink" title="结论："></a>结论：</h3><p>一个状态为必胜态，当且仅当：</p>
+<p>　　1）所有堆的石子个数为1，且NIM_sum=0</p>
+<p>　　2）至少有一堆的石子个数大于1，且 NIM_sum≠0</p>
+<p><img src="http://images2015.cnblogs.com/blog/690274/201604/690274-20160409141430484-1746749895.png" alt="img"></p>
+<p>这个讲得很清楚，但是不知道是谁写的就没加reference。感觉碰到之后按类似想法推导即可。</p>
+<h2 id="Every-SG"><a href="#Every-SG" class="headerlink" title="Every-SG"></a>Every-SG</h2><ul>
+<li>有n个博弈游戏同时进行，轮到他时必须玩所有还没结束的游戏。最后结束的游戏的输赢就是整个游戏的输赢。</li>
+</ul>
+<p>博弈中，由于每个游戏互不影响，若某个游戏A必胜，则A会尽量将其获胜时间推迟；若必败，则尽量将失败时间提前。定义每个游戏将会进行的步数step，则最大的step的奇偶性即为答案。奇数则先手败</p>
+<p>step计算显然是分类讨论，要么是所能到达的情况的step的max+1，要么是min</p>
+<h1 id="威佐夫博弈"><a href="#威佐夫博弈" class="headerlink" title="威佐夫博弈"></a>威佐夫博弈</h1><ul>
 <li>两堆石子，两个人轮流从任一堆取至少一个或同时从两堆中取同样多的石子，无法操作者输，求先手是否必胜</li>
 </ul>
-<p>把两堆石子的情况看成一个平面上的格点图(右边为x正方向，上面为y正方向)。则若某一个点必败，其右边、上面所有点必胜，其右上对角线必胜。即：若(x,y)必败，(x,&gt;y),(x+k,y+k),(&gt;x,y)均必胜。且x和y对称。下面仅考虑对角线以下部分</p>
+<p>把两堆石子的情况看成一个平面上的格点图(右边为x正方向，上面为y正方向)。则若某一个点必败，其右边、上面所有点必胜，其右上对角线必胜。即：若(x,y)必败，(x,&gt;y),(x+k,y+k),(&gt;x,y)均必胜。且x和y对称。</p>
 <p>类似质数筛法，x不断向右扫的过程中，只要碰到某一列有未确定为必胜的，即为必败点。若将必败点排列出，则</p>
 <ol>
 <li>横纵坐标这两个整数均不曾在之前的点的坐标中出现</li>
-<li>当前的纵坐标为未出现的整数中最小的</li>
-<li>所有整数必定都会出现</li>
+<li>当前的横坐标为未出现的整数中最小的</li>
+<li>所有整数必定都会出现（如果不致密的话，稍微想一想 感觉就和上面的不太符合</li>
+<li>横纵坐标之差未曾在之前的点的差中出现（则y=x+n,n表示这是第n个点）</li>
 </ol>
-<p>贝亚蒂定理：若 a,b 为正无理数，且 $\frac{1}{a}$ 则 [an],[bn] 可以不重复地表示所有正整数，其中 [x] 表示 x 的整数部分</p>
+<p>贝亚蒂定理：若 a,b 为正无理数，且 $\frac{1}{a}+\frac{1}{b}=1$ 则 $\lfloor a\cdot n \rfloor ,\lfloor b\cdot n \rfloor$可以不重复地表示所有正整数</p>
+<p>在这里，$\lfloor a\cdot n \rfloor+n=\lfloor b\cdot n \rfloor\Rightarrow \lfloor a \rfloor +1=\lfloor b \rfloor$</p>
+<p>找规律+感受可以发现，取b=a+1时，$(\lfloor a\cdot n \rfloor ,\lfloor b\cdot n \rfloor)$是所有必败态的集合</p>
+<p>推导出ab的值即可</p>
+<p>(归纳法应该可以证明)</p>
+<h2 id="扩展"><a href="#扩展" class="headerlink" title="扩展"></a>扩展</h2><p>取出的两堆石子的差的绝对值小于等于k（上面的题目即为k=0的情况）</p>
+<p>取b=a+k+1即可</p>
 <h1 id="二分图博弈"><a href="#二分图博弈" class="headerlink" title="二分图博弈"></a>二分图博弈</h1><p>双方在一张二分图上博弈，首先有一个初始点，每一步可以选择走到与当前点有边相连的别的点上（显然其中一方只会到达在二分图同一边的节点），不得走重复的点，无处走判负。</p>
 <p>首先说结论：</p>
 <p><strong>若初始点一定被最大匹配包含，则先手必胜；反之，则后手必胜</strong></p>
@@ -387,6 +411,7 @@
 <p><a target="_blank" rel="noopener" href="https://oi-wiki.org/math/game-theory/">https://oi-wiki.org/math/game-theory/</a></p>
 <p>博弈论在信息学竞赛中的应用 杭州第二中学 李建 NOI教师培训·长沙 2016 – 09</p>
 <p><a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_37517391/article/details/82944606">https://blog.csdn.net/weixin_37517391/article/details/82944606</a></p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/white945/article/details/104182216">https://blog.csdn.net/white945/article/details/104182216</a></p>
 
         </div>
 
