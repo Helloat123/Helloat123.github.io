@@ -12,7 +12,7 @@
 
 
 
-<title>EOJ 2021.9 | Richard&#39;s Blog</title>
+<title>ABC 218 | Richard&#39;s Blog</title>
 
 
 
@@ -173,7 +173,7 @@
     
     <article class="post-wrap">
         <header class="post-header">
-            <h1 class="post-title">EOJ 2021.9</h1>
+            <h1 class="post-title">ABC 218</h1>
             
                 <div class="post-meta">
                     
@@ -182,7 +182,7 @@
 
                     
                         <span class="post-time">
-                        Date: <a href="#">September 10, 2021&nbsp;&nbsp;23:26:56</a>
+                        Date: <a href="#">September 12, 2021&nbsp;&nbsp;17:35:50</a>
                         </span>
                     
                     
@@ -198,23 +198,13 @@
         </header>
 
         <div class="post-content">
-            <h1 id="C"><a href="#C" class="headerlink" title="C"></a>C</h1><p>已知多校某题的思路，就变成签到了</p>
-<h1 id="D"><a href="#D" class="headerlink" title="D"></a>D</h1><p>找规律</p>
-<h1 id="补B"><a href="#补B" class="headerlink" title="补B"></a>补B</h1><p>像是被脑筋急转弯卡住了脑子。</p>
-<p>题意：给定一个n乘m的矩阵，每个位置表示九宫格内有几个雷（包括自己的位置），问总共有几个雷</p>
+            <p>有感于思维不够活络，近期准备在刷专题同时打打比赛、做点杂题。然而CF的比赛一如既往全是阴间时间。做几道ABC题目看看难度怎么样</p>
+<h1 id="F"><a href="#F" class="headerlink" title="F"></a>F</h1><p>题意：</p>
+<p>n400个点m(完全图)条边的图，枚举其中的每一条边，求将其删去后的图中从1号点到n号点的最短路。</p>
 <p>解：</p>
-<p>当时想了各种方法，都被自己X了，比如高斯消元、网络流、单纯形、贪心……</p>
-<p>结果是个sb题。显然某一个点的值表示九宫格内有几个雷，那么只要找到一些九宫格，使得它们之间互不重复、它们覆盖了整个棋盘，答案就是这些九宫格的中心之和。</p>
-<p>教训：</p>
-<p>当对某道题的方向迷茫，但是又有不少人A的时候，应当从小数据开始，尝试发现一些自己脑子被门夹的地方</p>
-<h1 id="补A"><a href="#补A" class="headerlink" title="补A"></a>补A</h1><p>题意：求<br>$$<br>S = (a + \sqrt b)^n + (a - \sqrt b)^n<br>$$<br>解：</p>
-<p>将$x+y\sqrt{b}$表示成$(x,y)$的形式，那么$n=1$时显然左边为$(a,1)$右边为$(a,-1)$。</p>
-<p>因为$(x_1,y_1)\cdot (x_2,y_2)=(x_1x_2+y_1y_2b,x_1y_2+x_2y_1),(x_1,y_1)+(x_2,y_2)=(x_1+x_2,y_1+y_2)$，利用快速幂直接计算即可。</p>
-<p>感觉我自己以前是用过一模一样的方法A过题目的…但是最近脑子确实是不够活</p>
-<p>题解：<br>$$<br>由通项公式知，递推公式为S_n=2aS_{n-1}+(b-a^2)S_{n-2}<br>$$<br>怎么推的待补</p>
-<p>需要常系数线性递推相关知识吗？</p>
-<h1 id="补E"><a href="#补E" class="headerlink" title="补E"></a>补E</h1><p>题意：给定n，p，q以及n个点，选出两个点使得斜率最接近(p/q)</p>
-<p>解：显然按照与某条斜率p/q的直线的距离排序，斜率最接近的必然是相邻的两个点</p>
+<p>考虑不删边的情况，BFS一遍即可出解。则此时最短路上至多只有n-1条边。删除其余任一条边对于答案均无影响。对于最短路上的边删除的情况，则暴力bfs。总复杂度O(nm)&lt;O(n^3)</p>
+<h1 id="G"><a href="#G" class="headerlink" title="G"></a>G</h1><p>树上预处理+DP 待补</p>
+<h1 id="H"><a href="#H" class="headerlink" title="H"></a>H</h1><p>wqs二分或带反悔贪心 待补</p>
 
         </div>
 
@@ -225,7 +215,7 @@
                 <span class="tag">
                     
                     
-                        <a href="/tags/EOJ/"># EOJ</a>
+                        <a href="/tags/Atcoder/"># Atcoder</a>
                     
                         
                 </span>
@@ -238,10 +228,8 @@
         </section>
         <section class="post-nav">
             
-                <a class="prev" rel="prev" href="/2021/09/12/ABC-218/">ABC 218</a>
             
-            
-            <a class="next" rel="next" href="/2021/09/10/HDU-5919-Sequence-II/">HDU 5919 Sequence II</a>
+            <a class="next" rel="next" href="/2021/09/10/EOJ-2021-9/">EOJ 2021.9</a>
             
         </section>
 
