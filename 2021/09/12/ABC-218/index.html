@@ -12,7 +12,7 @@
 
 
 
-<title>ABC 218 | Richard&#39;s Blog</title>
+<title>atcoder近期记录 | Richard&#39;s Blog</title>
 
 
 
@@ -173,7 +173,7 @@
     
     <article class="post-wrap">
         <header class="post-header">
-            <h1 class="post-title">ABC 218</h1>
+            <h1 class="post-title">atcoder近期记录</h1>
             
                 <div class="post-meta">
                     
@@ -199,12 +199,17 @@
 
         <div class="post-content">
             <p>有感于思维不够活络，近期准备在刷专题同时打打比赛、做点杂题。然而CF的比赛一如既往全是阴间时间。做几道ABC题目看看难度怎么样</p>
-<h1 id="F"><a href="#F" class="headerlink" title="F"></a>F</h1><p>题意：</p>
+<h1 id="ABC218"><a href="#ABC218" class="headerlink" title="ABC218"></a>ABC218</h1><h2 id="F"><a href="#F" class="headerlink" title="F"></a>F</h2><p>题意：</p>
 <p>n400个点m(完全图)条边的图，枚举其中的每一条边，求将其删去后的图中从1号点到n号点的最短路。</p>
 <p>解：</p>
 <p>考虑不删边的情况，BFS一遍即可出解。则此时最短路上至多只有n-1条边。删除其余任一条边对于答案均无影响。对于最短路上的边删除的情况，则暴力bfs。总复杂度O(nm)&lt;O(n^3)</p>
-<h1 id="G"><a href="#G" class="headerlink" title="G"></a>G</h1><p>树上预处理+DP 待补</p>
-<h1 id="H"><a href="#H" class="headerlink" title="H"></a>H</h1><p>wqs二分或带反悔贪心 待补</p>
+<h2 id="G"><a href="#G" class="headerlink" title="G"></a>G</h2><p>树上预处理+DP 不会</p>
+<h2 id="H"><a href="#H" class="headerlink" title="H"></a>H</h2><p>wqs二分或带反悔贪心 不会</p>
+<h1 id="ABC219"><a href="#ABC219" class="headerlink" title="ABC219"></a>ABC219</h1><h2 id="G-1"><a href="#G-1" class="headerlink" title="G"></a>G</h2><p>普通的图论上的分块 把点分成大点和小点。而且在这里，大点小点只需要遍历相邻的点，因此vector会比前向星快很多(cache命中)。刚看到这题时候写了写，刚开始没看清题目写了正常的前向星存图加边没改，结果就卡常了…</p>
+<h2 id="F-1"><a href="#F-1" class="headerlink" title="F"></a>F</h2><p>这道题心态有点看崩了 还好没有正式参加比赛，不然ABC打成这样也太那啥了</p>
+<p>题意：</p>
+<p>LRUD各自表示往对应方向走一步，给定一串2e5的操作序列，从0,0开始，重复k(1e12)次，问被走到过的格点共有几个</p>
+<h1 id="ARC216"><a href="#ARC216" class="headerlink" title="ARC216"></a>ARC216</h1><p>该做出来的都做出来了，就是刚开始方向想错了导致结束之后四分钟才AC</p>
 
         </div>
 
@@ -227,6 +232,8 @@
             </div>
         </section>
         <section class="post-nav">
+            
+                <a class="prev" rel="prev" href="/2022/01/17/%E5%85%B3%E4%BA%8E%E6%BF%80%E5%8F%91%E5%BD%93%E4%BB%A3%E4%B8%AD%E5%9B%BD%E6%97%A0%E4%BA%A7%E9%98%B6%E7%BA%A7%E6%84%8F%E8%AF%86%E7%9A%84%E4%B8%80%E7%82%B9%E6%80%9D%E8%80%83/"></a>
             
             
             <a class="next" rel="next" href="/2021/09/10/EOJ-2021-9/">EOJ 2021.9</a>
