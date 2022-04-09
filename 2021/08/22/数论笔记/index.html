@@ -282,6 +282,12 @@
 <h3 id="n-gt-2-时，-varphi-n-为偶数"><a href="#n-gt-2-时，-varphi-n-为偶数" class="headerlink" title="$n&gt;2$时，$\varphi(n)$为偶数"></a>$n&gt;2$时，$\varphi(n)$为偶数</h3><h2 id="其它积性函数的重要性质"><a href="#其它积性函数的重要性质" class="headerlink" title="其它积性函数的重要性质"></a>其它积性函数的重要性质</h2><p>$$<br>d(x\cdot y)=\sum _ {i|x} \sum _ {j|y} [\gcd(i,j)==1]<br>$$</p>
 <p>证明的话 把某个质因数p列出来就发现它在左边的贡献和在右边是一样的</p>
 <h2 id="欧拉定理-gt-扩展欧拉定理"><a href="#欧拉定理-gt-扩展欧拉定理" class="headerlink" title="欧拉定理-&gt;扩展欧拉定理"></a>欧拉定理-&gt;扩展欧拉定理</h2><p>$$<br>a^c\equiv<br>\begin{cases}<br>a^{c\ \bmod\ \phi(m)} &amp;(a,m)\ =\ 1 \\<br>a^c &amp;(a,m)\ \neq\ 1\ \land\ c\ &lt;\ \varphi(m) \\<br>a^{c\ \bmod\ \phi(m)\ +\ \phi(m)} &amp;(a,m)\ \neq\ 1\ \land\ c\ \geq\ \varphi(m)<br>\end{cases}<br>$$</p>
+<h2 id="杜教筛"><a href="#杜教筛" class="headerlink" title="杜教筛"></a>杜教筛</h2><p>用于求解积性函数前缀和，设$S$为$f$的前缀和<br>$$<br>狄利克雷卷积：\sum_{i=1}^n(f\ast g)(i)=\sum_{i=1}^n\sum_{d|i}g(d)f(\frac i d)\<br>=\sum_{d=1}^ng(d)\sum_{i=1}^{\lfloor\frac n d\rfloor}f(i)\<br>=\sum_{d=1}^ng(d)S(\lfloor\frac n d\rfloor)\<br>故\sum_{i=1}^n(f\ast g)(i)=\sum_{i=2}^n g(i)S(\lfloor\frac n d\rfloor)+g(1)S(n)\<br>g(1)S(n)=\sum_{i=1}^n(f\ast g)(i)-\sum_{i=2}^n g(i)S(\lfloor\frac n d\rfloor)<br>$$<br>在具体例子中更好解释：</p>
+<h3 id="例题1"><a href="#例题1" class="headerlink" title="例题1"></a>例题1</h3><p>$$<br>求S(n)=\sum_{i=1}^n\mu(i)<br>$$</p>
+<h4 id="解"><a href="#解" class="headerlink" title="解"></a>解</h4><p>$$<br>设f(n)=\mu(n),g(n)=1(n),带入上式\<br>S(n)=\sum_{i=1}^n \varepsilon(i)-\sum_{i=2}^n S(\lfloor\frac n d\rfloor)\<br>=1-\sum_{i=2}^n S(\lfloor\frac n d\rfloor)<br>$$</p>
+<p>即可记忆化递归处理。利用数论分块（整出分块），复杂度$O(n^\frac 3 4)$。</p>
+<p>考虑较小的$S$不需要递归处理，可以线性预处理。经过数学证明可以找到$O(n^\frac 2 3)$这个平衡点，预处理前面这些、数论分块做后面这部分，总复杂度为$O(n^\frac 2 3)$。</p>
+<p>为了应用杜教筛，显然莫比乌斯函数在很多情况下可以使式子中的某几项更容易计算。</p>
 
         </div>
 
