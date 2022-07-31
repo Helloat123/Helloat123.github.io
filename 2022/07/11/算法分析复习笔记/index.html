@@ -40,6 +40,45 @@
     
     
         
+            <!-- MathJax配置，可通过单美元符号书写行内公式等 -->
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+    "HTML-CSS": {
+        preferredFont: "TeX",
+        availableFonts: ["STIX","TeX"],
+        linebreaks: { automatic:true },
+        EqnChunk: (MathJax.Hub.Browser.isMobile ? 10 : 50)
+    },
+    tex2jax: {
+        inlineMath: [ ["$", "$"], ["\\(","\\)"] ],
+        processEscapes: true,
+        ignoreClass: "tex2jax_ignore|dno",
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    },
+    TeX: {
+        equationNumbers: { autoNumber: "AMS" },
+        noUndefined: { attributes: { mathcolor: "red", mathbackground: "#FFEEEE", mathsize: "90%" } },
+        Macros: { href: "{}" }
+    },
+    messageStyle: "none"
+    });
+</script>
+<!-- 给MathJax元素添加has-jax class -->
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+<!-- 通过连接CDN加载MathJax的js代码 -->
+<script type="text/javascript" async
+        src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+
+
+        
     
 
 
@@ -198,9 +237,16 @@
         </header>
 
         <div class="post-content">
-            <p><strong>这里主要记录不太清晰的、一下子反应不过来的、怕忘记掉的以及不会的东西</strong></p>
-<h1 id="Part1-算法基础"><a href="#Part1-算法基础" class="headerlink" title="Part1 算法基础"></a>Part1 算法基础</h1><p>内容就是最基础的计算复杂度</p>
+            <p><strong>这里主要记录不太清晰的、一下子反应不过来的、怕忘记掉的、觉得有趣想记下来的东西</strong></p>
+<h1 id="1-算法基础"><a href="#1-算法基础" class="headerlink" title="1 算法基础"></a>1 算法基础</h1><p>内容就是最基础的计算复杂度</p>
 <p>$$<br>定义:存在n_0和c,使得n&gt;n_0时,f(n)?cg(n)\<br>O:上界\<br>o:不是”上确界”的上界\<br>\Omega:下界\<br>\omega:不是”下确界”的下界\<br>\Theta:同阶<br>$$<br>一些公式：<br>$$<br>\log(n!)=\Theta(n\lg n)\<br>n!=\sqrt{2\pi n}(\frac n e)^n(1+\Theta(\frac 1 n))\approx\sqrt{2\pi n}(\frac n e)^n<br>$$</p>
+<p>下面那个叫斯特林公式</p>
+<h1 id="2-算法分析数学方法"><a href="#2-算法分析数学方法" class="headerlink" title="2 算法分析数学方法"></a>2 算法分析数学方法</h1><h2 id="递归树"><a href="#递归树" class="headerlink" title="递归树"></a>递归树</h2><p>利用递归树猜测，然后需要利用数学归纳法证明正确性。</p>
+<h2 id="主定理"><a href="#主定理" class="headerlink" title="主定理"></a>主定理</h2><p>对于这样形式的递归复杂度求解：<br>$$<br>T(n)=aT(\frac n b )+f(n)<br>$$<br>其中$a$，$b$为常量，$a\ge 1$，$b&gt;1$，$a$表示子问题个数，$b$表示子问题规模</p>
+<p>那么<br>$$<br>T(n)=\cases<br>{<br>\Theta(n^{\log_b a}):\text{若存在常数}\epsilon&gt;0，有f(n)=O(n^{\log_b{a-\epsilon}})\\<br>\Theta(n^{\log_b a}\lg n):若f(n)=\Theta(n^{\log_b a})\\<br>\Theta(f(n)):若存在常数\epsilon&gt;0，有f(n)=\Omega(n^{\log_b a+\epsilon})，且对某个常数c&lt;1和所有足够大的n，有af(\frac n b)\le cf(n)<br>}<br>$$<br>感受：$f(n)$主导就$f(n)$，递归主导就递归，相同就加个$\log$</p>
+<p>注意：某些情况不能直接使用主定理</p>
+<p>例：<br>$$<br>T(n)=2T(\frac n 2)+n\lg n\\<br>这里f(n)不符合第三类的条件，因为不存在这样的\epsilon\\<br>但这个问题可以利用递归树求解，答案为O(n\lg^2 n)<br>$$</p>
+<h2 id="主定理的扩展"><a href="#主定理的扩展" class="headerlink" title="主定理的扩展"></a>主定理的扩展</h2><p>为了解决上面这个不能用主定理的问题，可以对第二类情况作扩展（原式即扩展式中$k=0$时的情况）：<br>$$<br>若存在k\ge 0,f(n)=\Theta(n^{\log_b a}(\log_2 n)^k)\\<br>则T(n)=\Theta(n^{\log_b a}(\lg n)^{k+1})<br>$$</p>
 
         </div>
 
