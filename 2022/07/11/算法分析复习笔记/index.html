@@ -247,6 +247,13 @@
 <p>注意：某些情况不能直接使用主定理</p>
 <p>例：<br>$$<br>T(n)=2T(\frac n 2)+n\lg n\\<br>这里f(n)不符合第三类的条件，因为不存在这样的\epsilon\\<br>但这个问题可以利用递归树求解，答案为O(n\lg^2 n)<br>$$</p>
 <h2 id="主定理的扩展"><a href="#主定理的扩展" class="headerlink" title="主定理的扩展"></a>主定理的扩展</h2><p>为了解决上面这个不能用主定理的问题，可以对第二类情况作扩展（原式即扩展式中$k=0$时的情况）：<br>$$<br>若存在k\ge 0,f(n)=\Theta(n^{\log_b a}(\log_2 n)^k)\\<br>则T(n)=\Theta(n^{\log_b a}(\lg n)^{k+1})<br>$$</p>
+<h1 id="3-分治策略"><a href="#3-分治策略" class="headerlink" title="3 分治策略"></a>3 分治策略</h1><h2 id="大整数乘法"><a href="#大整数乘法" class="headerlink" title="大整数乘法"></a>大整数乘法</h2><p>$$<br>x\times y=2^nx_Ly_L+2^{\frac n 2}(x_Ly_R+x_Ry_L)+x_Ry_R\\<br>\because x_Ly_R+x_Ry_L=(x_L+x_R)(y_L+y_R)-x_Ly_L-x_Ry_R\\<br>\therefore 减掉的两项都在上面算过了，总共只需要计算三次乘法\\<br>\therefore T(n)=3T(\frac n 2)+\Theta(n)\\<br>根据主定理，总复杂度\Theta(n^{\lg _2 3})<br>$$</p>
+<h2 id="Strassen算法"><a href="#Strassen算法" class="headerlink" title="Strassen算法"></a>Strassen算法</h2><p>矩阵乘法的朴素分治时间复杂度没有提升（两个矩阵各自分成四个小矩阵，共八次对小矩阵的乘法），但应用类似上面大整数乘法的方法，发现只需要计算七次乘法后加加减减即可计算出答案。故复杂度可以降低为$\Theta(n^{\lg_2 7})$</p>
+<h1 id="4-线性时间的选择"><a href="#4-线性时间的选择" class="headerlink" title="4 线性时间的选择"></a>4 线性时间的选择</h1><h1 id="5-线性时间的排序"><a href="#5-线性时间的排序" class="headerlink" title="5 线性时间的排序"></a>5 线性时间的排序</h1><h1 id="6-动态规划"><a href="#6-动态规划" class="headerlink" title="6 动态规划"></a>6 动态规划</h1><p>主要问题在理论推导</p>
+<h1 id="7-贪心算法"><a href="#7-贪心算法" class="headerlink" title="7 贪心算法"></a>7 贪心算法</h1><p>主要问题也在理论推导，不过不会出太为难大家的严格证明</p>
+<h1 id="8-贪心算法的应用"><a href="#8-贪心算法的应用" class="headerlink" title="8 贪心算法的应用"></a>8 贪心算法的应用</h1><h1 id="9-线性规划"><a href="#9-线性规划" class="headerlink" title="9 线性规划"></a>9 线性规划</h1><p>！！！</p>
+<h1 id="10-网络流"><a href="#10-网络流" class="headerlink" title="10 网络流"></a>10 网络流</h1><h1 id="11-斐波那契堆"><a href="#11-斐波那契堆" class="headerlink" title="11 斐波那契堆"></a>11 斐波那契堆</h1><p>！！！</p>
+<h1 id="12-NP完全性"><a href="#12-NP完全性" class="headerlink" title="12 NP完全性"></a>12 NP完全性</h1><h1 id="13-近似算法"><a href="#13-近似算法" class="headerlink" title="13 近似算法"></a>13 近似算法</h1><p>似乎不太会考，但是有必要对着ppt学一学</p>
 
         </div>
 
