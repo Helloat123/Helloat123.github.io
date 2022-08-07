@@ -241,6 +241,7 @@
 <h1 id="1-算法基础"><a href="#1-算法基础" class="headerlink" title="1 算法基础"></a>1 算法基础</h1><p>内容就是最基础的计算复杂度</p>
 <p>$$<br>定义:存在n_0和c,使得n&gt;n_0时,f(n)?cg(n)\<br>O:上界\<br>o:不是”上确界”的上界\<br>\Omega:下界\<br>\omega:不是”下确界”的下界\<br>\Theta:同阶<br>$$<br>一些公式：<br>$$<br>\log(n!)=\Theta(n\lg n)\<br>n!=\sqrt{2\pi n}(\frac n e)^n(1+\Theta(\frac 1 n))\approx\sqrt{2\pi n}(\frac n e)^n<br>$$</p>
 <p>下面那个叫斯特林公式</p>
+<h2 id="摊还分析"><a href="#摊还分析" class="headerlink" title="摊还分析"></a>摊还分析</h2><p>聚合分析：一个操作序列中n个操作的最坏情况复杂度，然后平均掉。类似双指针</p>
 <h1 id="2-算法分析数学方法"><a href="#2-算法分析数学方法" class="headerlink" title="2 算法分析数学方法"></a>2 算法分析数学方法</h1><h2 id="递归树"><a href="#递归树" class="headerlink" title="递归树"></a>递归树</h2><p>利用递归树猜测，然后需要利用数学归纳法证明正确性。</p>
 <h2 id="主定理"><a href="#主定理" class="headerlink" title="主定理"></a>主定理</h2><p>对于这样形式的递归复杂度求解：<br>$$<br>T(n)=aT(\frac n b )+f(n)<br>$$<br>其中$a$，$b$为常量，$a\ge 1$，$b&gt;1$，$a$表示子问题个数，$b$表示子问题规模</p>
 <p>那么<br>$$<br>T(n)=\cases<br>{<br>\Theta(n^{\log_b a}):\text{若存在常数}\epsilon&gt;0，有f(n)=O(n^{\log_b{a-\epsilon}})\\<br>\Theta(n^{\log_b a}\lg n):若f(n)=\Theta(n^{\log_b a})\\<br>\Theta(f(n)):若存在常数\epsilon&gt;0，有f(n)=\Omega(n^{\log_b a+\epsilon})，且对某个常数c&lt;1和所有足够大的n，有af(\frac n b)\le cf(n)<br>}<br>$$<br>感受：$f(n)$主导就$f(n)$，递归主导就递归，相同就加个$\log$</p>
@@ -249,10 +250,37 @@
 <h2 id="主定理的扩展"><a href="#主定理的扩展" class="headerlink" title="主定理的扩展"></a>主定理的扩展</h2><p>为了解决上面这个不能用主定理的问题，可以对第二类情况作扩展（原式即扩展式中$k=0$时的情况）：<br>$$<br>若存在k\ge 0,f(n)=\Theta(n^{\log_b a}(\log_2 n)^k)\\<br>则T(n)=\Theta(n^{\log_b a}(\lg n)^{k+1})<br>$$</p>
 <h1 id="3-分治策略"><a href="#3-分治策略" class="headerlink" title="3 分治策略"></a>3 分治策略</h1><h2 id="大整数乘法"><a href="#大整数乘法" class="headerlink" title="大整数乘法"></a>大整数乘法</h2><p>$$<br>x\times y=2^nx_Ly_L+2^{\frac n 2}(x_Ly_R+x_Ry_L)+x_Ry_R\\<br>\because x_Ly_R+x_Ry_L=(x_L+x_R)(y_L+y_R)-x_Ly_L-x_Ry_R\\<br>\therefore 减掉的两项都在上面算过了，总共只需要计算三次乘法\\<br>\therefore T(n)=3T(\frac n 2)+\Theta(n)\\<br>根据主定理，总复杂度\Theta(n^{\lg _2 3})<br>$$</p>
 <h2 id="Strassen算法"><a href="#Strassen算法" class="headerlink" title="Strassen算法"></a>Strassen算法</h2><p>矩阵乘法的朴素分治时间复杂度没有提升（两个矩阵各自分成四个小矩阵，共八次对小矩阵的乘法），但应用类似上面大整数乘法的方法，发现只需要计算七次乘法后加加减减即可计算出答案。故复杂度可以降低为$\Theta(n^{\lg_2 7})$</p>
-<h1 id="4-线性时间的选择"><a href="#4-线性时间的选择" class="headerlink" title="4 线性时间的选择"></a>4 线性时间的选择</h1><h1 id="5-线性时间的排序"><a href="#5-线性时间的排序" class="headerlink" title="5 线性时间的排序"></a>5 线性时间的排序</h1><h1 id="6-动态规划"><a href="#6-动态规划" class="headerlink" title="6 动态规划"></a>6 动态规划</h1><p>主要问题在理论推导</p>
-<h1 id="7-贪心算法"><a href="#7-贪心算法" class="headerlink" title="7 贪心算法"></a>7 贪心算法</h1><p>主要问题也在理论推导，不过不会出太为难大家的严格证明</p>
-<h1 id="8-贪心算法的应用"><a href="#8-贪心算法的应用" class="headerlink" title="8 贪心算法的应用"></a>8 贪心算法的应用</h1><h1 id="9-线性规划"><a href="#9-线性规划" class="headerlink" title="9 线性规划"></a>9 线性规划</h1><p>！！！</p>
-<h1 id="10-网络流"><a href="#10-网络流" class="headerlink" title="10 网络流"></a>10 网络流</h1><h1 id="11-斐波那契堆"><a href="#11-斐波那契堆" class="headerlink" title="11 斐波那契堆"></a>11 斐波那契堆</h1><p>！！！</p>
+<h1 id="4-线性时间的选择"><a href="#4-线性时间的选择" class="headerlink" title="4 线性时间的选择"></a>4 线性时间的选择</h1><p>nth_element算法的最坏复杂度仍然是$\Theta (n^2)$的，但是可以优化使得最坏复杂度为$\Theta(n)$</p>
+<p>如何优化？使选取的主元必定大于$\frac 1 x$的元素即可。根据主定理可以得到最坏复杂度变为线性了。</p>
+<p>如何选取？考虑将每$x$个数分成一组，每组找出一个中位数，再对这些中位数找中位数（递归）即可。</p>
+<h1 id="5-线性时间的排序"><a href="#5-线性时间的排序" class="headerlink" title="5 线性时间的排序"></a>5 线性时间的排序</h1><p>比较排序算法的下界：利用决策树说明</p>
+<h1 id="6-动态规划"><a href="#6-动态规划" class="headerlink" title="6 动态规划"></a>6 动态规划</h1><p>子问题的依赖关系需要是一个DAG</p>
+<p>最优子结构性质：一个最优决策序列的任何子序列本身一定是相对于子序列的初始和结束状态的最优决策序列。即：问题的最优解包含着其子问题的最优解。</p>
+<p>PPT中提到的重叠子问题概念：某几个问题依赖同一个子问题的答案，那只需要算一次记下来就好了</p>
+<p>似乎对证明的要求不高，掌握方法即可</p>
+<h1 id="7-贪心算法"><a href="#7-贪心算法" class="headerlink" title="7 贪心算法"></a>7 贪心算法</h1><p>最优子结构性质</p>
+<p>贪心选择性质：与dp的区别。可以通过一系列局部最优的选择来求出全局最优解。</p>
+<p>需要证明。但似乎证明也不会仔细考</p>
+<h1 id="8-贪心算法的应用"><a href="#8-贪心算法的应用" class="headerlink" title="8 贪心算法的应用"></a>8 贪心算法的应用</h1><h3 id="最短路-Dijkstra"><a href="#最短路-Dijkstra" class="headerlink" title="最短路-Dijkstra"></a>最短路-Dijkstra</h3><h3 id="最短路-Bellman-Ford"><a href="#最短路-Bellman-Ford" class="headerlink" title="最短路-Bellman-Ford"></a>最短路-Bellman-Ford</h3><p>差分约束</p>
+<h3 id="最短路-Floyd"><a href="#最短路-Floyd" class="headerlink" title="最短路-Floyd"></a>最短路-Floyd</h3><p>传递闭包</p>
+<h3 id="稀疏图的Johnson算法"><a href="#稀疏图的Johnson算法" class="headerlink" title="稀疏图的Johnson算法"></a>稀疏图的Johnson算法</h3><p>用来算稀疏图的多源最短路。首先处理负权边：对每个点赋点权f并调整边权，使得从u到v的边的长度为f(u)-f(v)+l’(u,v)。如何做到？建立一个超级源点向每个点指一条边权为0的边，跑bellman-ford即可（此时可以检测是否存在负环）。然后从每个点出发跑一遍dijkstra（跑的时候只需要考虑边权，因为答案=f(u)-f(v)+shortest_path(u,v)，与其它结点的f无关）。、</p>
+<p>复杂度$O(VE\lg V)$，若斐波那契堆则$O(VE+V^2\lg V)$</p>
+<h3 id="最小生成树"><a href="#最小生成树" class="headerlink" title="最小生成树"></a>最小生成树</h3><p>证明方向：反证法，考虑若删掉方案中一条边的话，生成树不可能更优。</p>
+<h1 id="9-线性规划"><a href="#9-线性规划" class="headerlink" title="9 线性规划"></a>9 线性规划</h1><p>！！！</p>
+<h1 id="10-网络流"><a href="#10-网络流" class="headerlink" title="10 网络流"></a>10 网络流</h1><h2 id="流网络的定义"><a href="#流网络的定义" class="headerlink" title="流网络的定义"></a>流网络的定义</h2><p>不存在反向边</p>
+<p>源节点外每个点入度都不为0</p>
+<p>满足两个性质：容量限制，能量守恒（每个点流出=流入）</p>
+<p>流的规模|f|为s的<strong>净</strong>流出或t的<strong>净</strong>流入</p>
+<p>显然网络流是一类线性规划问题，可以利用单纯形求解。而单纯形的过程就是走增广路的过程。</p>
+<h2 id="割"><a href="#割" class="headerlink" title="割"></a>割</h2><p>切割：把结点集合划分成S和T两部分，使得源点s属于S，汇点t属于T,则通过切割的S到T的净流量等于当前流的流量。（意思就是说这个切割方案把流完全切断了）</p>
+<p>最大流最小割定理：下列条件等价：</p>
+<ol>
+<li>f是G的一个最大流</li>
+<li>残存网络G_f不包括任何增广路径</li>
+<li>|f|=c(S,T)，其中(S,T)是流网络G的任意一个切割</li>
+</ol>
+<p>证明要求的其中一个推论：不管怎么流，任意一个切割总是能把它全切了，所以最大流小于最小割。</p>
+<h2 id="Ford-Fulkerson"><a href="#Ford-Fulkerson" class="headerlink" title="Ford-Fulkerson"></a>Ford-Fulkerson</h2><h2 id="Edmonds-Karp"><a href="#Edmonds-Karp" class="headerlink" title="Edmonds-Karp"></a>Edmonds-Karp</h2><h2 id="Dinic"><a href="#Dinic" class="headerlink" title="Dinic"></a>Dinic</h2><h1 id="11-斐波那契堆"><a href="#11-斐波那契堆" class="headerlink" title="11 斐波那契堆"></a>11 斐波那契堆</h1><p>！！！</p>
 <h1 id="12-NP完全性"><a href="#12-NP完全性" class="headerlink" title="12 NP完全性"></a>12 NP完全性</h1><h1 id="13-近似算法"><a href="#13-近似算法" class="headerlink" title="13 近似算法"></a>13 近似算法</h1><p>似乎不太会考，但是有必要对着ppt学一学</p>
 
         </div>
