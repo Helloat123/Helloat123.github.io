@@ -263,10 +263,85 @@
 <p>需要证明。但似乎证明也不会仔细考</p>
 <h1 id="8-贪心算法的应用"><a href="#8-贪心算法的应用" class="headerlink" title="8 贪心算法的应用"></a>8 贪心算法的应用</h1><h3 id="最短路-Dijkstra"><a href="#最短路-Dijkstra" class="headerlink" title="最短路-Dijkstra"></a>最短路-Dijkstra</h3><h3 id="最短路-Bellman-Ford"><a href="#最短路-Bellman-Ford" class="headerlink" title="最短路-Bellman-Ford"></a>最短路-Bellman-Ford</h3><p>差分约束</p>
 <h3 id="最短路-Floyd"><a href="#最短路-Floyd" class="headerlink" title="最短路-Floyd"></a>最短路-Floyd</h3><p>传递闭包</p>
-<h3 id="稀疏图的Johnson算法"><a href="#稀疏图的Johnson算法" class="headerlink" title="稀疏图的Johnson算法"></a>稀疏图的Johnson算法</h3><p>用来算稀疏图的多源最短路。首先处理负权边：对每个点赋点权f并调整边权，使得从u到v的边的长度为f(u)-f(v)+l’(u,v)。如何做到？建立一个超级源点向每个点指一条边权为0的边，跑bellman-ford即可（此时可以检测是否存在负环）。然后从每个点出发跑一遍dijkstra（跑的时候只需要考虑边权，因为答案=f(u)-f(v)+shortest_path(u,v)，与其它结点的f无关）。、</p>
+<h3 id="稀疏图的Johnson算法"><a href="#稀疏图的Johnson算法" class="headerlink" title="稀疏图的Johnson算法"></a>稀疏图的Johnson算法</h3><p>用来算稀疏图的多源最短路。首先处理负权边：对每个点赋点权f并调整边权，使得从u到v的边的长度为f(u)-f(v)+l’(u,v)。如何做到？建立一个超级源点向每个点指一条边权为0的边，跑bellman-ford即可（此时可以检测是否存在负环）。然后从每个点出发跑一遍dijkstra（跑的时候只需要考虑边权，因为答案=f(u)-f(v)+shortest_path(u,v)，与其它结点的f无关）。</p>
 <p>复杂度$O(VE\lg V)$，若斐波那契堆则$O(VE+V^2\lg V)$</p>
 <h3 id="最小生成树"><a href="#最小生成树" class="headerlink" title="最小生成树"></a>最小生成树</h3><p>证明方向：反证法，考虑若删掉方案中一条边的话，生成树不可能更优。</p>
-<h1 id="9-线性规划"><a href="#9-线性规划" class="headerlink" title="9 线性规划"></a>9 线性规划</h1><p>！！！</p>
+<h1 id="9-线性规划"><a href="#9-线性规划" class="headerlink" title="9 线性规划"></a>9 线性规划</h1><p>$$<br>设z是需要最大化的答案，C是系数，X是变量的取值，b是常数\\<br>max~z=CX\\<br>AX=b\\<br>X\ge 0<br>$$</p>
+<p>在编程的时候，采用“单纯形表”的方式存储</p>
+<p>以下面的式子为例<br>$$<br>\max x_1+14x_2+6x_3\\<br>s.t\cases{<br>    x_1+x_2+x_3+x_4=4\\<br>    x_1+x_5=2\\<br>    x_3+x_6=3\\<br>    3x_2+x_3+x_7=6\\<br>    x_1,x_2,x_3,x_4,x_5,x_6,x_7\ge 0<br>}<br>$$</p>
+<table>
+<thead>
+<tr>
+<th>x1</th>
+<th>x2</th>
+<th>x3</th>
+<th>x4*</th>
+<th>x5*</th>
+<th>x6*</th>
+<th>x7*</th>
+<th>b</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>c1=1</td>
+<td>c2=14</td>
+<td>c3=6</td>
+<td>c4=0</td>
+<td>c5=0</td>
+<td>c6=0</td>
+<td>c7=0</td>
+<td>-z=0</td>
+</tr>
+<tr>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>4</td>
+</tr>
+<tr>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>2</td>
+</tr>
+<tr>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+<td>3</td>
+</tr>
+<tr>
+<td>0</td>
+<td>3</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>6</td>
+</tr>
+</tbody></table>
+<p>非基本变量是参与答案运算的。基本变量（上面打了*）是拿来做基底的。</p>
+<p>表中就是直接可以看出来的一个基本可行解。但有时候直接把非基本变量取0并不能得到可行解。</p>
+<p>可以引入一个辅助线性规划：新引入$x_0$变量，要求最大化$-x_0$（因此只有$x_0$一个基本变量）。如果$x_0$不能搞成0的话那显然无解。如果搞成了那显然就有一组基本可行解了。</p>
+<h3 id="对偶原理"><a href="#对偶原理" class="headerlink" title="对偶原理"></a>对偶原理</h3><p>$$<br>\max c^T x:Ax\le b,x\ge0\\<br>\min b^T y:A^Ty\ge c,t\ge 0<br>$$</p>
+<p>二者对偶，最优值相等或都不存在。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//by Richard</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;bits/extc++.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> mp make_pair</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> rep(x,y,z) for (int x=(y);(x)&lt;=(z);(x)++)</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> per(x,y,z) for (int x=(y);(x)&gt;=(z);(x)--)</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> lowbit(x) ((x)&amp;(-(x)))</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> cls(x) memset(x,0,sizeof(x))</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">ifdef</span> DEBUG</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> debugdo(X) X</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> debugndo(X)</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> debugout(X) cout&lt;&lt;(#X)&lt;&lt;<span class="meta-string">&quot;=&quot;</span>&lt;&lt;(X)&lt;&lt;endl</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">else</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> debugdo(X)</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> debugndo(X) X</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> debugout(X)</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">endif</span> <span class="comment">// debug</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="function">mt19937 <span class="title">rnd</span><span class="params">(<span class="number">19260817</span>)</span></span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> inf=<span class="number">0x3f3f3f3f</span>;</span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">long</span> <span class="keyword">long</span> LL;</span><br><span class="line"><span class="keyword">typedef</span> <span class="built_in">pair</span>&lt;<span class="keyword">int</span>,<span class="keyword">int</span>&gt; pii;</span><br><span class="line"><span class="comment">///////////////////////read5.1///////////////////////</span></span><br><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt;</span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">read</span><span class="params">(T &amp;x)</span></span>&#123;<span class="keyword">char</span> ch;x=<span class="number">0</span>;<span class="keyword">bool</span> flag=<span class="literal">false</span>;ch=getchar();<span class="keyword">while</span> (ch&gt;<span class="string">&#x27;9&#x27;</span>||ch&lt;<span class="string">&#x27;0&#x27;</span>) &#123;<span class="keyword">if</span> (ch==<span class="string">&#x27;-&#x27;</span>) flag=<span class="literal">true</span>;ch=getchar();&#125;<span class="keyword">while</span> ((ch&lt;=<span class="string">&#x27;9&#x27;</span>&amp;&amp;ch&gt;=<span class="string">&#x27;0&#x27;</span>))&#123;x=x*<span class="number">10</span>+ch-<span class="string">&#x27;0&#x27;</span>;ch=getchar();&#125;<span class="keyword">if</span> (flag) x*=<span class="number">-1</span>;&#125;</span><br><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> T,<span class="keyword">typename</span> U&gt;</span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">read</span><span class="params">(T &amp;x,U &amp;y)</span></span>&#123;read(x);read(y);&#125;</span><br><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> T,<span class="keyword">typename</span> U,<span class="keyword">typename</span> V&gt;</span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">read</span><span class="params">(T &amp;x,U &amp;y,V &amp;z)</span></span>&#123;read(x);read(y);read(z);&#125;</span><br><span class="line"><span class="comment">////////////////variables&amp;functions//////////////////</span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> maxn=<span class="number">11111</span>,maxm=<span class="number">11111</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">double</span> eps=<span class="number">1e-8</span>;</span><br><span class="line"><span class="keyword">double</span> a[maxm][maxn], basicans[maxn];</span><br><span class="line"><span class="keyword">int</span> n,m,id[maxn*<span class="number">2</span>]; <span class="comment">//记录最后的方程左边, 是原来的哪个变量</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">pivot</span><span class="params">(<span class="keyword">int</span> l,<span class="keyword">int</span> e,<span class="keyword">int</span> n,<span class="keyword">int</span> m)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="comment">//e是一个非基本变量，l是一个基本变量，分别称作entering variable和leaving variable</span></span><br><span class="line">    swap(id[n+l],id[e]);<span class="comment">//交换</span></span><br><span class="line">    <span class="keyword">double</span> x=a[l][e];</span><br><span class="line">    a[l][e]=<span class="number">1</span>;</span><br><span class="line">    rep(i,<span class="number">1</span>,n) a[l][i]/=x;</span><br><span class="line">    rep(i,<span class="number">0</span>,m)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">if</span> (i==l||<span class="built_in">abs</span>(a[l][e])&lt;eps) <span class="keyword">continue</span>;<span class="comment">//确保a[l][e]!=0</span></span><br><span class="line">        <span class="keyword">double</span> t=a[i][e];</span><br><span class="line">        a[i][e]=<span class="number">0</span>;</span><br><span class="line">        rep(j,<span class="number">0</span>,n) a[i][j]-=t*a[l][j];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">simplex</span><span class="params">(<span class="keyword">int</span> n,<span class="keyword">int</span> m)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">while</span> (<span class="number">1</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">int</span> l=-n,e=<span class="number">0</span>;</span><br><span class="line">        <span class="comment">//找到第一个（为了符合blend规则，避免循环）系数大于0的非基本变量，要把它处理掉。entering</span></span><br><span class="line">        rep(i,<span class="number">1</span>,n) <span class="keyword">if</span> (a[<span class="number">0</span>][i]&gt;eps&amp;&amp;id[i]&lt;id[e]) e=i;</span><br><span class="line">        <span class="comment">//系数都小于0，即当前是最优了</span></span><br><span class="line">        <span class="keyword">if</span> (!e) <span class="keyword">break</span>;</span><br><span class="line">        <span class="comment">//找到范围最紧的基本变量，要把它变成非基本变量。leaving</span></span><br><span class="line">        <span class="keyword">double</span> minn=<span class="number">1e18</span>;</span><br><span class="line">        rep(i,<span class="number">1</span>,m)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">if</span> (a[i][e]&gt;eps)</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="keyword">double</span> x=a[i][<span class="number">0</span>]/a[i][e];</span><br><span class="line">                <span class="comment">//最小比值原则</span></span><br><span class="line">                <span class="keyword">if</span> (x&lt;minn||(<span class="built_in">abs</span>(x-minn)&lt;eps&amp;&amp;id[n+i]&lt;id[n+l])) minn=x,l=i;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">//如果无界，可以取值无穷大，那就无解了</span></span><br><span class="line">        <span class="keyword">if</span> (l==-n) <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">        pivot(l,e,n,m);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">init_simplex</span><span class="params">(<span class="keyword">int</span> n,<span class="keyword">int</span> m)</span><span class="comment">//找基本可行解</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">while</span> (<span class="number">1</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">int</span> e=<span class="number">0</span>,l=-n;</span><br><span class="line">        <span class="comment">//如果存在负值就要处理，因为可行解要求变量都要非负</span></span><br><span class="line">        rep(i,<span class="number">1</span>,m) <span class="keyword">if</span> (a[i][<span class="number">0</span>]&lt;-eps&amp;&amp;id[n+i]&lt;id[n+l]) l=i;</span><br><span class="line">        <span class="keyword">if</span> (l==-n) <span class="keyword">break</span>;<span class="comment">//不存在非负的，那当前解已经可行了</span></span><br><span class="line">        rep(j,<span class="number">1</span>,n) <span class="keyword">if</span> (a[l][j]&lt;-eps&amp;&amp;id[j]&lt;id[e]) e=j;</span><br><span class="line">        <span class="keyword">if</span> (!e) <span class="keyword">return</span> <span class="literal">false</span>;<span class="comment">//没人能跟负的调整，无法解决负值问题，所以无解</span></span><br><span class="line">        pivot(l,e,n,m);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">solve</span><span class="params">(<span class="keyword">int</span> n,<span class="keyword">int</span> m)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    rep(i,<span class="number">1</span>,n+m) id[i]=i;</span><br><span class="line">    id[<span class="number">0</span>]=inf;</span><br><span class="line">    <span class="keyword">if</span> (!init_simplex(n,m)) <span class="keyword">return</span> <span class="number">-1</span>;<span class="comment">//不存在基本可行解</span></span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">return</span> simplex(n,m);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="comment">//由于这题要求的是最小值，所以需要应用对偶原理调整，c和b换了位置，a也转置了</span></span><br><span class="line">    <span class="built_in">cin</span>&gt;&gt;n&gt;&gt;m;<span class="comment">//n天（n个不等式约束），m种志愿者（m个初始变量）</span></span><br><span class="line">    rep(i,<span class="number">1</span>,n) <span class="built_in">cin</span>&gt;&gt;a[<span class="number">0</span>][i];<span class="comment">//是上面的系数数组</span></span><br><span class="line">    rep(i,<span class="number">1</span>,m)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">int</span> s,t,c;</span><br><span class="line">        <span class="built_in">cin</span>&gt;&gt;s&gt;&gt;t&gt;&gt;c;</span><br><span class="line">        rep(j,s,t) a[i][j]=<span class="number">1</span>;<span class="comment">//第i种志愿者在第j天有用</span></span><br><span class="line">        a[i][<span class="number">0</span>]=c;<span class="comment">//就是上面例子中的b数组，放在了a[x][0]</span></span><br><span class="line">    &#125;</span><br><span class="line">    solve(n,m);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;%lld\n&quot;</span>,(LL)(-a[<span class="number">0</span>][<span class="number">0</span>]+<span class="number">0.5</span>));</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
 <h1 id="10-网络流"><a href="#10-网络流" class="headerlink" title="10 网络流"></a>10 网络流</h1><h2 id="流网络的定义"><a href="#流网络的定义" class="headerlink" title="流网络的定义"></a>流网络的定义</h2><p>不存在反向边</p>
 <p>源节点外每个点入度都不为0</p>
 <p>满足两个性质：容量限制，能量守恒（每个点流出=流入）</p>
@@ -280,8 +355,68 @@
 <li>|f|=c(S,T)，其中(S,T)是流网络G的任意一个切割</li>
 </ol>
 <p>证明要求的其中一个推论：不管怎么流，任意一个切割总是能把它全切了，所以最大流小于最小割。</p>
-<h2 id="Ford-Fulkerson"><a href="#Ford-Fulkerson" class="headerlink" title="Ford-Fulkerson"></a>Ford-Fulkerson</h2><h2 id="Edmonds-Karp"><a href="#Edmonds-Karp" class="headerlink" title="Edmonds-Karp"></a>Edmonds-Karp</h2><h2 id="Dinic"><a href="#Dinic" class="headerlink" title="Dinic"></a>Dinic</h2><h1 id="11-斐波那契堆"><a href="#11-斐波那契堆" class="headerlink" title="11 斐波那契堆"></a>11 斐波那契堆</h1><p>！！！</p>
-<h1 id="12-NP完全性"><a href="#12-NP完全性" class="headerlink" title="12 NP完全性"></a>12 NP完全性</h1><h1 id="13-近似算法"><a href="#13-近似算法" class="headerlink" title="13 近似算法"></a>13 近似算法</h1><p>似乎不太会考，但是有必要对着ppt学一学</p>
+<h2 id="Ford-Fulkerson"><a href="#Ford-Fulkerson" class="headerlink" title="Ford-Fulkerson"></a>Ford-Fulkerson</h2><p>暴力找残余网络中的增广路，直到找不到</p>
+<p>复杂度$O(E\cdot |f|)$</p>
+<h2 id="Edmonds-Karp"><a href="#Edmonds-Karp" class="headerlink" title="Edmonds-Karp"></a>Edmonds-Karp</h2><p>BFS找增广路，保证按顺序从近往远找，省去很多流过去又反悔的时间</p>
+<p>复杂度$O(VE^2)$</p>
+<h2 id="Dinic"><a href="#Dinic" class="headerlink" title="Dinic"></a>Dinic</h2><p>在Edmonds-Karp的基础上引入分层图的方法，每一次BFS可以走多条增广路</p>
+<p>复杂度$O(V^2E)$</p>
+<h3 id="匈牙利算法"><a href="#匈牙利算法" class="headerlink" title="匈牙利算法"></a>匈牙利算法</h3><p>二分图匹配问题中的特殊版走增广路</p>
+<h1 id="11-斐波那契堆"><a href="#11-斐波那契堆" class="headerlink" title="11 斐波那契堆"></a>11 斐波那契堆</h1><p>常规操作中只有pop（Extract-Min）是lg的，其它的均摊复杂度都是O(1)</p>
+<p>大致就是维护lgn个小堆，堆顶之间用链表连起来。小堆的大小根据斐波那契数列有下限（上限就是正常堆的上限），且相同大小的小堆需要合并成大一点的小堆。利用一系列神仙般的操作（不至于考这个吧）维护就能搞出来了。</p>
+<p>对于删除操作，斐波那契堆使用decrease_key后extract_min，所以复杂度是extract_min的复杂度lg</p>
+<p>在学习斐波那契堆之前课上讲到了二项堆，因为有些思路是相通的。也是小堆合成大堆。和斐波那契堆的性能就差在decrease_key上。</p>
+<h1 id="12-NP完全性"><a href="#12-NP完全性" class="headerlink" title="12 NP完全性"></a>12 NP完全性</h1><p>P：多项式时间可解</p>
+<p>NP：已有一组解的情况下多项式时间可验证（所以P问题一定属于NP问题）</p>
+<p>NPC：最难的一类NP问题，多项式时间是否可解未被证明</p>
+<p>NP-Hard：比NPC难解的或一样难解的问题</p>
+<h1 id="13-近似算法"><a href="#13-近似算法" class="headerlink" title="13 近似算法"></a>13 近似算法</h1><h2 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h2><p>近似比：<br>$$<br>r_A(I)=\frac{A(I)}{OPT(I)}<del>若是最小化问题\\<br>r_A(I)=\frac{OPT(I)}{A(I)}</del>若是最大化问题<br>$$<br>算法$A$的近似比为$r$，则称$A$是$r$-近似算法。</p>
+<p>假设$P\not=NP$，NPC的组合优化问题按可近似性分成3类：</p>
+<ol>
+<li><p>完全可近似：对任意小的$\varepsilon$，存在$(1+\varepsilon)$-近似算法，例如背包问题</p>
+</li>
+<li><p>可近似：有常数近似比的近似算法，例如最小顶点覆盖问题、多机调度问题</p>
+</li>
+<li><p>不可近似：不存在常数近似比的近似算法，例如旅行商问题</p>
+</li>
+</ol>
+<h2 id="最小顶点覆盖问题"><a href="#最小顶点覆盖问题" class="headerlink" title="最小顶点覆盖问题"></a>最小顶点覆盖问题</h2><p>选中一些点，使得所有边都有端点被选中</p>
+<p>按度数从大到小选择的贪心，近似比是$\lg$的</p>
+<h3 id="MVC算法"><a href="#MVC算法" class="headerlink" title="MVC算法"></a>MVC算法</h3><p>随便选一条边，把边上两个端点选中，并把端点相关的边全删光。显然是个2-近似算法</p>
+<p>选中的边的条数必定是答案的一个下界。（也很显然）</p>
+<p>所以就有了下界x和上界2x</p>
+<h2 id="多机调度问题"><a href="#多机调度问题" class="headerlink" title="多机调度问题"></a>多机调度问题</h2><p>单机是贪心</p>
+<h3 id="G-MPS"><a href="#G-MPS" class="headerlink" title="G-MPS"></a>G-MPS</h3><p>多机用贪心算法G-MPS，近似比？</p>
+<p>推论1：$OPT(I)\ge \max_{a\in A} t(a)$，机器的最大负载不小于单个作业的加工时间</p>
+<p>推论2：$OPT(I)\ge \frac 1 m\sum _ {a\in A}t(a)$，机器的最大负载不小于所有机器的平均负载</p>
+<p>假设所有作业加工完成后，第j台机器的负载最大。那么在分配最后一个任务之前它的负载最小。<br>$$<br>t_总\le \frac 1 m (\sum _ {a\in A} t(a)-t(b))+t(b)<br>$$<br>继续简单推一推就能发现这个贪心是2-近似算法，当很多短任务和一个长任务时取到极值</p>
+<h3 id="改进G-MPS"><a href="#改进G-MPS" class="headerlink" title="改进G-MPS"></a>改进G-MPS</h3><p>加工时间由大到小排序，再贪心分配</p>
+<p>利用上面类似的方法，可以证明这个算法是1.5-近似的</p>
+<h2 id="旅行商问题-满足三角形不等式的特例"><a href="#旅行商问题-满足三角形不等式的特例" class="headerlink" title="旅行商问题-满足三角形不等式的特例"></a>旅行商问题-满足三角形不等式的特例</h2><p>点都在平面上，没有道路限制，点与点都可以直接到达</p>
+<h3 id="最邻近算法NN"><a href="#最邻近算法NN" class="headerlink" title="最邻近算法NN"></a>最邻近算法NN</h3><p>每次都走最近的没去过的城市。近似比是$\lg$的。没有价值</p>
+<h3 id="最小生成树启发式近似算法"><a href="#最小生成树启发式近似算法" class="headerlink" title="最小生成树启发式近似算法"></a>最小生成树启发式近似算法</h3><p>$$<br>TSP代价\ge TSP删除任意一条边的代价\ge MST代价<br>$$</p>
+<p>由MST可以得到一条欧拉回路，按欧拉回路的访问顺序可以得到一条哈密顿回路。</p>
+<p>这个方法是2-近似算法，因为<br>$$<br>假设H^<em>是最优路线，H^</em>对应的生成树为T^<em>，最小生成树是T，对应的欧拉回路是S\\<br>W(S)=2W(T)\le 2W(T^</em>)&lt;2W(H^*)=2OPT(I)<br>$$</p>
+<h3 id="最小权匹配近似算法MM"><a href="#最小权匹配近似算法MM" class="headerlink" title="最小权匹配近似算法MM"></a>最小权匹配近似算法MM</h3><p>最小生成树T上度数为奇数的顶点集X。根据握手定理这里有偶数个顶点。求出顶点集在原图上导出的子图G’（包含X和所有X内连接的边），求G’的最小权完全匹配M，使得M中的边连接了G’的全部顶点。将M和T的边集合并，得到欧拉图。在欧拉图上寻找一个欧拉回路，抄近路得到哈密顿回路。</p>
+<p>该方法是3/2-近似的。证明相对比较复杂。</p>
+<h2 id="原版旅行商问题"><a href="#原版旅行商问题" class="headerlink" title="原版旅行商问题"></a>原版旅行商问题</h2><p>如果$P\not=NP$，则对任何常数$\rho\ge1$，旅行商问题不存在具有近似比为$\rho$的多项式时间近似算法。即该问题不可近似。</p>
+<p>证明：如果有这样的方法，那拿它找哈密顿回路，就可以解决哈密顿回路问题了。那就$P=NP$了</p>
+<h2 id="01背包"><a href="#01背包" class="headerlink" title="01背包"></a>01背包</h2><p>常规dp的时间复杂度与价值的取值有关。如果实数域就直接gg</p>
+<h3 id="贪心算法G-KK"><a href="#贪心算法G-KK" class="headerlink" title="贪心算法G-KK"></a>贪心算法G-KK</h3><p>按价值重量比贪心，贪完最后一步把能换的换成价值大的</p>
+<p>证明：</p>
+<p>设l是按价值重量比排序的第一件没装入的物品，则<br>$$<br>OPT(I)&lt;\text{G-KK}(I)+v_l\\<br>\le \text{G-KK}(I)+v_{max}\\<br>\le \text{2G-KK}(I)<br>$$</p>
+<h3 id="PTAS算法"><a href="#PTAS算法" class="headerlink" title="PTAS算法"></a>PTAS算法</h3><ol>
+<li><p>令$m=\lfloor \frac 1 \epsilon \rfloor$</p>
+</li>
+<li><p>按价值重量比排序</p>
+</li>
+<li><p>t从1尝试到m，每次尝试都从前m个物品里取t个加入背包，再对未装入的物品使用G-KK算法</p>
+</li>
+<li><p>从m次尝试中找到最优的</p>
+</li>
+</ol>
+<p>总运行次数用组合数可以计算出来，是多项式的，$O(n^{\frac 1 \epsilon}+2)$</p>
+<p>算法是$1+\epsilon$-近似的，证明也比较简便</p>
 
         </div>
 
