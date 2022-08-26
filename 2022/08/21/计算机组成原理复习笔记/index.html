@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <meta name="author" content="Helloat123">
+
+
+
+
+
+<title>计算机组成原理复习笔记 | Richard&#39;s Blog</title>
+
+
+
+    <link rel="icon" href="/favicon.png">
+
+
+
+
+    <!-- stylesheets list from _config.yml -->
+    
+    <link rel="stylesheet" href="/css/style.css">
+    
+
+
+
+    <!-- scripts list from _config.yml -->
+    
+    <script src="/js/script.js"></script>
+    
+    <script src="/js/tocbot.min.js"></script>
+    
+
+
+
+    
+    
+        
+    
+
+
+<meta name="generator" content="Hexo 5.2.0"></head>
+<body>
+    <div class="wrapper">
+        <header>
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-header header-logo"><a href="/">Richard&#39;s Blog</a></div>
+            <div class="menu navbar-right">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+                <input id="switch_default" type="checkbox" class="switch_default">
+                <label for="switch_default" class="toggleBtn"></label>
+            </div>
+        </div>
+    </nav>
+
+    
+    <nav class="navbar-mobile" id="nav-mobile">
+        <div class="container">
+            <div class="navbar-header">
+                <div>
+                    <a href="/">Richard&#39;s Blog</a><a id="mobile-toggle-theme">·&nbsp;Light</a>
+                </div>
+                <div class="menu-toggle" onclick="mobileBtn()">&#9776; Menu</div>
+            </div>
+            <div class="menu" id="mobile-menu">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+            </div>
+        </div>
+    </nav>
+
+</header>
+<script>
+    var mobileBtn = function f() {
+        var toggleMenu = document.getElementsByClassName("menu-toggle")[0];
+        var mobileMenu = document.getElementById("mobile-menu");
+        if(toggleMenu.classList.contains("active")){
+           toggleMenu.classList.remove("active")
+            mobileMenu.classList.remove("active")
+        }else{
+            toggleMenu.classList.add("active")
+            mobileMenu.classList.add("active")
+        }
+    }
+</script>
+        <div class="main">
+            <div class="container">
+    
+    
+        <div class="post-toc">
+    <div class="tocbot-list">
+    </div>
+    <div class="tocbot-list-menu">
+        <a class="tocbot-toc-expand" onclick="expand_toc()">Expand all</a>
+        <a onclick="go_top()">Back to top</a>
+        <a onclick="go_bottom()">Go to bottom</a>
+    </div>
+</div>
+
+<script>
+    document.ready(
+        function () {
+            tocbot.init({
+                tocSelector: '.tocbot-list',
+                contentSelector: '.post-content',
+                headingSelector: 'h1, h2, h3, h4, h5',
+                collapseDepth: 1,
+                orderedList: false,
+                scrollSmooth: true,
+            })
+        }
+    )
+
+    function expand_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 6,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "collapse_toc()");
+        b.innerHTML = "Collapse all"
+    }
+
+    function collapse_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 1,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "expand_toc()");
+        b.innerHTML = "Expand all"
+    }
+
+    function go_top() {
+        window.scrollTo(0, 0);
+    }
+
+    function go_bottom() {
+        window.scrollTo(0, document.body.scrollHeight);
+    }
+
+</script>
+    
+
+    
+    <article class="post-wrap">
+        <header class="post-header">
+            <h1 class="post-title">计算机组成原理复习笔记</h1>
+            
+                <div class="post-meta">
+                    
+                        Author: <a itemprop="author" rel="author" href="/">Helloat123</a>
+                    
+
+                    
+                        <span class="post-time">
+                        Date: <a href="#">August 21, 2022&nbsp;&nbsp;9:17:31</a>
+                        </span>
+                    
+                    
+                        <span class="post-category">
+                    Category:
+                            
+                                <a href="/categories/%E7%AC%94%E8%AE%B0/">笔记</a>
+                            
+                        </span>
+                    
+                </div>
+            
+        </header>
+
+        <div class="post-content">
+            <h1 id="第一章"><a href="#第一章" class="headerlink" title="第一章"></a>第一章</h1><h2 id="冯诺伊曼体系结构"><a href="#冯诺伊曼体系结构" class="headerlink" title="冯诺伊曼体系结构"></a>冯诺伊曼体系结构</h2><p>控制器(Control Unit)+数据通路(Datapath)=处理器(Processor)</p>
+<ul>
+<li>数据在功能部件之间传送的路径称为数据通路，路径上的部件称为数据通路部件，如ALU、通用寄存器等。</li>
+</ul>
+<p>五个组成部分：控制器、存储器、数据通路、输入、输出</p>
+<h2 id="性能计算方法"><a href="#性能计算方法" class="headerlink" title="性能计算方法"></a>性能计算方法</h2><p>CPI(Clock Per Instruction)、MIPS(Million Instructions Per Second)</p>
+<p>加速比是原时间/现时间。不是百分比</p>
+<h1 id="第二章"><a href="#第二章" class="headerlink" title="第二章"></a>第二章</h1><h2 id="MIPS指令基本语法"><a href="#MIPS指令基本语法" class="headerlink" title="MIPS指令基本语法"></a>MIPS指令基本语法</h2><p>常用指令:</p>
+<p>add $s1,$s2,$s3</p>
+<p>sw $s1,20($s2)</p>
+<p>bne 不相等跳转 beq 相等跳转</p>
+<p>slt 小于则置1</p>
+<p>mips按字节编址。字的起始地址必须是4的倍数。大端。</p>
+<p>比如读a[8]应该就要lw $s0,32($s1)</p>
+<p>sll $t1,$t1,4</p>
+<h3 id="R型"><a href="#R型" class="headerlink" title="R型"></a>R型</h3><p>用于Register</p>
+<p>op6 rs5 rt5 rd5 shamt5 funct6</p>
+<p>op:opcode 操作码</p>
+<p>rs:Source Register 第一个源</p>
+<p>rt:Temporary Register 第二个源</p>
+<p>rd:Destination Register</p>
+<p>shamt:shift amount field 位移量</p>
+<p>funct:function code 指定操作的特定变式</p>
+<h3 id="I型"><a href="#I型" class="headerlink" title="I型"></a>I型</h3><p>用于Immediate</p>
+<p>op6 rs5 rt5 immediate16</p>
+<h3 id="J型"><a href="#J型" class="headerlink" title="J型"></a>J型</h3><p>跳转</p>
+<p>前6位（操作码）是2，表示J指令，后26位是地址</p>
+<h3 id="调用过程-寄存器"><a href="#调用过程-寄存器" class="headerlink" title="调用过程 寄存器"></a>调用过程 寄存器</h3><p>$a0~$a3 参数寄存器</p>
+<p>$v0~$v1 返回值</p>
+<p>$ra 返回起始点用的地址寄存器</p>
+<p>栈指针$sp，不够用就会往栈里放</p>
+<p>$t0~$t9 临时寄存器，不必存下来</p>
+<p>$s0~$s7 保留寄存器，要存进栈里</p>
+<p>$gp 全局指针</p>
+<p>$fp 帧指针</p>
+<p>$ra 返回地址</p>
+<p>$zero 常数0</p>
+<p>另外三个是保留给汇编器和操作系统的</p>
+<h2 id="寻址模式"><a href="#寻址模式" class="headerlink" title="寻址模式"></a>寻址模式</h2><p>立即数寻址</p>
+<p>寄存器寻址</p>
+<p>基址寻址  操作数在内存中，内存中的位置在基址寄存器+常数</p>
+<p>PC相对寻址  地址是PC+指令中常数</p>
+<p>伪直接寻址  26位和PC高位相连</p>
+<h2 id="不知道归到哪里"><a href="#不知道归到哪里" class="headerlink" title="不知道归到哪里"></a>不知道归到哪里</h2><p>DLL是程序运行时候才会被加载，为了避免不需要加载整个包的时候加载整个包。</p>
+<h1 id="第三章"><a href="#第三章" class="headerlink" title="第三章"></a>第三章</h1><p>主要是这些名词代表啥意思</p>
+<p>IEEE754 </p>
+<p>1符号 8指数 23尾数</p>
+<p>偏阶：为了方便浮点数比较，指数都加上1111111</p>
+<p>子字并行：对许多字并行做同样的操作 SIMD</p>
+<p>浮点数做结合律的时候容易出问题（精度损失导致）</p>
+<h1 id="第四章"><a href="#第四章" class="headerlink" title="第四章"></a>第四章</h1><p>处理数据值的单元-组合单元（比如ALU、多路选择器）</p>
+<p>包含状态的、带有内部存储功能的-状态单元（比如寄存器、指令存储器、数据存储器）</p>
+<p>寄存器在register file(寄存器堆)中</p>
+<p>冒险hazard</p>
+<p>前推forwarding 旁路bypassing</p>
+<p>流水线寄存器：把执行到当前阶段的指令存下来（不然怎么知道接下来要干啥）。宽度会很宽，因为还要放上一步搞出来的数据、控制信号以及优化需要用到的数据</p>
+<p>异常：打断程序正常执行的突发事件</p>
+<p>中断：来自处理器外部的异常</p>
+<p>发生时在异常程序计数器EPS中保存出错指令的地址，然后跳转到某个位置交给操作系统去处理。mips同时设置了状态寄存器记录原因。</p>
+<p>另一种方法是向量中断，控制权转移到问题对应的处理位置。比如提前搞好溢出应该干什么，那就跳过去</p>
+<p>指令级并行：把某个长周期拆成小步骤。越小越有可能增加并行程度</p>
+<p>多发射：同时执行好几个同周期的指令</p>
+<p>静态发射：编译器决定哪几个一起走</p>
+<p>动态发射（超标量superscalar）：cpu运行时决定   </p>
+<p>推测：编译器预测条件分支往哪走</p>
+<p>指令延迟：执行一条指令实际花费的时间</p>
+<p><strong>需要做道延时相关的和一道流水线相关的</strong></p>
+<h1 id="第五章"><a href="#第五章" class="headerlink" title="第五章"></a>第五章</h1><h2 id="一些概念"><a href="#一些概念" class="headerlink" title="一些概念"></a>一些概念</h2><p>时间局部性temporal locality 某个数据如果被访问了，那就很有可能近期会再被访问</p>
+<p>空间局部性spatial locality 附近的</p>
+<p>存储器层次结构memory hierarchy 多存储器层次组成的结构，距离远的慢</p>
+<p>高层指离处理器近的层</p>
+<p>两级层次结构中存储信息交换的最小单位称为块block或行line</p>
+<p>命中时间hit time包括判断命中或缺失的时间。缺失代价miss penalty是将相应的块从低层存储器替换到高层中以及将信息块传给处理器的时间之和。</p>
+<h2 id="各层"><a href="#各层" class="headerlink" title="各层"></a>各层</h2><p>DRAM动态随机存取存储器。内存用的。用电容存数据，隔一段时间就要刷一次。</p>
+<p>SRAM静态随机存取存储器。cache用的。类似D触发器的存储。</p>
+<p>flash闪存。U盘、固态硬盘。</p>
+<p>磁盘。</p>
+<h3 id="DRAM"><a href="#DRAM" class="headerlink" title="DRAM"></a>DRAM</h3><p>同步DRAM-SDRAM，加了时钟信号</p>
+<p>DDR：上升下降沿都能传输信息</p>
+<h3 id="磁盘"><a href="#磁盘" class="headerlink" title="磁盘"></a>磁盘</h3><p>磁道track：一圈圈的同心圆</p>
+<p>扇区sector：每条磁道的扇区</p>
+<p>寻道seek：找到正确的磁道</p>
+<p>旋转延时rotational latency：磁头寻道之后过多久可以找到指定扇区（平均是半圈）</p>
+<p>柱面：多个盘片的同一圈磁道</p>
+<h2 id="cache"><a href="#cache" class="headerlink" title="cache"></a>cache</h2><p>cache表中</p>
+<p>标记tag 标记了这项原本放在哪</p>
+<p>有效位valid bit 标记这里是否有有效数据</p>
+<p>cache大小计算（索引、标记位数等）</p>
+<p>cache块大可以更好利用空间局部性。但是块太大的话空间局部性会降低，且块太大的话块数就会减小。缺失代价（从低层搞上来的时间）也会上升</p>
+<p>提前重启early restart：拿到想要的就开始执行，不等整个块更新完</p>
+<p>请求字优先requested word first：重新组织存储器，使被请求的字先传，然后再传其他部分。</p>
+<p>缺失时候干的事情：</p>
+<p>1 把PC的原始值送去存储器</p>
+<p>2 通知主存读一次，等主存访问完成</p>
+<p>3 写cache（取数据、写地址标记、置有效位）</p>
+<p>4 重新执行指令</p>
+<p>处理器需要阻塞</p>
+<p>写直达write through</p>
+<p>写缓冲write buffer</p>
+<p>写回write back</p>
+<p>直接映射direct mapped</p>
+<p>全相联fully associative</p>
+<p>组相联set associative</p>
+<p>标记位tag：标记在全局中的位置</p>
+<p>索引位index：属于哪个块（不用存）</p>
+<p>LRU Least Recently Used</p>
+<h2 id="虚拟存储器"><a href="#虚拟存储器" class="headerlink" title="虚拟存储器"></a>虚拟存储器</h2><p>虚拟内存</p>
+<p>块block-页page</p>
+<p>缺失miss-缺页page fault</p>
+<p>地址映射、地址转换address translation</p>
+<p>虚页号virtual page number</p>
+<p>页偏移page offset</p>
+<p>物理页号physical page number</p>
+<p>缺页可以用软件处理，因为实在是开销太大了，软件处理一下开销微乎其微（而搞cache时候显然不能这么玩）</p>
+<p>不用write through，只用write back</p>
+<p>页表page table</p>
+<p>页表寄存器page table register</p>
+<p>快表Translation-Lookaside Buffer TLB  放在处理器里</p>
+<p>3C模型</p>
+<p>强制缺失compulsory miss 冷启动缺失cold-start miss：第一次访问</p>
+<p>容量缺失capacity miss：cache容纳不了程序需要的所有块导致有内容被挤出去</p>
+<p>冲突缺失conflict miss 碰撞缺失collision miss：多个块竞争同一个组引起的</p>
+
+        </div>
+
+        
+        <section class="post-tags">
+            <div>
+                <span>Tag(s):</span>
+                <span class="tag">
+                    
+                    
+                        <a href="/tags/%E7%AC%94%E8%AE%B0/"># 笔记</a>
+                    
+                        
+                </span>
+            </div>
+            <div>
+                <a href="javascript:window.history.back();">back</a>
+                <span>· </span>
+                <a href="/">home</a>
+            </div>
+        </section>
+        <section class="post-nav">
+            
+                <a class="prev" rel="prev" href="/2022/08/24/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E5%A4%8D%E4%B9%A0%E7%AC%94%E8%AE%B0/">人工智能复习笔记</a>
+            
+            
+            <a class="next" rel="next" href="/2022/08/18/%E6%96%B0%E6%97%B6%E4%BB%A3%E6%97%A0%E4%BA%A7%E9%98%B6%E7%BA%A7%E4%B8%AD%E5%9F%B9%E5%85%BB%E5%85%B1%E4%BA%A7%E4%B8%BB%E4%B9%89%E4%BF%A1%E4%BB%B0%E7%9A%84%E5%BD%A2%E5%8A%BF%E5%88%86%E6%9E%90/">新时代无产阶级中培养共产主义信仰的形势分析</a>
+            
+        </section>
+
+
+    </article>
+</div>
+
+        </div>
+        <footer id="footer" class="footer">
+        <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <div class="copyright">
+        <span>© Helloat123 | Powered by <a href="https://hexo.io" target="_blank">Hexo</a> & <a href="https://github.com/Siricee/hexo-theme-Chic" target="_blank">Chic</a> | <span id="busuanzi_container_site_pv">
+    本站总访问量<span id="busuanzi_value_site_pv"></span>次
+</span> | <span id="busuanzi_container_site_uv">
+  本站访客数<span id="busuanzi_value_site_uv"></span>人次
+</span></span>
+    </div>
+</footer>
+
+    </div>
+</body>
+</html>
