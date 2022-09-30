@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <meta name="author" content="Helloat123">
+
+
+
+
+
+<title>GNU/Linux操作学习笔记 | Richard&#39;s Blog</title>
+
+
+
+    <link rel="icon" href="/favicon.png">
+
+
+
+
+    <!-- stylesheets list from _config.yml -->
+    
+    <link rel="stylesheet" href="/css/style.css">
+    
+
+
+
+    <!-- scripts list from _config.yml -->
+    
+    <script src="/js/script.js"></script>
+    
+    <script src="/js/tocbot.min.js"></script>
+    
+
+
+
+    
+    
+        
+    
+
+
+<meta name="generator" content="Hexo 5.2.0"></head>
+<body>
+    <div class="wrapper">
+        <header>
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-header header-logo"><a href="/">Richard&#39;s Blog</a></div>
+            <div class="menu navbar-right">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+                <input id="switch_default" type="checkbox" class="switch_default">
+                <label for="switch_default" class="toggleBtn"></label>
+            </div>
+        </div>
+    </nav>
+
+    
+    <nav class="navbar-mobile" id="nav-mobile">
+        <div class="container">
+            <div class="navbar-header">
+                <div>
+                    <a href="/">Richard&#39;s Blog</a><a id="mobile-toggle-theme">·&nbsp;Light</a>
+                </div>
+                <div class="menu-toggle" onclick="mobileBtn()">&#9776; Menu</div>
+            </div>
+            <div class="menu" id="mobile-menu">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+            </div>
+        </div>
+    </nav>
+
+</header>
+<script>
+    var mobileBtn = function f() {
+        var toggleMenu = document.getElementsByClassName("menu-toggle")[0];
+        var mobileMenu = document.getElementById("mobile-menu");
+        if(toggleMenu.classList.contains("active")){
+           toggleMenu.classList.remove("active")
+            mobileMenu.classList.remove("active")
+        }else{
+            toggleMenu.classList.add("active")
+            mobileMenu.classList.add("active")
+        }
+    }
+</script>
+        <div class="main">
+            <div class="container">
+    
+    
+
+    
+    <article class="post-wrap">
+        <header class="post-header">
+            <h1 class="post-title">GNU/Linux操作学习笔记</h1>
+            
+                <div class="post-meta">
+                    
+                        Author: <a itemprop="author" rel="author" href="/">Helloat123</a>
+                    
+
+                    
+                        <span class="post-time">
+                        Date: <a href="#">September 5, 2022&nbsp;&nbsp;10:28:38</a>
+                        </span>
+                    
+                    
+                        <span class="post-category">
+                    Category:
+                            
+                                <a href="/categories/%E7%AC%94%E8%AE%B0/">笔记</a>
+                            
+                        </span>
+                    
+                </div>
+            
+        </header>
+
+        <div class="post-content">
+            <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">&#x27;$foo&#x27;</span> <span class="string">&quot;<span class="variable">$foo</span>&quot;</span></span><br><span class="line"><span class="built_in">echo</span> <span class="variable">$&#123;foo&#125;</span>bar</span><br><span class="line"><span class="built_in">history</span> <span class="comment"># 看历史输入的命令</span></span><br><span class="line">gcc -E a.c &gt; a.i <span class="comment"># 预处理</span></span><br><span class="line">cat a.txt - b.txt <span class="comment"># -表示从标准输入拿数据</span></span><br><span class="line">python a.py | tee train.log <span class="comment"># tee是输出到文件的同时输出到屏幕</span></span><br><span class="line">ls | wc <span class="comment"># world count</span></span><br><span class="line">ls | head <span class="comment"># tail 头几条、后几条</span></span><br><span class="line">./gen_rnd.sh | sort -n | uniq </span><br><span class="line">cat data.txt | paste -sd+ | bc | factor <span class="comment"># bc</span></span><br><span class="line">cat data.txt | python -c <span class="string">&quot;import sys; print(eval(&#x27;+&#x27;.join(sys.stdin.read().split())))&quot;</span></span><br><span class="line">find <span class="comment"># 找目录下的各种文件</span></span><br><span class="line">xargs</span><br><span class="line"><span class="comment"># awk sed grep 三剑客</span></span><br><span class="line">xxd <span class="comment"># 十六进制显示文件内容，也可以反操作</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">任务管理</span><br><span class="line"><span class="comment"># Ctrol+Z</span></span><br><span class="line">./abc &amp; <span class="comment"># 后台运行</span></span><br><span class="line"><span class="built_in">fg</span> <span class="comment"># 返回后台运行的</span></span><br><span class="line"><span class="built_in">fg</span> %2 <span class="comment"># 返回第二个后台运行的</span></span><br><span class="line"><span class="built_in">bg</span> <span class="comment"># 把暂停的后台运行</span></span><br><span class="line"><span class="built_in">jobs</span> <span class="comment"># 显示当前后台的进程</span></span><br><span class="line"><span class="built_in">wait</span> <span class="comment"># 等待前面的命令全部完成</span></span><br><span class="line"><span class="built_in">kill</span> <span class="comment"># 杀掉进程</span></span><br><span class="line"><span class="built_in">suspend</span> <span class="comment"># 挂起进程</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># .sh相关</span></span><br><span class="line"><span class="comment"># $0 filename of the script</span></span><br><span class="line"><span class="comment"># $1~$9 Arguments to the script. $1 is the &#125;rst argument and so on.</span></span><br><span class="line"><span class="comment"># $# the number of the arguments</span></span><br><span class="line"><span class="comment"># $? Return error code of the previous command</span></span><br><span class="line"><span class="comment"># $@ all command line arguments</span></span><br><span class="line"><span class="comment"># $$ Process identification number (PID) for the current script</span></span><br><span class="line"><span class="keyword">if</span> []; <span class="keyword">then</span></span><br><span class="line"> <span class="comment">#xxx</span></span><br><span class="line"><span class="keyword">elif</span> []; <span class="keyword">then</span></span><br><span class="line"> <span class="comment">#xxx</span></span><br><span class="line"><span class="keyword">else</span> </span><br><span class="line"> <span class="comment">#xxx</span></span><br><span class="line"><span class="keyword">fi</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> 1 2 3 4 5; <span class="keyword">do</span></span><br><span class="line"> <span class="comment">#xxx</span></span><br><span class="line"><span class="keyword">done</span></span><br><span class="line"></span><br><span class="line">man <span class="built_in">test</span> <span class="comment"># -f -d -r -w -x -z</span></span><br><span class="line">shellcheck a.sh <span class="comment"># 指出shell里面不太规范的、可能出问题的地方</span></span><br><span class="line"></span><br><span class="line">. a.sh</span><br><span class="line"><span class="built_in">source</span> a.sh</span><br><span class="line">./a.sh <span class="comment"># chmod</span></span><br><span class="line">bash a.sh</span><br><span class="line"><span class="built_in">which</span> <span class="comment"># 找到某个命令执行的是谁</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 最小权限原则</span></span><br><span class="line">sudo bash -c <span class="string">&#x27;echo hello &gt; /etc/a.txt&#x27;</span></span><br><span class="line"></span><br><span class="line">sudo !! <span class="comment"># 获取上一条指令 在some_package包里 如果写在.sh里面要转义</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 环境变量</span></span><br><span class="line">env <span class="comment"># 命令</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">/dev/null 垃圾箱</span><br><span class="line">/dev/random /dev/urandom 随机数生成</span><br><span class="line"></span><br><span class="line">grep <span class="string">&quot;regex pattern&quot;</span> dir  </span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<p>与上课无关的部分</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">df -hl <span class="comment"># 列出磁盘使用情况和挂载位置</span></span><br><span class="line">fdisk -l <span class="comment"># 列出每块磁盘分区情况</span></span><br><span class="line"></span><br><span class="line">chown username filename <span class="comment"># 改变suo&#x27;y</span></span><br></pre></td></tr></table></figure>
+
+
+        </div>
+
+        
+        <section class="post-tags">
+            <div>
+                <span>Tag(s):</span>
+                <span class="tag">
+                    
+                    
+                        <a href="/tags/%E7%AC%94%E8%AE%B0/"># 笔记</a>
+                    
+                        
+                </span>
+            </div>
+            <div>
+                <a href="javascript:window.history.back();">back</a>
+                <span>· </span>
+                <a href="/">home</a>
+            </div>
+        </section>
+        <section class="post-nav">
+            
+            
+            <a class="next" rel="next" href="/2022/08/24/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E5%A4%8D%E4%B9%A0%E7%AC%94%E8%AE%B0/">人工智能复习笔记</a>
+            
+        </section>
+
+
+    </article>
+</div>
+
+        </div>
+        <footer id="footer" class="footer">
+        <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <div class="copyright">
+        <span>© Helloat123 | Powered by <a href="https://hexo.io" target="_blank">Hexo</a> & <a href="https://github.com/Siricee/hexo-theme-Chic" target="_blank">Chic</a> | <span id="busuanzi_container_site_pv">
+    本站总访问量<span id="busuanzi_value_site_pv"></span>次
+</span> | <span id="busuanzi_container_site_uv">
+  本站访客数<span id="busuanzi_value_site_uv"></span>人次
+</span></span>
+    </div>
+</footer>
+
+    </div>
+</body>
+</html>
