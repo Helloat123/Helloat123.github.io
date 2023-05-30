@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <meta name="author" content="Helloat123">
+
+
+
+
+
+<title>数据库复习笔记 | Richard&#39;s Blog</title>
+
+
+
+    <link rel="icon" href="/favicon.png">
+
+
+
+
+    <!-- stylesheets list from _config.yml -->
+    
+    <link rel="stylesheet" href="/css/style.css">
+    
+
+
+
+    <!-- scripts list from _config.yml -->
+    
+    <script src="/js/script.js"></script>
+    
+    <script src="/js/tocbot.min.js"></script>
+    
+
+
+
+    
+    
+        
+            <!-- MathJax配置，可通过单美元符号书写行内公式等 -->
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+    "HTML-CSS": {
+        preferredFont: "TeX",
+        availableFonts: ["STIX","TeX"],
+        linebreaks: { automatic:true },
+        EqnChunk: (MathJax.Hub.Browser.isMobile ? 10 : 50)
+    },
+    tex2jax: {
+        inlineMath: [ ["$", "$"], ["\\(","\\)"] ],
+        processEscapes: true,
+        ignoreClass: "tex2jax_ignore|dno",
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    },
+    TeX: {
+        equationNumbers: { autoNumber: "AMS" },
+        noUndefined: { attributes: { mathcolor: "red", mathbackground: "#FFEEEE", mathsize: "90%" } },
+        Macros: { href: "{}" }
+    },
+    messageStyle: "none"
+    });
+</script>
+<!-- 给MathJax元素添加has-jax class -->
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+<!-- 通过连接CDN加载MathJax的js代码 -->
+<script type="text/javascript" async
+        src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+
+
+        
+    
+
+
+<meta name="generator" content="Hexo 5.2.0"></head>
+<body>
+    <div class="wrapper">
+        <header>
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-header header-logo"><a href="/">Richard&#39;s Blog</a></div>
+            <div class="menu navbar-right">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+                <input id="switch_default" type="checkbox" class="switch_default">
+                <label for="switch_default" class="toggleBtn"></label>
+            </div>
+        </div>
+    </nav>
+
+    
+    <nav class="navbar-mobile" id="nav-mobile">
+        <div class="container">
+            <div class="navbar-header">
+                <div>
+                    <a href="/">Richard&#39;s Blog</a><a id="mobile-toggle-theme">·&nbsp;Light</a>
+                </div>
+                <div class="menu-toggle" onclick="mobileBtn()">&#9776; Menu</div>
+            </div>
+            <div class="menu" id="mobile-menu">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+            </div>
+        </div>
+    </nav>
+
+</header>
+<script>
+    var mobileBtn = function f() {
+        var toggleMenu = document.getElementsByClassName("menu-toggle")[0];
+        var mobileMenu = document.getElementById("mobile-menu");
+        if(toggleMenu.classList.contains("active")){
+           toggleMenu.classList.remove("active")
+            mobileMenu.classList.remove("active")
+        }else{
+            toggleMenu.classList.add("active")
+            mobileMenu.classList.add("active")
+        }
+    }
+</script>
+        <div class="main">
+            <div class="container">
+    
+    
+        <div class="post-toc">
+    <div class="tocbot-list">
+    </div>
+    <div class="tocbot-list-menu">
+        <a class="tocbot-toc-expand" onclick="expand_toc()">Expand all</a>
+        <a onclick="go_top()">Back to top</a>
+        <a onclick="go_bottom()">Go to bottom</a>
+    </div>
+</div>
+
+<script>
+    document.ready(
+        function () {
+            tocbot.init({
+                tocSelector: '.tocbot-list',
+                contentSelector: '.post-content',
+                headingSelector: 'h1, h2, h3, h4, h5',
+                collapseDepth: 1,
+                orderedList: false,
+                scrollSmooth: true,
+            })
+        }
+    )
+
+    function expand_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 6,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "collapse_toc()");
+        b.innerHTML = "Collapse all"
+    }
+
+    function collapse_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 1,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "expand_toc()");
+        b.innerHTML = "Expand all"
+    }
+
+    function go_top() {
+        window.scrollTo(0, 0);
+    }
+
+    function go_bottom() {
+        window.scrollTo(0, document.body.scrollHeight);
+    }
+
+</script>
+    
+
+    
+    <article class="post-wrap">
+        <header class="post-header">
+            <h1 class="post-title">数据库复习笔记</h1>
+            
+                <div class="post-meta">
+                    
+                        Author: <a itemprop="author" rel="author" href="/">Helloat123</a>
+                    
+
+                    
+                        <span class="post-time">
+                        Date: <a href="#">November 5, 2022&nbsp;&nbsp;12:16:24</a>
+                        </span>
+                    
+                    
+                        <span class="post-category">
+                    Category:
+                            
+                                <a href="/categories/%E7%AC%94%E8%AE%B0/">笔记</a>
+                            
+                        </span>
+                    
+                </div>
+            
+        </header>
+
+        <div class="post-content">
+            <h1 id="Ch-1"><a href="#Ch-1" class="headerlink" title="Ch 1"></a>Ch 1</h1><ul>
+<li><p>什么是数据库系统？</p>
+</li>
+<li><p>什么是数据模型、数据抽象？</p>
+</li>
+</ul>
+<p>模型：</p>
+<p>关系模型                        mysql看到的就是关系模式图，使用广泛</p>
+<p>实体-联系模型                E-R图的就是E-R模型，设计时候用得多</p>
+<p>半结构化数据模型        特性：同一个数据项可以有多种类型数据。JSON、XML相关，期中估计不考</p>
+<p>基于对象的数据模型    面向对象相关，期中估计不考</p>
+<p>抽象：</p>
+<p>物理层：在电脑上怎么存的</p>
+<p>逻辑层：平常操作mysql就是这层</p>
+<p>视图层：用户只需要部分数据，所以搞个视图（比如触发器啥的肯定不在这层）</p>
+<ul>
+<li>什么是DML、DDL</li>
+</ul>
+<p>DDL：Data-Definition Language</p>
+<p>例如create</p>
+<p>DML：Data-Manipulation Language</p>
+<p>例如select</p>
+<ul>
+<li>数据库设计的过程</li>
+</ul>
+<p>刻画需求</p>
+<p>概念设计</p>
+<p>逻辑设计</p>
+<p>物理设计</p>
+<ul>
+<li>存储管理器与查询管理器部件包括哪些</li>
+</ul>
+<p>存储管理器：</p>
+<p>权限及完整性管理器</p>
+<p>事务管理器</p>
+<p>文件管理器</p>
+<p>缓冲区管理器</p>
+<p>数据文件</p>
+<p>数据字典</p>
+<p>索引</p>
+<p>查询处理器：</p>
+<p>DDL解释器</p>
+<p>DML编译器</p>
+<p>查询执行引擎    用于把DML编译器编出来的东西执行</p>
+<ul>
+<li>事务是什么？干什么用？ACID是什么？</li>
+</ul>
+<p>完成单一逻辑功能的操作集合，要么都发生要么都不发生。</p>
+<p>Atomicity/Consistency/Isolation/Durability</p>
+<p>其中隔离性：事务之间互相察觉不到对方正在运行（避免两边同时修改读取造成问题）</p>
+<ul>
+<li>数据库体系结构有哪些</li>
+</ul>
+<p>集中式 – 都在本地</p>
+<p>C/S –  两层（前端、后台）、三层（前端、业务逻辑、后台）</p>
+<p>并行</p>
+<p>分布式</p>
+<h1 id="Ch2-Ch6-关系"><a href="#Ch2-Ch6-关系" class="headerlink" title="Ch2+Ch6 关系"></a>Ch2+Ch6 关系</h1><h2 id="关系模式、关系实例"><a href="#关系模式、关系实例" class="headerlink" title="关系模式、关系实例"></a>关系模式、关系实例</h2><p>关系模式-&gt;设计表</p>
+<p>关系实例-&gt;打开表</p>
+<h2 id="超码、候选码、主码、外码"><a href="#超码、候选码、主码、外码" class="headerlink" title="超码、候选码、主码、外码"></a>超码、候选码、主码、外码</h2><p>超码：候选码的超集</p>
+<p>候选码：极小的超码</p>
+<p>（上面是循环定义，看懂就行）</p>
+<p>主码：谁都懂</p>
+<p>外码：r1中这列取值必须是r2中某列取值</p>
+<h2 id="参照完整性约束、外码约束"><a href="#参照完整性约束、外码约束" class="headerlink" title="参照完整性约束、外码约束"></a>参照完整性约束、外码约束</h2><p>参照完整性约束又称作引用完整性约束？外码约束是它的一种。但别的引用完整性约束经常不被支持</p>
+<h2 id="关系查询语言"><a href="#关系查询语言" class="headerlink" title="关系查询语言"></a>关系查询语言</h2><p>命令式 <strong>关注程序执行的步骤，过程清晰，控制能力强</strong></p>
+<p>函数式 – 关系代数 <strong>可以将程序逻辑封装成函数，相较于声明式可以更精确地控制程序执行步骤，相对于声明式又更为清晰简洁</strong></p>
+<p>声明式 只需要描述所需的数据，不需要给具体操作 <strong>注重结果而不关心程序执行过程，简洁易用</strong></p>
+<h2 id="关系代数"><a href="#关系代数" class="headerlink" title="关系代数"></a>关系代数</h2><p>$$<br>\sigma 选择(where)\<br>\Pi 投影(select后面跟的)\<br>\times 笛卡尔积(,)\<br>\rho_x(E)更名(as)\<br>并、差\\<br>上面的是基本关系运算\<br>\bowtie_{\theta}内连接(inner<del>join</del>on)\<br>\bowtie自然内连接(natural<del>inner</del>join)\<br>\larr赋值\<br>交<br>$$</p>
+<h1 id="Ch3-5-SQL"><a href="#Ch3-5-SQL" class="headerlink" title="Ch3-5 SQL"></a>Ch3-5 SQL</h1><h2 id="SQL的组成"><a href="#SQL的组成" class="headerlink" title="SQL的组成"></a>SQL的组成</h2><p>包括了几个部分</p>
+<ol>
+<li>DDL</li>
+<li>DML</li>
+<li>完整性</li>
+<li>视图定义</li>
+<li>嵌入式SQL和动态SQL</li>
+<li>授权</li>
+</ol>
+<h2 id="SQL的各种语句"><a href="#SQL的各种语句" class="headerlink" title="SQL的各种语句"></a>SQL的各种语句</h2><p>表格定义</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">create</span> <span class="keyword">table</span> department</span><br><span class="line">(</span><br><span class="line">    dept_name <span class="built_in">varchar</span>(<span class="number">20</span>),</span><br><span class="line">    aaa <span class="built_in">int</span>,</span><br><span class="line">    <span class="keyword">foreign</span> <span class="keyword">key</span> (aaa) <span class="keyword">references</span> XXX,</span><br><span class="line">    primary <span class="keyword">key</span>(dept_name)</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+
+<p>改变表的设计</p>
+<p>alter table xxx drop xx;</p>
+<p>alter table xxx add xx;</p>
+<p>alter table xxx modify xx int unique not null;</p>
+<p>alter table xxx add constraint CCC foreign key(xx) references yy;</p>
+<p>删除表drop xxx;</p>
+<p>插入insert into xxx(x,y,z) values(xx,yy,zz);insert into select * from yyy;</p>
+<p>更新update xxx set x=xx where y=yy;</p>
+<p>视图create view XXX as select x from xxx;</p>
+<p>断言create assertion AAA check(blabla)</p>
+<p>事务-begin end</p>
+<h2 id="完整性约束"><a href="#完整性约束" class="headerlink" title="完整性约束"></a>完整性约束</h2><p>integrity constraint</p>
+<p>create table blablablabla <strong>check(ass)</strong></p>
+<p>级联删除 on delete cascade</p>
+<h2 id="自定义类型"><a href="#自定义类型" class="headerlink" title="自定义类型"></a>自定义类型</h2><p>create type Dollars as numeric(12,2) final;</p>
+<p>//int x;</p>
+<p>cast(x to numeric(12,2))类型转换</p>
+<h2 id="模式"><a href="#模式" class="headerlink" title="模式"></a>模式</h2><p>create schema</p>
+<h2 id="授权"><a href="#授权" class="headerlink" title="授权"></a>授权</h2><p>grant select on department to Richard <strong>with grant option</strong>;</p>
+<p>grant update(xxx) on department to Richard;</p>
+<p>revoke select on department from Richard <strong>cascade/restrict</strong>;</p>
+<p>create role instructor;</p>
+
+        </div>
+
+        
+        <section class="post-tags">
+            <div>
+                <span>Tag(s):</span>
+                <span class="tag">
+                    
+                    
+                        <a href="/tags/%E7%AC%94%E8%AE%B0/"># 笔记</a>
+                    
+                        
+                </span>
+            </div>
+            <div>
+                <a href="javascript:window.history.back();">back</a>
+                <span>· </span>
+                <a href="/">home</a>
+            </div>
+        </section>
+        <section class="post-nav">
+            
+                <a class="prev" rel="prev" href="/2022/11/17/Quantum-Computing/">Quantum Computing</a>
+            
+            
+            <a class="next" rel="next" href="/2022/09/05/Linux%E6%93%8D%E4%BD%9C%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">GNU/Linux操作学习笔记</a>
+            
+        </section>
+
+
+    </article>
+</div>
+
+        </div>
+        <footer id="footer" class="footer">
+        <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <div class="copyright">
+        <span>© Helloat123 | Powered by <a href="https://hexo.io" target="_blank">Hexo</a> & <a href="https://github.com/Siricee/hexo-theme-Chic" target="_blank">Chic</a> | <span id="busuanzi_container_site_pv">
+    本站总访问量<span id="busuanzi_value_site_pv"></span>次
+</span> | <span id="busuanzi_container_site_uv">
+  本站访客数<span id="busuanzi_value_site_uv"></span>人次
+</span></span>
+    </div>
+</footer>
+
+    </div>
+</body>
+</html>
