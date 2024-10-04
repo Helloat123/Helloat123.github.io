@@ -40,6 +40,45 @@
     
     
         
+            <!-- MathJax配置，可通过单美元符号书写行内公式等 -->
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+    "HTML-CSS": {
+        preferredFont: "TeX",
+        availableFonts: ["STIX","TeX"],
+        linebreaks: { automatic:true },
+        EqnChunk: (MathJax.Hub.Browser.isMobile ? 10 : 50)
+    },
+    tex2jax: {
+        inlineMath: [ ["$", "$"], ["\\(","\\)"] ],
+        processEscapes: true,
+        ignoreClass: "tex2jax_ignore|dno",
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    },
+    TeX: {
+        equationNumbers: { autoNumber: "AMS" },
+        noUndefined: { attributes: { mathcolor: "red", mathbackground: "#FFEEEE", mathsize: "90%" } },
+        Macros: { href: "{}" }
+    },
+    messageStyle: "none"
+    });
+</script>
+<!-- 给MathJax元素添加has-jax class -->
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+<!-- 通过连接CDN加载MathJax的js代码 -->
+<script type="text/javascript" async
+        src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+
+
+        
     
 
 
@@ -198,7 +237,8 @@
         </header>
 
         <div class="post-content">
-            <h1 id="复数"><a href="#复数" class="headerlink" title="复数"></a>复数</h1><p>似乎都是会的东西</p>
+            <p>由于最终没有走量子计算方向，这篇只写了一点点就鸽了。</p>
+<h1 id="复数"><a href="#复数" class="headerlink" title="复数"></a>复数</h1><p>似乎都是会的东西</p>
 <p>核心就是欧拉公式<br>$$<br>e^{i\theta}=\cos\theta+i\sin\theta<br>$$</p>
 <h1 id="复向量"><a href="#复向量" class="headerlink" title="复向量"></a>复向量</h1><p>先看了看前两部分</p>
 <p>没搞懂为什么它说复向量空间都是实向量空间</p>
