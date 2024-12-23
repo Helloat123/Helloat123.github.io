@@ -268,7 +268,7 @@
 <h3 id="最小生成树"><a href="#最小生成树" class="headerlink" title="最小生成树"></a>最小生成树</h3><p>证明方向：反证法，考虑若删掉方案中一条边的话，生成树不可能更优。</p>
 <h1 id="9-线性规划"><a href="#9-线性规划" class="headerlink" title="9 线性规划"></a>9 线性规划</h1><p>$$<br>设z是需要最大化的答案，C是系数，X是变量的取值，b是常数\\<br>max~z=CX\\<br>AX=b\\<br>X\ge 0<br>$$</p>
 <p>在编程的时候，采用“单纯形表”的方式存储</p>
-<p>以下面的式子为例<br>$$<br>\max x_1+14x_2+6x_3\\<br>s.t\cases{<br>    x_1+x_2+x_3+x_4=4\\<br>    x_1+x_5=2\\<br>    x_3+x_6=3\\<br>    3x_2+x_3+x_7=6\\<br>    x_1,x_2,x_3,x_4,x_5,x_6,x_7\ge 0<br>}<br>$$</p>
+<p>以下面的式子为例<br>$$<br>\text{Max}\quad x_1+14x_2+6x_3\\<br>s.t\cases{<br>    x_1+x_2+x_3+x_4=4\\<br>    x_1+x_5=2\\<br>    x_3+x_6=3\\<br>    3x_2+x_3+x_7=6\\<br>    x_1,x_2,x_3,x_4,x_5,x_6,x_7\ge 0<br>}<br>$$</p>
 <table>
 <thead>
 <tr>

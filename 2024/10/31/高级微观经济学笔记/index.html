@@ -146,6 +146,68 @@
             <div class="container">
     
     
+        <div class="post-toc">
+    <div class="tocbot-list">
+    </div>
+    <div class="tocbot-list-menu">
+        <a class="tocbot-toc-expand" onclick="expand_toc()">Expand all</a>
+        <a onclick="go_top()">Back to top</a>
+        <a onclick="go_bottom()">Go to bottom</a>
+    </div>
+</div>
+
+<script>
+    document.ready(
+        function () {
+            tocbot.init({
+                tocSelector: '.tocbot-list',
+                contentSelector: '.post-content',
+                headingSelector: 'h1, h2, h3, h4, h5',
+                collapseDepth: 1,
+                orderedList: false,
+                scrollSmooth: true,
+            })
+        }
+    )
+
+    function expand_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 6,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "collapse_toc()");
+        b.innerHTML = "Collapse all"
+    }
+
+    function collapse_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 1,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "expand_toc()");
+        b.innerHTML = "Expand all"
+    }
+
+    function go_top() {
+        window.scrollTo(0, 0);
+    }
+
+    function go_bottom() {
+        window.scrollTo(0, document.body.scrollHeight);
+    }
+
+</script>
+    
 
     
     <article class="post-wrap">
@@ -169,14 +231,20 @@
 
         <div class="post-content">
             <p>符号表示根据教材Hugh Gravelle的《Microeconomics》。这里写的都不是课本的严格定义，而是方便理解和复习的口头表达。</p>
-<p>$x$ ：消费束。$u$ ：效用。</p>
+<h1 id="消费"><a href="#消费" class="headerlink" title="消费"></a>消费</h1><p>$x$ ：消费束。$u$ ：效用。</p>
 <p>效用函数：$u(x)$ ，如果买 $x$ 这些东西的话所得的效用。</p>
-<p>边际效用：$u_i$ 表示 $\frac{\partial u}{\part x_i}$ ，多购买一点 $x_i$ 会提升多少效用。</p>
+<p>边际效用：$u_i$ 表示 $\frac{\partial u}{\partial x_i}$ ，多购买一点 $x_i$ 会提升多少效用。</p>
 <p>边际替代率：$MRS_{ij}$ ，物品 $i$ 对物品 $j$ 的替代率（达到同样的 $u$，多一点 $x_i$ 要少多少 $x_j$），一般取 $i&gt;j$。</p>
 <p>例如物品2对物品1的替代率为，<br>$$<br>MRS_{21}=-\frac{dx_2}{dx_1} \bigg|<em>{u不变}<br>$$<br>由效用函数推导可以得到，<br>$$<br>MRS</em>{ij}=\frac{u_j}{u_i}<br>$$<br>普通需求函数（马歇尔需求函数）：$D_i(p,M)$ ，已知价格和总收入，求消费束</p>
 <p>补偿需求函数（希克斯需求函数）：$H_i(p,u)$ ，已知价格，给定效用，求消费束</p>
 <p>支出函数：$m(p,u)$ ，已知价格，给定效用，求最小支出</p>
 <p>间接效用函数：$u^*(p,M)$ ，已知价格和总收入，求效用最大值</p>
+<h1 id="生产"><a href="#生产" class="headerlink" title="生产"></a>生产</h1><p>生产函数 $y=f(z)$</p>
+<p>边际产出 $MP_i=\frac{\partial f}{\partial z_i}=f_i(z)$</p>
+<p>生产力假设：至少有一种投入的边际产出为正</p>
+<p>等产量曲线</p>
+<p>边际技术替代率（投入1对投入2的）<br>$$<br>MRTS_{21}=-\frac{dz_2}{dz_1} \bigg|_{dy=0}=\frac {f_1(z)}{f_2(z)}=\frac{MP_1}{MP_2}<br>$$<br>脊线：某种投入的边际产出为0</p>
+<p>替代弹性：<br>$$<br>\sigma=\frac{z_2/z_1的变化百分率}{MRTS_{21}的变化百分率}=\frac{d(z_2/z_1)}{d(f_1/f_2)}\cdot\frac{(f_1/f_2)}{(z_2/z_1)}<br>$$</p>
 
         </div>
 

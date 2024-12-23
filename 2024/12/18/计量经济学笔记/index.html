@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <meta name="author" content="Helloat123">
+
+
+
+
+
+<title>计量经济学笔记 | Richard&#39;s Blog</title>
+
+
+
+    <link rel="icon" href="/favicon.png">
+
+
+
+
+    <!-- stylesheets list from _config.yml -->
+    
+    <link rel="stylesheet" href="/css/style.css">
+    
+
+
+
+    <!-- scripts list from _config.yml -->
+    
+    <script src="/js/script.js"></script>
+    
+    <script src="/js/tocbot.min.js"></script>
+    
+
+
+
+    
+    
+        
+            <!-- MathJax配置，可通过单美元符号书写行内公式等 -->
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+    "HTML-CSS": {
+        preferredFont: "TeX",
+        availableFonts: ["STIX","TeX"],
+        linebreaks: { automatic:true },
+        EqnChunk: (MathJax.Hub.Browser.isMobile ? 10 : 50)
+    },
+    tex2jax: {
+        inlineMath: [ ["$", "$"], ["\\(","\\)"] ],
+        processEscapes: true,
+        ignoreClass: "tex2jax_ignore|dno",
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    },
+    TeX: {
+        equationNumbers: { autoNumber: "AMS" },
+        noUndefined: { attributes: { mathcolor: "red", mathbackground: "#FFEEEE", mathsize: "90%" } },
+        Macros: { href: "{}" }
+    },
+    messageStyle: "none"
+    });
+</script>
+<!-- 给MathJax元素添加has-jax class -->
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+<!-- 通过连接CDN加载MathJax的js代码 -->
+<script type="text/javascript" async
+        src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+
+
+        
+    
+
+
+<meta name="generator" content="Hexo 5.2.0"></head>
+<body>
+    <div class="wrapper">
+        <header>
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-header header-logo"><a href="/">Richard&#39;s Blog</a></div>
+            <div class="menu navbar-right">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+                <input id="switch_default" type="checkbox" class="switch_default">
+                <label for="switch_default" class="toggleBtn"></label>
+            </div>
+        </div>
+    </nav>
+
+    
+    <nav class="navbar-mobile" id="nav-mobile">
+        <div class="container">
+            <div class="navbar-header">
+                <div>
+                    <a href="/">Richard&#39;s Blog</a><a id="mobile-toggle-theme">·&nbsp;Light</a>
+                </div>
+                <div class="menu-toggle" onclick="mobileBtn()">&#9776; Menu</div>
+            </div>
+            <div class="menu" id="mobile-menu">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+            </div>
+        </div>
+    </nav>
+
+</header>
+<script>
+    var mobileBtn = function f() {
+        var toggleMenu = document.getElementsByClassName("menu-toggle")[0];
+        var mobileMenu = document.getElementById("mobile-menu");
+        if(toggleMenu.classList.contains("active")){
+           toggleMenu.classList.remove("active")
+            mobileMenu.classList.remove("active")
+        }else{
+            toggleMenu.classList.add("active")
+            mobileMenu.classList.add("active")
+        }
+    }
+</script>
+        <div class="main">
+            <div class="container">
+    
+    
+        <div class="post-toc">
+    <div class="tocbot-list">
+    </div>
+    <div class="tocbot-list-menu">
+        <a class="tocbot-toc-expand" onclick="expand_toc()">Expand all</a>
+        <a onclick="go_top()">Back to top</a>
+        <a onclick="go_bottom()">Go to bottom</a>
+    </div>
+</div>
+
+<script>
+    document.ready(
+        function () {
+            tocbot.init({
+                tocSelector: '.tocbot-list',
+                contentSelector: '.post-content',
+                headingSelector: 'h1, h2, h3, h4, h5',
+                collapseDepth: 1,
+                orderedList: false,
+                scrollSmooth: true,
+            })
+        }
+    )
+
+    function expand_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 6,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "collapse_toc()");
+        b.innerHTML = "Collapse all"
+    }
+
+    function collapse_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 1,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "expand_toc()");
+        b.innerHTML = "Expand all"
+    }
+
+    function go_top() {
+        window.scrollTo(0, 0);
+    }
+
+    function go_bottom() {
+        window.scrollTo(0, document.body.scrollHeight);
+    }
+
+</script>
+    
+
+    
+    <article class="post-wrap">
+        <header class="post-header">
+            <h1 class="post-title">计量经济学笔记</h1>
+            
+                <div class="post-meta">
+                    
+                        Author: <a itemprop="author" rel="author" href="/">Helloat123</a>
+                    
+
+                    
+                        <span class="post-time">
+                        Date: <a href="#">December 18, 2024&nbsp;&nbsp;5:20:19</a>
+                        </span>
+                    
+                    
+                </div>
+            
+        </header>
+
+        <div class="post-content">
+            <p>Attendence只计最后一节课的情况，10%；</p>
+<p>Homework有4次，30%；</p>
+<p>开卷考，60%。</p>
+<p>Homework都给99分，因此能拿29.7分；Attendence白送10分：则保底39.7分，欲达到总分60则开卷考60分中需要拿20.3分，换算百分制即为34分。由于不计GPA，34分即可。</p>
+<p>重在了解计量经济学是什么、了解一些OLS的知识以为多元统计分析做准备（毕竟不小心选到下学期了）</p>
+<h1 id="OLS-Estimation"><a href="#OLS-Estimation" class="headerlink" title="OLS Estimation"></a>OLS Estimation</h1><h3 id="MLR-1-Linear-in-Parameters"><a href="#MLR-1-Linear-in-Parameters" class="headerlink" title="MLR.1 (Linear in Parameters)"></a>MLR.1 (Linear in Parameters)</h3><p>我们假设实际的函数可以写作<br>$$<br>y=\beta_0+\beta_1x_1+\beta_2x_2+\dots+\beta_kx_k+u<br>$$</p>
+<h3 id="MLR-2-Random-Sampling"><a href="#MLR-2-Random-Sampling" class="headerlink" title="MLR.2 (Random Sampling)"></a>MLR.2 (Random Sampling)</h3><p>我们手头有 $n$ 个符合上面函数的随机样本</p>
+<h3 id="MLR-3-No-Perfect-Collinearity"><a href="#MLR-3-No-Perfect-Collinearity" class="headerlink" title="MLR.3 (No Perfect Collinearity)"></a>MLR.3 (No Perfect Collinearity)</h3><p>在样本中和实际值域中，没有任何一个独立变量是常数。变量之间线性无关。</p>
+<h3 id="MLR-4-Zero-Conditional-Mean"><a href="#MLR-4-Zero-Conditional-Mean" class="headerlink" title="MLR.4 (Zero Conditional Mean)"></a>MLR.4 (Zero Conditional Mean)</h3><p>对于任意给定的独立变量，误差 $u$ 的期望是 $0$。</p>
+<h3 id="MLR-5-Homoskedasticity"><a href="#MLR-5-Homoskedasticity" class="headerlink" title="MLR.5 (Homoskedasticity)"></a>MLR.5 (Homoskedasticity)</h3><p>不论变量取什么，$u$ 的方差相同。<br>$$<br>\mathrm{Var}(u|X)=\sigma^2I<br>$$</p>
+<h3 id="Gauss-Markov-assumptions"><a href="#Gauss-Markov-assumptions" class="headerlink" title="Gauss-Markov assumptions"></a>Gauss-Markov assumptions</h3><p>MLR.1到MLR.5即Gauss-Markov assumptions。</p>
+<h2 id="SS"><a href="#SS" class="headerlink" title="SS"></a>SS</h2><p>SST, Total sum of squares（方差）<br>$$<br>SST=\sum_{i=1}^n(y_i-\bar y)^2<br>$$<br>SSR, Residual sum of squares（残差平方和）<br>$$<br>SSR=\sum_{i=1}^n\hat u_i^2=\sum_{i=1}^n(y_i-\hat y_i)^2<br>$$<br>SSE, Explained sum of squares （解释平方和）<br>$$<br>SSE=\sum_{i=1}^n(\hat y_i-\bar y)^2<br>$$</p>
+<h2 id="R-squared"><a href="#R-squared" class="headerlink" title="R-squared"></a>R-squared</h2><p>评价模型好坏<br>$$<br>R^2=\frac{SSE}{SST}=\frac{SST-SSR}{SST}=1-\frac{SSR}{SST}<br>$$<br>取 $0$ 时代表模型和实际没联系，取 $1$ 时代表完全契合。</p>
+<p>当OLS增加更多变量时，$R^2$ 不会减小。因此我们有 Adjusted-$R^2$：<br>$$<br>\bar R^2=1-\frac{SSR/(n-k-1)}{SST/(n-1)}=1-\frac{n-1}{n-k-1}(1-R^2)<br>$$<br>其中要减去 $k$ 个自由度。</p>
+<h2 id="OLS"><a href="#OLS" class="headerlink" title="OLS"></a>OLS</h2><p>$$<br>y_i=\beta_0+\beta_1x_{1i}+\beta_2x_{2i}+\dots+\beta_kx_{ki}+u_i,i=1,2,\dots,n<br>$$</p>
+<p>表示成矩阵形式，<br>$$<br>Y_{n\times1}=X_{n\times(k+1)}\beta_{(k+1)\times1}+u_{n\times1}<br>$$<br>OLS就是求使得残差平方和SSR最小的 $\beta$ 值，也就是<br>$$<br>\min_{\hat\beta_0,\hat\beta_1,\dots,\hat\beta_k}\sum_{i=1}^n(y_i-\hat y_i)^2<br>$$<br>矩阵形式表示就是<br>$$<br>\min_{\hat\beta}SSR(\hat\beta)<br>$$<br>其中<br>$$<br>SSR(\hat\beta)=(Y-X\hat\beta)’(Y-X\hat\beta)<br>$$<br>要使其取最小，则导数为 $0$，即<br>$$<br>-2X’Y+2X’X\hat\beta=0<br>$$<br>假设 $X’X$ 可逆，则<br>$$<br>\hat\beta=(X’X)^{-1}X’Y<br>$$<br>又要二阶导为正，也就是要满足某个式子 吧？</p>
+<h2 id="估计值的期望和方差"><a href="#估计值的期望和方差" class="headerlink" title="估计值的期望和方差"></a>估计值的期望和方差</h2><h3 id="期望"><a href="#期望" class="headerlink" title="期望"></a>期望</h3><p>从上面式子推导可得<br>$$<br>X’(Y-X\hat\beta)=0\<br>即X’\hat u=0<br>$$<br>于是可以证明 $\hat\beta$ 的无偏性（unbiasedness）<br>$$<br>\begin{align*}<br>E(\hat\beta)&amp;=E((X’X)^{-1}X’Y)\<br>&amp;=E(\beta+(X’X)^{-1}X’u)\<br>&amp;=\beta+E((X’X)^{-1}X’E(u|X))\<br>&amp;=\beta\quad(MLR.4)<br>\end{align*}<br>$$</p>
+<h3 id="方差"><a href="#方差" class="headerlink" title="方差"></a>方差</h3><p>可以推导出<br>$$<br>\begin{align*}<br>\mathrm{Var}(\hat\beta|X)&amp;=E[(\hat\beta-\beta)(\hat\beta-\beta)’|X]\<br>&amp;=E[(X’X)^{-1}X’uu’X(X’X)^{-1}|X]\<br>&amp;=(X’X)^{-1}X’E(uu’|X)X(X’X)^{-1}\<br>&amp;=\sigma^2(X’X)^{-1}<br>\end{align*}<br>$$<br>其中，第 $j$ 个估计值的方差是<br>$$<br>\mathrm{Var}(\hat\beta_j|x)=\frac{\sigma^2}{SST_j(1-R_j^2)}<br>$$<br>其中<br>$$<br>SST_j=\sum_{i=1}^n(x_{ij}-\bar {x_j})^2<br>$$<br>且 $R_j^2$  是去掉 $x_j$ 后模型的 $R^2$。</p>
+<p>可以发现，$\sigma^2$ 越大则 $\mathrm{Var}(\hat\beta_j)$ 越大，$x_j$ 的方差越大则 $\mathrm{Var}(\hat\beta_j)$ 越小，与别的变量越线性相关（$R_j$ 越大），则 $\mathrm{Var}(\hat\beta_j)$ 越大。</p>
+<h3 id="Multicollinearity"><a href="#Multicollinearity" class="headerlink" title="Multicollinearity"></a>Multicollinearity</h3><p>多个变量相互correlation高的情况被称为multicollinearity多重共线性<br>$$<br>VIF_j=\frac1{1-R_j^2}<br>$$<br>越小就multicollinearity程度越低。&gt;10就很严重</p>
+<h2 id="误差值的方差"><a href="#误差值的方差" class="headerlink" title="误差值的方差"></a>误差值的方差</h2><p>$$<br>\hat\sigma^2=\frac{\sum_{i=1}^n\hat u_i^2}{n-k-1}<br>$$</p>
+<p>期望是<br>$$<br>\begin{align*}<br>\hat u&amp;=Y-X\hat\beta\<br>&amp;=Y-X\beta+X(\beta-\hat\beta)\<br>&amp;=u-X(X’X)^{-1}X’u\<br>&amp;=(I-X(X’X)^-1X’)u<br>\end{align*}<br>$$<br>设 $I-X(X’X)^-1X’$ 为 $M$，则 $M$ 对称且幂等。则（这里用到了一些线性代数的trick，而且相对复杂，估计不会考这么细）<br>$$<br>\begin{align*}<br>E(\hat\sigma^2|X)&amp;=E(\frac{\hat u’\hat u}{n-k-1}|X)\<br>&amp;=\frac 1{n-k-1}E(u’Mu|X)\<br>&amp;=\frac1{n-k-1}E[\mathrm{tr}(u’Mu|X)]\<br>&amp;=\frac1{n-k-1}\mathrm{tr}[E(u’u|X)M]\<br>&amp;=\sigma^2<br>\end{align*}<br>$$</p>
+<h2 id="Gauss-Markov-Theorem"><a href="#Gauss-Markov-Theorem" class="headerlink" title="Gauss-Markov Theorem"></a>Gauss-Markov Theorem</h2><p>$\hat\beta$ 是最好的线性无偏估计值（<strong>B</strong>est <strong>L</strong>inear <strong>U</strong>nbiased <strong>E</strong>stimators），方差在线性估计值中最小。</p>
+<h1 id="OLS-Inference"><a href="#OLS-Inference" class="headerlink" title="OLS Inference"></a>OLS Inference</h1><h2 id="MLR-6-Normality"><a href="#MLR-6-Normality" class="headerlink" title="MLR.6 (Normality)"></a>MLR.6 (Normality)</h2><p>$$<br>u\sim N(0,\sigma^2)<br>$$</p>
+<p>MLR.1~MLR.6统称Classical Linear Model assumptions。OLS的估计值在此情况下在所有可能的估计值中方差最小。</p>
+<p>容易推导得<br>$$<br>y\sim N(\beta_0+\beta_1x_1+\beta_2x_2+\dots+\beta_kx_k,\sigma^2)<br>$$<br>对于估计值，容易由 $\hat\beta_j$ 的公式推得<br>$$<br>\hat\beta_j\sim N[\beta_j,\mathrm{Var}(\hat\beta_j)]<br>$$</p>
+<h2 id="t检验"><a href="#t检验" class="headerlink" title="t检验"></a>t检验</h2><p>知识：正态分布的平方是卡方分布；正态分布除以卡方分布（适当标准化后）服从 t 分布<br>$$<br>\frac{(\hat\beta_j-\beta_j)/sd(\hat\beta_j)}{se(\hat\beta_j)/sd(\hat\beta_j)}\sim\frac{N(0,1)}{\sqrt{\chi^2_{n-k-1}/(n-k-1)}}\<br>\frac{\hat\beta_j-\beta_j}{se(\hat\beta_j)}\sim t_{n-k-1}<br>$$<br>对某个估计值的假设检验：</p>
+<p>Null hypothesis：$H_0:\beta_j=0$ （备择假设 $H_1$ 常用 $\beta_j&gt;0$ 这样的one sided或者 $\beta_j\not=0$ 这样的two sided）</p>
+<p>则<br>$$<br>t_{\hat\beta_j}=\frac{(\hat\beta_j-0)}{se(\hat\beta_j)}<br>$$<br>显著性水平是 $H_0$ 为真的概率。</p>
+<p>当df（自由度）=n-k-1很大时候，t分布接近正态。</p>
+<h3 id="p-value"><a href="#p-value" class="headerlink" title="p-value"></a>p-value</h3><p>如果 $H_0$ 是真的，观察到当前数据（或更极端的结果）的可能性有多大？</p>
+<p>当且仅当p-value比显著性水平小的时候零假设被拒绝</p>
+<h3 id="置信区间"><a href="#置信区间" class="headerlink" title="置信区间"></a>置信区间</h3><p>$$<br>a_j\not\in interval\Rightarrow \text{reject}~ H_0:\beta_j=a_j\text{ in favor of } H_1:\beta_j\not=a_j<br>$$</p>
+<h3 id="线性组合的参数"><a href="#线性组合的参数" class="headerlink" title="线性组合的参数"></a>线性组合的参数</h3><p>如果我们要检验 $H_0:\beta_1=\beta_2$，$H_1:\beta_1&lt;\beta_2$，那么<br>$$<br>t=\frac{\hat\beta_1-\hat\beta_2}{se(\hat\beta_1-\hat\beta_2)}\<br>=\frac{\hat\beta_1-\hat\beta_2}{\sqrt{[se(\hat\beta_1)]^2+[se(\hat\beta_2)]^2-2s_{12}}}<br>$$<br>其中 $s_{12}$ 是 $Cov(\hat\beta_1,\hat\beta_2)$ 的估计值，用软件算。</p>
+<h2 id="F检验"><a href="#F检验" class="headerlink" title="F检验"></a>F检验</h2><p>用于多个变量的显著性检验。例如下面是overall significance test：<br>$$<br>H_0:\beta_1,\beta_2,\dots,\beta_k=0<br>$$</p>
+<p>$$<br>F=\frac{(SSR_r-SSR_{ur})/q}{SSR_{ur}/(n-k-1)}=\frac{(R_{ur}^2-R_r^2)/q}{(1-R_{ur}^2)/(n-k-1)}\sim F(q,n-k-1)<br>$$<br>其中带 $<em>r$ 的是针对受约束模型的（beta都0），带 $</em>{ur}$ 是针对不受约束的模型的。q指的是受约束的变量数量。</p>
+<p>如果不接受，那么称几个变量是联合显著的。</p>
+
+        </div>
+
+        
+        <section class="post-tags">
+            <div>
+                <span>Tag(s):</span>
+                <span class="tag">
+                    
+                </span>
+            </div>
+            <div>
+                <a href="javascript:window.history.back();">back</a>
+                <span>· </span>
+                <a href="/">home</a>
+            </div>
+        </section>
+        <section class="post-nav">
+            
+                <a class="prev" rel="prev" href="/2024/12/23/%D0%92%D0%BF%D0%B5%D1%80%D1%91%D0%B4/">Вперёд!</a>
+            
+            
+            <a class="next" rel="next" href="/2024/12/11/%E5%85%B3%E4%BA%8E%E8%B1%86%E5%8C%85%E5%BC%80%E7%9B%92/">关于豆包开盒</a>
+            
+        </section>
+
+
+    </article>
+</div>
+
+        </div>
+        <footer id="footer" class="footer">
+        <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <div class="copyright">
+        <span>© Helloat123 | Powered by <a href="https://hexo.io" target="_blank">Hexo</a> & <a href="https://github.com/Siricee/hexo-theme-Chic" target="_blank">Chic</a> | <span id="busuanzi_container_site_pv">
+    本站总访问量<span id="busuanzi_value_site_pv"></span>次
+</span> | <span id="busuanzi_container_site_uv">
+  本站访客数<span id="busuanzi_value_site_uv"></span>人次
+</span></span>
+    </div>
+</footer>
+
+    </div>
+</body>
+</html>
