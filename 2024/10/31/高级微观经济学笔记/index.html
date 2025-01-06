@@ -231,20 +231,47 @@
 
         <div class="post-content">
             <p>符号表示根据教材Hugh Gravelle的《Microeconomics》。这里写的都不是课本的严格定义，而是方便理解和复习的口头表达。</p>
-<h1 id="消费"><a href="#消费" class="headerlink" title="消费"></a>消费</h1><p>$x$ ：消费束。$u$ ：效用。</p>
+<h1 id="消费"><a href="#消费" class="headerlink" title="消费"></a>消费</h1><h2 id="基础定义与公式"><a href="#基础定义与公式" class="headerlink" title="基础定义与公式"></a>基础定义与公式</h2><p>$x$ ：消费束。$u$ ：效用。</p>
 <p>效用函数：$u(x)$ ，如果买 $x$ 这些东西的话所得的效用。</p>
 <p>边际效用：$u_i$ 表示 $\frac{\partial u}{\partial x_i}$ ，多购买一点 $x_i$ 会提升多少效用。</p>
 <p>边际替代率：$MRS_{ij}$ ，物品 $i$ 对物品 $j$ 的替代率（达到同样的 $u$，多一点 $x_i$ 要少多少 $x_j$），一般取 $i&gt;j$。</p>
-<p>例如物品2对物品1的替代率为，<br>$$<br>MRS_{21}=-\frac{dx_2}{dx_1} \bigg|<em>{u不变}<br>$$<br>由效用函数推导可以得到，<br>$$<br>MRS</em>{ij}=\frac{u_j}{u_i}<br>$$<br>普通需求函数（马歇尔需求函数）：$D_i(p,M)$ ，已知价格和总收入，求消费束</p>
+<p>例如物品2对物品1的替代率为，<br>$$<br>MRS_{21}=-\frac{dx_2}{dx_1} \bigg|<em>{u不变}<br>$$<br>由效用函数推导可以得到，<br>$$<br>MRS</em>{ij}=\frac{u_j}{u_i}<br>$$<br>若已知价格，则<br>$$<br>MRS_{ij}=\frac{u_j}{u_i}=\frac{p_j}{p_i}<br>$$<br>常用这个结论推导下面的各个函数。会简单些。也可用拉格朗日乘数法，构造 $L=u(x)+\lambda(m-\sum p_ix_i)$。</p>
+<p>普通需求函数（马歇尔需求函数）：$D_i(p,M)$ ，已知价格和总收入，求消费束</p>
 <p>补偿需求函数（希克斯需求函数）：$H_i(p,u)$ ，已知价格，给定效用，求消费束</p>
 <p>支出函数：$m(p,u)$ ，已知价格，给定效用，求最小支出</p>
 <p>间接效用函数：$u^*(p,M)$ ，已知价格和总收入，求效用最大值</p>
+<h2 id="变化"><a href="#变化" class="headerlink" title="变化"></a>变化</h2><p>补偿变化CV：在新价格下维持原效用水平所需的收入变化量。</p>
+<p>等价变化EV：在初始价格下达到新效用水平所需的收入变化量。</p>
+<p>消费者剩余CS：效用变化。</p>
+<h2 id="其它概念"><a href="#其它概念" class="headerlink" title="其它概念"></a>其它概念</h2><p>正常商品：当消费者收入增加时，其需求量也会增加的商品，即普通需求函数对价格的偏导&gt;0<br>$$<br>\frac{\partial D_i(p,m)}{\partial m}&gt;0<br>$$<br>谢泼德引理：支出函数对价格的偏导数等于对应商品的补偿需求函数<br>$$<br>\frac{\partial m(p,u)}{\partial p_i}=H_i(p,u)<br>$$</p>
+<p>斯勒茨基方程：$H_i(p,u)=D_i(p,m(p,u))$ 对 $p_j$ 求偏导，得到的式子结合谢泼德引理整理，得<br>$$<br>\frac{\partial D_i}{\partial p_j}=\frac{\partial H_i}{\partial p_j}-x_j\frac{\partial D_i}{\partial m}<br>$$<br>其中 $\frac{\part H_i}{\part p_j}$  代表了效用不变情况下买 $i$ 的量随 $p_j$ 的变化趋势，是替代效应。右边是收入效应，表示降价相当于收入增加多少，$\Delta x^{income}=\frac{\partial D_i}{\partial m}\cdot\Delta m$ ，易知 $\Delta m=-\Delta p_jx_j$，那么整体对 $p_j$ 求偏导即可得到上式。</p>
 <h1 id="生产"><a href="#生产" class="headerlink" title="生产"></a>生产</h1><p>生产函数 $y=f(z)$</p>
 <p>边际产出 $MP_i=\frac{\partial f}{\partial z_i}=f_i(z)$</p>
 <p>生产力假设：至少有一种投入的边际产出为正</p>
 <p>等产量曲线</p>
 <p>边际技术替代率（投入1对投入2的）<br>$$<br>MRTS_{21}=-\frac{dz_2}{dz_1} \bigg|_{dy=0}=\frac {f_1(z)}{f_2(z)}=\frac{MP_1}{MP_2}<br>$$<br>脊线：某种投入的边际产出为0</p>
-<p>替代弹性：<br>$$<br>\sigma=\frac{z_2/z_1的变化百分率}{MRTS_{21}的变化百分率}=\frac{d(z_2/z_1)}{d(f_1/f_2)}\cdot\frac{(f_1/f_2)}{(z_2/z_1)}<br>$$</p>
+<p>替代弹性：注意是1除以2还是2除以1！从定义出发考虑<br>$$<br>\sigma=\frac{z_2/z_1的变化百分率}{MRTS_{21}的变化百分率}=\frac{d(z_2/z_1)}{(z_2/z_1)}\cdot\frac{(f_1/f_2)}{d(f_1/f_2)}=\frac{d(z_2/z_1)}{d(f_1/f_2)}\cdot\frac{(f_1/f_2)}{(z_2/z_1)}<br>$$</p>
+<p>多家厂商的成本最小化：拉格朗日法、库恩-塔克条件（KKT条件）</p>
+<p>多产品的规模经济：设规模系数为 $t$，成本产出弹性 $E_t^c=\frac{dt}{dC}\cdot\frac{t}C&lt;1$。感性理解：弹性高的含义是随着规模变化，成本的比例变化快。</p>
+<p>范围经济：在一定值域内，一起产出比分开产出的东西更少。</p>
+<h2 id="相关数学"><a href="#相关数学" class="headerlink" title="相关数学"></a>相关数学</h2><p>Hessian矩阵判凸性：主子式的行列式全正则正定、凸，正负交替（1阶主子式是负的）则负定、凹</p>
+<p>KKT（库恩-塔克条件）: 拉格朗日函数的梯度为0，$\lambda g(X^*)=0$（即 $\lambda$ 和 $g(X^*)$ 中至少一个为 $0$），$\lambda\ge0$，$g(X^*)\le0$</p>
+<p><strong>拟凸/拟凹</strong> （可能用在凸组合？相关的问题上？多个厂家、多种要素之类的情况？）待学</p>
+<h2 id="利润"><a href="#利润" class="headerlink" title="利润"></a>利润</h2><p>这块没出作业题</p>
+<p>霍特林引理（类似谢泼德引理）：利润与价格的变化率等于生产量<br>$$<br>\frac{\partial \Pi(p)}{\partial p_i}=-y_i(p)<br>$$</p>
+<h1 id="交换"><a href="#交换" class="headerlink" title="交换"></a>交换</h1><p>瓦尔拉斯均衡</p>
+<p>初始禀赋在交易后变成均衡状态。均衡时候两个人对不同商品的边际替代率相等。每种商品的总量不变。买东西花的钱和卖东西赚的钱相等。</p>
+<p>比如<br>$$<br>\begin{cases}<br>    \frac{MU_1^a}{MU_2^a}=\frac{MU_1^b}{MU_2^b}\Longrightarrow\frac{(x_2^a)^2}{2x_1^ax_2^a}=\frac{2x_1^b x_2^b}{(x_1^b)^2}\<br>    x_1^a+x_1^b=10\<br>    x_2^a+x_2^b=20\<br>    p_1w_1^a+p_2w_2^a=p_1x_1^a+p_2x_2^a\<br>    p_1w_1^b+p_2w_2^b=p_1x_1^b+p_2x_2^b\<br>    \frac{p_1}{p_2}=\frac{(x_2^a)^2}{2x_1^ax_2^a}=\frac{x_2^a}{2x_1^a}<br>\end{cases}<br>$$<br>比较难解，但是多花点时间也能算出来。</p>
+<p>帕累托改进（得到帕累托更优配置）：没有人变差、至少一个人变好。一般是一个区间</p>
+<h1 id="不确定条件下的决策"><a href="#不确定条件下的决策" class="headerlink" title="不确定条件下的决策"></a>不确定条件下的决策</h1><p>若 $s$ 情况的概率为 $\pi_s$ ，在 $s$ 情况下的效用为 $v_s$，则期望 $P^j$ 的期望效用为</p>
+<p>$$<br>\bar v^j=\sum_{s=1}^S\pi_sv_s^j<br>$$</p>
+<p>绝对风险回避系数（绝对风险厌恶的普拉特-阿罗系数）：</p>
+<p>$$<br>A(\bar y)=-\frac{v’’(\bar y)}{v’(\bar y)}<br>$$</p>
+<p>由于钱越多效用越高，所以 $v’(\bar y)$ 一定是正的。当函数是凸的时候，$v’’(\bar y)$ 为正，$A(\bar y)$ 为负，更喜欢风险。</p>
+<p>相对风险回避系数（相对风险厌恶的普拉特-阿罗系数）：</p>
+<p>$$<br>R(y)=\frac{-v’’(y)y}{v’(y)}<br>$$</p>
+<p>可以体现财富比例</p>
+<h1 id="保险"><a href="#保险" class="headerlink" title="保险"></a>保险</h1><p>费率 $p$，购买量为 $q$。预期效用最大化。</p>
 
         </div>
 
