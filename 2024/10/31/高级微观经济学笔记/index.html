@@ -257,16 +257,22 @@
 <h2 id="相关数学"><a href="#相关数学" class="headerlink" title="相关数学"></a>相关数学</h2><p>Hessian矩阵判凸性：主子式的行列式全正则正定、凸，正负交替（1阶主子式是负的）则负定、凹</p>
 <p>KKT（库恩-塔克条件）: 拉格朗日函数的梯度为0，$\lambda g(X^*)=0$（即 $\lambda$ 和 $g(X^*)$ 中至少一个为 $0$），$\lambda\ge0$，$g(X^*)\le0$</p>
 <p><strong>拟凸/拟凹</strong> （可能用在凸组合？相关的问题上？多个厂家、多种要素之类的情况？）待学</p>
-<h2 id="利润"><a href="#利润" class="headerlink" title="利润"></a>利润</h2><p>这块没出作业题</p>
+<h2 id="利润"><a href="#利润" class="headerlink" title="利润"></a>利润</h2><p>这块没出作业题，但<strong>需要稍微学学</strong></p>
 <p>霍特林引理（类似谢泼德引理）：利润与价格的变化率等于生产量<br>$$<br>\frac{\partial \Pi(p)}{\partial p_i}=-y_i(p)<br>$$</p>
-<h1 id="交换"><a href="#交换" class="headerlink" title="交换"></a>交换</h1><p>瓦尔拉斯均衡</p>
+<h1 id="市场均衡"><a href="#市场均衡" class="headerlink" title="市场均衡"></a>市场均衡</h1><h2 id="单个市场"><a href="#单个市场" class="headerlink" title="单个市场"></a>单个市场</h2><p>供给和需求，中微的东西</p>
+<h2 id="多个市场"><a href="#多个市场" class="headerlink" title="多个市场"></a>多个市场</h2><p>瓦尔拉斯均衡</p>
 <p>初始禀赋在交易后变成均衡状态。均衡时候两个人对不同商品的边际替代率相等。每种商品的总量不变。买东西花的钱和卖东西赚的钱相等。</p>
-<p>比如<br>$$<br>\begin{cases}<br>    \frac{MU_1^a}{MU_2^a}=\frac{MU_1^b}{MU_2^b}\Longrightarrow\frac{(x_2^a)^2}{2x_1^ax_2^a}=\frac{2x_1^b x_2^b}{(x_1^b)^2}\<br>    x_1^a+x_1^b=10\<br>    x_2^a+x_2^b=20\<br>    p_1w_1^a+p_2w_2^a=p_1x_1^a+p_2x_2^a\<br>    p_1w_1^b+p_2w_2^b=p_1x_1^b+p_2x_2^b\<br>    \frac{p_1}{p_2}=\frac{(x_2^a)^2}{2x_1^ax_2^a}=\frac{x_2^a}{2x_1^a}<br>\end{cases}<br>$$<br>比较难解，但是多花点时间也能算出来。</p>
+<p>比如这里就是1商品和2商品，两个市场<br>$$<br>\begin{cases}<br>    \frac{MU_1^a}{MU_2^a}=\frac{MU_1^b}{MU_2^b}\Longrightarrow\frac{(x_2^a)^2}{2x_1^ax_2^a}=\frac{2x_1^b x_2^b}{(x_1^b)^2}\<br>    x_1^a+x_1^b=10\<br>    x_2^a+x_2^b=20\<br>    p_1w_1^a+p_2w_2^a=p_1x_1^a+p_2x_2^a\<br>    p_1w_1^b+p_2w_2^b=p_1x_1^b+p_2x_2^b\<br>    \frac{p_1}{p_2}=\frac{(x_2^a)^2}{2x_1^ax_2^a}=\frac{x_2^a}{2x_1^a}<br>\end{cases}<br>$$<br>比较难解，但是多花点时间也能算出来。</p>
 <p>帕累托改进（得到帕累托更优配置）：没有人变差、至少一个人变好。一般是一个区间</p>
+<h1 id="垄断市场"><a href="#垄断市场" class="headerlink" title="垄断市场"></a>垄断市场</h1><p>没出作业题，不学了</p>
+<p>价格歧视 non-linear pricing</p>
+<h1 id="寡头市场"><a href="#寡头市场" class="headerlink" title="寡头市场"></a>寡头市场</h1><p>没出作业题，不学了</p>
+<p>Cournot模型</p>
+<p>Stückelberg模型</p>
 <h1 id="不确定条件下的决策"><a href="#不确定条件下的决策" class="headerlink" title="不确定条件下的决策"></a>不确定条件下的决策</h1><p>若 $s$ 情况的概率为 $\pi_s$ ，在 $s$ 情况下的效用为 $v_s$，则期望 $P^j$ 的期望效用为</p>
 <p>$$<br>\bar v^j=\sum_{s=1}^S\pi_sv_s^j<br>$$</p>
-<p>绝对风险回避系数（绝对风险厌恶的普拉特-阿罗系数）：</p>
-<p>$$<br>A(\bar y)=-\frac{v’’(\bar y)}{v’(\bar y)}<br>$$</p>
+<p>根据效用函数的凸性，可以将决策者分为风险厌恶、风险中性、风险偏好三种类型。</p>
+<p>绝对风险回避系数（绝对风险厌恶的普拉特-阿罗系数）：<br>$$<br>A(\bar y)=-\frac{v’’(\bar y)}{v’(\bar y)}<br>$$</p>
 <p>由于钱越多效用越高，所以 $v’(\bar y)$ 一定是正的。当函数是凸的时候，$v’’(\bar y)$ 为正，$A(\bar y)$ 为负，更喜欢风险。</p>
 <p>相对风险回避系数（相对风险厌恶的普拉特-阿罗系数）：</p>
 <p>$$<br>R(y)=\frac{-v’’(y)y}{v’(y)}<br>$$</p>
