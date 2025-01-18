@@ -249,18 +249,17 @@
 <p>在简单线性回归的情况下<br>$$<br>\hat \beta_1=\frac{\sum_{i=1}^n(x_i-\bar x)(y_i-y)}{\sum_{i=1}^n(x_i-\bar x)^2}\\<br>\hat\beta_0=\bar y-\hat\beta_1\bar x<br>$$</p>
 <h2 id="估计值的期望和方差"><a href="#估计值的期望和方差" class="headerlink" title="估计值的期望和方差"></a>估计值的期望和方差</h2><h3 id="期望"><a href="#期望" class="headerlink" title="期望"></a>期望</h3><p>从上面式子推导可得<br>$$<br>X’(Y-X\hat\beta)=0\<br>即X’\hat u=0<br>$$<br>于是可以证明 $\hat\beta$ 的无偏性（unbiasedness）<br>$$<br>\begin{align*}<br>E(\hat\beta)&amp;=E((X’X)^{-1}X’Y)\\<br>&amp;=E(\beta+(X’X)^{-1}X’u)\\<br>&amp;=\beta+E((X’X)^{-1}X’E(u|X))\\<br>&amp;=\beta\quad(MLR.4)<br>\end{align*}<br>$$</p>
 <h3 id="方差"><a href="#方差" class="headerlink" title="方差"></a>方差</h3><p>可以推导出<br>$$<br>\begin{align*}<br>\mathrm{Var}(\hat\beta|X)&amp;=E[(\hat\beta-\beta)(\hat\beta-\beta)’|X]\\<br>&amp;=E[(X’X)^{-1}X’uu’X(X’X)^{-1}|X]\\<br>&amp;=(X’X)^{-1}X’E(uu’|X)X(X’X)^{-1}\\<br>&amp;=\sigma^2(X’X)^{-1}<br>\end{align*}<br>$$<br>其中，第 $j$ 个估计值的方差是<br>$$<br>\mathrm{Var}(\hat\beta_j|x)=\frac{\sigma^2}{SST_j(1-R_j^2)}<br>$$<br>其中<br>$$<br>SST_j=\sum_{i=1}^n(x_{ij}-\bar {x_j})^2<br>$$<br>且 $R_j^2$  是去掉 $x_j$ 后模型的 $R^2$。</p>
-<p>可以发现，$\sigma^2$ 越大则 $\mathrm{Var}(\hat\beta_j)$ 越大，$x_j$ 的方差越大则 $\mathrm{Var}(\hat\beta_j)$ 越小，与别的变量越线性相关（$R_j$ 越大），则 $\mathrm{Var}(\hat\beta_j)$ 越大。</p>
+<p>可以发现，$\sigma^2$ 越大则 $\mathrm{Var}(\hat\beta_j)$ 越大，$x_j$ 的方差越大则 $\mathrm{Var}(\hat\beta_j)$ 越小，与别的变量越线性相关（$R_j$ 越大）则 $\mathrm{Var}(\hat\beta_j)$ 越大。</p>
 <h3 id="Multicollinearity"><a href="#Multicollinearity" class="headerlink" title="Multicollinearity"></a>Multicollinearity</h3><p>多个变量相互correlation高的情况被称为multicollinearity多重共线性<br>$$<br>VIF_j=\frac1{1-R_j^2}<br>$$<br>越小就multicollinearity程度越低。&gt;10就很严重</p>
 <h2 id="误差值的方差"><a href="#误差值的方差" class="headerlink" title="误差值的方差"></a>误差值的方差</h2><p>$$<br>\hat\sigma^2=\frac{\sum_{i=1}^n\hat u_i^2}{n-k-1}<br>$$</p>
-<p>期望是<br>$$<br>\begin{align*}<br>\hat u&amp;=Y-X\hat\beta\<br>&amp;=Y-X\beta+X(\beta-\hat\beta)\<br>&amp;=u-X(X’X)^{-1}X’u\<br>&amp;=(I-X(X’X)^-1X’)u<br>\end{align*}<br>$$<br>设 $I-X(X’X)^-1X’$ 为 $M$，则 $M$ 对称且幂等。则（这里用到了一些线性代数的trick，而且相对复杂，估计不会考这么细）<br>$$<br>\begin{align*}<br>E(\hat\sigma^2|X)&amp;=E(\frac{\hat u’\hat u}{n-k-1}|X)\\<br>&amp;=\frac 1{n-k-1}E(u’Mu|X)\\<br>&amp;=\frac1{n-k-1}E[\mathrm{tr}(u’Mu|X)]\\<br>&amp;=\frac1{n-k-1}\mathrm{tr}[E(u’u|X)M]\\<br>&amp;=\sigma^2<br>\end{align*}<br>$$</p>
+<p>期望是<br>$$<br>\begin{align*}<br>\hat u&amp;=Y-X\hat\beta\<br>&amp;=Y-X\beta+X(\beta-\hat\beta)\<br>&amp;=u-X(X’X)^{-1}X’u\<br>&amp;=(I-X(X’X)^{-1}X’)u<br>\end{align*}<br>$$<br>设 $I-X(X’X)^{-1}X’$ 为 $M$，则 $M$ 对称且幂等。则（这里用到了一些线性代数的trick，而且相对复杂，估计不会考这么细）<br>$$<br>\begin{align*}<br>E(\hat\sigma^2|X)&amp;=E(\frac{\hat u’\hat u}{n-k-1}|X)\\<br>&amp;=\frac 1{n-k-1}E(u’Mu|X)\\<br>&amp;=\frac1{n-k-1}E[\mathrm{tr}(u’Mu|X)]\\<br>&amp;=\frac1{n-k-1}\mathrm{tr}[E(u’u|X)M]\\<br>&amp;=\sigma^2<br>\end{align*}<br>$$</p>
 <h2 id="Gauss-Markov-Theorem"><a href="#Gauss-Markov-Theorem" class="headerlink" title="Gauss-Markov Theorem"></a>Gauss-Markov Theorem</h2><p>$\hat\beta$ 是最好的线性无偏估计值（<strong>B</strong>est <strong>L</strong>inear <strong>U</strong>nbiased <strong>E</strong>stimators），方差在线性估计值中最小。</p>
 <h1 id="OLS-Inference"><a href="#OLS-Inference" class="headerlink" title="OLS Inference"></a>OLS Inference</h1><h2 id="MLR-6-Normality"><a href="#MLR-6-Normality" class="headerlink" title="MLR.6 (Normality)"></a>MLR.6 (Normality)</h2><p>$$<br>u\sim N(0,\sigma^2)<br>$$</p>
 <p>MLR.1~MLR.6统称Classical Linear Model assumptions。OLS的估计值在此情况下在所有可能的估计值中方差最小。</p>
 <p>容易推导得<br>$$<br>y\sim N(\beta_0+\beta_1x_1+\beta_2x_2+\dots+\beta_kx_k,\sigma^2)<br>$$<br>对于估计值，容易由 $\hat\beta_j$ 的公式推得<br>$$<br>\hat\beta_j\sim N[\beta_j,\mathrm{Var}(\hat\beta_j)]<br>$$</p>
 <h2 id="t检验"><a href="#t检验" class="headerlink" title="t检验"></a>t检验</h2><p>知识：正态分布的平方是卡方分布；正态分布除以卡方分布（适当标准化后）服从 t 分布<br>$$<br>\frac{(\hat\beta_j-\beta_j)/sd(\hat\beta_j)}{se(\hat\beta_j)/sd(\hat\beta_j)}\sim\frac{N(0,1)}{\sqrt{\chi^2_{n-k-1}/(n-k-1)}}\\<br>\frac{\hat\beta_j-\beta_j}{se(\hat\beta_j)}\sim t_{n-k-1}<br>$$<br>对某个估计值的假设检验：</p>
 <p>Null hypothesis：$H_0:\beta_j=0$ （备择假设 $H_1$ 常用 $\beta_j&gt;0$ 这样的one sided或者 $\beta_j\not=0$ 这样的two sided）</p>
-<p>则<br>$$<br>t_{\hat\beta_j}=\frac{(\hat\beta_j-0)}{se(\hat\beta_j)}<br>$$<br>显著性水平是 $H_0$ 为真的概率。</p>
-<p>当df（自由度）=n-k-1很大时候，t分布接近正态。</p>
+<p>则<br>$$<br>t_{\hat\beta_j}=\frac{(\hat\beta_j-0)}{se(\hat\beta_j)}<br>$$<br>当df（自由度）=n-k-1很大时候，t分布接近正态。</p>
 <h3 id="p-value"><a href="#p-value" class="headerlink" title="p-value"></a>p-value</h3><p>如果 $H_0$ 是真的，观察到当前数据（或更极端的结果）的可能性有多大？</p>
 <p>当且仅当p-value比显著性水平小的时候零假设被拒绝</p>
 <h3 id="置信区间"><a href="#置信区间" class="headerlink" title="置信区间"></a>置信区间</h3><p>$$<br>a_j\not\in interval\Rightarrow \text{reject}~ H_0:\beta_j=a_j\text{ in favor of } H_1:\beta_j\not=a_j<br>$$</p>
@@ -268,22 +267,29 @@
 <h2 id="F检验"><a href="#F检验" class="headerlink" title="F检验"></a>F检验</h2><p>用于多个变量的显著性检验。例如下面是overall significance test：<br>$$<br>H_0:\beta_1,\beta_2,\dots,\beta_k=0<br>$$</p>
 <p>$$<br>F=\frac{(SSR_r-SSR_{ur})/q}{SSR_{ur}/(n-k-1)}=\frac{(R_{ur}^2-R_r^2)/q}{(1-R_{ur}^2)/(n-k-1)}\sim F(q,n-k-1)<br>$$<br>其中带 $<em>r$ 的是针对受约束模型的（beta都0），带 $</em>{ur}$ 是针对不受约束的模型的。q指的是受约束的变量数量。</p>
 <p>如果不接受，那么称几个变量是联合显著的。</p>
-<h1 id="OLS-Asymptotics"><a href="#OLS-Asymptotics" class="headerlink" title="OLS Asymptotics"></a>OLS Asymptotics</h1><h1 id="OLS-Future-Issues-amp-Dummy-Variable"><a href="#OLS-Future-Issues-amp-Dummy-Variable" class="headerlink" title="OLS Future Issues &amp; Dummy Variable"></a>OLS Future Issues &amp; Dummy Variable</h1><h1 id="Heteroskedasticity"><a href="#Heteroskedasticity" class="headerlink" title="Heteroskedasticity"></a>Heteroskedasticity</h1><h1 id="OLS-Specification-Issues-amp-Data"><a href="#OLS-Specification-Issues-amp-Data" class="headerlink" title="OLS Specification Issues &amp; Data"></a>OLS Specification Issues &amp; Data</h1><h1 id="Instrumental-Variables-Estimation-amp-2SLS"><a href="#Instrumental-Variables-Estimation-amp-2SLS" class="headerlink" title="Instrumental Variables Estimation &amp; 2SLS"></a>Instrumental Variables Estimation &amp; 2SLS</h1><h1 id="Time-Series-Data"><a href="#Time-Series-Data" class="headerlink" title="Time Series Data"></a>Time Series Data</h1><p>静态模型，比如<br>$$<br>y_i=\beta_0+\beta_1z_{1,t}+\beta_2z_{2,t}+u_t<br>$$<br>有限分布滞后模型，比如<br>$$<br>y_t=\alpha_0+\delta_0z_t+\delta_1z_{t-1}+\dots+\delta_qz_{t-q}+u_t<br>$$<br>其中 $\delta_0$ 称作即期倾向。$\delta_0+\delta_1+\dots+\delta_q$ 称作长期乘数。</p>
+<h1 id="OLS-Asymptotics"><a href="#OLS-Asymptotics" class="headerlink" title="OLS Asymptotics"></a>OLS Asymptotics</h1><p>1</p>
+<h1 id="OLS-Future-Issues-amp-Dummy-Variable"><a href="#OLS-Future-Issues-amp-Dummy-Variable" class="headerlink" title="OLS Future Issues &amp; Dummy Variable"></a>OLS Future Issues &amp; Dummy Variable</h1><p>1</p>
+<h1 id="Heteroskedasticity"><a href="#Heteroskedasticity" class="headerlink" title="Heteroskedasticity"></a>Heteroskedasticity</h1><p>1</p>
+<h1 id="OLS-Specification-Issues-amp-Data"><a href="#OLS-Specification-Issues-amp-Data" class="headerlink" title="OLS Specification Issues &amp; Data"></a>OLS Specification Issues &amp; Data</h1><h1 id="Instrumental-Variables-Estimation-amp-2SLS"><a href="#Instrumental-Variables-Estimation-amp-2SLS" class="headerlink" title="Instrumental Variables Estimation &amp; 2SLS"></a>Instrumental Variables Estimation &amp; 2SLS</h1><p>内生性 </p>
+<p>IV的估计量</p>
+<h1 id="Time-Series-Data"><a href="#Time-Series-Data" class="headerlink" title="Time Series Data"></a>Time Series Data</h1><p>静态模型，比如<br>$$<br>y_i=\beta_0+\beta_1z_{1,t}+\beta_2z_{2,t}+u_t<br>$$<br>有限分布滞后模型，比如<br>$$<br>y_t=\alpha_0+\delta_0z_t+\delta_1z_{t-1}+\dots+\delta_qz_{t-q}+u_t<br>$$<br>其中 $\delta_0$ 称作即期倾向。$\delta_0+\delta_1+\dots+\delta_q$ 称作长期乘数。</p>
 <p>几个假设：</p>
 <ul>
 <li>TS.1 线性性 $y_t=\beta_0+\beta x_{t1} +\beta_2x_{t2}+\dots+\beta_kx_{tk}+u_t$</li>
 <li>TS.2 无完全共线性，没有任何自变量恒定不变</li>
 <li>TS.3 零条件均值 $E(u_t|X)=0$</li>
 <li>TS.4 同方差性 $Var(u_t|X)=Var(u_t)=\sigma^2$</li>
-<li>TS.5 无序列相关，任意两个不同时期的误差都不想关 $Corr(u_t,u_s|X)=0$</li>
+<li>TS.5 无序列相关，任意两个不同时期的误差都不相关 $Corr(u_t,u_s|X)=0$</li>
 <li>TS.6 正态</li>
 </ul>
 <p>TS.1~TS.3可以推出无偏性</p>
 <p>TS.1~TS.5可以推出和前面OLS一样的定理。</p>
 <p>公式里可以加上 $\beta_n t$ 趋势变量，相当于给原本的数据去趋势</p>
-<p>可以找一些01变量来搞出季节性</p>
+<p>可以找一些01变量来搞出季节性，其中一个季节不设哑变量以避免完全共线性。</p>
 <p>把这些趋势季节都搞掉再算R^2比较对。</p>
-<p>还有一堆东西，不想学了。都想学的结果是都学不会。</p>
+<p>平稳性Stationarity：<strong>严格平稳</strong>要求时间序列在任何时间点的联合分布都相同；弱平稳是平稳性的一个较弱的形式，仅要求时间序列的<strong>均值（Mean）</strong>、<strong>方差（Variance）</strong>和<strong>协方差（Covariance）</strong>不随时间变化</p>
+<p>同期外生 同期同方差</p>
+<p>平稳、弱相关</p>
 <h1 id="Panel-Data-Models"><a href="#Panel-Data-Models" class="headerlink" title="Panel Data Models"></a>Panel Data Models</h1><p>不平衡面板：有些截面有样本缺数据。（而混合截面是每个时间点的数据来自不同样本）<br>$$<br>y_{it}=\beta_0+\beta_1x_{it1}+\beta_2x_{it2}+\dots+\beta_kx_{itk}+u_{it}<br>$$</p>
 <h2 id="DID"><a href="#DID" class="headerlink" title="DID"></a>DID</h2><p>$Y_{it}$：个体 $i$ 在时间 $t$ 的结果变量。</p>
 <p>$D_i$：是否属于处理组（1 表示处理组，0 表示对照组）。</p>
