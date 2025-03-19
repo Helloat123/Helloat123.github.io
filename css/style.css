@@ -1382,3 +1382,7 @@ header label {
 .post-content pre .javascript .function {
   color: #8959a8;
 }
+.gt-container {
+  max-width: 780px;
+  margin: auto;
+}
