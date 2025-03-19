@@ -180,9 +180,9 @@
 <p>解：</p>
 <p>首先完全可以想到随机化的模拟退火，写起来也比较模板 这里不说了。</p>
 <p>这道题的特点是可以用<strong>随机增量法</strong></p>
-<p>假设当前圆已经包含了前$i-1$个点，则第$i$个点要么在圆内要么在圆外。若在圆内则不用管他；在圆外的话，显然第i个点一定在前$i$个点的最小覆盖圆上。我们考虑一个暴力：首先找到包含前$i-1$个点的圆，加入第$i$个点，若$i$在圆内则无需操作，$i$在圆外则枚举前$i-1$个点中的两个点，使三个点确定的圆包含前$i$个点。</p>
-<p>这样，显然最外层的枚举次数是$O(n)$的；若数据随机，则进入内层枚举的概率为$\frac{3}{i}$(因为i个点的最小覆盖圆可以只由3个在圆上的点确定)。总复杂度就为$O(n)+O(\sum_ { i=1 } ^ { n } \frac{3}{i}\cdot i^2)=O(n^2)$（我们假装：<em>判断三个点是否能包含所有点</em>这个操作是$O(1)$的）</p>
-<p>如果上手写的话就会发现枚举这一步并不能做到$O(n^2)$。写的时候我们考虑先在外层（最外层我们已经想好了，不考虑了）枚举第二个点，用同样的思路，若前$j-1$个点与i点的覆盖圆已经包括了$j$点，那就不用管；若前$j-1$个点与$i$点的覆盖圆未包括j点，那$i$和$j$就是<strong>前$j$个点与$i$点的最小覆盖圆</strong>上的点，就需要继续开一层循环枚举第三个点。</p>
+<p>假设当前圆已经包含了前$i-1$个点，则第$i$个点要么在圆内要么在圆外。若在圆内则不用管他；在圆外的话，显然第i个点一定在前$i$个点的最小覆盖圆上。我们考虑一个暴力：首先找到包含前$i-1$个点的圆，加入第$i$个点，若$i$在圆内则无需操作，$i$在圆外则枚举前$i-1$个点中的两个点，使三个点确定的圆包含前 $i$ 个点。</p>
+<p>这样，显然最外层的枚举次数是 $O(n)$ 的；若数据随机，则进入内层枚举的概率为 $\frac{3}{i}$ (因为 $i$ 个点的最小覆盖圆可以只由 $3$ 个在圆上的点确定)。总复杂度就为 $O(n)+O(\sum_ { i=1 } ^ { n } \frac{3}{i}\cdot i^2)=O(n^2)$（我们假装：<em>判断三个点是否能包含所有点</em>这个操作是$O(1)$的）</p>
+<p>如果上手写的话就会发现枚举这一步并不能做到 $O(n^2)$ 。写的时候我们考虑先在第二层循环 $j$ 枚举第二个点，用同样的思路，若前 $j-1$ 个点与 $i$ 点的覆盖圆已经包括了 $j$ 点，那就不用管；若前 $j-1$ 个点与 $i$ 点的覆盖圆未包括 $j$ 点，那 $i$ 和 $j$ 就是<strong>前 $j$ 个点与 $i$ 点的最小覆盖圆</strong>上的点，就需要继续开一层循环枚举第三个点。</p>
 <p>我们来分析一下复杂度。一共三层循环，最外层$O(n)$，中层$O(\sum_ { i=1 } ^ { n } \frac{3}{i}\cdot i)=O(n)$，内层$O(\sum_ { i=1 } ^ { n } \frac{3}{i} \sum_ { j=1 } ^ { i-1 } \frac{3}{j} \cdot j)=O(n)$，故总复杂度是$O(n)$的。</p>
 <p>其中还有一个计算几何的三点定圆的问题需要考虑</p>
 <p>联立圆的方程可以列出共三元的三个方程，加减方程去掉变量$R$后对式子稍作移项变换，就形成了一个线性方程组。克拉默法则解出即可。但洛谷这题卡精度…long double即可(这里直接define了)</p>
@@ -221,6 +221,29 @@
 
     </article>
 </div>
+
+
+
+    <div id="gitalk-container"></div>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.css">
+<script src="https://cdn.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.min.js"></script>
+<div id="gitalk-container"></div>
+<script type="text/javascript">
+      var gitalk = new Gitalk({
+        clientID: 'Ov23liMSvcFdnlsFKxr8',
+        clientSecret: '8676e8a4b9a5e31bd17ad6b742c0e759e2c73a66',
+        repo: 'Helloat123.github.io',
+        owner: 'Helloat123',
+        admin: 'Helloat123',
+        id: location.pathname,
+        labels: 'Gitalk'.split(',').filter(l => l),
+        perPage: 10,
+        pagerDirection: 'last',
+        createIssueManually: true,
+        distractionFreeMode: false
+      })
+      gitalk.render('gitalk-container')
+</script>
 
         </div>
         <footer id="footer" class="footer">
