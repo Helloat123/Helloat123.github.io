@@ -12,7 +12,7 @@
 
 
 
-<title>关于代理、VPN导致的常见问题 | Richard&#39;s Blog</title>
+<title>嘉兴 | Richard&#39;s Blog</title>
 
 
 
@@ -107,11 +107,73 @@
             <div class="container">
     
     
+        <div class="post-toc">
+    <div class="tocbot-list">
+    </div>
+    <div class="tocbot-list-menu">
+        <a class="tocbot-toc-expand" onclick="expand_toc()">Expand all</a>
+        <a onclick="go_top()">Back to top</a>
+        <a onclick="go_bottom()">Go to bottom</a>
+    </div>
+</div>
+
+<script>
+    document.ready(
+        function () {
+            tocbot.init({
+                tocSelector: '.tocbot-list',
+                contentSelector: '.post-content',
+                headingSelector: 'h1, h2, h3, h4, h5',
+                collapseDepth: 1,
+                orderedList: false,
+                scrollSmooth: true,
+            })
+        }
+    )
+
+    function expand_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 6,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "collapse_toc()");
+        b.innerHTML = "Collapse all"
+    }
+
+    function collapse_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 1,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "expand_toc()");
+        b.innerHTML = "Expand all"
+    }
+
+    function go_top() {
+        window.scrollTo(0, 0);
+    }
+
+    function go_bottom() {
+        window.scrollTo(0, document.body.scrollHeight);
+    }
+
+</script>
+    
 
     
     <article class="post-wrap">
         <header class="post-header">
-            <h1 class="post-title">关于代理、VPN导致的常见问题</h1>
+            <h1 class="post-title">嘉兴</h1>
             
                 <div class="post-meta">
                     
@@ -120,17 +182,26 @@
 
                     
                         <span class="post-time">
-                        Date: <a href="#">March 18, 2025&nbsp;&nbsp;12:05:41</a>
+                        Date: <a href="#">March 23, 2025&nbsp;&nbsp;16:57:44</a>
                         </span>
                     
+                    
+                        <span class="post-category">
+                    Category:
+                            
+                                <a href="/categories/%E6%97%85%E6%B8%B8/">旅游</a>
+                            
+                        </span>
                     
                 </div>
             
         </header>
 
         <div class="post-content">
-            <p>今天在git pull时候遇到了ssh: connect to host github.com port 22: Connection refused问题，ping github.com返回的是127.0.0.1，但nslookup显示github.com的dns并没有出问题。排查发现是<a target="_blank" rel="noopener" href="https://www.dogfight360.com/blog/18682/">steam community 302</a>（用于steam免翻墙访问的一个工具）把相关域名都改成了指向127.0.0.1，由其代理转发。关闭其对github的转发即可。</p>
-<p>遇到类似网络问题的时候应当多去怀疑怀疑代理软件和vpn软件（记得以前遇到过关闭clash后系统代理设置没清除导致的很多网站都上不了的问题），不要只想到DNS配置错误、DNS劫持、防火墙问题。有些时候重启代理软件或许就能解决。</p>
+            <h2 id="流水帐"><a href="#流水帐" class="headerlink" title="流水帐"></a>流水帐</h2><p>3.21 上海南站——嘉兴站——走路全季嘉兴南湖店（位置真的好，去哪都方便，比上海全季便宜多了）</p>
+<p>3.22 楼下宝玉烧卖（烧卖味道都差不多，完全没必要去网红店，出租车司机也点名斜西街烧卖）——南湖公园——伍公祠、壕股塔（七层高的楼可以俯瞰整个南湖不错）——打车嘉兴博物馆（刚好赶上了免费讲解）——真真老老海盐塘路店——会景园码头——湖心岛——南湖天地——轨交1号线坐到终点站——月河——粽子文化博物馆（真真老老开的，前面看着挺正经，后面全是广告，图穷匕见了属于是。不过见到了关于各地粽子习俗的介绍，知道了原来并不是大家的粽子都长得一样）——禾城陆稿荐排队太长没吃——建银饭店（炒腰花、螺蛳、猪脑臭豆腐）</p>
+<p>3.23  五芳斋总店（粽子、肉月饼、青团、酱鸭）——瓶山公园——子城遗址稍微看了看——轨交1号线嘉兴站——上海南站</p>
+<h2 id="其它内容"><a href="#其它内容" class="headerlink" title="其它内容"></a>其它内容</h2><p>天气真好啊。南湖好小。</p>
 
         </div>
 
@@ -140,6 +211,10 @@
                 <span>Tag(s):</span>
                 <span class="tag">
                     
+                    
+                        <a href="/tags/%E6%97%85%E6%B8%B8/"># 旅游</a>
+                    
+                        
                 </span>
             </div>
             <div>
@@ -150,10 +225,8 @@
         </section>
         <section class="post-nav">
             
-                <a class="prev" rel="prev" href="/2025/03/23/%E5%98%89%E5%85%B4/">嘉兴</a>
             
-            
-            <a class="next" rel="next" href="/2025/03/11/%E6%97%A0%E9%94%A1/">无锡</a>
+            <a class="next" rel="next" href="/2025/03/18/%E5%85%B3%E4%BA%8E%E4%BB%A3%E7%90%86%E3%80%81VPN%E5%AF%BC%E8%87%B4%E7%9A%84%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98/">关于代理、VPN导致的常见问题</a>
             
         </section>
 
