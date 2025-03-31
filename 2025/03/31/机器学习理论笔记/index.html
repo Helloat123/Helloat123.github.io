@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <meta name="author" content="Helloat123">
+
+
+
+
+
+<title>机器学习理论笔记 | Richard&#39;s Blog</title>
+
+
+
+    <link rel="icon" href="/favicon.png">
+
+
+
+
+    <!-- stylesheets list from _config.yml -->
+    
+    <link rel="stylesheet" href="/css/style.css">
+    
+
+
+
+    <!-- scripts list from _config.yml -->
+    
+    <script src="/js/script.js"></script>
+    
+    <script src="/js/tocbot.min.js"></script>
+    
+
+
+
+    
+    
+        
+    
+
+
+<meta name="generator" content="Hexo 5.2.0"></head>
+<body>
+    <div class="wrapper">
+        <header>
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-header header-logo"><a href="/">Richard&#39;s Blog</a></div>
+            <div class="menu navbar-right">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+                <input id="switch_default" type="checkbox" class="switch_default">
+                <label for="switch_default" class="toggleBtn"></label>
+            </div>
+        </div>
+    </nav>
+
+    
+    <nav class="navbar-mobile" id="nav-mobile">
+        <div class="container">
+            <div class="navbar-header">
+                <div>
+                    <a href="/">Richard&#39;s Blog</a><a id="mobile-toggle-theme">·&nbsp;Light</a>
+                </div>
+                <div class="menu-toggle" onclick="mobileBtn()">&#9776; Menu</div>
+            </div>
+            <div class="menu" id="mobile-menu">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+            </div>
+        </div>
+    </nav>
+
+</header>
+<script>
+    var mobileBtn = function f() {
+        var toggleMenu = document.getElementsByClassName("menu-toggle")[0];
+        var mobileMenu = document.getElementById("mobile-menu");
+        if(toggleMenu.classList.contains("active")){
+           toggleMenu.classList.remove("active")
+            mobileMenu.classList.remove("active")
+        }else{
+            toggleMenu.classList.add("active")
+            mobileMenu.classList.add("active")
+        }
+    }
+</script>
+        <div class="main">
+            <div class="container">
+    
+    
+        <div class="post-toc">
+    <div class="tocbot-list">
+    </div>
+    <div class="tocbot-list-menu">
+        <a class="tocbot-toc-expand" onclick="expand_toc()">Expand all</a>
+        <a onclick="go_top()">Back to top</a>
+        <a onclick="go_bottom()">Go to bottom</a>
+    </div>
+</div>
+
+<script>
+    document.ready(
+        function () {
+            tocbot.init({
+                tocSelector: '.tocbot-list',
+                contentSelector: '.post-content',
+                headingSelector: 'h1, h2, h3, h4, h5',
+                collapseDepth: 1,
+                orderedList: false,
+                scrollSmooth: true,
+            })
+        }
+    )
+
+    function expand_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 6,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "collapse_toc()");
+        b.innerHTML = "Collapse all"
+    }
+
+    function collapse_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 1,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "expand_toc()");
+        b.innerHTML = "Expand all"
+    }
+
+    function go_top() {
+        window.scrollTo(0, 0);
+    }
+
+    function go_bottom() {
+        window.scrollTo(0, document.body.scrollHeight);
+    }
+
+</script>
+    
+
+    
+    <article class="post-wrap">
+        <header class="post-header">
+            <h1 class="post-title">机器学习理论笔记</h1>
+            
+                <div class="post-meta">
+                    
+                        Author: <a itemprop="author" rel="author" href="/">Helloat123</a>
+                    
+
+                    
+                        <span class="post-time">
+                        Date: <a href="#">March 31, 2025&nbsp;&nbsp;11:50:24</a>
+                        </span>
+                    
+                    
+                </div>
+            
+        </header>
+
+        <div class="post-content">
+            <h2 id="理论部分"><a href="#理论部分" class="headerlink" title="理论部分"></a>理论部分</h2><p>经验风险最小化（ERM）<br>经验风险是用经验训练出来的函数与经验的loss<br>excess risk是 训练出的模型的loss - 最优可能模型的loss</p>
+<p>我们希望泛化能力强，也即经验样本和实际分布偏差小。那么偏差的幅度和概率怎么测算呢？Concentration Inequalities<br>Markov不等式（基本）、Chebyshev不等式（把方差用在Markov上）、Hoeffding 不等式（Chernoff 方法 + Hoeffding 引理获得）</p>
+<p>尾部事件（Tail Event）就是指某个随机变量“远离平均值（期望）”的事件。看概率图的尾巴就是</p>
+<p>MGF矩母函数很重要。可以泰勒展开出所有的k阶矩。在相关不等式的分析中也很有用。</p>
+<p>东西又多又难 麻烦 稍微学学得了</p>
+<h2 id="代码实践部分"><a href="#代码实践部分" class="headerlink" title="代码实践部分"></a>代码实践部分</h2><p>最大最小缩放 $x′=\frac{\max(x)−\min(x)}{x−\min(x)}$</p>
+<p>numpy的切片操作<code>[:, :2]</code></p>
+<ul>
+<li><code>:</code> 表示选取所有行（即所有 150 个样本）；</li>
+<li><code>:2</code> 表示选取前两列（索引 0 和 1）</li>
+</ul>
+<p><code>.data</code>：特征（features）——通常是一个二维的数组，形状是 <code>(样本数, 特征数)</code>；</p>
+<p><code>.target</code>：标签（labels / targets）——通常是一维数组，表示每个样本的类别或数值目标。用于分类的</p>
+<p>标准化：使<strong>均值变为 0，标准差变为 1</strong>。</p>
+<p>归一化：<strong>缩放到某个固定范围内</strong></p>
+<p>L2 归一化：向量长度为1</p>
+<p>x=np.array([1, 2, 3])是个纯一维向量</p>
+<p>X=x[:,np.newaxis]把它变成了二维但只有一列的向量，意义同x.reshape(-1,1)然后X=x。-1的意思是任意行，1是1列。比如从[0,1,2]变成<br>[[0]<br>[1]<br>[2]]</p>
+<p>sklearn中默认行是样本，列是特征</p>
+<p>model.fit是拟合。根据model（属于某种estimator）的种类会自动做</p>
+
+        </div>
+
+        
+        <section class="post-tags">
+            <div>
+                <span>Tag(s):</span>
+                <span class="tag">
+                    
+                </span>
+            </div>
+            <div>
+                <a href="javascript:window.history.back();">back</a>
+                <span>· </span>
+                <a href="/">home</a>
+            </div>
+        </section>
+        <section class="post-nav">
+            
+            
+            <a class="next" rel="next" href="/2025/03/23/%E5%98%89%E5%85%B4/">嘉兴</a>
+            
+        </section>
+
+
+    </article>
+</div>
+
+
+
+        </div>
+        <footer id="footer" class="footer">
+        <div class="copyright">
+        <span>© Helloat123 | Powered by <a href="https://hexo.io" target="_blank">Hexo</a> & <a href="https://github.com/Siricee/hexo-theme-Chic" target="_blank">Chic</a> | 2017 - 2025 </span></span>
+    </div>
+</footer>
+
+    </div>
+</body>
+</html>
