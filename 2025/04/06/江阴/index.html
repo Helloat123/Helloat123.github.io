@@ -12,7 +12,7 @@
 
 
 
-<title>机器学习理论笔记 | Richard&#39;s Blog</title>
+<title>江阴 | Richard&#39;s Blog</title>
 
 
 
@@ -173,7 +173,7 @@
     
     <article class="post-wrap">
         <header class="post-header">
-            <h1 class="post-title">机器学习理论笔记</h1>
+            <h1 class="post-title">江阴</h1>
             
                 <div class="post-meta">
                     
@@ -182,50 +182,27 @@
 
                     
                         <span class="post-time">
-                        Date: <a href="#">March 31, 2025&nbsp;&nbsp;11:50:24</a>
+                        Date: <a href="#">April 6, 2025&nbsp;&nbsp;21:57:06</a>
                         </span>
                     
+                    
+                        <span class="post-category">
+                    Category:
+                            
+                                <a href="/categories/%E6%97%85%E6%B8%B8/">旅游</a>
+                            
+                        </span>
                     
                 </div>
             
         </header>
 
         <div class="post-content">
-            <h2 id="理论部分"><a href="#理论部分" class="headerlink" title="理论部分"></a>理论部分</h2><p>经验风险最小化（ERM）<br>经验风险是用经验训练出来的函数与经验的loss<br>excess risk是 训练出的模型的loss - 最优可能模型的loss</p>
-<p>我们希望泛化能力强，也即经验样本和实际分布偏差小。那么偏差的幅度和概率怎么测算呢？Concentration Inequalities<br>Markov不等式（基本）、Chebyshev不等式（把方差用在Markov上）、Hoeffding 不等式（Chernoff 方法 + Hoeffding 引理获得）</p>
-<p>尾部事件（Tail Event）就是指某个随机变量“远离平均值（期望）”的事件。看概率图的尾巴就是</p>
-<p>MGF矩母函数很重要。可以泰勒展开出所有的k阶矩。在相关不等式的分析中也很有用。</p>
-<p>东西又多又难 麻烦 that’s enough. 稍微学学得了</p>
-<h2 id="代码实践部分"><a href="#代码实践部分" class="headerlink" title="代码实践部分"></a>代码实践部分</h2><p>最大最小缩放 $x′=\frac{\max(x)−\min(x)}{x−\min(x)}$</p>
-<p>numpy的切片操作<code>[:, :2]</code></p>
-<ul>
-<li><code>:</code> 表示选取所有行（即所有 150 个样本）；</li>
-<li><code>:2</code> 表示选取前两列（索引 0 和 1）</li>
-</ul>
-<p><code>.data</code>：特征（features）——通常是一个二维的数组，形状是 <code>(样本数, 特征数)</code>；</p>
-<p><code>.target</code>：标签（labels / targets）——通常是一维数组，表示每个样本的类别或数值目标。用于分类的</p>
-<p>标准化：使<strong>均值变为 0，标准差变为 1</strong>。</p>
-<p>归一化：<strong>缩放到某个固定范围内</strong></p>
-<p>L2 归一化：向量长度为1</p>
-<p>x=np.array([1, 2, 3])是个纯一维向量</p>
-<p>X=x[:,np.newaxis]把它变成了二维但只有一列的向量，意义同x.reshape(-1,1)然后X=x。-1的意思是任意行，1是1列。比如从[0,1,2]变成<br>[[0]<br>[1]<br>[2]]</p>
-<p>sklearn中默认行是样本，列是特征。X.squeeze()可以把它再拍回成1维向量</p>
-<p>model.fit是拟合。根据model（属于某种estimator）的种类会自动做</p>
-<p>X_train, X_test, Y_train, Y_test = train_test_split(X, Y, test_size=0.3, random_state=42) 这样可以划分数据集。random_state是种子</p>
-<p>knn = neighbors.KNeighborsClassifier(n_neighbors=5)。找knn里属于哪种的多我就返回哪种，概率就取knn里不同分类的数量比。</p>
-<p>SVC是支持向量机。支持向量机找到一个超平面来分类数据。由于可以加维，所以支持非线性分类</p>
-<p>model.fit(X,y)，其中y是标签分类的一维向量，所以用小写</p>
-<p>随机森林：随机取数据集中一部分训练多颗决策树，综合各棵决策树的结果。max_features是每棵树挑几个特征划分，值小就可以增加随机性，默认是sqrt。</p>
-<p>无监督学习有降维、聚类、密度估计等算法</p>
-<p>PCA 中的“方差比例”指的是每个主成分所解释（保留）了原始数据多少比例的信息量（方差）。比如第一个成分50%，第二个成分30%，那两个成分就解释了80%的方差。</p>
-<p>MLE可以自动选最优维度数。</p>
-<p>对于有 $k$ 个类别的问题，混淆矩阵（confusion matrix）是一个 $k \times k$ 的矩阵，每一行代表<strong>实际标签</strong>，每一列代表<strong>预测标签</strong>，对角线是预测正确的个数，其他位置是预测错误的情况。</p>
-<p><img src="/2025/03/31/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%90%86%E8%AE%BA%E7%AC%94%E8%AE%B0/ml_map.png" alt="这个图挺好"></p>
-<p>Isomap是一种<strong>非线性降维算法</strong>，比PCA更适合处理非线性流形结构的数据。原理没学，好像和图挺有关的。</p>
-<p>Logistic Regression逻辑回归在用于分类时候，就是神经网络的那个基本单元。对特征线性加权，然后用sigmoid函数激活（也可以得到概率）。</p>
-<p>confusion matrix可以图形化，用颜色深浅</p>
-<p><code>ShuffleSplit</code> 是 <code>scikit-learn</code> 中的一种交叉验证方法，用来将数据集随机划分为训练集和测试集，多次重复这一过程，适合在<strong>没有固定划分规则</strong>的情况下使用。<strong>随机划分</strong>训练集和测试集（每次都洗牌）</p>
-<p>GridSearchCV会自动尝试多个参数组合，并通过交叉验证找到效果最好的那一组参数。</p>
+            <h2 id="流水帐"><a href="#流水帐" class="headerlink" title="流水帐"></a>流水帐</h2><p>4.4 上海虹桥站——江阴站——桔子酒店江阴站应天河路店（新、性价比高、房间大、服务好）——江阴运河公园（33元票价的摩天轮和跳楼机）——新吴越菜馆（河鱼炖蛋味道就那样，秧草原来就是草头，排骨还行，总体中规中矩）——中山公园附近的步行街</p>
+<p>4.5 陶兴宝点心店（蟹粉小笼还行，拖炉饼是甜的菜馅有趣，刀鱼馄饨和螃蜞馄饨没啥感觉）——江阴市博物馆（逛逛了解江阴挺好的）——鹅鼻嘴公园（长江边，看长江）——远望二号（到了附近没上去，已经关门了）——南门八佰伴（台球教学、吃饭、酒吧）</p>
+<p>4.6 回</p>
+<h2 id="总体评价"><a href="#总体评价" class="headerlink" title="总体评价"></a>总体评价</h2><p>看起来是个很富的地方。东西的价位和上海差不多。公园多、维护好、修了地铁，市政工程都做得很好，看得出来市政府很有钱（比gdp第一的昆山似乎看起来更好，可能因为昆山的gdp有更多来自外资）。小逛逛是个不错的目的地。是距离上海最近的长江南岸的江滨城市。</p>
+<p>徐霞客、刘半农、刘天华</p>
 
         </div>
 
@@ -235,6 +212,10 @@
                 <span>Tag(s):</span>
                 <span class="tag">
                     
+                    
+                        <a href="/tags/%E6%97%85%E6%B8%B8/"># 旅游</a>
+                    
+                        
                 </span>
             </div>
             <div>
@@ -245,10 +226,8 @@
         </section>
         <section class="post-nav">
             
-                <a class="prev" rel="prev" href="/2025/04/03/SOR%E7%AC%94%E8%AE%B0/">SOR笔记</a>
             
-            
-            <a class="next" rel="next" href="/2025/03/23/%E5%98%89%E5%85%B4/">嘉兴</a>
+            <a class="next" rel="next" href="/2025/04/03/SOR%E7%AC%94%E8%AE%B0/">SOR笔记</a>
             
         </section>
 

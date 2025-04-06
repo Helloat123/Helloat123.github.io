@@ -12,7 +12,7 @@
 
 
 
-<title>机器学习理论笔记 | Richard&#39;s Blog</title>
+<title>SOR笔记 | Richard&#39;s Blog</title>
 
 
 
@@ -39,6 +39,45 @@
 
     
     
+        
+            <!-- MathJax配置，可通过单美元符号书写行内公式等 -->
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+    "HTML-CSS": {
+        preferredFont: "TeX",
+        availableFonts: ["STIX","TeX"],
+        linebreaks: { automatic:true },
+        EqnChunk: (MathJax.Hub.Browser.isMobile ? 10 : 50)
+    },
+    tex2jax: {
+        inlineMath: [ ["$", "$"], ["\\(","\\)"] ],
+        processEscapes: true,
+        ignoreClass: "tex2jax_ignore|dno",
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    },
+    TeX: {
+        equationNumbers: { autoNumber: "AMS" },
+        noUndefined: { attributes: { mathcolor: "red", mathbackground: "#FFEEEE", mathsize: "90%" } },
+        Macros: { href: "{}" }
+    },
+    messageStyle: "none"
+    });
+</script>
+<!-- 给MathJax元素添加has-jax class -->
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+<!-- 通过连接CDN加载MathJax的js代码 -->
+<script type="text/javascript" async
+        src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+
+
         
     
 
@@ -173,7 +212,7 @@
     
     <article class="post-wrap">
         <header class="post-header">
-            <h1 class="post-title">机器学习理论笔记</h1>
+            <h1 class="post-title">SOR笔记</h1>
             
                 <div class="post-meta">
                     
@@ -182,50 +221,43 @@
 
                     
                         <span class="post-time">
-                        Date: <a href="#">March 31, 2025&nbsp;&nbsp;11:50:24</a>
+                        Date: <a href="#">April 3, 2025&nbsp;&nbsp;21:33:03</a>
                         </span>
                     
+                    
+                        <span class="post-category">
+                    Category:
+                            
+                                <a href="/categories/%E7%AC%94%E8%AE%B0/">笔记</a>
+                            
+                        </span>
                     
                 </div>
             
         </header>
 
         <div class="post-content">
-            <h2 id="理论部分"><a href="#理论部分" class="headerlink" title="理论部分"></a>理论部分</h2><p>经验风险最小化（ERM）<br>经验风险是用经验训练出来的函数与经验的loss<br>excess risk是 训练出的模型的loss - 最优可能模型的loss</p>
-<p>我们希望泛化能力强，也即经验样本和实际分布偏差小。那么偏差的幅度和概率怎么测算呢？Concentration Inequalities<br>Markov不等式（基本）、Chebyshev不等式（把方差用在Markov上）、Hoeffding 不等式（Chernoff 方法 + Hoeffding 引理获得）</p>
-<p>尾部事件（Tail Event）就是指某个随机变量“远离平均值（期望）”的事件。看概率图的尾巴就是</p>
-<p>MGF矩母函数很重要。可以泰勒展开出所有的k阶矩。在相关不等式的分析中也很有用。</p>
-<p>东西又多又难 麻烦 that’s enough. 稍微学学得了</p>
-<h2 id="代码实践部分"><a href="#代码实践部分" class="headerlink" title="代码实践部分"></a>代码实践部分</h2><p>最大最小缩放 $x′=\frac{\max(x)−\min(x)}{x−\min(x)}$</p>
-<p>numpy的切片操作<code>[:, :2]</code></p>
+            <h2 id="第一次作业中涉及的内容"><a href="#第一次作业中涉及的内容" class="headerlink" title="第一次作业中涉及的内容"></a>第一次作业中涉及的内容</h2><p>cumulative distribution function, cdf  累计分布函数</p>
+<h3 id="离散随机变量"><a href="#离散随机变量" class="headerlink" title="离散随机变量"></a>离散随机变量</h3><p>Probability mass function（概率密度函数，或叫概率质量函数）：p(x)是取到x的概率</p>
 <ul>
-<li><code>:</code> 表示选取所有行（即所有 150 个样本）；</li>
-<li><code>:2</code> 表示选取前两列（索引 0 和 1）</li>
+<li><p>伯努利bernoulli：p概率为1，1-p概率为0</p>
+</li>
+<li><p>二项binomial：有(n,p)两个参数，n次实验中成功的次数</p>
+</li>
+<li><p>几何geometric：首次成功期望要多少次实验。（无穷项等比数列之和被称为几何级数，因为等比的英文就是geometric，然后被不恰当地翻译了）</p>
+</li>
+<li><p>泊松poisson：$p(i)=e^{-\lambda}\frac{\lambda^i}{i!}$。容易发现这个函数的前无穷项之和是1。二项分布$n$大$p$小时可以用泊松来近似计算</p>
+</li>
 </ul>
-<p><code>.data</code>：特征（features）——通常是一个二维的数组，形状是 <code>(样本数, 特征数)</code>；</p>
-<p><code>.target</code>：标签（labels / targets）——通常是一维数组，表示每个样本的类别或数值目标。用于分类的</p>
-<p>标准化：使<strong>均值变为 0，标准差变为 1</strong>。</p>
-<p>归一化：<strong>缩放到某个固定范围内</strong></p>
-<p>L2 归一化：向量长度为1</p>
-<p>x=np.array([1, 2, 3])是个纯一维向量</p>
-<p>X=x[:,np.newaxis]把它变成了二维但只有一列的向量，意义同x.reshape(-1,1)然后X=x。-1的意思是任意行，1是1列。比如从[0,1,2]变成<br>[[0]<br>[1]<br>[2]]</p>
-<p>sklearn中默认行是样本，列是特征。X.squeeze()可以把它再拍回成1维向量</p>
-<p>model.fit是拟合。根据model（属于某种estimator）的种类会自动做</p>
-<p>X_train, X_test, Y_train, Y_test = train_test_split(X, Y, test_size=0.3, random_state=42) 这样可以划分数据集。random_state是种子</p>
-<p>knn = neighbors.KNeighborsClassifier(n_neighbors=5)。找knn里属于哪种的多我就返回哪种，概率就取knn里不同分类的数量比。</p>
-<p>SVC是支持向量机。支持向量机找到一个超平面来分类数据。由于可以加维，所以支持非线性分类</p>
-<p>model.fit(X,y)，其中y是标签分类的一维向量，所以用小写</p>
-<p>随机森林：随机取数据集中一部分训练多颗决策树，综合各棵决策树的结果。max_features是每棵树挑几个特征划分，值小就可以增加随机性，默认是sqrt。</p>
-<p>无监督学习有降维、聚类、密度估计等算法</p>
-<p>PCA 中的“方差比例”指的是每个主成分所解释（保留）了原始数据多少比例的信息量（方差）。比如第一个成分50%，第二个成分30%，那两个成分就解释了80%的方差。</p>
-<p>MLE可以自动选最优维度数。</p>
-<p>对于有 $k$ 个类别的问题，混淆矩阵（confusion matrix）是一个 $k \times k$ 的矩阵，每一行代表<strong>实际标签</strong>，每一列代表<strong>预测标签</strong>，对角线是预测正确的个数，其他位置是预测错误的情况。</p>
-<p><img src="/2025/03/31/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%90%86%E8%AE%BA%E7%AC%94%E8%AE%B0/ml_map.png" alt="这个图挺好"></p>
-<p>Isomap是一种<strong>非线性降维算法</strong>，比PCA更适合处理非线性流形结构的数据。原理没学，好像和图挺有关的。</p>
-<p>Logistic Regression逻辑回归在用于分类时候，就是神经网络的那个基本单元。对特征线性加权，然后用sigmoid函数激活（也可以得到概率）。</p>
-<p>confusion matrix可以图形化，用颜色深浅</p>
-<p><code>ShuffleSplit</code> 是 <code>scikit-learn</code> 中的一种交叉验证方法，用来将数据集随机划分为训练集和测试集，多次重复这一过程，适合在<strong>没有固定划分规则</strong>的情况下使用。<strong>随机划分</strong>训练集和测试集（每次都洗牌）</p>
-<p>GridSearchCV会自动尝试多个参数组合，并通过交叉验证找到效果最好的那一组参数。</p>
+<h3 id="连续随机变量"><a href="#连续随机变量" class="headerlink" title="连续随机变量"></a>连续随机变量</h3><p>Probability density function （概率密度函数）：f(x)，把区间的f函数积分起来就是取到这个区间的概率</p>
+<ul>
+<li>均匀uniform</li>
+<li>指数exponential：$f(x)=\lambda e^{-\lambda x}$</li>
+<li>伽马gamma：$f(x)=\frac{\lambda e^{-\lambda x}(\lambda x)^{\alpha-1}}{\Gamma(\alpha)}$，其中$\Gamma(\alpha)=\int_0^\infin e^{-x}x^{\alpha-1},\mathrm{d}x$</li>
+<li>正态normal：$\frac{1}{\sqrt{2\pi}\sigma}e^{-(x-\mu)^2/2\sigma^2}$</li>
+</ul>
+<h3 id="联合分布"><a href="#联合分布" class="headerlink" title="联合分布"></a>联合分布</h3><p>累积联合概率分布函数<br>$$<br>F(a,b)=P{X\le a,Y\le b}<br>$$<br>若 $Y_1=g_1(X_1,X_2)$, $Y_2=g_2(X_1,X_2)$, 满足一些唯一性和连续性的条件的情况下，可以证明联合密度函数<br>$$<br>f_{Y_1,Y_2}(y_1,y_2)={f_{X_1,X_2}(x_1,x_2)\over|J(x_1,x_2)|}<br>$$<br>其中Jacobian determinant $J(x_1,x_2)=\begin{vmatrix}\frac{\partial g_1}{\partial x_1}&amp;\frac{\partial g_1}{\partial x_2}\\frac{\partial g_2}{\partial x_1}&amp;\frac{\partial g_2}{\partial x_2}\end{vmatrix}$。理解：差不多起的是个缩放坐标系的作用。</p>
+<p><del>（先鸽了，最近太忙，后面再学了（我知道可能要很久以后了，但是尽量早吧））</del></p>
 
         </div>
 
@@ -235,6 +267,12 @@
                 <span>Tag(s):</span>
                 <span class="tag">
                     
+                    
+                        <a href="/tags/%E7%AC%94%E8%AE%B0/"># 笔记</a>
+                    
+                        <a href="/tags/%E7%A0%94%E7%A9%B6%E7%94%9F%E8%AF%BE%E7%A8%8B/"># 研究生课程</a>
+                    
+                        
                 </span>
             </div>
             <div>
@@ -245,10 +283,10 @@
         </section>
         <section class="post-nav">
             
-                <a class="prev" rel="prev" href="/2025/04/03/SOR%E7%AC%94%E8%AE%B0/">SOR笔记</a>
+                <a class="prev" rel="prev" href="/2025/04/06/%E6%B1%9F%E9%98%B4/">江阴</a>
             
             
-            <a class="next" rel="next" href="/2025/03/23/%E5%98%89%E5%85%B4/">嘉兴</a>
+            <a class="next" rel="next" href="/2025/03/31/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%90%86%E8%AE%BA%E7%AC%94%E8%AE%B0/">机器学习理论笔记</a>
             
         </section>
 
