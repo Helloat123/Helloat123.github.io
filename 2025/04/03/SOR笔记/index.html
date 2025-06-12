@@ -253,7 +253,7 @@
 <ul>
 <li>均匀uniform</li>
 <li>指数exponential：$f(x)=\lambda e^{-\lambda x}$</li>
-<li>伽马gamma：$f(x)=\frac{\lambda e^{-\lambda x}(\lambda x)^{\alpha-1}}{\Gamma(\alpha)}$，其中$\Gamma(\alpha)=\int_0^\infin e^{-x}x^{\alpha-1},\mathrm{d}x$</li>
+<li>伽马gamma：$f(x)=\frac{\lambda e^{-\lambda x}(\lambda x)^{\alpha-1}}{\Gamma(\alpha)}$，其中$\Gamma(\alpha)=\int_0^\infty e^{-x}x^{\alpha-1},\mathrm{d}x$</li>
 <li>正态normal：$\frac{1}{\sqrt{2\pi}\sigma}e^{-(x-\mu)^2/2\sigma^2}$</li>
 </ul>
 <h3 id="联合分布"><a href="#联合分布" class="headerlink" title="联合分布"></a>联合分布</h3><p>累积联合概率分布函数<br>$$<br>F(a,b)=P{X\le a,Y\le b}<br>$$<br>若 $Y_1=g_1(X_1,X_2)$, $Y_2=g_2(X_1,X_2)$, 满足一些唯一性和连续性的条件的情况下，可以证明联合密度函数<br>$$<br>f_{Y_1,Y_2}(y_1,y_2)={f_{X_1,X_2}(x_1,x_2)\over|J(x_1,x_2)|}<br>$$<br>其中Jacobian determinant $J(x_1,x_2)=\begin{vmatrix}\frac{\partial g_1}{\partial x_1}&amp;\frac{\partial g_1}{\partial x_2}\\frac{\partial g_2}{\partial x_1}&amp;\frac{\partial g_2}{\partial x_2}\end{vmatrix}$。理解：差不多起的是个缩放坐标系的作用。</p>
