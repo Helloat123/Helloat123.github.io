@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <meta name="author" content="Helloat123">
+
+
+
+
+
+<title>多元统计分析笔记 | Richard&#39;s Blog</title>
+
+
+
+    <link rel="icon" href="/favicon.png">
+
+
+
+
+    <!-- stylesheets list from _config.yml -->
+    
+    <link rel="stylesheet" href="/css/style.css">
+    
+
+
+
+    <!-- scripts list from _config.yml -->
+    
+    <script src="/js/script.js"></script>
+    
+    <script src="/js/tocbot.min.js"></script>
+    
+
+
+
+    
+    
+        
+    
+
+
+<meta name="generator" content="Hexo 5.4.2"></head>
+<body>
+    <div class="wrapper">
+        <header>
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-header header-logo"><a href="/">Richard&#39;s Blog</a></div>
+            <div class="menu navbar-right">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+                <input id="switch_default" type="checkbox" class="switch_default">
+                <label for="switch_default" class="toggleBtn"></label>
+            </div>
+        </div>
+    </nav>
+
+    
+    <nav class="navbar-mobile" id="nav-mobile">
+        <div class="container">
+            <div class="navbar-header">
+                <div>
+                    <a href="/">Richard&#39;s Blog</a><a id="mobile-toggle-theme">·&nbsp;Light</a>
+                </div>
+                <div class="menu-toggle" onclick="mobileBtn()">&#9776; Menu</div>
+            </div>
+            <div class="menu" id="mobile-menu">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+            </div>
+        </div>
+    </nav>
+
+</header>
+<script>
+    var mobileBtn = function f() {
+        var toggleMenu = document.getElementsByClassName("menu-toggle")[0];
+        var mobileMenu = document.getElementById("mobile-menu");
+        if(toggleMenu.classList.contains("active")){
+           toggleMenu.classList.remove("active")
+            mobileMenu.classList.remove("active")
+        }else{
+            toggleMenu.classList.add("active")
+            mobileMenu.classList.add("active")
+        }
+    }
+</script>
+        <div class="main">
+            <div class="container">
+    
+    
+        <div class="post-toc">
+    <div class="tocbot-list">
+    </div>
+    <div class="tocbot-list-menu">
+        <a class="tocbot-toc-expand" onclick="expand_toc()">Expand all</a>
+        <a onclick="go_top()">Back to top</a>
+        <a onclick="go_bottom()">Go to bottom</a>
+    </div>
+</div>
+
+<script>
+    document.ready(
+        function () {
+            tocbot.init({
+                tocSelector: '.tocbot-list',
+                contentSelector: '.post-content',
+                headingSelector: 'h1, h2, h3, h4, h5',
+                collapseDepth: 1,
+                orderedList: false,
+                scrollSmooth: true,
+            })
+        }
+    )
+
+    function expand_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 6,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "collapse_toc()");
+        b.innerHTML = "Collapse all"
+    }
+
+    function collapse_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 1,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "expand_toc()");
+        b.innerHTML = "Expand all"
+    }
+
+    function go_top() {
+        window.scrollTo(0, 0);
+    }
+
+    function go_bottom() {
+        window.scrollTo(0, document.body.scrollHeight);
+    }
+
+</script>
+    
+
+    
+    <article class="post-wrap">
+        <header class="post-header">
+            <h1 class="post-title">多元统计分析笔记</h1>
+            
+                <div class="post-meta">
+                    
+                        Author: <a itemprop="author" rel="author" href="/">Helloat123</a>
+                    
+
+                    
+                        <span class="post-time">
+                        Date: <a href="#">June 9, 2025&nbsp;&nbsp;20:15:53</a>
+                        </span>
+                    
+                    
+                        <span class="post-category">
+                    Category:
+                            
+                                <a href="/categories/%E7%AC%94%E8%AE%B0/">笔记</a>
+                            
+                        </span>
+                    
+                </div>
+            
+        </header>
+
+        <div class="post-content">
+            <h1 id="前置知识"><a href="#前置知识" class="headerlink" title="前置知识"></a>前置知识</h1><p>正态 $f(x) = \frac{1}{\sqrt{2\pi\sigma^2}}<br>\exp\left( -\frac{(x - \mu)^2}{2\sigma^2} \right)$</p>
+<p>如果知道分布，</p>
+<p>协方差 $Cov(X,Y)=E(X-EX)(Y-EY)$ </p>
+<p>相关系数 $\rho_{XY}=\frac{Cov(X,Y)}{\sigma_X\sigma_Y}$</p>
+<p>对于样本，均值 $\bar y$，协方差矩阵 $S$，相关矩阵 $R$。</p>
+<p>$R=(r_{jk})<em>{p\times p}$，$r</em>{jk}=\frac{s_{jk}}{\sqrt{s_{jj}s_{kk}}}$ </p>
+<h1 id="Chapter-2-Multivariate-Normal-Distribution"><a href="#Chapter-2-Multivariate-Normal-Distribution" class="headerlink" title="Chapter 2 Multivariate Normal Distribution"></a>Chapter 2 Multivariate Normal Distribution</h1><h2 id="MVN"><a href="#MVN" class="headerlink" title="MVN"></a>MVN</h2><p>Multivariate Normal Distribution</p>
+<h3 id="linear-combination"><a href="#linear-combination" class="headerlink" title="linear combination"></a>linear combination</h3><p>$$<br>y\sim N(\mu,\Sigma)<br>$$</p>
+<p>那么，在a方向上的投影的分布是<br>$$<br>a^\top y\sim N(a^\top \mu,a^\top \Sigma a)<br>$$<br>同时扩展到矩阵<br>$$<br>Ay\sim N(A\mu,A\Sigma A^T)<br>$$</p>
+<h3 id="Partition"><a href="#Partition" class="headerlink" title="Partition"></a>Partition</h3><p>单独拎一个变量出来就是正态，$Y_j\sim N(\mu_j,\sigma_{jj})$ </p>
+<h3 id="Independence"><a href="#Independence" class="headerlink" title="Independence"></a>Independence</h3><p>每个变量独立的充要条件是 $\Sigma_{12}=O$ </p>
+<h3 id="Conditional-Mean-Covariance-Matrix"><a href="#Conditional-Mean-Covariance-Matrix" class="headerlink" title="Conditional Mean / Covariance Matrix"></a>Conditional Mean / Covariance Matrix</h3><p>$$<br>y_1|y_2\sim N_r(\mu_1+\Sigma_{12}\Sigma_{22}^{-1}(y_2-\mu_2),\Sigma_{11}-\Sigma_{12}\Sigma_{22}^{-1}\Sigma_{21})<br>$$</p>
+<p>$\Sigma_{12}\Sigma_{22}^{-1}$ 称作 matrix of regression coefficients，后面方差那一项的矩阵中，$\sigma_{12\cdot 3}$ 代表固定住 $X_3$ 之后，$X_1$ 和 $X_2$ 的partial covariance。同理 $\sigma_{11\cdot 3}$ 就是 偏方差。</p>
+<h3 id="Sum-of-Independent-Normals"><a href="#Sum-of-Independent-Normals" class="headerlink" title="Sum of Independent Normals"></a>Sum of Independent Normals</h3><p>几个独立的正态变量加起来的分布就是直接加。</p>
+<h3 id="Quadratic-Forms-二次型"><a href="#Quadratic-Forms-二次型" class="headerlink" title="Quadratic Forms 二次型"></a>Quadratic Forms 二次型</h3><p>$$<br>(y-\mu)^\top\Sigma^{-1}(y-\mu)\sim \chi^2(p)<br>$$</p>
+<h2 id="Estimation"><a href="#Estimation" class="headerlink" title="Estimation"></a>Estimation</h2><p>如果样本都i.i.d. 那么极大似然就是找一个使得样本情况最大可能出现的分布。</p>
+<h3 id="MLE-极大似然"><a href="#MLE-极大似然" class="headerlink" title="MLE 极大似然"></a>MLE 极大似然</h3><p>均值就是均值；协方差矩阵里一般用分母n-1的无偏估计，而不用n的极大似然。<br>$$<br>\tilde \Sigma=\frac{1}{n-1}\sum_{i=1}^n(y_i-\bar y)(y_i-\bar y)^\top=\frac{n-1}{n}S<br>$$<br>其中<br>$$<br>\bar y\sim N(\mu,\Sigma/n)<br>$$<br>且<br>$$<br>(n-1)S\sim W_p(n-1,\Sigma)<br>$$</p>
+<h3 id="Wishart分布"><a href="#Wishart分布" class="headerlink" title="Wishart分布"></a>Wishart分布</h3><p>如果 $z_1,z_2,z_3,\dots,z_q$ 是p维正态分布 $N_p(0,\Sigma)$ 的独立同分布样本向量，每个样本是p维随机向量，那么外积和矩阵<br>$$<br>W=\sum_{i=1}^qz_iz_i^\top<br>$$<br>的分布称为Wishart分布。</p>
+<h1 id="Chapter-3-Test-on-Mean-vectors"><a href="#Chapter-3-Test-on-Mean-vectors" class="headerlink" title="Chapter 3 Test on Mean vectors"></a>Chapter 3 Test on Mean vectors</h1><p>检验均值</p>
+<h2 id="One-Sample"><a href="#One-Sample" class="headerlink" title="One Sample"></a>One Sample</h2><p>一组样本，假设分布是 $y\sim N_p(\mu,\Sigma)$</p>
+<p>检验 $H_0:\mu=\mu_0$, $H_1:\mu\not=\mu_0$</p>
+<p>分已知 $\Sigma$ 和不知的两种情况</p>
+<h3 id="Sigma-已知"><a href="#Sigma-已知" class="headerlink" title="$\Sigma$ 已知"></a>$\Sigma$ 已知</h3><p>Z检验：检验统计量 $Z^2=n(\bar y-\mu_0)^\top\Sigma^{-1}(\bar y-\mu_0)$</p>
+<p>当 $H_0$ 成立时，统计量服从 $Z^2\sim \chi^2(p)$，拒绝域 $Z^2&gt;\chi_\alpha^2(p)$ （在很小概率的地方）</p>
+<h3 id="Sigma-未知"><a href="#Sigma-未知" class="headerlink" title="$\Sigma$ 未知"></a>$\Sigma$ 未知</h3><p>用Hottelling’s T^2检验替代，$T^2=n(\bar y-\mu_0)^\top S^{-1}(\bar y-\mu_0)$</p>
+<p>如果原假设成立，$T^2\sim T^2(p,n-1)$ ，那么 $F=\frac{(n-1)-p+1}{(n-1)p}T^2\sim F(p,n-p)$ ，拒绝域就是 $&gt;F_\alpha(p,n-p)$</p>
+<h2 id="Compare-two-Mean-Vectors"><a href="#Compare-two-Mean-Vectors" class="headerlink" title="Compare two Mean Vectors"></a>Compare two Mean Vectors</h2><p>检验两组样本的均值是否相同，就是检验差是否是0。</p>
+<h3 id="Paired"><a href="#Paired" class="headerlink" title="Paired"></a>Paired</h3><p>两组样本一一对应。减一减就变成上面一组样本的检验方法了。</p>
+<h3 id="Independent"><a href="#Independent" class="headerlink" title="Independent"></a>Independent</h3><p>假设两组协方差一样，那么 $S_{pl}=\frac{(n_1-1)S_1+(n_2-1)S_2}{n_1+n_2-2}$。有了均值差和协方差估计量就能得到 $T^2=\frac{n_1n_2}{n_1+n_2}(\bar x-\bar y)^\top S_{pl}^{-1}(\bar x-\bar y)$ 。然后转换成 F分布：$F = \frac{n_1 + n_2 - p - 1}{(n_1 + n_2 - 2)p} T^2 \sim F(p, n_1 + n_2 - p - 1)$ 即可检验。</p>
+<h2 id="Comparing-Several-Multivariate-Mean-Vectors"><a href="#Comparing-Several-Multivariate-Mean-Vectors" class="headerlink" title="Comparing Several Multivariate Mean Vectors"></a>Comparing Several Multivariate Mean Vectors</h2><h3 id="One-way-MANOVA"><a href="#One-way-MANOVA" class="headerlink" title="One-way MANOVA"></a>One-way MANOVA</h3><p>假设 $H_0:\mu_1=\mu_2=\dots=\mu_k$</p>
+<p>每组的均值 $\bar{y}_\ell = \frac{1}{n_\ell} \sum_{i=1}^{n_\ell} y_{\ell i}$</p>
+<p>总体样本均值 $\bar{y} = \frac{1}{n} \sum_{\ell=1}^k \sum_{i=1}^{n_\ell} y_{\ell i}$</p>
+<p>组间变异矩阵 $\mathbf{B} = \sum_{\ell=1}^k n_\ell (\bar{y}_\ell - \bar{y})(\bar{y}_\ell - \bar{y})^\top$</p>
+<p>组内变异矩阵 $\mathbf{W} = \sum_{\ell=1}^k \sum_{i=1}^{n_\ell} (y_{\ell i} - \bar{y}<em>\ell)(y</em>{\ell i} - \bar{y}_\ell)^\top$</p>
+<p>Wilks’ Lambda 检验统计量 $\Lambda^* = \frac{|\mathbf{W}|}{|\mathbf{B} + \mathbf{W}|}$ （组内变异所占的比例）</p>
+<p>Bartlett 近似卡方检验统计量 $- \left(n - 1 - \frac{p + k}{2} \right) \ln(\Lambda^*) \overset d\sim \chi^2(p(k - 1))$</p>
+<p>拒绝域 $- \ln(\Lambda^*) &gt; \frac{\chi^2_{\alpha}(p(k - 1))}{n - 1 - \frac{p + k}{2}}$</p>
+<h1 id="Chapter-4-Multivariate-Regression-Models"><a href="#Chapter-4-Multivariate-Regression-Models" class="headerlink" title="Chapter 4 Multivariate Regression Models"></a>Chapter 4 Multivariate Regression Models</h1><h2 id="Model"><a href="#Model" class="headerlink" title="Model"></a>Model</h2><p>$$<br>\mathbf{y} = \mathbf{X} \boldsymbol{\beta} + \boldsymbol{\epsilon}<br>$$</p>
+<h2 id="Estimation-1"><a href="#Estimation-1" class="headerlink" title="Estimation"></a>Estimation</h2><p>Least Squares Estimation就是让SSE最小<br>$$<br>SSE = (\mathbf{y} - \hat{\mathbf{y}})^\top (\mathbf{y} - \hat{\mathbf{y}}) = \hat{\boldsymbol{\varepsilon}}^\top \hat{\boldsymbol{\varepsilon}}<br>$$<br>令导数为0，<br>$$<br>\hat{\boldsymbol{\beta}} = (\mathbf{X}^{\top} \mathbf{X})^{-1} \mathbf{X}^{\top} \mathbf{y}<br>$$<br>则预测值<br>$$<br>\hat{\mathbf{y}} = \mathbf{X} \hat{\boldsymbol{\beta}} = \mathbf{X} (\mathbf{X}^{\top} \mathbf{X})^{-1} \mathbf{X}^{\top} \mathbf{y} = \mathbf{H} \mathbf{y}<br>$$<br>其中 $\mathbf{H}$ 是帽子矩阵。残差Residuals<br>$$<br>\hat{\boldsymbol{\varepsilon}} = \mathbf{y} - \hat{\mathbf{y}} = (\mathbf{I}_n - \mathbf{H}) \mathbf{y}<br>$$<br>误差方差的估计量<br>$$<br>s^2 = \frac{\hat{\boldsymbol{\varepsilon}}^{\top} \hat{\boldsymbol{\varepsilon}}}{n - q - 1}<br>$$<br>回归系数的协方差矩阵<br>$$<br>\mathrm{Cov}(\hat{\boldsymbol{\beta}}) = \sigma^2 (\mathbf{X}^{\top} \mathbf{X})^{-1}<br>$$<br>如果假设误差error正态分布，即<br>$$<br>\hat{\boldsymbol{\beta}} \sim \mathcal{N}(\boldsymbol{\beta}, \sigma^2 (\mathbf{X}^{\top} \mathbf{X})^{-1})<br>$$<br>则<br>$$<br>\frac{\hat{\boldsymbol{\varepsilon}}^{\top} \hat{\boldsymbol{\varepsilon}}}{\sigma^2} \sim \chi^2(n - q - 1)<br>$$<br>常用的几个SS：$SSE=\sum(y_i-\hat y_i)^2$，$SSR=\sum(\hat y_i-\bar y)^2$，$SST=\sum (y_i-\bar y)^2$，其中 $SST=SSR+SSE$。</p>
+<h2 id="Hypothesis-Tests"><a href="#Hypothesis-Tests" class="headerlink" title="Hypothesis Tests"></a>Hypothesis Tests</h2><h3 id="Overall-Regression"><a href="#Overall-Regression" class="headerlink" title="Overall Regression"></a>Overall Regression</h3><p>原假设是自变量全都无贡献，用的F统计量 $F = \frac{SSR / q}{SSE / (n - q - 1)} \sim F(q, n - q - 1)$</p>
+<h3 id="Lack-of-fit-Test"><a href="#Lack-of-fit-Test" class="headerlink" title="Lack-of-fit Test"></a>Lack-of-fit Test</h3><p>检验是否需要添加其它变量，原假设是额外的那些变量都是0。不加那些变量的记作 $\beta_r$ ，加的记作 $\beta$。 $F = \frac{(SSE_r - SSE_f) / (q - r)}{SSE_f / (n - q - 1)} \sim F(q - r, n - q - 1)$</p>
+<h3 id="on-Single-beta-j"><a href="#on-Single-beta-j" class="headerlink" title="on Single $\beta_j$"></a>on Single $\beta_j$</h3><p>$$<br>t = \frac{\hat{\beta}_j}{\text{sd}(\hat{\beta}_j)} \sim t(n - q - 1)<br>$$</p>
+<p>其中标准差为 $\text{sd}(\hat{\beta}<em>j) = \sqrt{ s^2 \cdot (X^T X)^{-1}</em>{jj} }$</p>
+<h3 id="R-Square"><a href="#R-Square" class="headerlink" title="R-Square"></a>R-Square</h3><p>$$<br>R^2 = \frac{SSR}{SST}<br>$$</p>
+<p>同时，上面overall regression的F可以表示成 $F = \frac{(n - q - 1)}{q} \cdot \frac{R^2}{1 - R^2}$</p>
+<h2 id="Prediction"><a href="#Prediction" class="headerlink" title="Prediction"></a>Prediction</h2><p>已有回归模型，如何做预测，并给出不确定性区间？</p>
+<p>$\mathbf{\hat y}_0=\mathbf{x}<em>0^\top \boldsymbol{\hat{\beta}}$ 得到的点估计是无偏的（$E(\mathbf{\hat y}_0)=E(\mathbf{y}_0)$）。所以算得的 $E(\mathbf{y}_0)$ 的置信区间（X长这样的样本，Y的均值是多少）<br>$$<br>\mathbf{x}_0^\top \boldsymbol{\hat{\beta}} \pm t</em>{\alpha/2}(n - q - 1) \cdot \sqrt{ s^2 \cdot \mathbf{x}<em>0^\top (\mathbf{X}^\top \mathbf{X})^{-1} \mathbf{x}_0 }<br>$$<br>与均值不同，具体的某个 $\mathbf{y}_0$ 还得加上误差项 $\varepsilon_0\sim N(0,\sigma^2)$ 。置信区间为<br>$$<br>\mathbf{x}_0^\top \boldsymbol{\hat{\beta}} \pm t</em>{\alpha/2}(n - q - 1) \cdot \sqrt{ s^2 \cdot \left(1 + \mathbf{x}_0^\top (\mathbf{X}^\top \mathbf{X})^{-1} \mathbf{x}_0 \right) }<br>$$</p>
+<h1 id="Chapter-5-Discrimination-and-Classification-Analysis"><a href="#Chapter-5-Discrimination-and-Classification-Analysis" class="headerlink" title="Chapter 5 Discrimination and Classification Analysis"></a>Chapter 5 Discrimination and Classification Analysis</h1><h2 id="Fisher’s-LDA"><a href="#Fisher’s-LDA" class="headerlink" title="Fisher’s LDA"></a>Fisher’s LDA</h2><p>考虑两个population $\pi_1$ 和 $\pi_2$ ，满足协方差矩阵相同但均值不同的假设（不要求正态）。如果我们手头有 $n$ 个i.i.d.的样本 $(y_i,L_i)$ ，其中 $L_i$ 表示所在的population。则有<br>$$<br>n_1 = \sum_{i=1}^n \mathbb{I}(L_i = 1), \quad<br>n_2 = \sum_{i=1}^n \mathbb{I}(L_i = 2), \quad<br>n_1 + n_2 = n<br>$$<br>则均值<br>$$<br>\bar{\boldsymbol{y}}<em>1 = \frac{1}{n_1} \sum_{i: L_i = 1} \boldsymbol{y}_i, \quad<br>\bar{\boldsymbol{y}}_2 = \frac{1}{n_2} \sum</em>{i: L_i = 2} \boldsymbol{y}<em>i<br>$$<br>协方差<br>$$<br>\boldsymbol{S}_1 = \frac{1}{n_1 - 1} \sum</em>{i: L_i = 1}<br>(\boldsymbol{y}<em>i - \bar{\boldsymbol{y}}<em>1)(\boldsymbol{y}_i - \bar{\boldsymbol{y}}_1)^\top<br>$$<br>同时<br>$$<br>\boldsymbol{S}_2 = \frac{1}{n_2 - 1} \sum</em>{i: L_i = 2}<br>(\boldsymbol{y}_i - \bar{\boldsymbol{y}}_2)(\boldsymbol{y}_i - \bar{\boldsymbol{y}}_2)^\top<br>$$<br>我们要把样本投影到一维上，让这个方向上的投影最大程度区分两组，<br>$$<br>z_i = \boldsymbol{a}^\top \boldsymbol{y}_i = a_1 y</em>{i1} + a_2 y_{i2} + \dots + a_p y_{ip}, \quad i = 1, 2, \dots, n<br>$$<br>也就是让目标函数<br>$$<br>J(\boldsymbol{a}) = \frac{(\bar{z}<em>1 - \bar{z}_2)^2}{s_z^2}<br>= \frac{[\boldsymbol{a}^\top (\bar{\boldsymbol{y}}_1 - \bar{\boldsymbol{y}}_2)]^2}<br>{\boldsymbol{a}^\top \boldsymbol{S}</em>{pl} \boldsymbol{a}}<br>$$<br>最大化两个投影均值的平方差（<strong>between-group variance</strong>）除以投影后的组内方差（<strong>within-group variance</strong>）</p>
+<p>写成矩阵形式<br>$$<br>(\bar{z}<em>1 - \bar{z}<em>2)^2<br>= \boldsymbol{a}^\top (\bar{\boldsymbol{y}}_1 - \bar{\boldsymbol{y}}_2)<br>(\bar{\boldsymbol{y}}_1 - \bar{\boldsymbol{y}}_2)^\top \boldsymbol{a}<br>$$<br>那么<br>$$<br>J(\boldsymbol{a})<br>= \frac{<br>\boldsymbol{a}^\top (\bar{\boldsymbol{y}}_1 - \bar{\boldsymbol{y}}_2)<br>(\bar{\boldsymbol{y}}_1 - \bar{\boldsymbol{y}}_2)^\top \boldsymbol{a}<br>}<br>{\boldsymbol{a}^\top \boldsymbol{S}</em>{pl} \boldsymbol{a}}<br>$$<br>可以证明，<br>$$<br>\boldsymbol{a} = \boldsymbol{S}</em>{pl}^{-1} (\bar{\boldsymbol{y}}_1 - \bar{\boldsymbol{y}}_2)<br>$$<br>时 $J(a)$ 取到最大值。此时判别函数定义为<br>$$<br>Z = \boldsymbol{a}^\top \boldsymbol{y}<br>$$</p>
+<h2 id="多维情况下的扩展"><a href="#多维情况下的扩展" class="headerlink" title="多维情况下的扩展"></a>多维情况下的扩展</h2><p>样本是这样<br>$$<br>\bar{\boldsymbol{y}} = \frac{1}{n} \sum_{j=1}^{k} \sum_{i=1}^{n_j} \boldsymbol{y}<em>{ji}, \quad<br>\bar{\boldsymbol{y}}_j = \frac{1}{n_j} \sum</em>{i=1}^{n_j} \boldsymbol{y}<em>{ji}<br>$$<br>那么组内协方差估计是这样<br>$$<br>\boldsymbol{S}</em>{pl} = \frac{1}{n - k}<br>\sum_{j=1}^{k} \sum_{i=1}^{n_j}<br>(\boldsymbol{y}<em>{ji} - \bar{\boldsymbol{y}}<em>j)<br>(\boldsymbol{y}</em>{ji} - \bar{\boldsymbol{y}}<em>j)^\top<br>$$<br>那么判别函数<br>$$<br>J(\boldsymbol{a}) =<br>\frac{\boldsymbol{a}^\top \boldsymbol{B} \boldsymbol{a}}<br>{\boldsymbol{a}^\top \boldsymbol{W} \boldsymbol{a}}<br>$$<br>其中 $B$ 代表 between-group variation<br>$$<br>\boldsymbol{B} = \sum</em>{j=1}^k<br>(\bar{\boldsymbol{y}}_j - \bar{\boldsymbol{y}})<br>(\bar{\boldsymbol{y}}_j - \bar{\boldsymbol{y}})^\top<br>$$<br>$W$ 代表 within-group variation<br>$$<br>\boldsymbol{W} = \sum</em>{j=1}^k \sum_{i=1}^{n_j}<br>(\boldsymbol{y}_{ji} - \bar{\boldsymbol{y}}<em>j)<br>(\boldsymbol{y}</em>{ji} - \bar{\boldsymbol{y}}_j)^\top<br>$$<br>可以推导得判别函数<br>$$<br>Z_i = (\boldsymbol{W}^{-1/2} \boldsymbol{e}_i)^\top \boldsymbol{y},<br>\quad i = 1, 2, \dots, s<br>$$<br>其中 $s=\min(k-1,p)$ ，每个 $Z_i$ 都是一个discriminant axis。特征值表示<strong>分类能力强弱</strong></p>
+<h2 id="Classification-Analysis"><a href="#Classification-Analysis" class="headerlink" title="Classification Analysis"></a>Classification Analysis</h2><h3 id="Two-Class-Fisher’s-Classification-Rule"><a href="#Two-Class-Fisher’s-Classification-Rule" class="headerlink" title="Two-Class Fisher’s Classification Rule"></a>Two-Class Fisher’s Classification Rule</h3><p>$$<br>h(\boldsymbol{y}_0) =<br>\begin{cases}<br>1, &amp; \text{if } \boldsymbol{a}^\top \boldsymbol{y}_0<br>\geq \frac{1}{2} \boldsymbol{a}^\top (\bar{\boldsymbol{y}}_1 + \bar{\boldsymbol{y}}_2) \<br>2, &amp; \text{otherwise}<br>\end{cases}<br>$$</p>
+<h3 id="Bayes-Classification-Rule"><a href="#Bayes-Classification-Rule" class="headerlink" title="Bayes Classification Rule"></a>Bayes Classification Rule</h3><p>设把1分类成2的代价为 $c(2|1)$ ，反之为 $c(1|2)$。则bayes的标准就是<br>$$<br>\frac{f_1(\boldsymbol{y})}{f_2(\boldsymbol{y})} \geq<br>\frac{c(1|2)}{c(2|1)} \cdot \frac{p_2}{p_1}<br>\quad \Rightarrow \text{assign to class 1}<br>$$<br>其中 $f_1$ 和 $f_2$ 是估计的概率密度函数，$p_1$ 和 $p_2$ 是先验概率（对总体中各比例的预期）。</p>
+<p>如果是正态分布，容易证明，如果 $p_1=p_2$ 且 $c(1|2)=c(2|1)$ 其实等价于fisher</p>
+<h3 id="Fisher-for-k-Classes"><a href="#Fisher-for-k-Classes" class="headerlink" title="Fisher for k Classes"></a>Fisher for k Classes</h3><p>$$<br>h(\boldsymbol{y}<em>0) = \arg\min</em>{\ell \in {1, \dots, k}} \sum_{j=1}^{r}<br>\left{ \boldsymbol{e}_j^\top \boldsymbol{W}^{-1/2}(\boldsymbol{y}_0 - \bar{\boldsymbol{y}}_\ell) \right}^2<br>$$</p>
+<h3 id="Bayes-for-k-Classes"><a href="#Bayes-for-k-Classes" class="headerlink" title="Bayes for k Classes"></a>Bayes for k Classes</h3><p>$$<br>h(\boldsymbol{y}<em>0) = \arg\max</em>{\ell \in {1, \dots, k}}<br>p_\ell \cdot f_\ell(\boldsymbol{y}_0)<br>$$</p>
+<h1 id="Chapter-6-Clustering-Analysis"><a href="#Chapter-6-Clustering-Analysis" class="headerlink" title="Chapter 6 Clustering Analysis"></a>Chapter 6 Clustering Analysis</h1><h2 id="距离的定义（大概不考）"><a href="#距离的定义（大概不考）" class="headerlink" title="距离的定义（大概不考）"></a>距离的定义（大概不考）</h2><p>Mahalanobis Distance （聚类中不太用）<br>$$<br>d(x, y) = \sqrt{(x - y)^T S^{-1} (x - y)}<br>$$<br>Minkowski Distance<br>$$<br>d(x, y) = \left( \sum_{j=1}^p |x_j - y_j|^q \right)^{1/q}, \quad q \geq 1<br>$$<br>Canberra metric (nonnegative)<br>$$<br>d(x, y) = \sum_{j=1}^p \frac{|x_j - y_j|}{x_j + y_j}<br>$$<br>Czekanowski coefficient (nonnegative)<br>$$<br>d(x, y) = 1 - 2 \sum_{j=1}^p \frac{\min(x_j, y_j)}{x_j + y_j}<br>$$</p>
+<h2 id="Hierarchical-Clustering-Agglomerative"><a href="#Hierarchical-Clustering-Agglomerative" class="headerlink" title="Hierarchical Clustering (Agglomerative)"></a>Hierarchical Clustering (Agglomerative)</h2><p>初始所有cluster都是自己一个人。每一轮选择两个最近的合并。</p>
+<h3 id="Single-Linkage"><a href="#Single-Linkage" class="headerlink" title="Single Linkage"></a>Single Linkage</h3><p>两类之间最短的两个点的距离，容易生成细长的<br>$$<br>D(A, B) = \min{d(y_i, y_j): y_i \in A, y_j \in B}<br>$$</p>
+<h3 id="Complete-Linkage"><a href="#Complete-Linkage" class="headerlink" title="Complete Linkage"></a>Complete Linkage</h3><p>最远两个点的距离，比较紧凑<br>$$<br>D(A, B) = \max{d(y_i, y_j): y_i \in A, y_j \in B}<br>$$</p>
+<h1 id="Chapter-7-PCA"><a href="#Chapter-7-PCA" class="headerlink" title="Chapter 7 PCA"></a>Chapter 7 PCA</h1><h1 id="Chapter-8-FA"><a href="#Chapter-8-FA" class="headerlink" title="Chapter 8 FA"></a>Chapter 8 FA</h1><h2 id="Principal-Component-Method"><a href="#Principal-Component-Method" class="headerlink" title="Principal Component Method"></a>Principal Component Method</h2><p>另外两种都不用</p>
+<h2 id="Estimate-the-factor-scores"><a href="#Estimate-the-factor-scores" class="headerlink" title="Estimate the factor scores"></a>Estimate the factor scores</h2><p>因子得分估计</p>
+<h3 id="Weighted-Least-Squares-WLS"><a href="#Weighted-Least-Squares-WLS" class="headerlink" title="Weighted Least Squares (WLS)"></a><strong>Weighted Least Squares (WLS)</strong></h3><h3 id="Regression-Based-Estimation"><a href="#Regression-Based-Estimation" class="headerlink" title="Regression-Based Estimation"></a><strong>Regression-Based Estimation</strong></h3><h2 id="Model-amp-Assumption"><a href="#Model-amp-Assumption" class="headerlink" title="Model &amp; Assumption"></a>Model &amp; Assumption</h2><p>l_ij h_i^2</p>
+<h1 id="Chapter-9-CCA"><a href="#Chapter-9-CCA" class="headerlink" title="Chapter 9 CCA"></a>Chapter 9 CCA</h1><h2 id="canonical-variables"><a href="#canonical-variables" class="headerlink" title="canonical variables"></a>canonical variables</h2><h2 id="canonical-correlation"><a href="#canonical-correlation" class="headerlink" title="canonical correlation"></a>canonical correlation</h2>
+        </div>
+
+        
+        <section class="post-tags">
+            <div>
+                <span>Tag(s):</span>
+                <span class="tag">
+                    
+                    
+                        <a href="/tags/%E7%AC%94%E8%AE%B0/"># 笔记</a>
+                    
+                        <a href="/tags/%E7%A0%94%E7%A9%B6%E7%94%9F%E8%AF%BE%E7%A8%8B/"># 研究生课程</a>
+                    
+                        
+                </span>
+            </div>
+            <div>
+                <a href="javascript:window.history.back();">back</a>
+                <span>· </span>
+                <a href="/">home</a>
+            </div>
+        </section>
+        <section class="post-nav">
+            
+            
+            <a class="next" rel="next" href="/2025/06/07/%E5%8A%A0%E6%98%BE%E5%8D%A1%E5%AF%BC%E8%87%B4%E7%9A%84%E4%B8%80%E7%B3%BB%E5%88%97%E9%97%AE%E9%A2%98/">加显卡导致的一系列问题</a>
+            
+        </section>
+
+
+    </article>
+</div>
+
+
+
+        </div>
+        <footer id="footer" class="footer">
+        <div class="copyright">
+        <span>© Helloat123 | Powered by <a href="https://hexo.io" target="_blank">Hexo</a> & <a href="https://github.com/Siricee/hexo-theme-Chic" target="_blank">Chic</a> | 2017 - 2025 </span></span>
+    </div>
+</footer>
+
+    </div>
+</body>
+</html>
