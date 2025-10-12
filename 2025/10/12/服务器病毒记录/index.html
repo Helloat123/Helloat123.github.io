@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <meta name="author" content="Helloat123">
+
+
+
+
+
+<title>服务器病毒记录 | Richard&#39;s Blog</title>
+
+
+
+    <link rel="icon" href="/favicon.png">
+
+
+
+
+    <!-- stylesheets list from _config.yml -->
+    
+    <link rel="stylesheet" href="/css/style.css">
+    
+
+
+
+    <!-- scripts list from _config.yml -->
+    
+    <script src="/js/script.js"></script>
+    
+    <script src="/js/tocbot.min.js"></script>
+    
+
+
+
+    
+    
+        
+    
+
+
+<meta name="generator" content="Hexo 5.4.2"></head>
+<body>
+    <div class="wrapper">
+        <header>
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-header header-logo"><a href="/">Richard&#39;s Blog</a></div>
+            <div class="menu navbar-right">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+                <input id="switch_default" type="checkbox" class="switch_default">
+                <label for="switch_default" class="toggleBtn"></label>
+            </div>
+        </div>
+    </nav>
+
+    
+    <nav class="navbar-mobile" id="nav-mobile">
+        <div class="container">
+            <div class="navbar-header">
+                <div>
+                    <a href="/">Richard&#39;s Blog</a><a id="mobile-toggle-theme">·&nbsp;Light</a>
+                </div>
+                <div class="menu-toggle" onclick="mobileBtn()">&#9776; Menu</div>
+            </div>
+            <div class="menu" id="mobile-menu">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+            </div>
+        </div>
+    </nav>
+
+</header>
+<script>
+    var mobileBtn = function f() {
+        var toggleMenu = document.getElementsByClassName("menu-toggle")[0];
+        var mobileMenu = document.getElementById("mobile-menu");
+        if(toggleMenu.classList.contains("active")){
+           toggleMenu.classList.remove("active")
+            mobileMenu.classList.remove("active")
+        }else{
+            toggleMenu.classList.add("active")
+            mobileMenu.classList.add("active")
+        }
+    }
+</script>
+        <div class="main">
+            <div class="container">
+    
+    
+        <div class="post-toc">
+    <div class="tocbot-list">
+    </div>
+    <div class="tocbot-list-menu">
+        <a class="tocbot-toc-expand" onclick="expand_toc()">Expand all</a>
+        <a onclick="go_top()">Back to top</a>
+        <a onclick="go_bottom()">Go to bottom</a>
+    </div>
+</div>
+
+<script>
+    document.ready(
+        function () {
+            tocbot.init({
+                tocSelector: '.tocbot-list',
+                contentSelector: '.post-content',
+                headingSelector: 'h1, h2, h3, h4, h5',
+                collapseDepth: 1,
+                orderedList: false,
+                scrollSmooth: true,
+            })
+        }
+    )
+
+    function expand_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 6,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "collapse_toc()");
+        b.innerHTML = "Collapse all"
+    }
+
+    function collapse_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 1,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "expand_toc()");
+        b.innerHTML = "Expand all"
+    }
+
+    function go_top() {
+        window.scrollTo(0, 0);
+    }
+
+    function go_bottom() {
+        window.scrollTo(0, document.body.scrollHeight);
+    }
+
+</script>
+    
+
+    
+    <article class="post-wrap">
+        <header class="post-header">
+            <h1 class="post-title">服务器病毒记录</h1>
+            
+                <div class="post-meta">
+                    
+                        Author: <a itemprop="author" rel="author" href="/">Helloat123</a>
+                    
+
+                    
+                        <span class="post-time">
+                        Date: <a href="#">October 12, 2025&nbsp;&nbsp;21:27:11</a>
+                        </span>
+                    
+                    
+                </div>
+            
+        </header>
+
+        <div class="post-content">
+            <h1 id="病毒分析"><a href="#病毒分析" class="headerlink" title="病毒分析"></a>病毒分析</h1><h2 id="发现过程"><a href="#发现过程" class="headerlink" title="发现过程"></a>发现过程</h2><p>/var/log/下不断生成巨大的sedXXXXXX文件。占满了系统盘。</p>
+<p>比对内容发现与syslog基本一致。<br>用 inotifywait 试图实时监控 /var/log 的创建/写入。运行了 inotifywait -m -e create,move,close_write,open /var/log，并尝试把输出通过 grep/tee 记录。结果：在交互时 inotifywait 能看到 CREATE/OPEN/CLOSE_WRITE/MOVED_FROM 事件并打印出条目，表明新文件确实是被创建和写入的。你也在输出里看到了 lsof 对应的打开句柄（显示进程名 sed）。<br>（结论：这些 sed* 文件是运行中的进程产生的，进程名显示是 sed。）</p>
+<p>列了 ps -ef 并查看了相关进程，发现有很多短寿命的 sed 进程；用 pstree 在捕获时能看到父进程链像 systemd → bash → timeout → sed。你也看到 sed 的命令参数非常可疑：sed -i “/X11/d” … 和 sed -i “/PATH=/d” …，直接在多个系统日志文件上做原地替换。<br>（结论：有脚本或服务在以 timeout+sed 的方式周期性清理日志，目标是删除包含 X11、PATH= 等关键痕迹。）</p>
+<p>安装并运行 execsnoop-bpfcc（或 execsnoop-bpfcc -n sed 等），抓到很多短时 exec 事件，显示执行行像：<br>/usr/bin/timeout 5 sed -i /X11/d /var/log/messages-2025* /var/log/messages …<br>还有 /usr/bin/timeout 5 sed -i /PATH=/d /var/log/auth.log …<br>（结论：确认 sed 是通过 timeout 启动的，且是以命令行形式批量编辑日志文件来“清理痕迹”。）<br>systemd(1)─bash─timeout─sed</p>
+<p>查看了 systemctl get-default（显示 graphical.target），但没有 display manager 服务在跑（gdm/sddm/lightdm 等未见）。你列了 systemctl list-timers，查了 dpkg 中 x11 相关包（系统确实装了 X11 库，但 Xorg 没在运行）。<br>（推测：攻击者可能尝试或伪装 X 相关活动，或者改变 target，但没有完整 desktop 服务在运行。）</p>
+<p>发现命令行中存在 “exec ‘update’ “$@”” 型调用<br>在某些捕获的 exec 纪录或 journal 中，看到 /bin/bash -c “exec ‘update’ “$@”” “update” 这类条目，但系统里用 which update 查不到对应的合法可执行文件。<br>（结论：存在名为 update 的可疑/临时可执行脚本或 alias，被用作触发或调度恶意动作；它可能位于临时目录或被快速创建并删除。）</p>
+<p>通过直接观察 execsnoop 和 inotifywait 输出，你确定 sed 的两个主要删除目标是 “X11” 和 “PATH=”。这两类被删的日志行很可能包含：启动图形/远程转发的记录、执行带 PATH 内容的命令或脚本路径的痕迹。删除这些行能显著降低入侵者留下的可追溯证据。<br>（结论：行为就是在主动清除可被审计器/管理员发现的痕迹。）</p>
+<p>发现/var/log/auth.log只保留了很早以前的内容，似乎被故意删除替换。</p>
+<p>sudo find / -path /home -prune -o -type f -name update -exec ls -l {} ; 2&gt;/dev/null 寻找名叫update的脚本/程序</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">-rwxr-xr-x 1 root root 17577 Jan 16 2025 &#x2F;usr&#x2F;local&#x2F;libexec&#x2F;.X11&#x2F;.k&#x2F;update </span><br><span class="line">-rwxr-xr-x 1 root root 13352 Feb 7 2025 &#x2F;usr&#x2F;games&#x2F;.mozilla&#x2F;.mozilla&#x2F;update </span><br><span class="line">-rwxr-xr-x 1 root root 1242 Sep 28 2022 &#x2F;usr&#x2F;lib&#x2F;dpkg&#x2F;methods&#x2F;apt&#x2F;update</span><br></pre></td></tr></table></figure>
+<p>发现病毒文件</p>
+<h2 id="文件位置"><a href="#文件位置" class="headerlink" title="文件位置"></a>文件位置</h2><h3 id="usr-local-libexec-X11-k"><a href="#usr-local-libexec-X11-k" class="headerlink" title="/usr/local/libexec/.X11/.k"></a>/usr/local/libexec/.X11/.k</h3><p>———- 1 root root    1709 Apr  1  2024  cert_key.pem<br>———- 1 root root     965 Apr  1  2024  cert.pem<br>———- 1 root root    7268 Feb 20  2025  config.json<br>———- 1 root root      27 Mar 11  2025  dir<br>———- 1 root root 6936216 Apr  1  2024  python3<br>———- 1 root root     150 Apr  1  2024  SHA256SUMS<br>lrwxrwxrwx 1 root root       7 Jan  7  2025  train -&gt; python3<br>———- 1 root root   17577 Jan 16  2025  update</p>
+<h3 id="usr-games-mozilla-mozilla"><a href="#usr-games-mozilla-mozilla" class="headerlink" title="/usr/games/.mozilla/.mozilla"></a>/usr/games/.mozilla/.mozilla</h3><p>———- 1 1826 1829   41864 Jan 31  2025 bashrc<br>———- 1 1826 1829     770 Feb  7  2025 cfg<br>IRC后门配置，连接到多个中继。包括加密的账号密码信息<br>———- 1 root root      92 Mar 11  2025 cron<br>每分钟定期执行的配置文件<br>———- 1 root root      29 Mar 11  2025 dir<br>———- 1 1826 1829  838583 Feb 21  2016 h64<br>———- 1 root root       7 Mar 19  2025 pid<br>———- 1 1826 1829     181 Jun 28  2021 run<br>执行当前目录下的 h64 可执行文件，参数 -s $HIDE（即 -s sshd），并把 ./run64 当作参数/子进程传给 h64<br>———- 1 1826 1829 4628605 Apr 20  2020 run64<br>———- 1 root root   13352 Feb  7  2025 update<br>访问并可能修改 /etc/ld.so.preload（多次访问），即植入恶意共享库以在程序加载阶段进行注入与钩子；这是高危持久化/注入技术。频繁调用 chattr/对 /usr/bin/chattr 或重要文件设置不可变，从而阻止系统工具被覆盖或卸载（我尝试了 apt 升级 e2fsprogs 失败）。创建只读或不可变占位文件以阻止普通脚本再写回原位置（在可移动失败时尝试保护自身复制品）。删除 pid 文件（rm -rf pid），清除运行痕迹或防止外部守护检测。</p>
+<p>日志擦除与掩盖痕迹：使用 timeout 5 sed -i ‘/X11/d’ … 与 sed -i ‘/PATH=/d’ … 对多份日志文件（/var/log/messages, /var/log/syslog, /var/log/auth.log, /var/log/cron 等）进行行删除，意在清除包含关键痕迹的日志行。重复调用 fchmod 或修改日志文件模式，改变权限以阻止或影响后续读取（并记录到审计/跟踪里）。创建/修改临时日志名（例如 /var/log/sedi0sJvI）并对其做 fchmod/写入，表明在擦除同时尝试隐藏行为或使用临时文件作为掩护。</p>
+<p>枚举网络、寻找通信通道与目标：读取 /proc/net/tcp, /proc/net/tcp6, /proc/net/udp 来枚举当前 TCP/UDP 会话和端点。使用 ss/netstat/grep EST 来查看监听与 ESTABLISHED 连接，定位现有的外联。用 grep 正则批量搜索日志/文件中是否含有一系列硬编码的 IP 与域名（多个 C2/IOC，如 5.250.178.69、sshd.run、pci.sh 等），以发现历史连接或可用的 C2 列表。基于端口模式（:21、:6667、:8080、:80、:443、http、irc 等）查找可能的服务/传播入口。</p>
+<p>启动/构建与运行 payload：在可疑目录执行 make clean / make，说明程序可能含源码并会本地编译可执行文件（自编译变种）。运行 ./run、./update 等可执行文件，并用 sleep 控制节奏，表明其会周期性启动 payload。使用 dirname、sleep 等工具处理路径与控制流程。</p>
+<h3 id="cron"><a href="#cron" class="headerlink" title="cron"></a>cron</h3><p>/var/spool/cron/crontabs/root, 2025 Mar 11植入</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;var&#x2F;spool&#x2F;cron&#x2F;crontabs&#x2F;root:4:* * * * * (cd &#x2F;usr&#x2F;games&#x2F;.mozilla&#x2F;.mozilla &amp;&amp; PATH&#x3D;:$PATH ; nohup update &gt;&#x2F;dev&#x2F;null 2&gt;&amp;1 &amp;)</span><br><span class="line">&#x2F;var&#x2F;spool&#x2F;cron&#x2F;crontabs&#x2F;root:4:* * * * * (cd &#x2F;usr&#x2F;games&#x2F;.mozilla&#x2F;.mozilla &amp;&amp; PATH&#x3D;:$PATH ; nohup update &gt;&#x2F;dev&#x2F;null 2&gt;&amp;1 &amp;)</span><br></pre></td></tr></table></figure>
+
+<h1 id="隔离"><a href="#隔离" class="headerlink" title="隔离"></a>隔离</h1><p>病毒使用自签证书进行通信，创建了<code>cert.pem</code>与<code>cert_key.pem</code>已经隔离；同时<code>config.json</code>中使用了两个域名+一个IP地址作为poolIP地址为<code>212.227.231.142</code>，服务器在西班牙，查看web测绘工具找到其除了常见端口外开放了<code>8443</code>,<code>7000</code>,<code>1002</code>端口，其中<code>8443</code>服务使用自签证书与服务器上的<code>cert</code>签名一致。</p>
+<p>查询WHOIS信息<code>openssh.run</code>是一个私人注册的域名，域名注册者在凤凰城，应该是外国的自动扫描攻击。服务器用DNS负载均衡，分配到两台服务器上，一台在英国<code>194.164.95.116:80</code>负责80端口，但是应该是HTTPs-over-80，证书与自签证书签名一致；另一台在德国<code>217.160.79.44:443</code>，负责443端口，同样HTTPs证书通信，证书与自签名证书一致。</p>
+<p>证书内容如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br></pre></td><td class="code"><pre><span class="line">Certificate:</span><br><span class="line">    Data:</span><br><span class="line">        Version: 1 (0x0)</span><br><span class="line">        Serial Number: 1 (0x1)</span><br><span class="line">        Signature Algorithm: sha256WithRSAEncryption</span><br><span class="line">        Issuer: CN &#x3D; localhost</span><br><span class="line">        Validity</span><br><span class="line">            Not Before: Nov 20 20:55:14 2023 GMT</span><br><span class="line">            Not After : Nov 17 20:55:14 2033 GMT</span><br><span class="line">        Subject: CN &#x3D; localhost</span><br><span class="line">        Subject Public Key Info:</span><br><span class="line">            Public Key Algorithm: rsaEncryption</span><br><span class="line">                Public-Key: (2048 bit)</span><br><span class="line">                Modulus:</span><br><span class="line">                    00:c1:4e:e0:7c:ae:45:d6:51:d3:76:da:4d:e3:d2:</span><br><span class="line">                    77:ee:37:96:d3:95:6e:5b:5c:25:53:3e:17:32:da:</span><br><span class="line">                    2d:47:65:de:39:18:32:2a:4b:5c:58:3a:47:38:0c:</span><br><span class="line">                    b0:78:aa:01:ea:18:e0:45:1d:eb:66:2e:cd:38:a4:</span><br><span class="line">                    ec:65:78:c8:51:26:47:c1:75:62:d2:84:df:5f:a2:</span><br><span class="line">                    b0:80:98:02:d5:2e:88:0a:be:f0:f7:62:93:0e:b2:</span><br><span class="line">                    6e:88:1f:1e:c5:e8:84:ed:ad:a9:67:02:7d:77:e8:</span><br><span class="line">                    8b:a7:2a:39:f2:c0:7f:19:aa:87:f4:95:da:e1:d2:</span><br><span class="line">                    ac:3f:24:6b:45:3e:a7:ad:8a:6b:1a:89:0a:4f:4e:</span><br><span class="line">                    66:69:42:9d:21:fe:2a:e0:e3:3e:5a:06:b7:a1:3e:</span><br><span class="line">                    1e:2e:3f:ea:9a:f6:eb:56:cd:f5:06:5a:fd:28:d1:</span><br><span class="line">                    46:fd:ed:ba:5d:35:04:a1:58:94:ee:a8:61:6d:e6:</span><br><span class="line">                    b4:92:36:41:77:35:67:dc:57:7c:7b:e3:99:00:8d:</span><br><span class="line">                    d9:e3:2d:cc:f6:0b:75:10:e6:6e:6c:b4:c3:fa:2a:</span><br><span class="line">                    ff:89:42:45:d2:44:1a:93:0b:a0:dd:b5:ce:60:12:</span><br><span class="line">                    a4:11:f9:53:8d:39:d8:b5:d8:53:c6:21:ba:82:47:</span><br><span class="line">                    ea:d4:3c:b3:97:4d:ee:26:5d:a2:df:32:f5:00:76:</span><br><span class="line">                    6f:9b</span><br><span class="line">                Exponent: 65537 (0x10001)</span><br><span class="line">    Signature Algorithm: sha256WithRSAEncryption</span><br><span class="line">    Signature Value:</span><br><span class="line">        5f:57:54:74:fd:e0:4e:38:7f:19:83:76:65:1c:37:e8:02:fa:</span><br><span class="line">        6d:34:d3:de:8a:c9:b0:e8:df:51:65:e0:63:77:1d:5f:3a:ae:</span><br><span class="line">        0e:8a:38:51:b4:5c:99:55:3e:34:5b:aa:44:e7:cc:69:77:c4:</span><br><span class="line">        92:3b:a9:5d:76:30:06:dd:dd:46:33:27:87:c9:d7:07:ee:ab:</span><br><span class="line">        80:b4:db:09:f3:5e:3f:48:4c:92:b8:2d:3f:e7:11:41:45:a6:</span><br><span class="line">        88:68:ce:ea:5b:d1:38:75:c1:e9:6c:c3:6a:40:f9:e7:0e:4e:</span><br><span class="line">        05:69:47:20:69:36:2a:1f:6a:bc:0f:92:68:0c:e0:09:b1:7c:</span><br><span class="line">        2a:cc:a4:d3:16:35:25:6d:9e:f1:41:94:47:3f:8d:9c:ae:de:</span><br><span class="line">        07:58:9c:ac:85:4c:0f:ce:e8:c0:d4:34:f3:7c:0c:6a:63:10:</span><br><span class="line">        79:1c:57:d0:4c:25:3c:1b:9d:eb:61:c3:d5:35:2e:17:76:4d:</span><br><span class="line">        ce:24:7d:83:c9:20:7f:8c:6b:98:fe:5b:46:78:f7:7d:05:73:</span><br><span class="line">        54:3c:99:85:2b:fe:62:ef:03:ec:55:df:ee:a9:f8:6c:01:9d:</span><br><span class="line">        3d:14:62:25:fd:76:ca:fc:01:91:fa:86:6d:fd:91:7c:ea:d3:</span><br><span class="line">        ce:59:d2:46:ca:d3:1a:94:17:12:6b:64:1d:f6:2a:0a:87:49:</span><br><span class="line">        04:56:38:c4</span><br></pre></td></tr></table></figure>
+
+<p>现在查看应该已经没有相关的cron、进程和socket连接了。<code>/usr/local/libexec/.X11</code>伪装目录下通信使用的证书已经移除，<code>/usr/games/.mozilla/.mozilla</code>路径下的所有文件全部隔离到<code>/usr/games/.mozilla.backup</code>中。现在就算启动应该也会直接报错无法正常执行了。编译后的文件还留着，可以未来逆向。</p>
+
+        </div>
+
+        
+        <section class="post-tags">
+            <div>
+                <span>Tag(s):</span>
+                <span class="tag">
+                    
+                </span>
+            </div>
+            <div>
+                <a href="javascript:window.history.back();">back</a>
+                <span>· </span>
+                <a href="/">home</a>
+            </div>
+        </section>
+        <section class="post-nav">
+            
+            
+            <a class="next" rel="next" href="/2025/08/09/%E8%B4%B5%E5%B7%9E-%E6%AD%A6%E6%B1%89/">贵州-武汉</a>
+            
+        </section>
+
+
+    </article>
+</div>
+
+
+
+        </div>
+        <footer id="footer" class="footer">
+        <div class="copyright">
+        <span>© Helloat123 | Powered by <a href="https://hexo.io" target="_blank">Hexo</a> & <a href="https://github.com/Siricee/hexo-theme-Chic" target="_blank">Chic</a> | 2017 - 2025 </span></span>
+    </div>
+</footer>
+
+    </div>
+</body>
+</html>
