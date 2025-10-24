@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <meta name="author" content="Helloat123">
+
+
+
+
+
+<title>为什么在2025年开始使用GNU/linux | Richard&#39;s Blog</title>
+
+
+
+    <link rel="icon" href="/favicon.png">
+
+
+
+
+    <!-- stylesheets list from _config.yml -->
+    
+    <link rel="stylesheet" href="/css/style.css">
+    
+
+
+
+    <!-- scripts list from _config.yml -->
+    
+    <script src="/js/script.js"></script>
+    
+    <script src="/js/tocbot.min.js"></script>
+    
+
+
+
+    
+    
+        
+    
+
+
+<meta name="generator" content="Hexo 5.4.2"></head>
+<body>
+    <div class="wrapper">
+        <header>
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-header header-logo"><a href="/">Richard&#39;s Blog</a></div>
+            <div class="menu navbar-right">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+                <input id="switch_default" type="checkbox" class="switch_default">
+                <label for="switch_default" class="toggleBtn"></label>
+            </div>
+        </div>
+    </nav>
+
+    
+    <nav class="navbar-mobile" id="nav-mobile">
+        <div class="container">
+            <div class="navbar-header">
+                <div>
+                    <a href="/">Richard&#39;s Blog</a><a id="mobile-toggle-theme">·&nbsp;Light</a>
+                </div>
+                <div class="menu-toggle" onclick="mobileBtn()">&#9776; Menu</div>
+            </div>
+            <div class="menu" id="mobile-menu">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+            </div>
+        </div>
+    </nav>
+
+</header>
+<script>
+    var mobileBtn = function f() {
+        var toggleMenu = document.getElementsByClassName("menu-toggle")[0];
+        var mobileMenu = document.getElementById("mobile-menu");
+        if(toggleMenu.classList.contains("active")){
+           toggleMenu.classList.remove("active")
+            mobileMenu.classList.remove("active")
+        }else{
+            toggleMenu.classList.add("active")
+            mobileMenu.classList.add("active")
+        }
+    }
+</script>
+        <div class="main">
+            <div class="container">
+    
+    
+        <div class="post-toc">
+    <div class="tocbot-list">
+    </div>
+    <div class="tocbot-list-menu">
+        <a class="tocbot-toc-expand" onclick="expand_toc()">Expand all</a>
+        <a onclick="go_top()">Back to top</a>
+        <a onclick="go_bottom()">Go to bottom</a>
+    </div>
+</div>
+
+<script>
+    document.ready(
+        function () {
+            tocbot.init({
+                tocSelector: '.tocbot-list',
+                contentSelector: '.post-content',
+                headingSelector: 'h1, h2, h3, h4, h5',
+                collapseDepth: 1,
+                orderedList: false,
+                scrollSmooth: true,
+            })
+        }
+    )
+
+    function expand_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 6,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "collapse_toc()");
+        b.innerHTML = "Collapse all"
+    }
+
+    function collapse_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 1,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "expand_toc()");
+        b.innerHTML = "Expand all"
+    }
+
+    function go_top() {
+        window.scrollTo(0, 0);
+    }
+
+    function go_bottom() {
+        window.scrollTo(0, document.body.scrollHeight);
+    }
+
+</script>
+    
+
+    
+    <article class="post-wrap">
+        <header class="post-header">
+            <h1 class="post-title">为什么在2025年开始使用GNU/linux</h1>
+            
+                <div class="post-meta">
+                    
+                        Author: <a itemprop="author" rel="author" href="/">Helloat123</a>
+                    
+
+                    
+                        <span class="post-time">
+                        Date: <a href="#">October 24, 2025&nbsp;&nbsp;15:37:55</a>
+                        </span>
+                    
+                    
+                        <span class="post-category">
+                    Category:
+                            
+                                <a href="/categories/%E7%8E%A9%E6%9C%BA/">玩机</a>
+                            
+                        </span>
+                    
+                </div>
+            
+        </header>
+
+        <div class="post-content">
+            <h2 id="名词解释"><a href="#名词解释" class="headerlink" title="名词解释"></a>名词解释</h2><p>由chatGPT生成。</p>
+<p>GNU/Linux：严格意义上是指“GNU 操作系统 + Linux 内核”的组合。Linux 只是内核（管理硬件、进程、内存等底层资源），而 GNU 项目提供了用户层所需的基本工具（如 bash、gcc、ls、make、tar 等）。两者结合后才构成我们日常使用的完整操作系统。</p>
+<p>MSYS / MSYS2：Windows 上的一个「类 Linux 环境」，提供 bash、make、gcc 等命令，让你能在 Windows 里体验到 GNU 工具链。MSYS2 是新版，包管理器叫 <code>pacman</code>，和 Arch Linux 用的是同一套。</p>
+<p>MinGW（Minimalist GNU for Windows）：一种让 GNU 编译器（gcc）能生成 <strong>原生 Windows 程序</strong> 的工具链。它常与 MSYS2 一起安装，用来编译不依赖 Linux 子系统的可执行文件。</p>
+<p>Git Bash：随 Git for Windows 一起提供的轻量化 MSYS 环境，内置 bash、ssh、grep 等常用命令，方便在 Windows 上使用 Git。</p>
+<p>Ubuntu：最流行的 Linux 发行版之一，由 Canonical 公司维护。以「开箱即用」著称，对新手友好，提供图形化安装、长期支持（LTS）版本、庞大的软件仓库。</p>
+<p>Unity（Ubuntu 旧版桌面环境）：Canonical 自研的桌面环境，主打整合搜索与侧边栏操作，已于 2017 年停更。</p>
+<p>Wine：在 Linux 上运行 Windows 程序的兼容层，不是虚拟机，而是实时翻译 Windows API 调用。</p>
+<p>WSL（Windows Subsystem for Linux）：微软在 Windows 10 引入的功能，让你能在 Windows 上直接运行原生 Linux 程序，不需要虚拟机。</p>
+<p>WSL2：WSL 的重大升级版本，使用真实的 Linux 内核，性能和兼容性更接近原生系统，可运行 Docker、systemd 等。</p>
+<p>WSLg：Windows 11 自带的「图形化 Linux 子系统」，能在 Windows 上直接运行 Linux GUI 应用（如 gedit、nautilus、nvim-qt）。</p>
+<p>Deepin：国产 Linux 发行版，以精美的 DDE 桌面著称，专为普通用户设计。</p>
+<p>KDE Plasma：现代化、高度可定制的 Linux 桌面环境，支持 Wayland、手势、特效和深度集成。</p>
+<p>Wayland：现代 Linux 桌面显示协议，比 X11 更简洁、安全、延迟低，是 KDE Plasma 6、GNOME 等环境的默认后端。</p>
+<p>Pacman：Arch Linux 及 MSYS2 的包管理器，通过命令（如 <code>-Syu</code>）安装、更新、删除软件。</p>
+<p>AUR（Arch User Repository）：Arch 社区维护的用户包仓库，收录官方源没有的软件，通过辅助工具（yay、paru）自动编译安装。</p>
+<p>Btrfs：一种现代 Linux 文件系统，支持快照、压缩、校验和等特性。与 <code>snapper</code> 搭配可以实现系统自动备份与回滚。</p>
+<p>Snapper：管理 Btrfs 快照的工具，可在系统更新前后自动创建恢复点。</p>
+<p>DDNS-Go：动态域名解析工具，当你的公网 IP 变化时自动更新 DNS 记录，实现家庭服务器的远程访问。</p>
+<p>SSH / SSHD：安全远程登录协议与守护进程，用于通过命令行远程访问或管理服务器。</p>
+<p>Apache2：经典 Web 服务器软件，可在本地或服务器上托管网站与服务。</p>
+<p>LibreOffice：自由开源的办公套件，支持 Word、Excel、PowerPoint 等文档格式。</p>
+<p>Proton：Valve 基于 Wine 改进的游戏兼容层，让 Steam 上的 Windows 游戏能在 Linux 下运行。</p>
+<h2 id="正文"><a href="#正文" class="headerlink" title="正文"></a>正文</h2><p>早在2016年，坐在右边的<a target="_blank" rel="noopener" href="https://etaoinwu.com/">EtaoinWu</a>向我介绍了MSYS2。但我不知道那是什么，只知道上去-Syu一下可以更新软件包看着很帅。我也不知道为什么安装MinGW会绑定安装MSYS，以及好像git bash？我翻了一些技术博客但看不明白。如果那时候有chatGPT，我应该会迅速了解吧。</p>
+<p>2017年，我尝试在笔记本上装了Win+Ubuntu双系统，并且拿到密码（极域电子教室明文存储密码在注册表中，且和联想硬盘保护系统用的同一个密码）后把学校机房的两台电脑装上了Ubuntu，两个月后被机房老师重装。我也常常使用楼上大机房的noiLinux电脑。</p>
+<p>那时的Ubuntu还是Unity桌面，捣鼓半天可以装上fcitx的输入法但调不好好看的字体。chromium可以登录google账号，网易云音乐for linux在大多数情况下挺好用。qq只能上WebQQ，老版本linuxqq已经不受支持，而wine运行win版qq很容易崩溃。而微信则是win版本都简陋得让人完全没有欲望使用。LibreOffice编辑文件时经常闪退。那时候，用linux除了看起来极客风、厉害以外，主要作用就是避免自己打游戏了。用了一阵子发现硬盘容量不足，我就删除了Ubuntu系统，转而在windows上安装了最新推出的WSL，用WSL替代了MSYS完成平常的编译运行竞赛用cpp代码的任务。</p>
+<p>虽然也并没有多了解开源社区，但开源的精神让我深有感触，我敬佩这么一群热衷于无偿分享的程序员们。我希望用开源的、自由的软件。奈何常用功能在linux生态中很难满足。</p>
+<p>本科4年，我一直在关注linux的发展。WSL2的诞生令人欣喜，使得我可以在windows笔记本上有原生GNU/Linux的体验。我也尝试了在WSL中安装xfce桌面，在win中远程桌面连接。但xfce中能干什么呢？不知道我能有什么需求。win中能干的事情这样绕一圈干总归有些性能损失。</p>
+<p>Win11一出我就通过insider preview获取了更新，主要为了体验WSLg。那时候我也开始使用neovim，我就尝试WSLg开nvim-qt用，但win上的nvim-qt比的访问本地文件更方便。我也想不到别的需要用到WSLg的地方：这个桌面好玩，但对我来说没用。</p>
+<p>进组后，我常常使用组里的Ubuntu服务器。这算是我第一次重度使用原生GNU/Linux吧。</p>
+<p>后来，听说许多政府单位开始换国产Linux发行版（信创要求），并且国家开始强迫各个厂商支持适配Linux。在2024年装电脑时，我尝试装了deepin国产系统。但体验了1天发现很多设计逻辑不符合我的需求，而且并不那么可定制化，遂弃用，仍安装Windows11。直到2025年给电脑加装显卡时，我调查发现国内使用GNU/Linux的最大痛点都已经被QQ、微信、腾讯会议、WPS几乎解决（但同时，避免自己打游戏的feature也被steam的proton解决了）（我用arch的这几个月也能感觉到这些国产软件正在迅速更新中，比如QQ有了更多设置项、腾讯会议已经支持wayland下的屏幕共享）。加之我多年的命令行使用经验，让我对linux足够了解，我就选择了安装archlinux，并选择了刚开始成熟支持Wayland的现代桌面KDE plasma 6，至今使用没有遇到什么问题。AI年代，在GPT的指导下，有一定经验的我直接配好了btrfs+snapper快照，也花了没多久就配好了各种常用服务（sshd, ddns-go, apache2等等）。这几年的LLM给Linux新手使用者的助力是巨大的。</p>
+<p>各种东西都配好之后，archlinux就变得无比顺手了。丰富的官方包和更丰富的AUR包使得安装软件和更新比windows方便了太多，不需要去识别哪个是软件的官网并一步一步点安装，也几乎完全不需要担心流氓软件，还能最快拥有最新的技术工具（比如ollama、codex-cli）。更新与否完全取决于自己什么时候-Syu（而windows总是有自己的想法），更新的步骤也可以实时观看（windows更新有时甚至看不出是否由于翻墙/hosts配置错误而影响了更新过程导致进度卡死，在那干等）。</p>
+
+        </div>
+
+        
+        <section class="post-tags">
+            <div>
+                <span>Tag(s):</span>
+                <span class="tag">
+                    
+                    
+                        <a href="/tags/%E7%8E%A9%E6%9C%BA/"># 玩机</a>
+                    
+                        
+                </span>
+            </div>
+            <div>
+                <a href="javascript:window.history.back();">back</a>
+                <span>· </span>
+                <a href="/">home</a>
+            </div>
+        </section>
+        <section class="post-nav">
+            
+            
+            <a class="next" rel="next" href="/2025/10/12/%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%97%85%E6%AF%92%E8%AE%B0%E5%BD%95/">服务器病毒记录</a>
+            
+        </section>
+
+
+    </article>
+</div>
+
+
+
+        </div>
+        <footer id="footer" class="footer">
+        <div class="copyright">
+        <span>© Helloat123 | Powered by <a href="https://hexo.io" target="_blank">Hexo</a> & <a href="https://github.com/Siricee/hexo-theme-Chic" target="_blank">Chic</a> | 2017 - 2025 </span></span>
+    </div>
+</footer>
+
+    </div>
+</body>
+</html>
